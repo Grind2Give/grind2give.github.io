@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grind2Give White Paper</title>
+  <meta name="description" content="Grind2Give turns gaming into real impact. Every action supports community-voted charities." />
+  <style>
+    :root {
+      --green: #00ff88;
+      --dark: #0f0f1a;
+      --light: #e0e0ff;
+      --gray: #1a1a2e;
+      --glow: rgba(0, 255, 136, 0.4);
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px 40px;
+      background: rgba(26, 26, 46, 0.85);
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(0, 255, 136, 0.15);
+    }
+    header {
+      text-align: center;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+    }
+    h1 {
+      font-size: 3.5rem;
+      margin: 0 0 20px;
+      color: var(--green);
+      text-shadow: 0 0 30px var(--glow);
+    }
+    .subtitle {
+      font-size: 1.4rem;
+      color: #aaa;
+      margin: 10px 0;
+    }
+    h2 {
+      color: var(--green);
+      font-size: 2.4rem;
+      margin: 60px 0 30px;
+      text-shadow: 0 0 20px var(--glow);
+    }
+    h3 {
+      color: #ccc;
+      font-size: 1.8rem;
+      margin: 40px 0 20px;
+    }
+    p {
+      margin: 20px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      background: rgba(15, 15, 26, 0.6);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(0, 255, 136, 0.15);
+    }
+    th {
+      background: rgba(0, 255, 136, 0.1);
+      color: var(--green);
+      font-weight: bold;
+    }
+    ul {
+      padding-left: 30px;
+      margin: 20px 0;
+    }
+    li {
+      margin: 12px 0;
+    }
+    .highlight {
+      color: var(--green);
+      font-weight: bold;
+    }
+    .back-link {
+      display: inline-block;
+      margin: 40px 0 60px;
+      color: var(--green);
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 60px 0 100px;
+      color: #888;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(0, 255, 136, 0.1);
+    }
+    @media (max-width: 768px) {
+      .container { padding: 20px; }
+      h1 { font-size: 2.8rem; }
+      h2 { font-size: 2rem; }
+      h3 { font-size: 1.6rem; }
+      table, th, td { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <h1>Grind2Give White Paper</h1>
+  <p class="subtitle"><strong>Gaming Grind → Real-World Good</strong></p>
+  <p class="subtitle">$G2G on Base • Version 1.0 – January 2026</p>
+  <p class="subtitle">Created by @H2GamingX / @h2gx_562</p>
+</header>
+
+<h2>Abstract</h2>
+<p>Grind2Give ($G2G) is a community-driven ERC-20 utility token on the Base blockchain that transforms gaming streams and participation into verifiable charitable impact.</p>
+<p>Through a simple 6% transaction tax, every buy, sell, or transfer automatically contributes to causes chosen by the community — turning playtime into purpose.</p>
+<p>Inspired by Matthew 25:40 — “Truly I tell you, whatever you did for one of the least of these brothers and sisters of mine, you did for me” — Grind2Give is built on the belief that collective gaming hustle can create lasting good for the overlooked and underserved.</p>
+
+<h2>1. Vision & Mission</h2>
+
+<h3>The Problem</h3>
+<p>Gaming communities generate massive energy, time, and economic activity — yet most of it remains trapped in entertainment without touching real-world need. At the same time, millions face hunger, lack access to sports, live in crisis, and feel invisible.</p>
+
+<h3>The Solution</h3>
+<p>Grind2Give turns that energy outward. Every stream, every game, every trade becomes a vehicle for good. The 6% transaction tax is the engine:</p>
+<ul>
+  <li><span class="highlight">3%</span> → Community-voted charity (monthly polls → forwarded live via The Giving Block)</li>
+  <li><span class="highlight">2%</span> → Reflections (passive rewards to all holders)</li>
+  <li><span class="highlight">0.5%</span> → Auto-burn (supply shrinks over time)</li>
+  <li><span class="highlight">0.5%</span> → Auto-Liquidity (pool grows automatically)</li>
+</ul>
+<p>Community votes ensure funds support causes that matter most — feeding the hungry, enabling youth sports, helping families in crisis — while holders earn passively and the ecosystem becomes more stable and scarce.</p>
+
+<h3>Core Values</h3>
+<ul>
+  <li>Transparency — public wallets, on-chain proof, live receipts</li>
+  <li>Fairness — low founder allocation, renounce ownership, community control</li>
+  <li>Impact over speculation — real donations > hype</li>
+  <li>Inclusivity — anyone can participate (watch, hold, vote, give)</li>
+</ul>
+
+<h2>2. Tokenomics</h2>
+
+<h3>Token Details</h3>
+<ul>
+  <li><strong>Name:</strong> Grind2Give</li>
+  <li><strong>Symbol:</strong> $G2G</li>
+  <li><strong>Blockchain:</strong> Base (Ethereum Layer 2)</li>
+  <li><strong>Standard:</strong> ERC-20</li>
+  <li><strong>Total Supply:</strong> 25,400,000 (fixed — no minting after deployment)</li>
+  <li><strong>Launch Type:</strong> Fair launch with transparent allocations</li>
+</ul>
+
+<h3>Transaction Tax: 6%</h3>
+<p>Applied on every buy, sell, and transfer:</p>
+<table>
+  <tr><th>Portion</th><th>Percentage</th><th>Destination & Purpose</th></tr>
+  <tr><td>Charity</td><td>3.0%</td><td>Auto-sent to public charity pool wallet. Community votes monthly on recipient via Twitch/X polls. Funds forwarded live via The Giving Block — core mission engine.</td></tr>
+  <tr><td>Reflections</td><td>2.0%</td><td>Auto-redistributed proportionally to all holders. Passive income — balances grow automatically. Rewards long-term support.</td></tr>
+  <tr><td>Auto-Burn</td><td>0.5%</td><td>Permanently removed from circulation. Adds gradual scarcity and long-term value.</td></tr>
+  <tr><td>Auto-Liquidity</td><td>0.5%</td><td>Auto-added back to the main DEX pool. Builds depth and stability over time.</td></tr>
+</table>
+
+<h2>3. Token Distribution & Wallets</h2>
+<p>All wallets are public (addresses shared at launch on stream/X/Basescan) for full transparency.</p>
+
+<table>
+  <tr><th>Allocation</th><th>%</th><th>Tokens</th><th>Wallet / Purpose & Notes</th></tr>
+  <tr><td>Liquidity Pool</td><td>80%</td><td>20,320,000</td><td>Paired with $2,000 ETH/WETH on Base. LP locked for 3 years (36 months).</td></tr>
+  <tr><td>Launch Burn</td><td>5%</td><td>1,270,000</td><td>Sent to dead address at launch for instant scarcity.</td></tr>
+  <tr><td>Airdrops / Rewards Wallet</td><td>5%</td><td>1,270,000</td><td>Single public wallet for stream drops, giveaways, lobby rewards, chat activity (earns reflections).</td></tr>
+  <tr><td>Founder & Mission Support Wallet</td><td>5%</td><td>1,270,000</td><td>Public wallet controlled by the founder — stream operational costs, energy/utilities, equipment maintenance, project sustainability (earns reflections).</td></tr>
+  <tr><td>Community Engagement Personal Wallet</td><td>2%</td><td>508,000</td><td>Public wallet controlled by the community engagement team member — X/Twitch/Discord promotion, community growth, engagement initiatives (earns reflections).</td></tr>
+  <tr><td>Project Operations Personal Wallet</td><td>2%</td><td>508,000</td><td>Public wallet controlled by the operations team member — project coordination, tools, charity logistics, operations (earns reflections).</td></tr>
+  <tr><td>Future New Pair Reserve Wallet</td><td>1%</td><td>254,000</td><td>Public reserve wallet — seeding LP on future pairs (e.g., USDC pair later). Earns reflections until used.</td></tr>
+</table>
+
+<h2>4. Launch Process</h2>
+<ol>
+  <li>Deploy token on Base — full supply to founder wallet</li>
+  <li>Burn 5% to dead address</li>
+  <li>Fund public wallets (airdrops 5%, founder 5%, community engagement 2%, project operations 2%, future reserve 1%)</li>
+  <li>Renounce ownership + verify contract on Basescan</li>
+  <li>Pre-launch airdrops from rewards wallet to build hype</li>
+  <li>Add liquidity live on stream ($2,000 + 80% supply)</li>
+  <li>Lock LP tokens for 3 years (36 months) via UNCX or PinkSale — proof shared live</li>
+</ol>
+
+<h2>5. Community & Promotion</h2>
+<ul>
+  <li>Streams: Any game — airdrops tied to participation (lobby joins, winners, chat activity)</li>
+  <li>Onboarding: Simple guides for Trust Wallet / Coinbase Wallet → Base network → add $G2G token</li>
+  <li>Transparency: Live Basescan overlays, wallet balances, donation receipts</li>
+</ul>
+
+<h2>6. Charitable Execution (Community-Voted via The Giving Block)</h2>
+<ul>
+  <li>3% tax auto-sends to public charity pool wallet(s)</li>
+  <li>Monthly community votes on charities (Twitch/X polls)</li>
+  <li>Founder forwards funds live via The Giving Block widget (receipts + on-chain proof shared)</li>
+  <li>Random Acts of Kindness (from Founder & Mission Support Wallet): Live-stream spontaneous help</li>
+</ul>
+
+<h2>7. Risks & Disclaimers</h2>
+<ul>
+  <li>No financial advice — $G2G is a utility/community token, not an investment. Value may go to zero.</li>
+  <li>Volatility — Crypto markets are unpredictable.</li>
+  <li>Tax — Token transactions are not charitable donations. Direct donations to qualified charities may be tax-deductible (consult a tax professional).</li>
+  <li>Legal — Fair launch, no securities promises.</li>
+</ul>
+
+<h2>Closing Vision</h2>
+<p>Grind2Give is more than a token — it's a call to action. Through gaming grind, community participation, and automatic giving, we turn streams into real help for the least of these. Every trade supports causes chosen by the community via The Giving Block, every holder earns reflections, and every stream can make a difference.</p>
+<p>Whatever you do — whether playing, holding, trading, or simply watching — know that it can contribute to something eternal.</p>
+<p><strong>Grind to give.</strong><br>Grind2Give.</p>
+
+<footer>
+  <p>Created by Grind2Give (@H2GamingX / @h2gx_562) • January 2026</p>
+  <p><a href="/" style="color: var(--green);">← Back to grind2give.org</a></p>
+</footer>
+
+</div>
+
+</body>
+</html>
