@@ -11,6 +11,8 @@
       --dark: #0f0f1a;
       --light: #e0e0ff;
       --gray: #1a1a2e;
+      --glow: rgba(0, 255, 136, 0.6);
+      --twitch: #9146FF;
     }
     body {
       margin: 0;
@@ -20,72 +22,151 @@
       line-height: 1.6;
     }
     header {
-      background: linear-gradient(135deg, #1a3c34, #0b2f2f);
-      padding: 100px 20px 80px;
+      background: linear-gradient(135deg, #0b2f2f, #1a3c34, #0b2f2f);
+      padding: 120px 20px 80px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 30% 70%, var(--glow) 0%, transparent 60%);
+      opacity: 0.3;
+      pointer-events: none;
     }
     h1 {
-      font-size: 4rem;
+      font-size: 4.5rem;
       margin: 0 0 20px;
       color: var(--green);
-      text-shadow: 0 0 30px rgba(0,255,136,0.4);
+      text-shadow: 0 0 40px var(--glow);
+      position: relative;
+      z-index: 1;
     }
     .tagline {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       margin: 20px 0;
-      opacity: 0.9;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
     }
     .verse {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: #aaa;
       font-style: italic;
-      margin: 30px 0;
+      margin: 40px 0;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
     }
     .cta {
       display: inline-block;
       background: var(--green);
       color: #000;
-      padding: 16px 40px;
-      font-size: 1.4rem;
+      padding: 18px 50px;
+      font-size: 1.5rem;
       font-weight: bold;
-      border-radius: 8px;
+      border-radius: 12px;
       text-decoration: none;
-      margin: 30px 10px;
-      transition: all 0.3s;
+      margin: 30px 15px;
+      transition: all 0.4s;
+      box-shadow: 0 0 30px var(--glow);
+      position: relative;
+      z-index: 1;
     }
     .cta:hover {
       background: #00cc77;
-      transform: scale(1.05);
+      transform: scale(1.08);
+      box-shadow: 0 0 50px var(--glow);
+    }
+    .twitch-cta {
+      background: var(--twitch);
+      color: white;
+    }
+    .twitch-cta:hover {
+      background: #772ce8;
     }
     section {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 0 20px;
+      max-width: 1100px;
+      margin: 80px auto;
+      padding: 0 30px;
     }
     h2 {
       color: var(--green);
       text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
+      font-size: 3rem;
+      margin-bottom: 40px;
+      text-shadow: 0 0 20px rgba(0,255,136,0.3);
     }
     ul {
       list-style: none;
       padding: 0;
+      font-size: 1.3rem;
     }
     li {
-      margin: 15px 0;
-      font-size: 1.2rem;
+      margin: 20px 0;
+      padding-left: 30px;
+      position: relative;
+    }
+    li::before {
+      content: "→";
+      color: var(--green);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    .wallet-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin: 40px 0;
+    }
+    .wallet-group {
+      text-align: center;
+    }
+    .wallet-group h3 {
+      color: var(--green);
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+    .wallet-img {
+      height: 70px;
+      margin: 10px;
+      transition: transform 0.3s;
+    }
+    .wallet-img:hover {
+      transform: scale(1.1);
+    }
+    #countdown {
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+      margin: 40px 0;
+      color: var(--green);
+      text-shadow: 0 0 30px var(--glow);
+    }
+    .live-notice {
+      text-align: center;
+      font-size: 1.5rem;
+      color: var(--twitch);
+      margin: 40px 0;
+      font-weight: bold;
     }
     footer {
       text-align: center;
-      padding: 60px 20px;
+      padding: 80px 20px;
       background: #0a0a14;
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: #888;
     }
     @media (max-width: 768px) {
-      h1 { font-size: 3rem; }
-      .tagline { font-size: 1.3rem; }
+      h1 { font-size: 3.2rem; }
+      .tagline { font-size: 1.4rem; }
+      #countdown { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -95,58 +176,90 @@
   <h1>Grind2Give</h1>
   <p class="tagline">Gaming Grind → Real-World Good</p>
   <p class="verse">Matthew 25:40 — Whatever you did for one of the least of these… you did for me.</p>
-  <a href="https://twitter.com/H2GamingX" class="cta" target="_blank">Follow on X → Join the Movement</a>
-  <a href="https://www.twitch.tv/h2gamingx" class="cta" target="_blank">Watch Live on Twitch</a>
+  <a href="https://twitter.com/H2GamingX" class="cta" target="_blank">Follow on X</a>
+  <a href="https://www.twitch.tv/h2gx_562" class="cta twitch-cta" target="_blank">Watch Live on Twitch</a>
 </header>
 
 <section>
   <h2>The Mission</h2>
-  <p>Grind2Give turns every stream, every game, every grind into real help for those in need.</p>
-  <ul>
-    <li>Community votes monthly on charities</li>
-    <li>Live donations via The Giving Block</li>
-    <li>Receipts & on-chain proof shown on stream</li>
-    <li>Random acts of kindness live</li>
-    <li>Passive rewards for supporters</li>
-  </ul>
-  <p style="text-align:center; font-style:italic; margin-top:30px;">
-    No hype. Just purpose.
-  </p>
+  <p>Grind2Give turns every stream, every game, every grind into real help for those in need. Community votes monthly on charities. Live donations via The Giving Block. Receipts & proof shown on stream.</p>
 </section>
 
 <section>
-  <h2>Get Ready</h2>
+  <h2>Launch Countdown</h2>
+  <div id="countdown">Loading...</div>
+</section>
+
+<section>
+  <h2>Get Ready for Free Airdrops</h2>
   <p>Pre-launch airdrops starting soon — free tokens for active chat & viewers.</p>
+  <p class="live-notice">Join live streams on <a href="https://www.twitch.tv/h2gx_562" style="color: var(--twitch); font-weight: bold;" target="_blank">@h2gx_562 on Twitch</a> for drops and updates!</p>
   <p>Full launch in ~30 days — liquidity added live on stream.</p>
-  <p>Details, contract, and wallets coming soon. Stay tuned!</p>
 </section>
 
 <section>
-  <h2>Wallet Setup (For Free Airdrops)</h2>
-  <p>Download one of these free wallets:</p>
-  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px; margin:30px 0;">
-    <a href="https://apps.apple.com/us/app/trust-crypto-bitcoin-wallet/id1288339409" target="_blank">
-      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Trust Wallet" style="height:60px;"/>
-    </a>
-    <a href="https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp" target="_blank">
-      <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Trust Wallet" style="height:60px;"/>
-    </a>
-    <a href="https://apps.apple.com/us/app/coinbase-wallet-nfts-crypto/id1278383455" target="_blank">
-      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Coinbase Wallet" style="height:60px;"/>
-    </a>
-    <a href="https://play.google.com/store/apps/details?id=org.toshi" target="_blank">
-      <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Coinbase Wallet" style="height:60px;"/>
-    </a>
+  <h2>Wallet Setup (Choose One – Both Free)</h2>
+  <div class="wallet-buttons">
+    <div class="wallet-group">
+      <h3>Trust Wallet</h3>
+      <a href="https://apps.apple.com/us/app/trust-crypto-bitcoin-wallet/id1288339409" target="_blank">
+        <img class="wallet-img" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Trust Wallet App Store">
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp" target="_blank">
+        <img class="wallet-img" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Trust Wallet Google Play">
+      </a>
+    </div>
+
+    <div class="wallet-group">
+      <h3>Coinbase Wallet</h3>
+      <a href="https://apps.apple.com/us/app/coinbase-wallet-nfts-crypto/id1278383455" target="_blank">
+        <img class="wallet-img" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Coinbase Wallet App Store">
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=org.toshi" target="_blank">
+        <img class="wallet-img" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Coinbase Wallet Google Play">
+      </a>
+    </div>
   </div>
-  <p style="text-align:center; font-size:1.1rem; margin-top:20px;">
-    <strong>No ETH needed to receive airdrops</strong> — it's 100% free!
+
+  <p style="text-align:center; font-size:1.2rem; margin-top:30px;">
+    <strong>Steps (for both wallets):</strong><br>
+    1. Download & create wallet<br>
+    2. Switch to <strong>Base</strong> network<br>
+    3. Add $G4G token (contract drops on launch)<br>
+    4. Type !wallet [your address] in chat for free airdrops!
   </p>
 </section>
 
 <footer>
-  <p>Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);">@H2GamingX</a> • Live streams on Twitch</p>
+  <p>Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);">@H2GamingX</a> • Live streams on <a href="https://www.twitch.tv/h2gx_562" style="color:var(--twitch);">Twitch @h2gx_562</a></p>
   <p>Grind2Give • Coming Soon • Grind to Give</p>
 </footer>
+
+<script>
+// Countdown Timer - Change the date to your actual launch date (YYYY, MM-1, DD, HH, MM, SS)
+const launchDate = new Date(2026, 1, 28, 20, 0, 0); // Example: Feb 28, 2026 8:00 PM EST
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = launchDate - now;
+
+  if (distance < 0) {
+    document.getElementById("countdown").innerHTML = "LAUNCHED! 🔥";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML = 
+    days + "d : " + hours + "h : " + minutes + "m : " + seconds + "s";
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
 
 </body>
 </html>
