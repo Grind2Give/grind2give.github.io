@@ -13,7 +13,7 @@
       --gray: #1a1a2e;
       --glow: rgba(0, 255, 136, 0.6);
       --twitch: #9146FF;
-      --twitch-glow: rgba(145, 70, 255, 0.8);
+      --twitch-glow: rgba(145, 70, 255, 0.8); /* Used for uniform pulse color */
       --overlay: rgba(15, 15, 26, 0.78);
     }
     body {
@@ -22,7 +22,7 @@
       color: var(--light);
       line-height: 1.6;
       font-size: 1.2rem;
-      background: url('g2glogo.jpg') center center / cover no-repeat fixed;
+      background: url('g2g.jpg') center center / cover no-repeat fixed; /* Full-page fixed background */
       background-attachment: fixed;
       min-height: 100vh;
       position: relative;
@@ -135,9 +135,11 @@
       max-width: 100%;
     }
     .live-notice {
-      display: block;
-      font-size: 2.0rem;
-      color: var(--twitch);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8rem; /* Shrunk to fit comfortably on 1–2 lines */
+      color: var(--twitch); /* Uniform pulse color */
       margin: 30px 0;
       font-weight: bold;
       animation: neon-pulse 1.5s infinite alternate;
@@ -245,8 +247,8 @@
       h2 { font-size: 3.2rem; }
       p { font-size: 1.3rem; }
       #countdown { font-size: 3rem; }
-      .live-notice { font-size: 1.8rem; line-height: 1.4; }
-      .launch-info { font-size: 1.8rem; white-space: normal; }
+      .live-notice { font-size: 1.6rem; line-height: 1.4; }
+      .launch-info { font-size: 1.6rem; white-space: normal; }
       .wallet-img { height: 70px; }
     }
   </style>
@@ -288,11 +290,10 @@
   <h2>Get Ready for Free Airdrops</h2>
   <p class="launch-info">Pre-launch airdrops starting soon — free tokens for active chat & viewers.</p>
   <p class="live-notice">
-    Join live streams on <a href="https://www.twitch.tv/h2gx_562" style="color: var(--twitch); font-weight: bold;" target="_blank">@h2gx_562 on Twitch</a><br>
-    follow <a href="https://twitter.com/H2GamingX" style="color: var(--green); font-weight: bold;" target="_blank">@H2GamingX on X for drops & updates — </a>!
+    Join live streams on <a href="https://www.twitch.tv/h2gx_562" target="_blank">@h2gx_562 on Twitch</a> for drops & updates<br>
+    — follow <a href="https://twitter.com/H2GamingX" target="_blank">@H2GamingX on X</a>!
   </p>
-  <p class="launch-info">Follow count down for full launch time — liquidity added live on stream. 
-    Don't sleep join the stream and follow me on X for info on ways to get your hands on the AIRDROP!</p>
+  <p class="launch-info">Full launch in ~30 days — liquidity added live on stream.</p>
 </section>
 
 <section>
