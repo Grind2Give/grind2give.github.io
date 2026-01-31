@@ -13,7 +13,7 @@
       --gray: #1a1a2e;
       --glow: rgba(0, 255, 136, 0.6);
       --twitch: #9146FF;
-      --overlay: rgba(15, 15, 26, 0.65);
+      --overlay: rgba(15, 15, 26, 0.75); /* Slightly darker for better text contrast */
     }
     body {
       margin: 0;
@@ -27,7 +27,7 @@
       position: relative;
       height: 90vh;
       min-height: 700px;
-      background: url('g2glogo.png') center center / cover no-repeat;
+      background: url('g2glogo.png') center center / cover no-repeat var(--dark); /* Fallback color if image fails */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -46,7 +46,7 @@
       position: relative;
       z-index: 2;
       max-width: 1100px;
-      padding: 20px;
+      padding: 40px 20px;
     }
     h1 {
       font-size: 6rem;
@@ -102,12 +102,12 @@
       color: var(--green);
       text-align: center;
       font-size: 4rem;
-      margin-bottom: 30px;
+      margin-bottom: 50px;
       text-shadow: 0 0 30px rgba(0,255,136,0.4);
     }
     p {
       font-size: 1.4rem;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       text-align: center;
       max-width: 900px;
       margin-left: auto;
@@ -115,10 +115,10 @@
     }
     .launch-info {
       color: var(--green);
-      font-size: 2.0rem; /* Shrunk to fit one line */
+      font-size: 2.0rem;
       font-weight: bold;
       text-align: center;
-      margin: 12px 0;
+      margin: 15px 0;
       text-shadow: 0 0 20px rgba(0,255,136,0.4);
       white-space: nowrap;
       overflow: hidden;
@@ -224,7 +224,7 @@
       p { font-size: 1.3rem; }
       #countdown { font-size: 3rem; }
       .live-notice { font-size: 2rem; }
-      .launch-info { font-size: 1.6rem; white-space: normal; } /* Wrap on small screens */
+      .launch-info { font-size: 1.8rem; white-space: normal; }
       .wallet-img { height: 70px; }
     }
   </style>
