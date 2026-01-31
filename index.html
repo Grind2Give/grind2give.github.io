@@ -13,18 +13,18 @@
       --gray: #1a1a2e;
       --glow: rgba(0, 255, 136, 0.6);
       --twitch: #9146FF;
+      --overlay: rgba(15, 15, 26, 0.65); /* Dark overlay for text readability - adjust 0.65 for more/less transparency */
     }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, sans-serif;
       background: var(--dark);
       color: var(--light);
-      line-height: 1.7;
-      font-size: 1.2rem; /* Base text larger */
+      line-height: 1.6;
     }
     header {
       position: relative;
-      height: 90vh; /* Bigger header for logo dominance */
+      height: 90vh; /* Tall header so logo fills most of screen */
       min-height: 700px;
       background: url('https://files.catbox.moe/5k0z4z.png') center center / cover no-repeat;
       display: flex;
@@ -38,29 +38,29 @@
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 15, 26, 0.65); /* Dark overlay for text readability */
+      background: var(--overlay);
       z-index: 1;
     }
     .header-content {
       position: relative;
       z-index: 2;
-      max-width: 1000px;
-      padding: 20px;
+      max-width: 1100px;
+      padding: 40px 20px;
     }
     h1 {
-      font-size: 6rem; /* Much larger */
+      font-size: 6rem;
       margin: 0 0 30px;
       color: var(--green);
       text-shadow: 0 0 60px var(--glow), 0 0 120px black;
       letter-spacing: 3px;
     }
     .tagline {
-      font-size: 2.8rem; /* Larger */
+      font-size: 2.8rem;
       margin: 30px 0;
       text-shadow: 0 0 40px black;
     }
     .verse {
-      font-size: 1.8rem; /* Larger */
+      font-size: 1.8rem;
       color: #ddd;
       font-style: italic;
       margin: 50px 0;
@@ -72,7 +72,7 @@
       background: var(--green);
       color: #000;
       padding: 22px 70px;
-      font-size: 2rem; /* Larger buttons */
+      font-size: 2rem;
       font-weight: bold;
       border-radius: 16px;
       text-decoration: none;
@@ -100,18 +100,18 @@
     h2 {
       color: var(--green);
       text-align: center;
-      font-size: 4rem; /* Much larger headings */
+      font-size: 4rem;
       margin-bottom: 50px;
       text-shadow: 0 0 30px rgba(0,255,136,0.4);
     }
     p {
-      font-size: 1.4rem; /* Larger body text */
+      font-size: 1.4rem;
       margin-bottom: 30px;
     }
     ul {
       list-style: none;
       padding: 0;
-      font-size: 1.5rem; /* Larger list text */
+      font-size: 1.5rem;
     }
     li {
       margin: 25px 0;
@@ -142,7 +142,7 @@
       font-size: 1.8rem;
     }
     .wallet-img {
-      height: 90px; /* Larger wallet images */
+      height: 90px;
       margin: 15px;
       transition: transform 0.3s;
     }
@@ -150,7 +150,7 @@
       transform: scale(1.15);
     }
     #countdown {
-      font-size: 4rem; /* Larger countdown */
+      font-size: 4rem;
       font-weight: bold;
       text-align: center;
       margin: 60px 0;
@@ -176,11 +176,11 @@
         height: 80vh;
         min-height: 600px;
       }
-      h1 { font-size: 4rem; }
-      .tagline { font-size: 2rem; }
-      .verse { font-size: 1.4rem; }
-      .cta { font-size: 1.6rem; padding: 18px 50px; }
-      h2 { font-size: 3rem; }
+      h1 { font-size: 4.5rem; }
+      .tagline { font-size: 2.2rem; }
+      .verse { font-size: 1.5rem; }
+      .cta { font-size: 1.7rem; padding: 18px 50px; }
+      h2 { font-size: 3.2rem; }
       p { font-size: 1.3rem; }
       #countdown { font-size: 3rem; }
       .wallet-img { height: 70px; }
