@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Grind2Give White Paper – Gaming Grind → Real-World Good</title>
-  <meta name="description" content="Grind2Give ($G2G) turns gaming into charitable impact on Base. Community-voted donations, reflections, and transparency." />
+  <meta name="description" content="Grind2Give ($G2G) on Base: 1% buy / 8% sell tax powers community-voted charity, ETH reflections, auto-burn & LP burn. Gaming with purpose." />
   <style>
     :root {
       --green: #00ff88;
@@ -51,14 +51,6 @@
       font-size: 2.4rem;
       margin: 60px 0 30px;
       text-shadow: 0 0 20px var(--glow);
-    }
-    h3 {
-      color: #ccc;
-      font-size: 1.8rem;
-      margin: 40px 0 20px;
-    }
-    p {
-      margin: 20px 0;
     }
     table {
       width: 100%;
@@ -110,7 +102,6 @@
       .container { padding: 20px; }
       h1 { font-size: 2.8rem; }
       h2 { font-size: 2rem; }
-      h3 { font-size: 1.6rem; }
       table, th, td { font-size: 0.95rem; }
     }
   </style>
@@ -122,9 +113,14 @@
 <header>
   <h1>Grind2Give White Paper</h1>
   <p class="subtitle"><strong>Gaming Grind → Real-World Good</strong></p>
-  <p class="subtitle">$G2G on Base • Version 1.2 – February 2026</p>
+  <p class="subtitle">$G2G on Base • Version 2.0 – February 2026</p>
   <p class="subtitle">Created by @H2GamingX / @h2gx_562</p>
 </header>
+
+<h2>Abstract</h2>
+<p>Grind2Give ($G2G) is a community-driven ERC-20 utility token on the Base blockchain that transforms gaming streams, chat participation and grinds into verifiable charitable impact.</p>
+<p>Through an asymmetric <strong>1% buy / 8% sell / 0% transfer</strong> tax structure, every public trade automatically contributes to causes chosen by the community — turning playtime into purpose.</p>
+<p>Inspired by Matthew 25:40 — “Truly I tell you, whatever you did for one of the least of these brothers and sisters of mine, you did for me” — Grind2Give exists to prove that collective gaming hustle can feed the hungry, equip kids with sports opportunities, support families in crisis, and lift up the overlooked.</p>
 
 <h2>Token Deployment Summary</h2>
 <table>
@@ -135,14 +131,12 @@
   <tr><td>Logo</td><td>Base logo + custom G2G artwork</td></tr>
   <tr><td>Initial Supply</td><td>25,400,000 G2G</td></tr>
   <tr><td>Decimals</td><td>18</td></tr>
-  <tr><td>Deployer</td><td>0xeec21C95…</td></tr>
-  <tr><td>Supply Recipient</td><td>0x0AF01193…</td></tr>
-  <tr><td>Owner</td><td>0xeec21C95… (renounced after deployment)</td></tr>
   <tr><td>Default Exchange</td><td>Uniswap V2 (Base)</td></tr>
   <tr><td>Main Liquidity Pool</td><td>G2G/ETH</td></tr>
   <tr><td>Optional Features</td><td>
     Anti-bot cooldown: 2 minutes<br>
-    Token recovery: Enabled
+    Token recovery: Enabled<br>
+    Immutable metadata: Enabled
   </td></tr>
 </table>
 
@@ -150,7 +144,7 @@
 <ul>
   <li><strong>Buy Tax</strong>: 1.00%</li>
   <li><strong>Sell Tax</strong>: 8.00%</li>
-  <li><strong>Transfer Tax</strong>: 0.00% (free internal moves for airdrops/staff/charity)</li>
+  <li><strong>Transfer Tax</strong>: 0.00% (free internal moves)</li>
 </ul>
 
 <table>
@@ -168,23 +162,23 @@
 
 <table>
   <tr><th>Allocation</th><th>%</th><th>Tokens</th><th>Wallet / Purpose & Notes</th></tr>
-  <tr><td>Liquidity Pool</td><td>80%</td><td>20,320,000</td><td>Paired with $2,000 ETH/WETH on Aerodrome (Base). LP locked for 3 years (36 months).</td></tr>
+  <tr><td>Liquidity Pool</td><td>85%</td><td>21,590,000</td><td>Paired with initial ETH/WETH on Aerodrome (Base). LP locked for 3 years (36 months).</td></tr>
   <tr><td>Launch Burn</td><td>5%</td><td>1,270,000</td><td>Sent to dead address at launch for instant scarcity.</td></tr>
-  <tr><td>Airdrops / Rewards Wallet</td><td>5%</td><td>1,270,000</td><td>Single public wallet for stream drops, giveaways, lobby rewards, chat activity (earns reflections).</td></tr>
-  <tr><td>Founder & Mission Support Wallet</td><td>5%</td><td>1,270,000</td><td>Public wallet controlled by the founder — stream operational costs, energy/utilities, equipment maintenance, project sustainability (earns reflections).</td></tr>
-  <tr><td>Community Engagement Staff Wallet</td><td>2%</td><td>508,000</td><td>Public wallet controlled by the community engagement staff member — X/Twitch/Discord promotion, community growth, engagement initiatives (earns reflections).</td></tr>
-  <tr><td>Project Operations Staff Wallet</td><td>2%</td><td>508,000</td><td>Public wallet controlled by the operations staff member — project coordination, tools, charity logistics, operations (earns reflections).</td></tr>
-  <tr><td>Future New Pair Reserve Wallet</td><td>1%</td><td>254,000</td><td>Public reserve wallet — seeding LP on future pairs (e.g., USDC pair later). Earns reflections until used.</td></tr>
+  <tr><td>Airdrops / Rewards Wallet</td><td>4.5%</td><td>1,143,000</td><td>Single public wallet for stream drops, giveaways, lobby rewards, chat activity (earns reflections).</td></tr>
+  <tr><td>Founder & Mission Support Wallet</td><td>4%</td><td>1,016,000</td><td>Public wallet controlled by the founder — stream operational costs, energy/utilities, equipment maintenance, project sustainability (earns reflections).</td></tr>
+  <tr><td>Community Engagement Staff Wallet</td><td>1%</td><td>254,000</td><td>Public wallet controlled by the community engagement staff member — X/Twitch/Discord promotion, community growth, engagement initiatives (earns reflections).</td></tr>
+  <tr><td>Project Operations Staff Wallet</td><td>1%</td><td>254,000</td><td>Public wallet controlled by the operations staff member — project coordination, tools, charity logistics, operations (earns reflections).</td></tr>
+  <tr><td>Future New Pair Reserve Wallet</td><td>0.5%</td><td>127,000</td><td>Public reserve wallet — seeding LP on future pairs (e.g., USDC pair later). Earns reflections until used.</td></tr>
 </table>
 
 <h2>Launch Process</h2>
 <ol>
   <li>Deploy token on Base — full supply to founder wallet</li>
   <li>Burn 5% to dead address</li>
-  <li>Fund public wallets (airdrops 5%, founder 5%, community engagement staff 2%, project operations staff 2%, future reserve 1%)</li>
+  <li>Fund public wallets (airdrops 4.5%, founder 4%, community engagement staff 1%, project operations staff 1%, future reserve 0.5%)</li>
   <li>Renounce ownership + verify contract on Basescan</li>
   <li>Pre-launch airdrops from rewards wallet to build hype</li>
-  <li>Add liquidity live on stream ($2,000 + 80% supply) on Aerodrome</li>
+  <li>Add liquidity live on stream (initial ETH/WETH + 85% supply) on Aerodrome</li>
   <li>Lock LP tokens for 3 years (36 months) via UNCX or PinkSale — proof shared live</li>
 </ol>
 
