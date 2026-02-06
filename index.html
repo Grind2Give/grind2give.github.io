@@ -14,7 +14,7 @@
       --glow: rgba(0, 255, 136, 0.6);
       --twitch: #9146FF;
       --twitch-glow: rgba(145, 70, 255, 0.8);
-      --overlay: rgba(15, 15, 26, 0.60); /* LIGHTER OVERLAY for better visibility */
+      --overlay: rgba(15, 15, 26, 0.60); /* Brighter background */
     }
     body {
       margin: 0;
@@ -96,6 +96,15 @@
     }
     .twitch-cta:hover {
       background: #772ce8;
+    }
+    .facebook-cta {
+      background: #1877F2; /* Facebook blue */
+      color: white;
+    }
+    .facebook-cta:hover {
+      background: #0e5a8a;
+      transform: scale(1.12);
+      box-shadow: 0 0 50px rgba(24, 119, 242, 0.6);
     }
     section {
       max-width: 1200px;
@@ -205,6 +214,14 @@
       position: relative;
       z-index: 2;
     }
+    .social-link {
+      color: var(--green);
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .social-link:hover {
+      text-decoration: underline;
+    }
     .whitepaper-btn {
       display: block;
       margin: 40px auto 0;
@@ -236,6 +253,7 @@
     <p class="verse">Matthew 25:40 — Whatever you did for one of the least of these… you did for me.</p>
     <a href="https://twitter.com/H2GamingX" class="cta" target="_blank">Follow on X</a>
     <a href="https://www.twitch.tv/h2gx_562" class="cta twitch-cta" target="_blank">Watch Live on Twitch</a>
+    <a href="https://www.facebook.com/hustleholixgaming" class="cta facebook-cta" target="_blank">Connect on Facebook</a>
   </div>
 </header>
 
@@ -253,7 +271,7 @@
     This is what Matthew 25:40 looks like in action — grinding together to serve the least of these.
   </p>
 
-  <!-- CHARITY MULTISIG SECTION – PLACED UNDER MISSION -->
+  <!-- CHARITY MULTISIG SECTION – UNDER MISSION -->
   <section>
     <h2>Charity Pool Wallet – Safe Multisig Secured</h2>
     <p style="text-align:center; font-size:1.4rem; margin-bottom:20px;">
@@ -267,7 +285,7 @@
     </p>
   </section>
 
-  <!-- PUBLIC WALLET ADDRESSES SECTION – PLACED UNDER CHARITY -->
+  <!-- PUBLIC WALLET ADDRESSES -->
   <h2>Public Wallet Addresses</h2>
   <p style="text-align:center; font-size:1.4rem; margin-bottom:30px;">
     All wallets are fully transparent and viewable on Basescan for complete trust and accountability.
@@ -294,20 +312,25 @@
   <p class="launch-info">Pre-launch airdrops live now! — free tokens for active chat & viewers.</p>
   <p class="live-notice">
     Join live streams on <a href="https://www.twitch.tv/h2gx_562" target="_blank">@h2gx_562 on Twitch</a> 
-    — follow <a href="https://twitter.com/H2GamingX" target="_blank">@H2GamingX on X</a> for drops & updates!!<br>
+    — follow <a href="https://twitter.com/H2GamingX" target="_blank">@H2GamingX on X</a> 
+    — connect on <a href="https://www.facebook.com/hustleholixgaming" target="_blank">@hustleholixgaming on Facebook</a> for drops & updates!!<br>
   </p>
   <p class="launch-info">Live in Spring where everything is green — liquidity added live on stream.</p>
+  <!-- Optional: Add a small CTA here if you want -->
+  <div style="text-align:center; margin:40px 0;">
+    <a href="https://www.facebook.com/hustleholixgaming" target="_blank" class="cta facebook-cta">
+      Join the Community on Facebook
+    </a>
+  </div>
 </section>
 
 <section>
   <h2>Wallet Setup (Use Phantom – Easiest for Base)</h2>
-  
   <div style="text-align:center; margin:30px 0;">
     <a href="https://phantom.app/download" target="_blank">
       <img src="phantomlogo.jpeg" alt="Phantom Wallet" style="max-width:220px; height:auto; display:block; margin:0 auto 85px;">
     </a>
   </div>
-
   <p style="text-align:center; font-size:1.4rem; margin-top:20px;">
     <strong>Steps:</strong><br>
     1. Download Phantom (App Store or phantom.app)<br>
@@ -319,7 +342,11 @@
 </section>
 
 <footer>
-  <p>Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);">@H2GamingX</a> • Live streams on <a href="https://www.twitch.tv/h2gx_562" style="color:var(--twitch);">Twitch @h2gx_562</a> • Connect on <a href="https://www.facebook.com/hustleholixgaming" style="color:var(--green);">Facebook @hustleholixgaming</a></p>
+  <p>
+    Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);">@H2GamingX</a> • 
+    Live streams on <a href="https://www.twitch.tv/h2gx_562" style="color:var(--twitch);">Twitch @h2gx_562</a> • 
+    Connect on <a href="https://www.facebook.com/hustleholixgaming" style="color:var(--green);">Facebook @hustleholixgaming</a>
+  </p>
   <p>Grind2Give • Coming Soon • Grind to Give</p>
 
   <div style="text-align:center; margin:60px 0;">
@@ -330,7 +357,7 @@
 </footer>
 
 <script>
-// Countdown Timer - Ends March 22, 2026 at 12:00 PM EST (first day of spring)
+// Countdown Timer - Ends March 22, 2026 at 12:00 PM EST
 const launchDate = new Date('2026-03-22T12:00:00-05:00');
 
 function updateCountdown() {
