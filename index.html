@@ -13,8 +13,8 @@
       --gray: #1a1a2e;
       --glow: rgba(0, 255, 136, 0.6);
       --twitch: #9146FF;           /* Unified purple */
-      --twitch-hover: #7c3aed;     /* Slightly brighter/different for pop on hover */
-      --twitch-glow: rgba(145, 70, 255, 0.85);  /* Stronger glow */
+      --twitch-hover: #7c3aed;
+      --twitch-glow: rgba(145, 70, 255, 0.85);
       --overlay: rgba(30, 30, 50, 0.25);
     }
     body {
@@ -128,7 +128,7 @@
       padding: 40px;
       position: relative;
       z-index: 2;
-      background: rgba(15, 15, 26, 0.55); /* increased opacity → background less noticeable */
+      background: rgba(15, 15, 26, 0.55);
       border-radius: 12px;
     }
     h2 {
@@ -168,7 +168,7 @@
       margin: 30px 0;
       font-weight: bold;
       animation: neon-pulse 1.5s infinite alternate;
-      text-shadow: 0 0 40px var(--twitch-glow), 0 0 80px var(--twitch-glow); /* stronger pop */
+      text-shadow: 0 0 40px var(--twitch-glow), 0 0 80px var(--twitch-glow);
       text-align: center;
       max-width: 90%;
       padding: 0 20px;
@@ -229,7 +229,7 @@
     footer {
       text-align: center;
       padding: 100px 20px;
-      background: rgba(10, 10, 20, 0.48); /* increased opacity a bit */
+      background: rgba(10, 10, 20, 0.48);
       font-size: 1.3rem;
       color: #eee;
       position: relative;
@@ -275,6 +275,18 @@
       margin-top: 30px;
     }
 
+    /* NEW: Make multisig CA match Twitch purple with glow */
+    .multisig-address {
+      color: var(--twitch) !important;
+      font-weight: bold;
+      text-shadow: 0 0 12px var(--twitch-glow), 0 0 25px var(--twitch-glow);
+      transition: all 0.3s;
+    }
+    .multisig-address:hover {
+      color: var(--twitch-hover) !important;
+      text-shadow: 0 0 20px var(--twitch-glow), 0 0 40px var(--twitch-glow);
+    }
+
     @media (max-width: 768px) {
       header {
         height: 80vh;
@@ -303,7 +315,7 @@
     <p class="verse">Matthew 25:40 — Whatever you did for one of the least of these… you did for me.</p>
     
     <div class="buttons-container">
-      <a href="https://twitter.com/H2GamingX" class="cta" target="_blank">Follow on X</a>
+      <a href="https://twitter.com/H2GamingX" class="cta" target="_blank">Follow on X(Twitter)</a>
       <a href="https://www.twitch.tv/h2gx_562" class="cta twitch-cta" target="_blank">Watch Live on Twitch</a>
       <a href="https://www.facebook.com/hustleholixgaming" class="cta facebook-cta" target="_blank">Connect on Facebook</a>
     </div>
@@ -330,7 +342,7 @@
       All charity tax (0.59–4.00%) flows to this wallet. To ensure funds are only used for their intended purpose, it is a <strong>Safe multisig</strong> (via safe.global) requiring approval from multiple trusted signers.
     </p>
     <p style="text-align:center; font-size:1.6rem; color:var(--green); font-weight:bold;">
-      Address: <a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a>
+      Address: <a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" class="multisig-address">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a>
     </p>
     <p style="text-align:center; font-size:1.1rem; color:#ccc;">
       Multisig eliminates single-point control. Funds forwarded only to voted charities via The Giving Block. Full on-chain transparency.
