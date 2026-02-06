@@ -1,394 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Grind2Give • Gaming with Purpose</title>
-  <meta name="description" content="Grind2Give turns gaming into real impact. Every action supports community-voted charities." />
-  <style>
-    :root {
-      --green: #00ff88;
-      --dark: #0f0f1a;
-      --light: #f0f0ff;          /* Brighter white-blue for main text */
-      --gray: #1a1a2e;
-      --glow: rgba(0, 255, 136, 0.6);
-      --twitch: #9146FF;
-      --twitch-glow: rgba(145, 70, 255, 0.8);
-      --overlay: rgba(30, 30, 50, 0.25); /* Kept light overlay */
-    }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-      color: var(--light);
-      line-height: 1.6;
-      font-size: 1.2rem;
-      background: url('g2gbackground.png') center center / cover no-repeat fixed;
-      background-attachment: fixed;
-      min-height: 100vh;
-      position: relative;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--overlay);
-      z-index: -1;
-      pointer-events: none;
-    }
-    header {
-      position: relative;
-      height: 90vh;
-      min-height: 700px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      z-index: 1;
-    }
-    .header-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1100px;
-      padding: 40px 20px;
-    }
-    h1 {
-      font-size: 6rem;
-      margin: 0 0 30px;
-      color: var(--green);
-      text-shadow: 0 0 60px var(--glow), 0 0 120px black;
-      letter-spacing: 3px;
-    }
-    .tagline {
-      font-size: 2.8rem;
-      margin: 30px 0;
-      color: #ffffff;            /* Pure bright white */
-      text-shadow: 0 0 60px black, 0 0 30px #000000aa;
-    }
-    .verse {
-      font-size: 1.8rem;
-      color: #f8f8ff;            /* Very bright near-white */
-      font-style: italic;
-      margin: 50px 0;
-      max-width: 900px;
-      text-shadow: 0 0 50px black;
-    }
-    .cta {
-      display: inline-block;
-      background: var(--green);
-      color: #000;
-      padding: 22px 70px;
-      font-size: 2rem;
-      font-weight: bold;
-      border-radius: 16px;
-      text-decoration: none;
-      margin: 40px 20px;
-      transition: all 0.4s;
-      box-shadow: 0 0 50px var(--glow);
-    }
-    .cta:hover {
-      background: #00cc77;
-      transform: scale(1.12);
-      box-shadow: 0 0 80px var(--glow);
-    }
-    .twitch-cta {
-      background: var(--twitch);
-      color: white;
-    }
-    .twitch-cta:hover {
-      background: #772ce8;
-    }
-    .facebook-cta {
-      background: #1877F2;
-      color: white;
-    }
-    .facebook-cta:hover {
-      background: #0e5a8a;
-      transform: scale(1.12);
-      box-shadow: 0 0 50px rgba(24, 119, 242, 0.6);
-    }
-    section {
-      max-width: 1200px;
-      margin: 80px auto;
-      padding: 40px;
-      position: relative;
-      z-index: 2;
-      background: rgba(15, 15, 26, 0.45);
-      border-radius: 12px;
-    }
-    h2 {
-      color: var(--green);
-      text-align: center;
-      font-size: 4rem;
-      margin-bottom: 40px;
-      text-shadow: 0 0 40px rgba(0,255,136,0.5);
-    }
-    p {
-      font-size: 1.4rem;
-      margin-bottom: 25px;
-      text-align: center;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      color: #f5f5ff;            /* Brighter paragraph text */
-      text-shadow: 0 0 12px black, 0 0 6px #00000088;
-    }
-    .launch-info {
-      color: var(--green);
-      font-size: 2.0rem;
-      font-weight: bold;
-      text-align: center;
-      margin: 15px 0;
-      text-shadow: 0 0 25px rgba(0,255,136,0.5);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding: 0 20px;
-      max-width: 100%;
-    }
-    .live-notice {
-      display: block;
-      font-size: 1.8rem;
-      color: var(--twitch);
-      margin: 30px 0;
-      font-weight: bold;
-      animation: neon-pulse 1.5s infinite alternate;
-      text-shadow: 0 0 30px var(--twitch-glow), 0 0 60px var(--twitch-glow);
-      text-align: center;
-      max-width: 90%;
-      padding: 0 20px;
-      line-height: 1.4;
-    }
-    .live-notice a {
-      color: var(--twitch);
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .live-notice a:hover {
-      text-decoration: underline;
-    }
-    @keyframes neon-pulse {
-      from {
-        transform: scale(1);
-        opacity: 0.85;
-        text-shadow: 0 0 20px var(--twitch-glow);
-      }
-      to {
-        transform: scale(1.06);
-        opacity: 1;
-        text-shadow: 0 0 50px var(--twitch-glow), 0 0 100px var(--twitch-glow);
-      }
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-      font-size: 1.5rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    li {
-      margin: 25px 0;
-      padding-left: 40px;
-      position: relative;
-      text-align: left;
-      color: #f5f5ff;            /* Brighter list text */
-    }
-    li::before {
-      content: "→";
-      color: var(--green);
-      position: absolute;
-      left: 0;
-      font-weight: bold;
-      font-size: 1.8rem;
-    }
-    #countdown {
-      font-size: 4rem;
-      font-weight: bold;
-      text-align: center;
-      margin: 60px 0;
-      color: var(--green);
-      text-shadow: 0 0 50px var(--glow);
-    }
-    footer {
-      text-align: center;
-      padding: 100px 20px;
-      background: rgba(10, 10, 20, 0.35);
-      font-size: 1.3rem;
-      color: #eee;               /* Brighter footer text */
-      position: relative;
-      z-index: 2;
-    }
-    .social-link {
-      color: var(--green);
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    .social-link:hover {
-      text-decoration: underline;
-    }
-    .whitepaper-btn {
-      display: block;
-      margin: 40px auto 0;
-      width: fit-content;
-    }
+<style>
+  /* ... your existing :root and other styles remain unchanged ... */
 
-    /* Table text brightening */
-    table {
-      color: #f5f5ff;
-    }
-    table a {
-      color: var(--green) !important;
-    }
+  header {
+    position: relative;
+    height: 90vh;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+    width: 100%;                  /* Explicit full width */
+    margin: 0 auto;               /* Extra centering safety */
+  }
 
-    @media (max-width: 768px) {
-      header {
-        height: 80vh;
-        min-height: 600px;
-      }
-      h1 { font-size: 4.5rem; }
-      .tagline { font-size: 2.2rem; }
-      .verse { font-size: 1.5rem; }
-      .cta { font-size: 1.7rem; padding: 18px 50px; }
-      h2 { font-size: 3.2rem; }
-      p { font-size: 1.3rem; }
-      #countdown { font-size: 3rem; }
-      .live-notice { font-size: 1.6rem; line-height: 1.4; }
-      .launch-info { font-size: 1.6rem; white-space: normal; }
-    }
-  </style>
-</head>
-<body>
+  .header-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    width: 100%;                  /* Full available width within max */
+    padding: 40px 20px;
+    display: flex;                /* Added flex for better internal control */
+    flex-direction: column;
+    align-items: center;          /* Centers children horizontally */
+    justify-content: center;
+    text-align: center;           /* Reinforced */
+  }
 
-<!-- Your full HTML content remains unchanged below this line -->
+  h1, .tagline, .verse {
+    margin-left: auto;
+    margin-right: auto;           /* Extra centering fallback */
+  }
 
+  .cta {
+    /* ... unchanged ... */
+    margin: 20px 15px;            /* Slightly tighter symmetric margins */
+  }
+
+  /* ... rest of your styles unchanged ... */
+</style>
+
+<!-- Updated header HTML (same content, just ensured structure) -->
 <header>
   <div class="header-content">
     <h1>Grind2Give</h1>
     <p class="tagline">Gaming Grind → Real-World Good</p>
     <p class="verse">Matthew 25:40 — Whatever you did for one of the least of these… you did for me.</p>
-    <a href="https://twitter.com/H2GamingX" class="cta" target="_blank">Follow on X</a>
-    <a href="https://www.twitch.tv/h2gx_562" class="cta twitch-cta" target="_blank">Watch Live on Twitch</a>
-    <a href="https://www.facebook.com/hustleholixgaming" class="cta facebook-cta" target="_blank">Connect on Facebook</a>
+    
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px;">
+      <a href="https://twitter.com/H2GamingX" class="cta" target="_blank">Follow on X</a>
+      <a href="https://www.twitch.tv/h2gx_562" class="cta twitch-cta" target="_blank">Watch Live on Twitch</a>
+      <a href="https://www.facebook.com/hustleholixgaming" class="cta facebook-cta" target="_blank">Connect on Facebook</a>
+    </div>
   </div>
 </header>
-
-<section>
-  <h2>The Mission</h2>
-  <p>Grind2Give is more than a gaming community — it's a movement that turns every stream, every match, every grind into real, measurable good for those in need. United in the grind, we turn pixels into plates, lobbies into lunch, streams into second chances, and the least of these into the seen. Grind’s hard. Mission’s harder. That’s why we need you. Let’s go.</p>
-  <p>Here's how it works:</p>
-  <ul>
-    <li>Community votes monthly on which charity receives the next donation pool (your voice decides)</li>
-    <li>Live donations sent transparently via The Giving Block — receipts and on-chain proof shown on stream</li>
-    <li>Passive rewards for supporters who hold and participate</li>
-    <li>Full transparency: public wallets, on-chain tracking, no hidden fees</li>
-  </ul>
-  <p style="text-align:center; font-style:italic; margin-top:40px; font-size:1.6rem;">
-    This is what Matthew 25:40 looks like in action — grinding together to serve the least of these.
-  </p>
-
-  <section>
-    <h2>Charity Pool Wallet – Safe Multisig Secured</h2>
-    <p style="text-align:center; font-size:1.4rem; margin-bottom:20px;">
-      All charity tax (0.59–4.00%) flows to this wallet. To ensure funds are only used for their intended purpose, it is a <strong>Safe multisig</strong> (via safe.global) requiring approval from multiple trusted signers.
-    </p>
-    <p style="text-align:center; font-size:1.6rem; color:var(--green); font-weight:bold;">
-      Address: <a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" style="color:inherit;">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a>
-    </p>
-    <p style="text-align:center; font-size:1.1rem; color:#ccc;">
-      Multisig eliminates single-point control. Funds forwarded only to voted charities via The Giving Block. Full on-chain transparency.
-    </p>
-  </section>
-
-  <section>
-    <h2>Public Wallet Addresses</h2>
-    <p style="text-align:center; font-size:1.4rem; margin-bottom:30px;">
-      All wallets are fully transparent and viewable on Basescan for complete trust and accountability.
-    </p>
-    <table style="max-width:900px; margin:0 auto; font-size:1.2rem;">
-      <tr><th>Wallet Name</th><th>Address</th></tr>
-      <tr><td>Airdrop / Rewards Wallet</td><td><a href="https://basescan.org/address/0x453a66b589E4BF3A8C960325Fa4E618FA02e1707" target="_blank" style="color:var(--green);">0x453a66b589E4BF3A8C960325Fa4E618FA02e1707</a></td></tr>
-      <tr><td>Founder & Mission Support Wallet</td><td><a href="https://basescan.org/address/0xcE21eF60b018B2Ea7C6Ed6eF78042Ef6Fb8841e9" target="_blank" style="color:var(--green);">0xcE21eF60b018B2Ea7C6Ed6eF78042Ef6Fb8841e9</a></td></tr>
-      <tr><td>Charity Pool Wallet</td><td><a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" style="color:var(--green);">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a></td></tr>
-      <tr><td>Future New Pair Reserve Wallet</td><td><a href="https://basescan.org/address/0x832cFe1097aCb09260A9E9e5106e09A78D482A3a" target="_blank" style="color:var(--green);">0x832cFe1097aCb09260A9E9e5106e09A78D482A3a</a></td></tr>
-      <tr><td>Project Funding Wallet</td><td><a href="https://basescan.org/address/0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd" target="_blank" style="color:var(--green);">0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd</a></td></tr>
-      <tr><td>Community Engagement Staff Wallet</td><td><a href="https://basescan.org/address/0x931f79a48a640cF260b6697B49E4B1Afa8616E60" target="_blank" style="color:var(--green);">0x931f79a48a640cF260b6697B49E4B1Afa8616E60</a></td></tr>
-      <tr><td>Project Operations Staff Wallet</td><td><a href="https://basescan.org/address/0x71280dF8d37b30D65Ed399A061E9995b95125a97" target="_blank" style="color:var(--green);">0x71280dF8d37b30D65Ed399A061E9995b95125a97</a></td></tr>
-    </table>
-  </section>
-
-  <section>
-    <h2>Launch Countdown</h2>
-    <div id="countdown">Loading...</div>
-  </section>
-
-  <section>
-    <h2>Get Ready for Free Airdrops</h2>
-    <p class="launch-info">Pre-launch airdrops live now! — free tokens for active chat & viewers.</p>
-    <p class="live-notice">
-      Join live streams on <a href="https://www.twitch.tv/h2gx_562" target="_blank">@h2gx_562 on Twitch</a> 
-      — follow <a href="https://twitter.com/H2GamingX" target="_blank">@H2GamingX on X</a> 
-      — connect on <a href="https://www.facebook.com/hustleholixgaming" target="_blank">@hustleholixgaming on Facebook</a> for drops & updates!!<br>
-    </p>
-    <p class="launch-info">Live in Spring where everything is green — liquidity added live on stream.</p>
-  </section>
-
-  <section>
-    <h2>Wallet Setup (Use Phantom – Easiest for Base)</h2>
-    <div style="text-align:center; margin:30px 0;">
-      <a href="https://phantom.app/download" target="_blank">
-        <img src="phantomlogo.jpeg" alt="Phantom Wallet" style="max-width:220px; height:auto; display:block; margin:0 auto 85px;">
-      </a>
-    </div>
-    <p style="text-align:center; font-size:1.4rem; margin-top:20px;">
-      <strong>Steps:</strong><br>
-      1. Download Phantom (App Store or phantom.app)<br>
-      2. Create new wallet → back up seed phrase safely<br>
-      3. Switch network to <strong>Base</strong> (built-in or add RPC: https://mainnet.base.org, Chain ID 8453)<br>
-      4. Copy your address (tap top of screen)<br>
-      5. Type !wallet [your address] in chat for free airdrops!
-    </p>
-  </section>
-
-  <footer>
-    <p>
-      Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);">@H2GamingX</a> • 
-      Live streams on <a href="https://www.twitch.tv/h2gx_562" style="color:var(--twitch);">Twitch @h2gx_562</a> • 
-      Connect on <a href="https://www.facebook.com/hustleholixgaming" style="color:var(--green);">Facebook @hustleholixgaming</a>
-    </p>
-    <p>Grind2Give • Coming Soon • Grind to Give</p>
-
-    <div style="text-align:center; margin:60px 0;">
-      <a href="whitepaper.html" class="cta" target="_blank">
-        Read the Full White Paper
-      </a>
-    </div>
-  </footer>
-
-  <script>
-  // Countdown Timer - Ends March 22, 2026 at 12:00 PM EST
-  const launchDate = new Date('2026-03-22T12:00:00-05:00');
-
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = launchDate - now;
-
-    if (distance < 0) {
-      document.getElementById("countdown").innerHTML = "LAUNCHED! 🔥";
-      return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("countdown").innerHTML = 
-      days + "d : " + hours + "h : " + minutes + "m : " + seconds + "s";
-  }
-
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
-  </script>
-
-</body>
-</html>
