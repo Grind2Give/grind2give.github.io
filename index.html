@@ -12,8 +12,9 @@
       --light: #f0f0ff;
       --gray: #1a1a2e;
       --glow: rgba(0, 255, 136, 0.6);
-      --twitch: #9146FF;
-      --twitch-glow: rgba(145, 70, 255, 0.8);
+      --twitch: #9146FF;           /* Unified purple */
+      --twitch-hover: #7c3aed;     /* Slightly brighter/different for pop on hover */
+      --twitch-glow: rgba(145, 70, 255, 0.85);  /* Stronger glow */
       --overlay: rgba(30, 30, 50, 0.25);
     }
     body {
@@ -105,9 +106,12 @@
     .twitch-cta {
       background: var(--twitch);
       color: white;
+      box-shadow: 0 0 40px var(--twitch-glow);
     }
     .twitch-cta:hover {
-      background: #772ce8;
+      background: var(--twitch-hover);
+      box-shadow: 0 0 70px var(--twitch-glow);
+      transform: scale(1.08);
     }
     .facebook-cta {
       background: #1877F2;
@@ -124,7 +128,7 @@
       padding: 40px;
       position: relative;
       z-index: 2;
-      background: rgba(15, 15, 26, 0.45);
+      background: rgba(15, 15, 26, 0.55); /* increased opacity → background less noticeable */
       border-radius: 12px;
     }
     h2 {
@@ -164,7 +168,7 @@
       margin: 30px 0;
       font-weight: bold;
       animation: neon-pulse 1.5s infinite alternate;
-      text-shadow: 0 0 30px var(--twitch-glow), 0 0 60px var(--twitch-glow);
+      text-shadow: 0 0 40px var(--twitch-glow), 0 0 80px var(--twitch-glow); /* stronger pop */
       text-align: center;
       max-width: 90%;
       padding: 0 20px;
@@ -174,20 +178,22 @@
       color: var(--twitch);
       font-weight: bold;
       text-decoration: none;
+      text-shadow: 0 0 15px var(--twitch-glow);
     }
     .live-notice a:hover {
       text-decoration: underline;
+      color: var(--twitch-hover);
     }
     @keyframes neon-pulse {
       from {
         transform: scale(1);
-        opacity: 0.85;
-        text-shadow: 0 0 20px var(--twitch-glow);
+        opacity: 0.9;
+        text-shadow: 0 0 30px var(--twitch-glow);
       }
       to {
-        transform: scale(1.06);
+        transform: scale(1.05);
         opacity: 1;
-        text-shadow: 0 0 50px var(--twitch-glow), 0 0 100px var(--twitch-glow);
+        text-shadow: 0 0 70px var(--twitch-glow), 0 0 120px var(--twitch-glow);
       }
     }
     ul {
@@ -223,7 +229,7 @@
     footer {
       text-align: center;
       padding: 100px 20px;
-      background: rgba(10, 10, 20, 0.35);
+      background: rgba(10, 10, 20, 0.48); /* increased opacity a bit */
       font-size: 1.3rem;
       color: #eee;
       position: relative;
