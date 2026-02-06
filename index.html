@@ -13,8 +13,8 @@
       --gray: #1a1a2e;
       --glow: rgba(0, 255, 136, 0.6);
       --twitch: #9146FF;
-      --twitch-glow: rgba(145, 70, 255, 0.8); /* Used for uniform pulse color */
-      --overlay: rgba(15, 15, 26, 0.78);
+      --twitch-glow: rgba(145, 70, 255, 0.8);
+      --overlay: rgba(15, 15, 26, 0.60); /* LIGHTER OVERLAY for better visibility */
     }
     body {
       margin: 0;
@@ -22,7 +22,7 @@
       color: var(--light);
       line-height: 1.6;
       font-size: 1.2rem;
-      background: url('g2gb.jpg') center center / cover no-repeat fixed; /* Full-page fixed background */
+      background: url('g2gb.jpg') center center / cover no-repeat fixed;
       background-attachment: fixed;
       min-height: 100vh;
       position: relative;
@@ -135,11 +135,9 @@
       max-width: 100%;
     }
     .live-notice {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.8rem; /* Shrunk to fit comfortably on 1–2 lines */
-      color: var(--twitch); /* Uniform pulse color */
+      display: block;
+      font-size: 1.8rem;
+      color: var(--twitch);
       margin: 30px 0;
       font-weight: bold;
       animation: neon-pulse 1.5s infinite alternate;
@@ -190,29 +188,6 @@
       font-weight: bold;
       font-size: 1.8rem;
     }
-    .wallet-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 50px;
-      margin: 60px 0;
-    }
-    .wallet-group {
-      text-align: center;
-    }
-    .wallet-group h3 {
-      color: var(--green);
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-    }
-    .wallet-img {
-      height: 90px;
-      margin: 15px;
-      transition: transform 0.3s;
-    }
-    .wallet-img:hover {
-      transform: scale(1.15);
-    }
     #countdown {
       font-size: 4rem;
       font-weight: bold;
@@ -249,13 +224,11 @@
       #countdown { font-size: 3rem; }
       .live-notice { font-size: 1.6rem; line-height: 1.4; }
       .launch-info { font-size: 1.6rem; white-space: normal; }
-      .wallet-img { height: 70px; }
     }
   </style>
 </head>
 <body>
-  
-<section>
+
 <header>
   <div class="header-content">
     <h1>Grind2Give</h1>
@@ -265,15 +238,10 @@
     <a href="https://www.twitch.tv/h2gx_562" class="cta twitch-cta" target="_blank">Watch Live on Twitch</a>
   </div>
 </header>
-<section>
-  
+
 <section>
   <h2>The Mission</h2>
-  <p>Grind2Give is more than a gaming community — it's a movement that turns every stream, every match, every grind into real, measurable good for those in need. United in the grind, we turn pixels into plates, lobbies into lunch, streams into second chances, and the least of these into the seen. Grind’s hard. Mission’s harder. That’s why we need you. Let’s go.
-
-
-
- Every action counts — from watching a stream to placing a trade — and together, we make it happen.</p>
+  <p>Grind2Give is more than a gaming community — it's a movement that turns every stream, every match, every grind into real, measurable good for those in need. United in the grind, we turn pixels into plates, lobbies into lunch, streams into second chances, and the least of these into the seen. Grind’s hard. Mission’s harder. That’s why we need you. Let’s go.</p>
   <p>Here's how it works:</p>
   <ul>
     <li>Community votes monthly on which charity receives the next donation pool (your voice decides)</li>
@@ -284,19 +252,22 @@
   <p style="text-align:center; font-style:italic; margin-top:40px; font-size:1.6rem;">
     This is what Matthew 25:40 looks like in action — grinding together to serve the least of these.
   </p>
-<section>
+
+  <!-- CHARITY MULTISIG SECTION – PLACED UNDER MISSION -->
   <section>
-  <h2>Charity Pool Wallet – Safe Multisig Secured</h2>
-  <p style="text-align:center; font-size:1.4rem; margin-bottom:20px;">
-    All charity tax (0.59–4.00%) flows to this wallet. To ensure funds are only used for their intended purpose, it is a <strong>Safe multisig</strong> (via safe.global) requiring approval from multiple trusted signers.
-  </p>
-  <p style="text-align:center; font-size:1.6rem; color:var(--green); font-weight:bold;">
-    Address: <a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" style="color:inherit;">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a>
-  </p>
-  <p style="text-align:center; font-size:1.1rem; color:#aaa;">
-    Multisig eliminates single-point control. Funds forwarded only to voted charities via The Giving Block. Full on-chain transparency.
-  </p>
-</section>
+    <h2>Charity Pool Wallet – Safe Multisig Secured</h2>
+    <p style="text-align:center; font-size:1.4rem; margin-bottom:20px;">
+      All charity tax (0.59–4.00%) flows to this wallet. To ensure funds are only used for their intended purpose, it is a <strong>Safe multisig</strong> (via safe.global) requiring approval from multiple trusted signers.
+    </p>
+    <p style="text-align:center; font-size:1.6rem; color:var(--green); font-weight:bold;">
+      Address: <a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" style="color:inherit;">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a>
+    </p>
+    <p style="text-align:center; font-size:1.1rem; color:#aaa;">
+      Multisig eliminates single-point control. Funds forwarded only to voted charities via The Giving Block. Full on-chain transparency.
+    </p>
+  </section>
+
+  <!-- PUBLIC WALLET ADDRESSES SECTION – PLACED UNDER CHARITY -->
   <h2>Public Wallet Addresses</h2>
   <p style="text-align:center; font-size:1.4rem; margin-bottom:30px;">
     All wallets are fully transparent and viewable on Basescan for complete trust and accountability.
@@ -312,6 +283,8 @@
     <tr><td>Project Operations Staff Wallet</td><td><a href="https://basescan.org/address/0x71280dF8d37b30D65Ed399A061E9995b95125a97" target="_blank" style="color:var(--green);">0x71280dF8d37b30D65Ed399A061E9995b95125a97</a></td></tr>
   </table>
 </section>
+
+<section>
   <h2>Launch Countdown</h2>
   <div id="countdown">Loading...</div>
 </section>
@@ -333,7 +306,6 @@
     <a href="https://phantom.app/download" target="_blank">
       <img src="phantomlogo.jpeg" alt="Phantom Wallet" style="max-width:220px; height:auto; display:block; margin:0 auto 85px;">
     </a>
-  
   </div>
 
   <p style="text-align:center; font-size:1.4rem; margin-top:20px;">
@@ -346,9 +318,8 @@
   </p>
 </section>
 
-</section>
 <footer>
-  <p>Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);">@H2GamingX</a> • Live streams on <a href="https://www.twitch.tv/h2gx_562" style="color:var(--twitch);">Twitch @h2gx_562</a></p>
+  <p>Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);">@H2GamingX</a> • Live streams on <a href="https://www.twitch.tv/h2gx_562" style="color:var(--twitch);">Twitch @h2gx_562</a> • Connect on <a href="https://www.facebook.com/hustleholixgaming" style="color:var(--green);">Facebook @hustleholixgaming</a></p>
   <p>Grind2Give • Coming Soon • Grind to Give</p>
 
   <div style="text-align:center; margin:60px 0;">
@@ -360,7 +331,7 @@
 
 <script>
 // Countdown Timer - Ends March 22, 2026 at 12:00 PM EST (first day of spring)
-const launchDate = new Date('2026-03-22T12:00:00-05:00'); // EST (UTC-5)
+const launchDate = new Date('2026-03-22T12:00:00-05:00');
 
 function updateCountdown() {
   const now = new Date().getTime();
