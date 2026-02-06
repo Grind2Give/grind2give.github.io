@@ -9,12 +9,12 @@
     :root {
       --green: #00ff88;
       --dark: #0f0f1a;
-      --light: #e0e0ff;
+      --light: #f0f0ff;          /* Brighter white-blue for main text */
       --gray: #1a1a2e;
       --glow: rgba(0, 255, 136, 0.6);
       --twitch: #9146FF;
       --twitch-glow: rgba(145, 70, 255, 0.8);
-      --overlay: rgba(30, 30, 50, 0.25); /* Much lighter overlay → brighter background */
+      --overlay: rgba(30, 30, 50, 0.25); /* Kept light overlay */
     }
     body {
       margin: 0;
@@ -62,15 +62,16 @@
     .tagline {
       font-size: 2.8rem;
       margin: 30px 0;
-      text-shadow: 0 0 50px black; /* Slightly stronger for contrast */
+      color: #ffffff;            /* Pure bright white */
+      text-shadow: 0 0 60px black, 0 0 30px #000000aa;
     }
     .verse {
       font-size: 1.8rem;
-      color: #ddd;
+      color: #f8f8ff;            /* Very bright near-white */
       font-style: italic;
       margin: 50px 0;
       max-width: 900px;
-      text-shadow: 0 0 40px black;
+      text-shadow: 0 0 50px black;
     }
     .cta {
       display: inline-block;
@@ -112,7 +113,7 @@
       padding: 40px;
       position: relative;
       z-index: 2;
-      background: rgba(15, 15, 26, 0.45); /* More transparent → see background better */
+      background: rgba(15, 15, 26, 0.45);
       border-radius: 12px;
     }
     h2 {
@@ -120,7 +121,7 @@
       text-align: center;
       font-size: 4rem;
       margin-bottom: 40px;
-      text-shadow: 0 0 40px rgba(0,255,136,0.5); /* Boosted a bit */
+      text-shadow: 0 0 40px rgba(0,255,136,0.5);
     }
     p {
       font-size: 1.4rem;
@@ -129,7 +130,8 @@
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
-      text-shadow: 0 0 10px black; /* Helps readability on brighter bg */
+      color: #f5f5ff;            /* Brighter paragraph text */
+      text-shadow: 0 0 12px black, 0 0 6px #00000088;
     }
     .launch-info {
       color: var(--green);
@@ -189,6 +191,7 @@
       padding-left: 40px;
       position: relative;
       text-align: left;
+      color: #f5f5ff;            /* Brighter list text */
     }
     li::before {
       content: "→";
@@ -209,9 +212,9 @@
     footer {
       text-align: center;
       padding: 100px 20px;
-      background: rgba(10, 10, 20, 0.35); /* Much more transparent */
+      background: rgba(10, 10, 20, 0.35);
       font-size: 1.3rem;
-      color: #ccc; /* Slightly brighter text */
+      color: #eee;               /* Brighter footer text */
       position: relative;
       z-index: 2;
     }
@@ -228,6 +231,15 @@
       margin: 40px auto 0;
       width: fit-content;
     }
+
+    /* Table text brightening */
+    table {
+      color: #f5f5ff;
+    }
+    table a {
+      color: var(--green) !important;
+    }
+
     @media (max-width: 768px) {
       header {
         height: 80vh;
@@ -247,7 +259,7 @@
 </head>
 <body>
 
-<!-- The rest of your HTML remains EXACTLY the same -->
+<!-- Your full HTML content remains unchanged below this line -->
 
 <header>
   <div class="header-content">
@@ -274,7 +286,6 @@
     This is what Matthew 25:40 looks like in action — grinding together to serve the least of these.
   </p>
 
-  <!-- CHARITY MULTISIG SECTION – UNDER MISSION -->
   <section>
     <h2>Charity Pool Wallet – Safe Multisig Secured</h2>
     <p style="text-align:center; font-size:1.4rem; margin-bottom:20px;">
@@ -283,102 +294,101 @@
     <p style="text-align:center; font-size:1.6rem; color:var(--green); font-weight:bold;">
       Address: <a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" style="color:inherit;">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a>
     </p>
-    <p style="text-align:center; font-size:1.1rem; color:#aaa;">
+    <p style="text-align:center; font-size:1.1rem; color:#ccc;">
       Multisig eliminates single-point control. Funds forwarded only to voted charities via The Giving Block. Full on-chain transparency.
     </p>
   </section>
+
   <section>
-  <!-- PUBLIC WALLET ADDRESSES -->
-  <h2>Public Wallet Addresses</h2>
-  <p style="text-align:center; font-size:1.4rem; margin-bottom:30px;">
-    All wallets are fully transparent and viewable on Basescan for complete trust and accountability.
-  </p>
-  <table style="max-width:900px; margin:0 auto; font-size:1.2rem;">
-    <tr><th>Wallet Name</th><th>Address</th></tr>
-    <tr><td>Airdrop / Rewards Wallet</td><td><a href="https://basescan.org/address/0x453a66b589E4BF3A8C960325Fa4E618FA02e1707" target="_blank" style="color:var(--green);">0x453a66b589E4BF3A8C960325Fa4E618FA02e1707</a></td></tr>
-    <tr><td>Founder & Mission Support Wallet</td><td><a href="https://basescan.org/address/0xcE21eF60b018B2Ea7C6Ed6eF78042Ef6Fb8841e9" target="_blank" style="color:var(--green);">0xcE21eF60b018B2Ea7C6Ed6eF78042Ef6Fb8841e9</a></td></tr>
-    <tr><td>Charity Pool Wallet</td><td><a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" style="color:var(--green);">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a></td></tr>
-    <tr><td>Future New Pair Reserve Wallet</td><td><a href="https://basescan.org/address/0x832cFe1097aCb09260A9E9e5106e09A78D482A3a" target="_blank" style="color:var(--green);">0x832cFe1097aCb09260A9E9e5106e09A78D482A3a</a></td></tr>
-    <tr><td>Project Funding Wallet</td><td><a href="https://basescan.org/address/0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd" target="_blank" style="color:var(--green);">0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd</a></td></tr>
-    <tr><td>Community Engagement Staff Wallet</td><td><a href="https://basescan.org/address/0x931f79a48a640cF260b6697B49E4B1Afa8616E60" target="_blank" style="color:var(--green);">0x931f79a48a640cF260b6697B49E4B1Afa8616E60</a></td></tr>
-    <tr><td>Project Operations Staff Wallet</td><td><a href="https://basescan.org/address/0x71280dF8d37b30D65Ed399A061E9995b95125a97" target="_blank" style="color:var(--green);">0x71280dF8d37b30D65Ed399A061E9995b95125a97</a></td></tr>
-  </table>
-</section>
+    <h2>Public Wallet Addresses</h2>
+    <p style="text-align:center; font-size:1.4rem; margin-bottom:30px;">
+      All wallets are fully transparent and viewable on Basescan for complete trust and accountability.
+    </p>
+    <table style="max-width:900px; margin:0 auto; font-size:1.2rem;">
+      <tr><th>Wallet Name</th><th>Address</th></tr>
+      <tr><td>Airdrop / Rewards Wallet</td><td><a href="https://basescan.org/address/0x453a66b589E4BF3A8C960325Fa4E618FA02e1707" target="_blank" style="color:var(--green);">0x453a66b589E4BF3A8C960325Fa4E618FA02e1707</a></td></tr>
+      <tr><td>Founder & Mission Support Wallet</td><td><a href="https://basescan.org/address/0xcE21eF60b018B2Ea7C6Ed6eF78042Ef6Fb8841e9" target="_blank" style="color:var(--green);">0xcE21eF60b018B2Ea7C6Ed6eF78042Ef6Fb8841e9</a></td></tr>
+      <tr><td>Charity Pool Wallet</td><td><a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" style="color:var(--green);">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a></td></tr>
+      <tr><td>Future New Pair Reserve Wallet</td><td><a href="https://basescan.org/address/0x832cFe1097aCb09260A9E9e5106e09A78D482A3a" target="_blank" style="color:var(--green);">0x832cFe1097aCb09260A9E9e5106e09A78D482A3a</a></td></tr>
+      <tr><td>Project Funding Wallet</td><td><a href="https://basescan.org/address/0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd" target="_blank" style="color:var(--green);">0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd</a></td></tr>
+      <tr><td>Community Engagement Staff Wallet</td><td><a href="https://basescan.org/address/0x931f79a48a640cF260b6697B49E4B1Afa8616E60" target="_blank" style="color:var(--green);">0x931f79a48a640cF260b6697B49E4B1Afa8616E60</a></td></tr>
+      <tr><td>Project Operations Staff Wallet</td><td><a href="https://basescan.org/address/0x71280dF8d37b30D65Ed399A061E9995b95125a97" target="_blank" style="color:var(--green);">0x71280dF8d37b30D65Ed399A061E9995b95125a97</a></td></tr>
+    </table>
+  </section>
 
-<section>
-  <h2>Launch Countdown</h2>
-  <div id="countdown">Loading...</div>
-</section>
+  <section>
+    <h2>Launch Countdown</h2>
+    <div id="countdown">Loading...</div>
+  </section>
 
-<section>
-  <h2>Get Ready for Free Airdrops</h2>
-  <p class="launch-info">Pre-launch airdrops live now! — free tokens for active chat & viewers.</p>
-  <p class="live-notice">
-    Join live streams on <a href="https://www.twitch.tv/h2gx_562" target="_blank">@h2gx_562 on Twitch</a> 
-    — follow <a href="https://twitter.com/H2GamingX" target="_blank">@H2GamingX on X</a> 
-    — connect on <a href="https://www.facebook.com/hustleholixgaming" target="_blank">@hustleholixgaming on Facebook</a> for drops & updates!!<br>
-  </p>
-  <p class="launch-info">Live in Spring where everything is green — liquidity added live on stream.</p>
+  <section>
+    <h2>Get Ready for Free Airdrops</h2>
+    <p class="launch-info">Pre-launch airdrops live now! — free tokens for active chat & viewers.</p>
+    <p class="live-notice">
+      Join live streams on <a href="https://www.twitch.tv/h2gx_562" target="_blank">@h2gx_562 on Twitch</a> 
+      — follow <a href="https://twitter.com/H2GamingX" target="_blank">@H2GamingX on X</a> 
+      — connect on <a href="https://www.facebook.com/hustleholixgaming" target="_blank">@hustleholixgaming on Facebook</a> for drops & updates!!<br>
+    </p>
+    <p class="launch-info">Live in Spring where everything is green — liquidity added live on stream.</p>
+  </section>
 
-</section>
+  <section>
+    <h2>Wallet Setup (Use Phantom – Easiest for Base)</h2>
+    <div style="text-align:center; margin:30px 0;">
+      <a href="https://phantom.app/download" target="_blank">
+        <img src="phantomlogo.jpeg" alt="Phantom Wallet" style="max-width:220px; height:auto; display:block; margin:0 auto 85px;">
+      </a>
+    </div>
+    <p style="text-align:center; font-size:1.4rem; margin-top:20px;">
+      <strong>Steps:</strong><br>
+      1. Download Phantom (App Store or phantom.app)<br>
+      2. Create new wallet → back up seed phrase safely<br>
+      3. Switch network to <strong>Base</strong> (built-in or add RPC: https://mainnet.base.org, Chain ID 8453)<br>
+      4. Copy your address (tap top of screen)<br>
+      5. Type !wallet [your address] in chat for free airdrops!
+    </p>
+  </section>
 
-<section>
-  <h2>Wallet Setup (Use Phantom – Easiest for Base)</h2>
-  <div style="text-align:center; margin:30px 0;">
-    <a href="https://phantom.app/download" target="_blank">
-      <img src="phantomlogo.jpeg" alt="Phantom Wallet" style="max-width:220px; height:auto; display:block; margin:0 auto 85px;">
-    </a>
-  </div>
-  <p style="text-align:center; font-size:1.4rem; margin-top:20px;">
-    <strong>Steps:</strong><br>
-    1. Download Phantom (App Store or phantom.app)<br>
-    2. Create new wallet → back up seed phrase safely<br>
-    3. Switch network to <strong>Base</strong> (built-in or add RPC: https://mainnet.base.org, Chain ID 8453)<br>
-    4. Copy your address (tap top of screen)<br>
-    5. Type !wallet [your address] in chat for free airdrops!
-  </p>
-</section>
+  <footer>
+    <p>
+      Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);">@H2GamingX</a> • 
+      Live streams on <a href="https://www.twitch.tv/h2gx_562" style="color:var(--twitch);">Twitch @h2gx_562</a> • 
+      Connect on <a href="https://www.facebook.com/hustleholixgaming" style="color:var(--green);">Facebook @hustleholixgaming</a>
+    </p>
+    <p>Grind2Give • Coming Soon • Grind to Give</p>
 
-<footer>
-  <p>
-    Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);">@H2GamingX</a> • 
-    Live streams on <a href="https://www.twitch.tv/h2gx_562" style="color:var(--twitch);">Twitch @h2gx_562</a> • 
-    Connect on <a href="https://www.facebook.com/hustleholixgaming" style="color:var(--green);">Facebook @hustleholixgaming</a>
-  </p>
-  <p>Grind2Give • Coming Soon • Grind to Give</p>
+    <div style="text-align:center; margin:60px 0;">
+      <a href="whitepaper.html" class="cta" target="_blank">
+        Read the Full White Paper
+      </a>
+    </div>
+  </footer>
 
-  <div style="text-align:center; margin:60px 0;">
-    <a href="whitepaper.html" class="cta" target="_blank">
-      Read the Full White Paper
-    </a>
-  </div>
-</footer>
+  <script>
+  // Countdown Timer - Ends March 22, 2026 at 12:00 PM EST
+  const launchDate = new Date('2026-03-22T12:00:00-05:00');
 
-<script>
-// Countdown Timer - Ends March 22, 2026 at 12:00 PM EST
-const launchDate = new Date('2026-03-22T12:00:00-05:00');
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = launchDate - now;
 
-function updateCountdown() {
-  const now = new Date().getTime();
-  const distance = launchDate - now;
+    if (distance < 0) {
+      document.getElementById("countdown").innerHTML = "LAUNCHED! 🔥";
+      return;
+    }
 
-  if (distance < 0) {
-    document.getElementById("countdown").innerHTML = "LAUNCHED! 🔥";
-    return;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML = 
+      days + "d : " + hours + "h : " + minutes + "m : " + seconds + "s";
   }
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("countdown").innerHTML = 
-    days + "d : " + hours + "h : " + minutes + "m : " + seconds + "s";
-}
-
-setInterval(updateCountdown, 1000);
-updateCountdown();
-</script>
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+  </script>
 
 </body>
 </html>
