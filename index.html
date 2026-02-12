@@ -275,10 +275,10 @@
       text-shadow: 0 0 20px var(--twitch-glow), 0 0 40px var(--twitch-glow);
     }
 
-    /* New: Countdown background */
+    /* Countdown wrapper */
     .countdown-wrapper {
       position: relative;
-      background: url('16901080.png') center center / cover no-repeat;
+      background: url('countdown-bg.jpg') center center / cover no-repeat;
       border-radius: 16px;
       overflow: hidden;
       margin: 40px auto;
@@ -301,48 +301,50 @@
       letter-spacing: 4px;
     }
 
-  /* Contest section – full color / minimal overlay version */
-.contest-wrapper {
-  position: relative;
-  background: url('contest.jpeg') center center / cover no-repeat;
-  background-position: center 40%;       /* slight upward shift so mascot/coin is more centered */
-  border-radius: 16px;
-  overflow: hidden;
-  margin: 40px auto;
-  max-width: 1000px;
-  box-shadow: 0 0 100px var(--glow), 0 0 180px #00ff88aa;  /* intense green glow to match flames */
-}
+    /* Contest wrapper – previous balanced setup */
+    .contest-wrapper {
+      position: relative;
+      background: url('contest.jpeg') center center / cover no-repeat;
+      background-position: center 40%;
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 40px auto;
+      max-width: 1000px;
+      box-shadow: 0 0 70px var(--glow);
+    }
+    .contest-wrapper::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 15, 26, 0.68);
+      z-index: 1;
+    }
+    .contest-content {
+      position: relative;
+      z-index: 2;
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .contest-prizes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+    .prize-card {
+      background: rgba(0, 255, 136, 0.08);
+      border: 2px solid var(--green);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .prize-card h3 {
+      color: var(--green);
+      margin: 0 0 8px;
+      font-size: 1.6rem;
+    }
 
-.contest-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(15, 15, 26, 0.10);   /* very light overlay – keeps almost 100% true color vibrancy */
-  z-index: 1;
-}
-
-.contest-content {
-  position: relative;
-  z-index: 2;
-  padding: 60px 40px;
-  text-align: center;
-  text-shadow: 2px 2px 12px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.7); /* strong shadow for readability on bright/flame areas */
-}
-
-.prize-card {
-  background: rgba(0, 255, 136, 0.22);   /* semi-transparent green to stand out against flames/space */
-  border: 3px solid var(--green);
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 0 25px var(--green);
-}
-
-@media (max-width: 768px) {
-  .contest-content { padding: 40px 20px; }
-  .contest-prizes { grid-template-columns: 1fr; }
-}
- {
+    @media (max-width: 768px) {
       header { height: 80vh; min-height: 600px; }
       h1 { font-size: 4.5rem; }
       .tagline { font-size: 2.2rem; }
@@ -435,7 +437,7 @@
   <div class="contest-wrapper">
     <div class="contest-content">
 
-      <p style="font-size: 2.4rem; font-weight: bold; color: #fff; margin: 20px 0 40px; text-shadow: 0 0 30px #000;">
+      <p style="font-size: 2.4rem; font-weight: bold; color: #fff; margin: 20px 0 40px;">
         TIME TO GRIND HARDER — BIGGEST $G2G DROP EVER!<br>
         <span style="color:var(--green);">200,000 $G2G TOKENS</span> ready to rain down!
       </p>
@@ -467,7 +469,7 @@
         </div>
       </div>
 
-      <h3 style="color:var(--green); font-size:2.1rem; margin:50px 0 20px; text-shadow: 0 0 25px #000;">
+      <h3 style="color:var(--green); font-size:2.1rem; margin:50px 0 20px;">
         DROP YOUR FIRE — HERE'S HOW TO QUALIFY:
       </h3>
 
@@ -480,7 +482,7 @@
         <li>✅ Minimum **50 tweets** during the contest period to qualify</li>
       </ul>
 
-      <p style="font-size: 2rem; font-weight: bold; color: #ffdd00; margin: 40px 0; text-shadow: 0 0 20px #000;">
+      <p style="font-size: 2rem; font-weight: bold; color: #ffdd00; margin: 40px 0;">
         STARTS FRIDAY FEB 13 → ENDS MARCH 21
       </p>
 
@@ -496,6 +498,7 @@
     </div>
   </div>
 </section>
+
 <section>
   <h2>Get Ready for Free Airdrops</h2>
   <p class="launch-info">Pre-launch airdrops live now! — free tokens for active chat & viewers.</p>
