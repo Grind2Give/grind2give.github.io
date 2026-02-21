@@ -40,6 +40,7 @@
       --twitch-hover: #7c3aed;
       --twitch-glow: rgba(145, 70, 255, 0.85);
       --overlay: rgba(30, 30, 50, 0.25);
+      --merch: #ffdd00; /* Bright yellow for merch CTA to pop */
     }
     body {
       margin: 0;
@@ -145,6 +146,16 @@
       background: #0e5a8a;
       transform: scale(1.12);
       box-shadow: 0 0 50px rgba(24, 119, 242, 0.6);
+    }
+    .merch-cta {
+      background: var(--merch);
+      color: #000;
+      box-shadow: 0 0 50px rgba(255, 221, 0, 0.6);
+    }
+    .merch-cta:hover {
+      background: #ffcc00;
+      transform: scale(1.12);
+      box-shadow: 0 0 80px rgba(255, 221, 0, 0.8);
     }
     section {
       max-width: 1200px;
@@ -399,6 +410,7 @@
       <a href="https://twitter.com/H2GamingX" class="cta" target="_blank">Follow on X</a>
       <a href="https://www.twitch.tv/grind2give" class="cta twitch-cta" target="_blank">Watch Live on Twitch</a>
       <a href="https://www.facebook.com/hustleholixgaming" class="cta facebook-cta" target="_blank">Connect on Facebook</a>
+      <a href="https://www.grind2give.org/products" class="cta merch-cta" target="_blank">Shop Merch 🍱🪡🏥💚</a>
     </div>
   </div>
 </header>
@@ -554,7 +566,8 @@
   <p>
     Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);">@H2GamingX</a> • 
     Live streams on <a href="https://www.twitch.tv/grind2give" style="color:var(--twitch);">Twitch @grind2give</a> • 
-    Connect on <a href="https://www.facebook.com/hustleholixgaming" style="color:var(--green);">Facebook @hustleholixgaming</a>
+    Connect on <a href="https://www.facebook.com/hustleholixgaming" style="color:var(--green);">Facebook @hustleholixgaming</a> •
+    <a href="https://www.grind2give.org/products" class="social-link">Shop Merch</a>
   </p>
   <p>Grind2Give • Coming Soon • Grind to Give</p>
 
