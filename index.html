@@ -6,7 +6,7 @@
   <title>Grind2Give • Gaming with Purpose</title>
   <meta name="description" content="Grind2Give turns gaming into real impact. Every action supports community-voted charities." />
 
-  <!-- Open Graph / Facebook / General Social Previews -->
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://grind2give.org/" />
   <meta property="og:title" content="Grind2Give • Gaming with Purpose" />
@@ -40,7 +40,7 @@
       --twitch-hover: #7c3aed;
       --twitch-glow: rgba(145, 70, 255, 0.85);
       --overlay: rgba(30, 30, 50, 0.25);
-      --merch: #ffdd00; /* Bright yellow for merch CTA to pop */
+      --merch: #ffdd00;
     }
     body {
       margin: 0;
@@ -48,7 +48,7 @@
       color: var(--light);
       line-height: 1.6;
       font-size: 1.2rem;
-      background: url('g2gbackground.png') center center / cover no-repeat fixed;
+      background: url('https://grind2give.org/g2gbackground.png') center center / cover no-repeat fixed;
       background-attachment: fixed;
       min-height: 100vh;
       position: relative;
@@ -309,11 +309,9 @@
       color: var(--twitch-hover) !important;
       text-shadow: 0 0 20px var(--twitch-glow), 0 0 40px var(--twitch-glow);
     }
-
-    /* Countdown wrapper */
     .countdown-wrapper {
       position: relative;
-      background: url('fbcountdown.png') center center / cover no-repeat;
+      background: url('https://grind2give.org/fbcountdown.png') center center / cover no-repeat;
       border-radius: 16px;
       overflow: hidden;
       margin: 40px auto;
@@ -335,11 +333,9 @@
       font-size: 5rem;
       letter-spacing: 4px;
     }
-
-    /* Contest wrapper */
     .contest-wrapper {
       position: relative;
-      background: url('contest.jpeg') center center / cover no-repeat;
+      background: url('https://grind2give.org/contest.jpeg') center center / cover no-repeat;
       background-position: center 40%;
       border-radius: 16px;
       overflow: hidden;
@@ -407,10 +403,10 @@
     <p class="verse">Matthew 25:40 — Whatever you did for one of the least of these… you did for me.</p>
     
     <div class="buttons-container">
-      <a href="https://twitter.com/H2GamingX" class="cta" target="_blank">Follow on X</a>
-      <a href="https://www.twitch.tv/grind2give" class="cta twitch-cta" target="_blank">Watch Live on Twitch</a>
-      <a href="https://www.facebook.com/hustleholixgaming" class="cta facebook-cta" target="_blank">Connect on Facebook</a>
-      <a href="https://grind-2-give-products.printify.me/" class="cta merch-cta" target="_blank">Shop Merch 🍱🪡🏥💚</a>
+      <a href="https://twitter.com/H2GamingX" class="cta" target="_blank" rel="noopener noreferrer">Follow on X</a>
+      <a href="https://www.twitch.tv/grind2give" class="cta twitch-cta" target="_blank" rel="noopener noreferrer">Watch Live on Twitch</a>
+      <a href="https://www.facebook.com/hustleholixgaming" class="cta facebook-cta" target="_blank" rel="noopener noreferrer">Connect on Facebook</a>
+      <a href="https://grind-2-give-products.printify.me/" class="cta merch-cta" target="_blank" rel="noopener noreferrer">Shop Merch 🍱🪡🏥💚</a>
     </div>
   </div>
 </header>
@@ -429,41 +425,37 @@
     This is what Matthew 25:40 looks like in action — grinding together to serve the least of these.
   </p>
 
-  <section>
-    <h2>Charity Pool Wallet – Safe Multisig Secured</h2>
-    <p style="text-align:center; font-size:1.4rem; margin-bottom:20px;">
-      All charity tax (0.59–4.00%) flows to this wallet. To ensure funds are only used for their intended purpose, it is a <strong>Safe multisig</strong> (via safe.global) requiring approval from multiple trusted signers.
-    </p>
-    <p style="text-align:center; font-size:1.6rem; color:var(--green); font-weight:bold;">
-      Address: <a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" class="multisig-address">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a>
-    </p>
-    <p style="text-align:center; font-size:1.1rem; color:#ccc;">
-      Multisig eliminates single-point control. Funds forwarded only to voted charities via The Giving Block. Full on-chain transparency.
-    </p>
-  </section>
+  <h2>Charity Pool Wallet – Safe Multisig Secured</h2>
+  <p style="text-align:center; font-size:1.4rem; margin-bottom:20px;">
+    All charity tax (0.59–4.00%) flows to this wallet. To ensure funds are only used for their intended purpose, it is a <strong>Safe multisig</strong> (via safe.global) requiring approval from multiple trusted signers.
+  </p>
+  <p style="text-align:center; font-size:1.6rem; color:var(--green); font-weight:bold;">
+    Address: <a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" rel="noopener noreferrer" class="multisig-address">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a>
+  </p>
+  <p style="text-align:center; font-size:1.1rem; color:#ccc;">
+    Multisig eliminates single-point control. Funds forwarded only to voted charities via The Giving Block. Full on-chain transparency.
+  </p>
 
-  <section>
-    <h2>Public Wallet Addresses</h2>
-    <p style="text-align:center; font-size:1.4rem; margin-bottom:30px;">
-      All wallets are fully transparent and viewable on Basescan for complete trust and accountability.
-    </p>
-    <table>
-      <tr><th>Wallet Name</th><th>Address</th></tr>
-      <tr><td>Airdrop / Rewards Wallet</td><td><a href="https://basescan.org/address/0x453a66b589E4BF3A8C960325Fa4E618FA02e1707" target="_blank">0x453a66b589E4BF3A8C960325Fa4E618FA02e1707</a></td></tr>
-      <tr><td>Founder & Mission Support Wallet</td><td><a href="https://basescan.org/address/0xcE21eF60b018B2Ea7C6Ed6eF78042Ef6Fb8841e9" target="_blank">0xcE21eF60b018B2Ea7C6Ed6eF78042Ef6Fb8841e9</a></td></tr>
-      <tr><td>Charity Pool Wallet</td><td><a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a></td></tr>
-      <tr><td>Future New Pair Reserve Wallet</td><td><a href="https://basescan.org/address/0x832cFe1097aCb09260A9E9e5106e09A78D482A3a" target="_blank">0x832cFe1097aCb09260A9E9e5106e09A78D482A3a</a></td></tr>
-      <tr><td>Project Funding Wallet</td><td><a href="https://basescan.org/address/0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd" target="_blank">0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd</a></td></tr>
-      <tr><td>Community Engagement Staff Wallet</td><td><a href="https://basescan.org/address/0x931f79a48a640cF260b6697B49E4B1Afa8616E60" target="_blank">0x931f79a48a640cF260b6697B49E4B1Afa8616E60</a></td></tr>
-      <tr><td>Project Operations Staff Wallet</td><td><a href="https://basescan.org/address/0x71280dF8d37b30D65Ed399A061E9995b95125a97" target="_blank">0x71280dF8d37b30D65Ed399A061E9995b95125a97</a></td></tr>
-    </table>
-  </section>
+  <h2>Public Wallet Addresses</h2>
+  <p style="text-align:center; font-size:1.4rem; margin-bottom:30px;">
+    All wallets are fully transparent and viewable on Basescan for complete trust and accountability.
+  </p>
+  <table>
+    <tr><th>Wallet Name</th><th>Address</th></tr>
+    <tr><td>Airdrop / Rewards Wallet</td><td><a href="https://basescan.org/address/0x453a66b589E4BF3A8C960325Fa4E618FA02e1707" target="_blank" rel="noopener noreferrer">0x453a66b589E4BF3A8C960325Fa4E618FA02e1707</a></td></tr>
+    <tr><td>Founder & Mission Support Wallet</td><td><a href="https://basescan.org/address/0xcE21eF60b018B2Ea7C6Ed6eF78042Ef6Fb8841e9" target="_blank" rel="noopener noreferrer">0xcE21eF60b018B2Ea7C6Ed6eF78042Ef6Fb8841e9</a></td></tr>
+    <tr><td>Charity Pool Wallet</td><td><a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" rel="noopener noreferrer">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a></td></tr>
+    <tr><td>Future New Pair Reserve Wallet</td><td><a href="https://basescan.org/address/0x832cFe1097aCb09260A9E9e5106e09A78D482A3a" target="_blank" rel="noopener noreferrer">0x832cFe1097aCb09260A9E9e5106e09A78D482A3a</a></td></tr>
+    <tr><td>Project Funding Wallet</td><td><a href="https://basescan.org/address/0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd" target="_blank" rel="noopener noreferrer">0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd</a></td></tr>
+    <tr><td>Community Engagement Staff Wallet</td><td><a href="https://basescan.org/address/0x931f79a48a640cF260b6697B49E4B1Afa8616E60" target="_blank" rel="noopener noreferrer">0x931f79a48a640cF260b6697B49E4B1Afa8616E60</a></td></tr>
+    <tr><td>Project Operations Staff Wallet</td><td><a href="https://basescan.org/address/0x71280dF8d37b30D65Ed399A061E9995b95125a97" target="_blank" rel="noopener noreferrer">0x71280dF8d37b30D65Ed399A061E9995b95125a97</a></td></tr>
+  </table>
 </section>
 
 <section>
   <h2>Launch Countdown</h2>
   <div class="countdown-wrapper">
-    <div id="countdown">Loading...</div>
+    <div id="countdown">Loading countdown...</div>
   </div>
 </section>
 
@@ -472,7 +464,6 @@
   
   <div class="contest-wrapper">
     <div class="contest-content">
-
       <p style="font-size: 2.4rem; font-weight: bold; color: #fff; margin: 20px 0 40px;">
         TIME TO GRIND HARDER — BIGGEST $G2G DROP EVER!<br>
         <span style="color:var(--green);">200,000 $G2G TOKENS</span> ready to rain down!
@@ -512,10 +503,10 @@
       <ul style="text-align:left; max-width:720px; margin:0 auto 30px; font-size:1.45rem; line-height:1.7;">
         <li>✅ Create — memes, GIFs, vids, grind stories, pure heat!</li>
         <li>✅ Retweets - the more you post the better your chances!</li>
-        <li>✅ Must include **#Grind2Give** OR **#G2G** in every post to trigger counter</li>
-        <li>✅ Must tag **@H2GamingX** in every post to trigger counter</li>
+        <li>✅ Must include <strong>#Grind2Give</strong> OR <strong>#G2G</strong> in every post to trigger counter</li>
+        <li>✅ Must tag <strong>@H2GamingX</strong> in every post to trigger counter</li>
         <li>✅ Tag a friend (bring the squad into the grind!)</li>
-        <li>✅ Minimum **50 tweets** during the contest period to qualify</li>
+        <li>✅ Minimum <strong>50 tweets</strong> during the contest period to qualify</li>
       </ul>
 
       <p style="font-size: 2rem; font-weight: bold; color: #ffdd00; margin: 40px 0;">
@@ -527,9 +518,8 @@
       </p>
 
       <div class="buttons-container">
-        <a href="https://twitter.com/H2GamingX" class="cta" target="_blank">JUMP IN & START POSTING</a>
+        <a href="https://twitter.com/H2GamingX" class="cta" target="_blank" rel="noopener noreferrer">JUMP IN & START POSTING</a>
       </div>
-
     </div>
   </div>
 </section>
@@ -538,9 +528,9 @@
   <h2>Get Ready for Free Airdrops</h2>
   <p class="launch-info">Pre-launch airdrops live now! — free tokens for active chat & viewers.</p>
   <p class="live-notice">
-    Join live streams on <a href="https://www.twitch.tv/grind2give" target="_blank">@grind2give on Twitch</a> 
-    — follow <a href="https://twitter.com/H2GamingX" target="_blank">@H2GamingX on X</a> 
-    — connect on <a href="https://www.facebook.com/hustleholixgaming" target="_blank">@hustleholixgaming on Facebook</a> for drops & updates!!
+    Join live streams on <a href="https://www.twitch.tv/grind2give" target="_blank" rel="noopener noreferrer">@grind2give on Twitch</a> 
+    — follow <a href="https://twitter.com/H2GamingX" target="_blank" rel="noopener noreferrer">@H2GamingX on X</a> 
+    — connect on <a href="https://www.facebook.com/hustleholixgaming" target="_blank" rel="noopener noreferrer">@hustleholixgaming on Facebook</a> for drops & updates!!
   </p>
   <p class="launch-info">Live in Spring where everything is green — liquidity added live on stream.</p>
 </section>
@@ -548,8 +538,8 @@
 <section>
   <h2>Wallet Setup (Use Phantom – Easiest for Base)</h2>
   <div style="text-align:center; margin:30px 0;">
-    <a href="https://phantom.app/download" target="_blank">
-      <img src="phantomlogo.jpeg" alt="Phantom Wallet" style="max-width:220px; height:auto; display:block; margin:0 auto 85px;">
+    <a href="https://phantom.app/download" target="_blank" rel="noopener noreferrer">
+      <img src="https://grind2give.org/phantomlogo.jpeg" alt="Phantom Wallet" style="max-width:220px; height:auto; display:block; margin:0 auto 85px;">
     </a>
   </div>
   <p style="text-align:center; font-size:1.4rem; margin-top:20px;">
@@ -564,7 +554,38 @@
 
 <footer>
   <p>
-    Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);">@H2GamingX</a> • 
-    Live streams on <a href="https://www.twitch.tv/grind2give" style="color:var(--twitch);">Twitch @grind2give</a> • 
-    Connect on <a href="https://www.facebook.com/hustleholixgaming" style="color:var(--green);">Facebook @hustleholixgaming</a> •
-    <a href="https://
+    Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);" target="_blank" rel="noopener noreferrer">@H2GamingX</a> • 
+    Live streams on <a href="https://www.twitch.tv/grind2give" style="color:var(--twitch);" target="_blank" rel="noopener noreferrer">Twitch @grind2give</a> • 
+    Connect on <a href="https://www.facebook.com/hustleholixgaming" style="color:var(--green);" target="_blank" rel="noopener noreferrer">Facebook @hustleholixgaming</a> •
+    <a href="https://grind2give.org" style="color:var(--green);" target="_blank" rel="noopener noreferrer">grind2give.org</a>
+  </p>
+</footer>
+
+<script>
+  // Countdown to March 21, 2026 @ 10:00 PM EST
+  const launchDate = new Date("2026-03-21T22:00:00-05:00").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = launchDate - now;
+
+    if (distance < 0) {
+      document.getElementById("countdown").innerHTML = "LIVE NOW! 🚀";
+      return;
+    }
+
+    const days    = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML = 
+      `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
