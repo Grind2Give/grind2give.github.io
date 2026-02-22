@@ -49,14 +49,13 @@
       line-height: 1.6;
       font-size: 1.2rem;
       background: url('https://grind2give.org/g2gbackground.png') center center / cover no-repeat fixed;
-      background-attachment: fixed;
       min-height: 100vh;
       position: relative;
     }
     body::before {
       content: "";
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      inset: 0;
       background: var(--overlay);
       z-index: -1;
       pointer-events: none;
@@ -72,7 +71,6 @@
       text-align: center;
       z-index: 1;
       width: 100%;
-      margin: 0 auto;
     }
     .header-content {
       position: relative;
@@ -80,15 +78,6 @@
       max-width: 1100px;
       width: 100%;
       padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    h1, .tagline, .verse {
-      margin-left: auto;
-      margin-right: auto;
     }
     h1 {
       font-size: 6rem;
@@ -120,7 +109,7 @@
       font-weight: bold;
       border-radius: 16px;
       text-decoration: none;
-      transition: all 0.4s;
+      transition: all 0.4s ease;
       box-shadow: 0 0 50px var(--glow);
     }
     .cta:hover {
@@ -128,43 +117,20 @@
       transform: scale(1.12);
       box-shadow: 0 0 80px var(--glow);
     }
-    .twitch-cta {
-      background: var(--twitch);
-      color: white;
-      box-shadow: 0 0 40px var(--twitch-glow);
-    }
-    .twitch-cta:hover {
-      background: var(--twitch-hover);
-      box-shadow: 0 0 70px var(--twitch-glow);
-      transform: scale(1.08);
-    }
-    .facebook-cta {
-      background: #1877F2;
-      color: white;
-    }
-    .facebook-cta:hover {
-      background: #0e5a8a;
-      transform: scale(1.12);
-      box-shadow: 0 0 50px rgba(24, 119, 242, 0.6);
-    }
-    .merch-cta {
-      background: var(--merch);
-      color: #000;
-      box-shadow: 0 0 50px rgba(255, 221, 0, 0.6);
-    }
-    .merch-cta:hover {
-      background: #ffcc00;
-      transform: scale(1.12);
-      box-shadow: 0 0 80px rgba(255, 221, 0, 0.8);
-    }
+    .twitch-cta { background: var(--twitch); color: white; box-shadow: 0 0 40px var(--twitch-glow); }
+    .twitch-cta:hover { background: var(--twitch-hover); box-shadow: 0 0 70px var(--twitch-glow); transform: scale(1.08); }
+    .facebook-cta { background: #1877F2; color: white; }
+    .facebook-cta:hover { background: #0e5a8a; transform: scale(1.12); box-shadow: 0 0 50px rgba(24,119,242,0.6); }
+    .merch-cta { background: var(--merch); color: #000; box-shadow: 0 0 50px rgba(255,221,0,0.6); }
+    .merch-cta:hover { background: #ffcc00; transform: scale(1.12); box-shadow: 0 0 80px rgba(255,221,0,0.8); }
     section {
       max-width: 1200px;
       margin: 80px auto;
       padding: 40px;
+      background: rgba(15,15,26,0.55);
+      border-radius: 12px;
       position: relative;
       z-index: 2;
-      background: rgba(15, 15, 26, 0.55);
-      border-radius: 12px;
     }
     h2 {
       color: var(--green);
@@ -185,19 +151,13 @@
     }
     .launch-info {
       color: var(--green);
-      font-size: 2.0rem;
+      font-size: 2rem;
       font-weight: bold;
       text-align: center;
       margin: 15px 0;
       text-shadow: 0 0 25px rgba(0,255,136,0.5);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding: 0 20px;
-      max-width: 100%;
     }
     .live-notice {
-      display: block;
       font-size: 1.8rem;
       color: var(--twitch);
       margin: 30px 0;
@@ -205,23 +165,12 @@
       animation: neon-pulse 1.5s infinite alternate;
       text-shadow: 0 0 40px var(--twitch-glow), 0 0 80px var(--twitch-glow);
       text-align: center;
-      max-width: 90%;
-      padding: 0 20px;
-      line-height: 1.4;
     }
-    .live-notice a {
-      color: var(--twitch);
-      font-weight: bold;
-      text-decoration: none;
-      text-shadow: 0 0 15px var(--twitch-glow);
-    }
-    .live-notice a:hover {
-      text-decoration: underline;
-      color: var(--twitch-hover);
-    }
+    .live-notice a { color: var(--twitch); text-decoration: none; text-shadow: 0 0 15px var(--twitch-glow); }
+    .live-notice a:hover { text-decoration: underline; color: var(--twitch-hover); }
     @keyframes neon-pulse {
       from { transform: scale(1); opacity: 0.9; text-shadow: 0 0 30px var(--twitch-glow); }
-      to   { transform: scale(1.05); opacity: 1; text-shadow: 0 0 70px var(--twitch-glow), 0 0 120px var(--twitch-glow); }
+      to { transform: scale(1.05); opacity: 1; text-shadow: 0 0 70px var(--twitch-glow), 0 0 120px var(--twitch-glow); }
     }
     ul {
       list-style: none;
@@ -235,7 +184,6 @@
       padding-left: 40px;
       position: relative;
       text-align: left;
-      color: #f5f5ff;
     }
     li::before {
       content: "→";
@@ -246,52 +194,40 @@
       font-size: 1.8rem;
     }
     #countdown {
-      font-size: 4rem;
+      position: relative;
+      z-index: 2;
+      font-size: 5rem;
       font-weight: bold;
       text-align: center;
-      margin: 60px 0;
       color: var(--green);
       text-shadow: 0 0 50px var(--glow);
+      letter-spacing: 4px;
+      padding: 60px 20px;
+      margin: 0;
     }
     footer {
       text-align: center;
       padding: 100px 20px;
-      background: rgba(10, 10, 20, 0.48);
+      background: rgba(10,10,20,0.48);
       font-size: 1.3rem;
       color: #eee;
       position: relative;
       z-index: 2;
     }
-    .social-link {
-      color: var(--green);
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    .social-link:hover {
-      text-decoration: underline;
-    }
     table {
-      color: #f5f5ff;
       width: 100%;
       border-collapse: collapse;
       margin: 20px auto;
+      color: #f5f5ff;
     }
     table th, table td {
       padding: 12px;
       text-align: left;
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    table th {
-      background: rgba(0,255,136,0.1);
-      color: var(--green);
-    }
-    table a {
-      color: var(--green) !important;
-      text-decoration: none;
-    }
-    table a:hover {
-      text-decoration: underline;
-    }
+    table th { background: rgba(0,255,136,0.1); color: var(--green); }
+    table a { color: var(--green) !important; text-decoration: none; }
+    table a:hover { text-decoration: underline; }
     .buttons-container {
       display: flex;
       flex-wrap: wrap;
@@ -303,7 +239,6 @@
       color: var(--twitch) !important;
       font-weight: bold;
       text-shadow: 0 0 12px var(--twitch-glow), 0 0 25px var(--twitch-glow);
-      transition: all 0.3s;
     }
     .multisig-address:hover {
       color: var(--twitch-hover) !important;
@@ -311,7 +246,7 @@
     }
     .countdown-wrapper {
       position: relative;
-      background: url('https://grind2give.org/fbcountdown.png') center center / cover no-repeat;
+      background: url('https://grind2give.org/fbcountdown.png') center / cover no-repeat;
       border-radius: 16px;
       overflow: hidden;
       margin: 40px auto;
@@ -321,22 +256,13 @@
     .countdown-wrapper::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 15, 26, 0.65);
+      inset: 0;
+      background: rgba(15,15,26,0.65);
       z-index: 1;
-    }
-    #countdown {
-      position: relative;
-      z-index: 2;
-      padding: 60px 20px;
-      margin: 0;
-      font-size: 5rem;
-      letter-spacing: 4px;
     }
     .contest-wrapper {
       position: relative;
-      background: url('https://grind2give.org/contest.jpeg') center center / cover no-repeat;
-      background-position: center 40%;
+      background: url('https://grind2give.org/contest.jpeg') center 40% / cover no-repeat;
       border-radius: 16px;
       overflow: hidden;
       margin: 40px auto;
@@ -346,8 +272,8 @@
     .contest-wrapper::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 15, 26, 0.68);
+      inset: 0;
+      background: rgba(15,15,26,0.68);
       z-index: 1;
     }
     .contest-content {
@@ -363,11 +289,10 @@
       margin: 40px 0;
     }
     .prize-card {
-      background: rgba(0, 255, 136, 0.08);
+      background: rgba(0,255,136,0.08);
       border: 2px solid var(--green);
       border-radius: 12px;
       padding: 20px;
-      text-align: center;
     }
     .prize-card h3 {
       color: var(--green);
@@ -376,19 +301,13 @@
     }
 
     @media (max-width: 768px) {
-      header { height: 80vh; min-height: 600px; }
       h1 { font-size: 4.5rem; }
       .tagline { font-size: 2.2rem; }
       .verse { font-size: 1.5rem; }
-      .cta { font-size: 1.7rem; padding: 18px 50px; }
       h2 { font-size: 3.2rem; }
-      p { font-size: 1.3rem; }
-      #countdown { font-size: 3.5rem; }
-      .countdown-wrapper { margin: 30px 15px; }
-      .live-notice { font-size: 1.6rem; line-height: 1.4; }
-      .launch-info { font-size: 1.6rem; white-space: normal; }
-      .buttons-container { flex-direction: column; align-items: center; }
-      .cta { width: 80%; text-align: center; }
+      #countdown { font-size: 3.5rem; padding: 40px 15px; }
+      .buttons-container { flex-direction: column; }
+      .cta { width: 80%; }
       .contest-content { padding: 40px 20px; }
       .contest-prizes { grid-template-columns: 1fr; }
     }
@@ -421,9 +340,15 @@
     <li>Passive rewards for supporters who hold and participate</li>
     <li>Full transparency: public wallets, on-chain tracking, no hidden fees</li>
   </ul>
-  <p style="text-align:center; font-style:italic; margin-top:40px; font-size:1.6rem;">
+  <p style="text-align:center; font-style:italic; margin:40px 0; font-size:1.6rem;">
     This is what Matthew 25:40 looks like in action — grinding together to serve the least of these.
   </p>
+
+  <div style="text-align:center; margin:50px 0;">
+    <a href="https://grind2give.org/whitepaper.pdf" class="cta" target="_blank" rel="noopener noreferrer" style="font-size:1.8rem; padding:20px 60px;">
+      Read the Full White Paper
+    </a>
+  </div>
 
   <h2>Charity Pool Wallet – Safe Multisig Secured</h2>
   <p style="text-align:center; font-size:1.4rem; margin-bottom:20px;">
@@ -461,7 +386,6 @@
 
 <section>
   <h2>🔥 200,000 $G2G MEGA AIRDROP CONTEST 🔥</h2>
-  
   <div class="contest-wrapper">
     <div class="contest-content">
       <p style="font-size: 2.4rem; font-weight: bold; color: #fff; margin: 20px 0 40px;">
@@ -470,51 +394,31 @@
       </p>
 
       <div class="contest-prizes">
-        <div class="prize-card">
-          <h3>1st Place</h3>
-          <p style="font-size:2.8rem; font-weight:bold; color:var(--green); margin:0;">50,000 $G2G</p>
-        </div>
-        <div class="prize-card">
-          <h3>2nd Place</h3>
-          <p style="font-size:2.4rem; font-weight:bold; color:var(--green); margin:0;">30,000 $G2G</p>
-        </div>
-        <div class="prize-card">
-          <h3>3rd Place</h3>
-          <p style="font-size:2.2rem; font-weight:bold; color:var(--green); margin:0;">20,000 $G2G</p>
-        </div>
-        <div class="prize-card">
-          <h3>4th Place</h3>
-          <p style="font-size:2rem; font-weight:bold; color:var(--green); margin:0;">15,000 $G2G</p>
-        </div>
-        <div class="prize-card">
-          <h3>5th Place</h3>
-          <p style="font-size:2rem; font-weight:bold; color:var(--green); margin:0;">10,000 $G2G</p>
-        </div>
-        <div class="prize-card">
-          <h3>6th – 20th</h3>
-          <p style="font-size:1.9rem; font-weight:bold; color:var(--green); margin:0;">5,000 $G2G each</p>
-        </div>
+        <div class="prize-card"><h3>1st Place</h3><p style="font-size:2.8rem; font-weight:bold; color:var(--green); margin:0;">50,000 $G2G</p></div>
+        <div class="prize-card"><h3>2nd Place</h3><p style="font-size:2.4rem; font-weight:bold; color:var(--green); margin:0;">30,000 $G2G</p></div>
+        <div class="prize-card"><h3>3rd Place</h3><p style="font-size:2.2rem; font-weight:bold; color:var(--green); margin:0;">20,000 $G2G</p></div>
+        <div class="prize-card"><h3>4th Place</h3><p style="font-size:2rem; font-weight:bold; color:var(--green); margin:0;">15,000 $G2G</p></div>
+        <div class="prize-card"><h3>5th Place</h3><p style="font-size:2rem; font-weight:bold; color:var(--green); margin:0;">10,000 $G2G</p></div>
+        <div class="prize-card"><h3>6th – 20th</h3><p style="font-size:1.9rem; font-weight:bold; color:var(--green); margin:0;">5,000 $G2G each</p></div>
       </div>
 
-      <h3 style="color:var(--green); font-size:2.1rem; margin:50px 0 20px;">
-        DROP YOUR FIRE — HERE'S HOW TO QUALIFY:
-      </h3>
+      <h3 style="color:var(--green); font-size:2.1rem; margin:50px 0 20px;">DROP YOUR FIRE — HERE'S HOW TO QUALIFY:</h3>
 
       <ul style="text-align:left; max-width:720px; margin:0 auto 30px; font-size:1.45rem; line-height:1.7;">
         <li>✅ Create — memes, GIFs, vids, grind stories, pure heat!</li>
         <li>✅ Retweets - the more you post the better your chances!</li>
-        <li>✅ Must include <strong>#Grind2Give</strong> OR <strong>#G2G</strong> in every post to trigger counter</li>
-        <li>✅ Must tag <strong>@H2GamingX</strong> in every post to trigger counter</li>
-        <li>✅ Tag a friend (bring the squad into the grind!)</li>
-        <li>✅ Minimum <strong>50 tweets</strong> during the contest period to qualify</li>
+        <li>✅ Must include <strong>#Grind2Give</strong> OR <strong>#G2G</strong> in every post</li>
+        <li>✅ Must tag <strong>@H2GamingX</strong> in every post</li>
+        <li>✅ Tag a friend (bring the squad!)</li>
+        <li>✅ Minimum <strong>50 tweets</strong> during contest period to qualify</li>
       </ul>
 
       <p style="font-size: 2rem; font-weight: bold; color: #ffdd00; margin: 40px 0;">
-        STARTS FRIDAY FEB 13 @ 10PM EST → ENDS MARCH 21 @ 10PM EST
+        STARTS FEB 13 @ 10PM EST → ENDS MARCH 21 @ 10PM EST
       </p>
 
       <p style="font-size:1.6rem; max-width:800px; margin:0 auto 40px;">
-        The more you post, the bigger your shot at the top prizes. Winners crowned LIVE on stream — let's see who grinds the hardest!
+        The more you post, the bigger your shot at the top prizes. Winners crowned LIVE on stream!
       </p>
 
       <div class="buttons-container">
@@ -528,9 +432,9 @@
   <h2>Get Ready for Free Airdrops</h2>
   <p class="launch-info">Pre-launch airdrops live now! — free tokens for active chat & viewers.</p>
   <p class="live-notice">
-    Join live streams on <a href="https://www.twitch.tv/grind2give" target="_blank" rel="noopener noreferrer">@grind2give on Twitch</a> 
-    — follow <a href="https://twitter.com/H2GamingX" target="_blank" rel="noopener noreferrer">@H2GamingX on X</a> 
-    — connect on <a href="https://www.facebook.com/hustleholixgaming" target="_blank" rel="noopener noreferrer">@hustleholixgaming on Facebook</a> for drops & updates!!
+    Join live streams on <a href="https://www.twitch.tv/grind2give" target="_blank" rel="noopener noreferrer">@grind2give on Twitch</a> — 
+    follow <a href="https://twitter.com/H2GamingX" target="_blank" rel="noopener noreferrer">@H2GamingX on X</a> — 
+    connect on <a href="https://www.facebook.com/hustleholixgaming" target="_blank" rel="noopener noreferrer">@hustleholixgaming on Facebook</a> for drops & updates!!
   </p>
   <p class="launch-info">Live in Spring where everything is green — liquidity added live on stream.</p>
 </section>
@@ -557,6 +461,7 @@
     Follow <a href="https://twitter.com/H2GamingX" style="color:var(--green);" target="_blank" rel="noopener noreferrer">@H2GamingX</a> • 
     Live streams on <a href="https://www.twitch.tv/grind2give" style="color:var(--twitch);" target="_blank" rel="noopener noreferrer">Twitch @grind2give</a> • 
     Connect on <a href="https://www.facebook.com/hustleholixgaming" style="color:var(--green);" target="_blank" rel="noopener noreferrer">Facebook @hustleholixgaming</a> •
+    <a href="https://grind2give.org/whitepaper.pdf" style="color:var(--green);" target="_blank" rel="noopener noreferrer">White Paper</a> •
     <a href="https://grind2give.org" style="color:var(--green);" target="_blank" rel="noopener noreferrer">grind2give.org</a>
   </p>
 </footer>
