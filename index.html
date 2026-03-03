@@ -51,6 +51,7 @@
       background: url('https://grind2give.org/g2gbackground.png') center center / cover no-repeat fixed;
       min-height: 100vh;
       position: relative;
+      text-align: center;
     }
     body::before {
       content: "";
@@ -73,8 +74,6 @@
       width: 100%;
     }
     .header-content {
-      position: relative;
-      z-index: 2;
       max-width: 1100px;
       width: 100%;
       padding: 40px 20px;
@@ -96,7 +95,7 @@
       font-size: 1.8rem;
       color: #f8f8ff;
       font-style: italic;
-      margin: 50px 0;
+      margin: 50px auto;
       max-width: 900px;
       text-shadow: 0 0 50px black;
     }
@@ -126,7 +125,7 @@
     section {
       max-width: 1200px;
       margin: 80px auto;
-      padding: 40px;
+      padding: 40px 20px;
       background: rgba(15,15,26,0.55);
       border-radius: 12px;
       position: relative;
@@ -134,18 +133,14 @@
     }
     h2 {
       color: var(--green);
-      text-align: center;
       font-size: 4rem;
       margin-bottom: 40px;
       text-shadow: 0 0 40px rgba(0,255,136,0.5);
     }
     p {
       font-size: 1.4rem;
-      margin-bottom: 25px;
-      text-align: center;
+      margin: 25px auto;
       max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
       color: #f5f5ff;
       text-shadow: 0 0 12px black, 0 0 6px #00000088;
     }
@@ -153,18 +148,17 @@
       color: var(--green);
       font-size: 2rem;
       font-weight: bold;
-      text-align: center;
       margin: 15px 0;
       text-shadow: 0 0 25px rgba(0,255,136,0.5);
     }
     .live-notice {
       font-size: 1.8rem;
       color: var(--twitch);
-      margin: 30px 0;
+      margin: 30px auto;
       font-weight: bold;
       animation: neon-pulse 1.5s infinite alternate;
       text-shadow: 0 0 40px var(--twitch-glow), 0 0 80px var(--twitch-glow);
-      text-align: center;
+      max-width: 900px;
     }
     .live-notice a { color: var(--twitch); text-decoration: none; text-shadow: 0 0 15px var(--twitch-glow); }
     .live-notice a:hover { text-decoration: underline; color: var(--twitch-hover); }
@@ -176,14 +170,14 @@
       list-style: none;
       padding: 0;
       font-size: 1.5rem;
-      max-width: 900px;
-      margin: 0 auto;
+      max-width: 720px;
+      margin: 0 auto 30px;
+      text-align: left;
     }
     li {
-      margin: 25px 0;
-      padding-left: 40px;
+      margin: 20px 0;
+      padding-left: 35px;
       position: relative;
-      text-align: left;
     }
     li::before {
       content: "→";
@@ -194,11 +188,8 @@
       font-size: 1.8rem;
     }
     #countdown {
-      position: relative;
-      z-index: 2;
       font-size: 5rem;
       font-weight: bold;
-      text-align: center;
       color: var(--green);
       text-shadow: 0 0 50px var(--glow);
       letter-spacing: 4px;
@@ -209,19 +200,19 @@
       text-align: center;
       padding: 100px 20px 60px;
       background: rgba(10,10,20,0.48);
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: #eee;
-      position: relative;
-      z-index: 2;
     }
     .footer-links {
-      margin: 0 0 40px;
-      font-size: 1.4rem;
+      margin-bottom: 30px;
+      font-size: 1.5rem;
+      line-height: 1.8;
     }
     .footer-links a {
       color: var(--green);
       text-decoration: none;
-      margin: 0 15px;
+      margin: 0 12px;
+      white-space: nowrap;
     }
     .footer-links a:hover {
       text-decoration: underline;
@@ -232,7 +223,7 @@
       background: rgba(0,255,136,0.08);
       border-top: 2px solid var(--green);
       border-bottom: 2px solid var(--green);
-      margin: 0 auto 0;
+      margin: 0 auto;
       max-width: 1000px;
     }
     .whitepaper-cta {
@@ -254,8 +245,9 @@
     }
     table {
       width: 100%;
-      border-collapse: collapse;
+      max-width: 1000px;
       margin: 20px auto;
+      border-collapse: collapse;
       color: #f5f5ff;
     }
     table th, table td {
@@ -282,49 +274,37 @@
       color: var(--twitch-hover) !important;
       text-shadow: 0 0 20px var(--twitch-glow), 0 0 40px var(--twitch-glow);
     }
-    .countdown-wrapper {
-      position: relative;
-      background: url('https://grind2give.org/fbcountdown.png') center / cover no-repeat;
+    .countdown-wrapper, .contest-wrapper {
+      margin: 40px auto;
+      max-width: 1000px;
       border-radius: 16px;
       overflow: hidden;
-      margin: 40px auto;
-      max-width: 900px;
-      box-shadow: 0 0 60px var(--glow);
+      box-shadow: 0 0 70px var(--glow);
     }
-    .countdown-wrapper::before {
+    .countdown-wrapper {
+      background: url('https://grind2give.org/fbcountdown.png') center / cover no-repeat;
+    }
+    .contest-wrapper {
+      background: url('https://grind2give.org/countdown8.jpg') center 40% / cover no-repeat;
+    }
+    .countdown-wrapper::before, .contest-wrapper::before {
       content: "";
       position: absolute;
       inset: 0;
       background: rgba(15,15,26,0.65);
       z-index: 1;
     }
-    .contest-wrapper {
-      position: relative;
-      background: url('https://grind2give.org/countdown8.jpg') center 40% / cover no-repeat;
-      border-radius: 16px;
-      overflow: hidden;
-      margin: 40px auto;
-      max-width: 1000px;
-      box-shadow: 0 0 70px var(--glow);
-    }
-    .contest-wrapper::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(15,15,26,0.68);
-      z-index: 1;
-    }
     .contest-content {
       position: relative;
       z-index: 2;
-      padding: 60px 40px;
-      text-align: center;
+      padding: 60px 30px;
     }
     .contest-prizes {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      margin: 40px 0;
+      margin: 40px auto;
+      max-width: 1100px;
     }
     .prize-card {
       background: rgba(0,255,136,0.08);
@@ -345,11 +325,12 @@
       h2 { font-size: 3.2rem; }
       #countdown { font-size: 3.5rem; padding: 40px 15px; }
       .buttons-container { flex-direction: column; }
-      .cta { width: 80%; }
+      .cta { width: 90%; max-width: 400px; }
       .contest-content { padding: 40px 20px; }
       .contest-prizes { grid-template-columns: 1fr; }
-      .whitepaper-cta { font-size: 2rem; padding: 22px 80px; }
+      .whitepaper-cta { font-size: 2rem; padding: 22px 70px; }
       .whitepaper-section { padding: 60px 15px 80px; }
+      .footer-links { font-size: 1.3rem; flex-wrap: wrap; justify-content: center; }
     }
   </style>
 </head>
@@ -380,26 +361,26 @@
     <li>Passive rewards for supporters who hold and participate</li>
     <li>Full transparency: public wallets, on-chain tracking, no hidden fees</li>
   </ul>
-  <p style="text-align:center; font-style:italic; margin:40px 0; font-size:1.6rem;">
+  <p style="font-style:italic; margin:40px auto; font-size:1.6rem; max-width:900px;">
     This is what Matthew 25:40 looks like in action — grinding together to serve the least of these.
   </p>
 
   <h2>Charity Pool Wallet – Safe Multisig Secured</h2>
-  <p style="text-align:center; font-size:1.4rem; margin-bottom:20px;">
+  <p style="font-size:1.4rem; margin:20px auto; max-width:900px;">
     All charity tax (0.59–4.00%) flows to this wallet. To ensure funds are only used for their intended purpose, it is a <strong>Safe multisig</strong> (via safe.global) requiring approval from multiple trusted signers.
   </p>
-  <p style="text-align:center; font-size:1.6rem; color:var(--green); font-weight:bold;">
+  <p style="font-size:1.6rem; color:var(--green); font-weight:bold; margin:10px auto;">
     Address: <a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" rel="noopener noreferrer" class="multisig-address">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a>
   </p>
-  <p style="text-align:center; font-size:1.1rem; color:#ccc;">
+  <p style="font-size:1.1rem; color:#ccc; max-width:900px; margin:0 auto;">
     Multisig eliminates single-point control. Funds forwarded only to voted charities via The Giving Block. Full on-chain transparency.
   </p>
 
   <h2>Public Wallet Addresses</h2>
-  <p style="text-align:center; font-size:1.4rem; margin-bottom:30px;">
+  <p style="font-size:1.4rem; margin:20px auto 30px; max-width:900px;">
     All wallets are fully transparent and viewable on Basescan for complete trust and accountability.
   </p>
-  <table>
+  <table style="margin:0 auto;">
     <tr><th>Wallet Name</th><th>Address</th></tr>
     <tr><td>Airdrop / Rewards Wallet</td><td><a href="https://basescan.org/address/0x453a66b589E4BF3A8C960325Fa4E618FA02e1707" target="_blank" rel="noopener noreferrer">0x453a66b589E4BF3A8C960325Fa4E618FA02e1707</a></td></tr>
     <tr><td>Founder & Mission Support Wallet</td><td><a href="https://basescan.org/address/0xcE21eF60b018B2Ea7C6Ed6eF78042Ef6Fb8841e9" target="_blank" rel="noopener noreferrer">0xcE21eF60b018B2Ea7C6Ed6eF78042Ef6Fb8841e9</a></td></tr>
@@ -422,12 +403,12 @@
   <h2>💥 PRE-LAUNCH TWEET PARTY 💥</h2>
   <div class="contest-wrapper">
     <div class="contest-content">
-      <p style="font-size: 2.4rem; font-weight: bold; color: #fff; margin: 20px 0 40px; line-height: 1.3;">
+      <p style="font-size: 2.4rem; font-weight: bold; color: #fff; margin: 20px auto 40px; line-height: 1.3; max-width: 900px;">
         Grind & win BIG before launch! 🎮➡️🍱🪡🏥💚<br>
         <span style="color:var(--green);">200K $G2G AIRDROP</span> + <span style="color:#ffdd00;">$150 USDC (on Base)</span> up for grabs! 😱🤑
       </p>
 
-      <p style="font-size: 1.9rem; font-weight: bold; color: #ffdd00; margin: 20px 0 30px; text-align: center;">
+      <p style="font-size: 1.9rem; font-weight: bold; color: #ffdd00; margin: 20px auto 30px; max-width: 600px;">
         MUST BE A FOLLOWER
       </p>
 
@@ -463,21 +444,21 @@
         </div>
       </div>
 
-      <p style="font-size: 1.9rem; font-weight: bold; color: #ffdd00; margin: 50px 0 20px; text-align: center;">
+      <p style="font-size: 1.9rem; font-weight: bold; color: #ffdd00; margin: 50px auto 20px; max-width: 600px;">
         Total: 200,000 $G2G + $150 USDC (split top 5)
       </p>
 
-      <p style="font-size: 2.1rem; font-weight: bold; color: #fff; margin: 30px 0 15px;">
+      <p style="font-size: 2.1rem; font-weight: bold; color: #fff; margin: 30px auto 15px; max-width: 500px;">
         DATES
       </p>
-      <p style="font-size: 1.8rem; color: var(--green); font-weight: bold; margin: 0 0 40px;">
+      <p style="font-size: 1.8rem; color: var(--green); font-weight: bold; margin: 0 auto 40px; max-width: 500px;">
         Start: March 3 @ 8AM EST (UTC -5)<br>
         End: March 21 @ 10PM EST (UTC -5)
       </p>
 
-      <h3 style="color:var(--green); font-size:2.1rem; margin:40px 0 20px; text-align:center;">HOW TO ENTER</h3>
+      <h3 style="color:var(--green); font-size:2.1rem; margin:40px auto 20px;">HOW TO ENTER</h3>
 
-      <ol style="text-align:left; max-width:720px; margin:0 auto 40px; font-size:1.45rem; line-height:1.7; padding-left:30px; color:#f0f0ff;">
+      <ol style="max-width:720px; margin:0 auto 40px; font-size:1.45rem; line-height:1.7; padding-left:40px;">
         <li>Create an original <strong>“GIVING” MESSAGE</strong></li>
         <li><strong>Must use BOTH hashtags</strong> in every post: <strong>#Grind2Give</strong> AND <strong>#G2G</strong></li>
         <li>Must Tag <strong>@H2GamingX</strong></li>
@@ -486,16 +467,16 @@
         <li>Must Post <strong>at least 25</strong> qualifying tweets to qualify</li>
       </ol>
 
-      <p style="font-size:1.6rem; font-style:italic; color:#ccc; max-width:800px; margin:30px auto 40px; text-align:center;">
+      <p style="font-size:1.6rem; font-style:italic; color:#ccc; max-width:800px; margin:30px auto 40px;">
         Focus on <strong>original posts</strong> — no retweets or quotes counted!
       </p>
 
-      <p style="font-size:1.7rem; font-weight:bold; color:#fff; margin:20px auto 40px; text-align:center; max-width:800px;">
+      <p style="font-size:1.7rem; font-weight:bold; color:#fff; margin:20px auto 40px; max-width:800px;">
         Grind hard. Give harder. More cash spots = more winners! 💪💚💰<br>
         Jump in now! #Grind2Give #G2G #Matthew25_40
       </p>
 
-      <p style="font-size:1.6rem; color:#ccc; text-align:center; margin-bottom:40px;">
+      <p style="font-size:1.6rem; color:#ccc; margin:0 auto 40px; max-width:800px;">
         Visit website for $G2G info @ <a href="http://grind2give.org" target="_blank" rel="noopener noreferrer" style="color:var(--green);">http://grind2give.org</a>
       </p>
 
@@ -519,12 +500,12 @@
 
 <section>
   <h2>Wallet Setup (Use Phantom – Easiest for Base)</h2>
-  <div style="text-align:center; margin:30px 0;">
+  <div style="margin:30px auto; max-width:600px;">
     <a href="https://phantom.app/download" target="_blank" rel="noopener noreferrer">
-      <img src="https://grind2give.org/phantomlogo.jpeg" alt="Phantom Wallet" style="max-width:220px; height:auto; display:block; margin:0 auto 85px;">
+      <img src="https://grind2give.org/phantomlogo.jpeg" alt="Phantom Wallet" style="max-width:220px; height:auto; display:block; margin:0 auto 40px;">
     </a>
   </div>
-  <p style="text-align:center; font-size:1.4rem; margin-top:20px;">
+  <p style="font-size:1.4rem; margin:20px auto; max-width:800px;">
     <strong>Steps:</strong><br>
     1. Download Phantom (App Store or phantom.app)<br>
     2. Create new wallet → back up seed phrase safely<br>
@@ -534,7 +515,6 @@
   </p>
 </section>
 
-<!-- White Paper section – placed just above the footer -->
 <div class="whitepaper-section">
   <a href="https://grind2give.org/whitepaper.html" 
      class="whitepaper-cta" 
@@ -554,7 +534,6 @@
 </footer>
 
 <script>
-  // Countdown to March 21, 2026 @ 10:00 PM EST
   const launchDate = new Date("2026-03-21T22:00:00-05:00").getTime();
 
   function updateCountdown() {
