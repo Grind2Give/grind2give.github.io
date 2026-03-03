@@ -207,7 +207,7 @@
     }
     footer {
       text-align: center;
-      padding: 120px 20px 80px;
+      padding: 100px 20px 60px;
       background: rgba(10,10,20,0.48);
       font-size: 1.3rem;
       color: #eee;
@@ -215,34 +215,42 @@
       z-index: 2;
     }
     .footer-links {
-      margin: 20px 0 40px;
+      margin: 0 0 40px;
       font-size: 1.4rem;
     }
     .footer-links a {
       color: var(--green);
       text-decoration: none;
-      margin: 0 12px;
+      margin: 0 15px;
     }
     .footer-links a:hover {
       text-decoration: underline;
+    }
+    .whitepaper-section {
+      text-align: center;
+      padding: 80px 20px 100px;
+      background: rgba(0,255,136,0.08);
+      border-top: 2px solid var(--green);
+      border-bottom: 2px solid var(--green);
+      margin: 0 auto 0;
+      max-width: 1000px;
     }
     .whitepaper-cta {
       display: inline-block;
       background: var(--green);
       color: #000;
-      padding: 18px 60px;
-      font-size: 1.8rem;
+      padding: 28px 100px;
+      font-size: 2.4rem;
       font-weight: bold;
-      border-radius: 16px;
+      border-radius: 24px;
       text-decoration: none;
       transition: all 0.4s ease;
-      box-shadow: 0 0 40px var(--glow);
-      margin-top: 30px;
+      box-shadow: 0 0 70px var(--glow);
     }
     .whitepaper-cta:hover {
       background: #00cc77;
       transform: scale(1.08);
-      box-shadow: 0 0 70px var(--glow);
+      box-shadow: 0 0 110px var(--glow);
     }
     table {
       width: 100%;
@@ -340,7 +348,8 @@
       .cta { width: 80%; }
       .contest-content { padding: 40px 20px; }
       .contest-prizes { grid-template-columns: 1fr; }
-      .whitepaper-cta { font-size: 1.6rem; padding: 16px 50px; }
+      .whitepaper-cta { font-size: 2rem; padding: 22px 80px; }
+      .whitepaper-section { padding: 60px 15px 80px; }
     }
   </style>
 </head>
@@ -525,6 +534,16 @@
   </p>
 </section>
 
+<!-- White Paper section – placed just above the footer -->
+<div class="whitepaper-section">
+  <a href="https://grind2give.org/whitepaper.html" 
+     class="whitepaper-cta" 
+     target="_blank" 
+     rel="noopener noreferrer">
+     📖 READ THE WHITE PAPER
+  </a>
+</div>
+
 <footer>
   <p class="footer-links">
     Follow <a href="https://twitter.com/H2GamingX" target="_blank" rel="noopener noreferrer">@H2GamingX</a> • 
@@ -532,13 +551,6 @@
     Connect on <a href="https://www.facebook.com/hustleholixgaming" target="_blank" rel="noopener noreferrer">Facebook @hustleholixgaming</a> •
     <a href="https://grind2give.org" target="_blank" rel="noopener noreferrer">grind2give.org</a>
   </p>
-
-  <a href="https://grind2give.org/whitepaper.html" 
-     class="whitepaper-cta" 
-     target="_blank" 
-     rel="noopener noreferrer">
-     📖 READ THE WHITE PAPER
-  </a>
 </footer>
 
 <script>
