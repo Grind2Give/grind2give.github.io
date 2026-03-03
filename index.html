@@ -207,19 +207,42 @@
     }
     footer {
       text-align: center;
-      padding: 100px 20px;
+      padding: 120px 20px 80px;
       background: rgba(10,10,20,0.48);
       font-size: 1.3rem;
       color: #eee;
       position: relative;
       z-index: 2;
     }
-    footer a {
+    .footer-links {
+      margin: 20px 0 40px;
+      font-size: 1.4rem;
+    }
+    .footer-links a {
       color: var(--green);
       text-decoration: none;
+      margin: 0 12px;
     }
-    footer a:hover {
+    .footer-links a:hover {
       text-decoration: underline;
+    }
+    .whitepaper-cta {
+      display: inline-block;
+      background: var(--green);
+      color: #000;
+      padding: 18px 60px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      border-radius: 16px;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 40px var(--glow);
+      margin-top: 30px;
+    }
+    .whitepaper-cta:hover {
+      background: #00cc77;
+      transform: scale(1.08);
+      box-shadow: 0 0 70px var(--glow);
     }
     table {
       width: 100%;
@@ -317,6 +340,7 @@
       .cta { width: 80%; }
       .contest-content { padding: 40px 20px; }
       .contest-prizes { grid-template-columns: 1fr; }
+      .whitepaper-cta { font-size: 1.6rem; padding: 16px 50px; }
     }
   </style>
 </head>
@@ -350,8 +374,6 @@
   <p style="text-align:center; font-style:italic; margin:40px 0; font-size:1.6rem;">
     This is what Matthew 25:40 looks like in action — grinding together to serve the least of these.
   </p>
-
-  <!-- White Paper promo removed from here -->
 
   <h2>Charity Pool Wallet – Safe Multisig Secured</h2>
   <p style="text-align:center; font-size:1.4rem; margin-bottom:20px;">
@@ -504,13 +526,19 @@
 </section>
 
 <footer>
-  <p>
+  <p class="footer-links">
     Follow <a href="https://twitter.com/H2GamingX" target="_blank" rel="noopener noreferrer">@H2GamingX</a> • 
     Live streams on <a href="https://www.twitch.tv/grind2give" target="_blank" rel="noopener noreferrer">Twitch @grind2give</a> • 
     Connect on <a href="https://www.facebook.com/hustleholixgaming" target="_blank" rel="noopener noreferrer">Facebook @hustleholixgaming</a> •
-    <a href="https://grind2give.org/whitepaper.html" target="_blank" rel="noopener noreferrer">White Paper</a> •
     <a href="https://grind2give.org" target="_blank" rel="noopener noreferrer">grind2give.org</a>
   </p>
+
+  <a href="https://grind2give.org/whitepaper.html" 
+     class="whitepaper-cta" 
+     target="_blank" 
+     rel="noopener noreferrer">
+     📖 READ THE WHITE PAPER
+  </a>
 </footer>
 
 <script>
