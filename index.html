@@ -31,17 +31,18 @@
 
   <style>
     :root {
-      --green: #00ff88;
+      --green: #00ffaa;                   /* brighter base green */
       --dark: #0f0f1a;
-      --light: #f0f0ff;
+      --light: #f0fff0;                   /* brighter off-white text */
       --gray: #1a1a2e;
-      --glow: rgba(0, 255, 136, 0.6);
+      --glow: rgba(0, 255, 170, 0.75);   /* more vivid glow */
       --twitch: #9146FF;
       --twitch-hover: #7c3aed;
       --twitch-glow: rgba(145, 70, 255, 0.85);
       --overlay: rgba(30, 30, 50, 0.25);
       --merch: #ffdd00;
     }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, sans-serif;
@@ -53,6 +54,7 @@
       position: relative;
       text-align: center;
     }
+
     body::before {
       content: "";
       position: fixed;
@@ -61,6 +63,7 @@
       z-index: -1;
       pointer-events: none;
     }
+
     header {
       position: relative;
       height: 90vh;
@@ -73,11 +76,13 @@
       z-index: 1;
       width: 100%;
     }
+
     .header-content {
       max-width: 1100px;
       width: 100%;
       padding: 40px 20px;
     }
+
     h1 {
       font-size: 6rem;
       margin: 0 0 30px;
@@ -85,12 +90,14 @@
       text-shadow: 0 0 60px var(--glow), 0 0 120px black;
       letter-spacing: 3px;
     }
+
     .tagline {
       font-size: 2.8rem;
       margin: 30px 0;
       color: #ffffff;
       text-shadow: 0 0 60px black, 0 0 30px #000000aa;
     }
+
     .verse {
       font-size: 1.8rem;
       color: #f8f8ff;
@@ -99,6 +106,7 @@
       max-width: 900px;
       text-shadow: 0 0 50px black;
     }
+
     .cta {
       display: inline-block;
       background: var(--green);
@@ -111,17 +119,20 @@
       transition: all 0.4s ease;
       box-shadow: 0 0 50px var(--glow);
     }
+
     .cta:hover {
-      background: #00cc77;
+      background: #00cc88;
       transform: scale(1.12);
       box-shadow: 0 0 80px var(--glow);
     }
+
     .twitch-cta { background: var(--twitch); color: white; box-shadow: 0 0 40px var(--twitch-glow); }
     .twitch-cta:hover { background: var(--twitch-hover); box-shadow: 0 0 70px var(--twitch-glow); transform: scale(1.08); }
     .facebook-cta { background: #1877F2; color: white; }
     .facebook-cta:hover { background: #0e5a8a; transform: scale(1.12); box-shadow: 0 0 50px rgba(24,119,242,0.6); }
     .merch-cta { background: var(--merch); color: #000; box-shadow: 0 0 50px rgba(255,221,0,0.6); }
     .merch-cta:hover { background: #ffcc00; transform: scale(1.12); box-shadow: 0 0 80px rgba(255,221,0,0.8); }
+
     section {
       max-width: 1200px;
       margin: 80px auto;
@@ -131,26 +142,30 @@
       position: relative;
       z-index: 2;
     }
+
     h2 {
       color: var(--green);
       font-size: 4rem;
       margin-bottom: 40px;
-      text-shadow: 0 0 40px rgba(0,255,136,0.5);
+      text-shadow: 0 0 40px rgba(0,255,170,0.6);
     }
+
     p {
       font-size: 1.4rem;
       margin: 25px auto;
       max-width: 900px;
-      color: #f5f5ff;
+      color: #f0fff0;
       text-shadow: 0 0 12px black, 0 0 6px #00000088;
     }
+
     .launch-info {
       color: var(--green);
       font-size: 2rem;
       font-weight: bold;
       margin: 15px 0;
-      text-shadow: 0 0 25px rgba(0,255,136,0.5);
+      text-shadow: 0 0 25px rgba(0,255,170,0.6);
     }
+
     .live-notice {
       font-size: 1.8rem;
       color: var(--twitch);
@@ -160,12 +175,15 @@
       text-shadow: 0 0 40px var(--twitch-glow), 0 0 80px var(--twitch-glow);
       max-width: 900px;
     }
+
     .live-notice a { color: var(--twitch); text-decoration: none; text-shadow: 0 0 15px var(--twitch-glow); }
     .live-notice a:hover { text-decoration: underline; color: var(--twitch-hover); }
+
     @keyframes neon-pulse {
       from { transform: scale(1); opacity: 0.9; text-shadow: 0 0 30px var(--twitch-glow); }
       to { transform: scale(1.05); opacity: 1; text-shadow: 0 0 70px var(--twitch-glow), 0 0 120px var(--twitch-glow); }
     }
+
     ul, ol {
       list-style: none;
       padding: 0;
@@ -174,11 +192,13 @@
       margin: 0 auto 30px;
       text-align: left;
     }
+
     li {
       margin: 20px 0;
       padding-left: 35px;
       position: relative;
     }
+
     li::before {
       content: "→";
       color: var(--green);
@@ -187,15 +207,36 @@
       font-weight: bold;
       font-size: 1.8rem;
     }
+
     #countdown {
-      font-size: 5rem;
-      font-weight: bold;
-      color: var(--green);
-      text-shadow: 0 0 50px var(--glow);
-      letter-spacing: 4px;
-      padding: 60px 20px;
+      font-size: 5.5rem;
+      font-weight: 900;
+      color: #00ff9d;
+      text-shadow: 
+        0 0 20px #00ff9d,
+        0 0 40px #00ff9d,
+        0 0 80px rgba(0, 255, 157, 0.7),
+        0 0 140px rgba(0, 255, 157, 0.4);
+      letter-spacing: 6px;
+      padding: 50px 30px;
       margin: 0;
+      animation: intense-glow 1.8s ease-in-out infinite alternate;
+      background: linear-gradient(90deg, rgba(0,255,157,0.12), rgba(0,255,157,0.05), rgba(0,255,157,0.12));
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
     }
+
+    @keyframes intense-glow {
+      from {
+        text-shadow: 0 0 20px #00ff9d, 0 0 50px #00ff9d, 0 0 100px rgba(0,255,157,0.6);
+        transform: scale(1.02);
+      }
+      to {
+        text-shadow: 0 0 40px #00ff9d, 0 0 90px #00ff9d, 0 0 160px rgba(0,255,157,0.9), 0 0 220px rgba(0,255,157,0.5);
+        transform: scale(1.06);
+      }
+    }
+
     footer {
       text-align: center;
       padding: 100px 20px 60px;
@@ -203,29 +244,34 @@
       font-size: 1.4rem;
       color: #eee;
     }
+
     .footer-links {
       margin-bottom: 30px;
       font-size: 1.5rem;
       line-height: 1.8;
     }
+
     .footer-links a {
       color: var(--green);
       text-decoration: none;
       margin: 0 12px;
       white-space: nowrap;
     }
+
     .footer-links a:hover {
       text-decoration: underline;
     }
+
     .whitepaper-section {
       text-align: center;
       padding: 80px 20px 100px;
-      background: rgba(0,255,136,0.08);
+      background: rgba(0,255,170,0.08);
       border-top: 2px solid var(--green);
       border-bottom: 2px solid var(--green);
       margin: 0 auto;
       max-width: 1000px;
     }
+
     .whitepaper-cta {
       display: inline-block;
       background: var(--green);
@@ -238,26 +284,31 @@
       transition: all 0.4s ease;
       box-shadow: 0 0 70px var(--glow);
     }
+
     .whitepaper-cta:hover {
-      background: #00cc77;
+      background: #00cc88;
       transform: scale(1.08);
       box-shadow: 0 0 110px var(--glow);
     }
+
     table {
       width: 100%;
       max-width: 1000px;
       margin: 20px auto;
       border-collapse: collapse;
-      color: #f5f5ff;
+      color: #f0fff0;
     }
+
     table th, table td {
       padding: 12px;
       text-align: left;
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    table th { background: rgba(0,255,136,0.1); color: var(--green); }
+
+    table th { background: rgba(0,255,170,0.1); color: var(--green); }
     table a { color: var(--green) !important; text-decoration: none; }
     table a:hover { text-decoration: underline; }
+
     .buttons-container {
       display: flex;
       flex-wrap: wrap;
@@ -265,40 +316,53 @@
       gap: 20px;
       margin-top: 30px;
     }
+
     .multisig-address {
       color: var(--twitch) !important;
       font-weight: bold;
       text-shadow: 0 0 12px var(--twitch-glow), 0 0 25px var(--twitch-glow);
     }
+
     .multisig-address:hover {
       color: var(--twitch-hover) !important;
       text-shadow: 0 0 20px var(--twitch-glow), 0 0 40px var(--twitch-glow);
     }
+
     .countdown-wrapper, .contest-wrapper {
       margin: 40px auto;
       max-width: 1000px;
-      border-radius: 16px;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 0 70px var(--glow);
+      box-shadow: 0 0 100px rgba(0, 255, 170, 0.7);
+      border: 2px solid rgba(0, 255, 170, 0.6);
+      position: relative;
     }
+
     .countdown-wrapper {
-      background: url('https://grind2give.org/fbcountdown.png') center / cover no-repeat;
+      background: linear-gradient(135deg, rgba(0, 40, 20, 0.4), rgba(0, 80, 40, 0.3)), 
+                  url('https://grind2give.org/fbcountdown.png') center / cover no-repeat;
     }
+
     .contest-wrapper {
-      background: url('https://grind2give.org/countdown8.jpg') center 40% / cover no-repeat;
+      background: linear-gradient(145deg, rgba(20, 60, 30, 0.45), rgba(0, 100, 60, 0.35)), 
+                  url('https://grind2give.org/countdown8.jpg') center 40% / cover no-repeat;
     }
+
     .countdown-wrapper::before, .contest-wrapper::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(15,15,26,0.65);
+      background: rgba(10, 30, 20, 0.38);   /* lighter overlay for more pop */
       z-index: 1;
+      backdrop-filter: blur(3px);
     }
+
     .contest-content {
       position: relative;
       z-index: 2;
       padding: 60px 30px;
     }
+
     .contest-prizes {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -306,16 +370,36 @@
       margin: 40px auto;
       max-width: 1100px;
     }
+
     .prize-card {
-      background: rgba(0,255,136,0.08);
-      border: 2px solid var(--green);
+      background: linear-gradient(135deg, rgba(0,255,170,0.18), rgba(0,255,170,0.08));
+      border: 2.5px solid #00ff9d;
       border-radius: 12px;
       padding: 20px;
+      box-shadow: 0 0 35px rgba(0, 255, 157, 0.5), inset 0 0 20px rgba(0,255,170,0.25);
+      transition: all 0.3s ease;
     }
+
+    .prize-card:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 0 60px rgba(0, 255, 157, 0.85), 0 15px 40px rgba(0,0,0,0.5);
+    }
+
     .prize-card h3 {
-      color: var(--green);
+      color: #00ffcc;
       margin: 0 0 8px;
       font-size: 1.6rem;
+      text-shadow: 0 0 20px rgba(0,255,204,0.6);
+    }
+
+    /* Bright text overrides in key sections */
+    .countdown-wrapper *, .contest-wrapper * {
+      color: #f0fff0 !important;
+    }
+
+    .countdown-wrapper h2, .contest-wrapper h2 {
+      color: #00ffcc;
+      text-shadow: 0 0 30px #00ffcc, 0 0 60px rgba(0,255,204,0.7);
     }
 
     @media (max-width: 768px) {
@@ -323,7 +407,7 @@
       .tagline { font-size: 2.2rem; }
       .verse { font-size: 1.5rem; }
       h2 { font-size: 3.2rem; }
-      #countdown { font-size: 3.5rem; padding: 40px 15px; }
+      #countdown { font-size: 3.8rem; padding: 40px 15px; }
       .buttons-container { flex-direction: column; }
       .cta { width: 90%; max-width: 400px; }
       .contest-content { padding: 40px 20px; }
@@ -456,7 +540,7 @@
         End: March 21 @ 10PM EST (UTC -5)
       </p>
 
-      <h3 style="color:var(--green); font-size:2.1rem; margin:40px auto 20px;">HOW TO ENTER</h3>
+      <h3 style="color:#00ffcc; font-size:2.1rem; margin:40px auto 20px;">HOW TO ENTER</h3>
 
       <ol style="max-width:720px; margin:0 auto 40px; font-size:1.45rem; line-height:1.7; padding-left:40px;">
         <li>Create an original <strong>“GIVING” MESSAGE</strong></li>
