@@ -52,7 +52,7 @@
       color: var(--light);
       line-height: 1.6;
       font-size: 1.2rem;
-      background: url('https://grind2give.org/newlogo.jpg') center center / cover no-repeat fixed;
+      background: url('https://grind2give.org/g2gbackground.png') center center / cover no-repeat fixed;
       min-height: 100vh;
       position: relative;
       text-align: center;
@@ -348,15 +348,14 @@
     }
 
     .contest-wrapper {
-      background: linear-gradient(145deg, rgba(20, 60, 30, 0.45), rgba(0, 100, 60, 0.35)), 
-                  url('https://grind2give.org/countdown8.jpg') center 40% / cover no-repeat;
+      background: url('https://grind2give.org/countdown8.jpg') center 40% / cover no-repeat; /* clear, sharp robot background */
     }
 
     .countdown-wrapper::before, .contest-wrapper::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: transparent;
+      background: transparent; /* no blur or dull overlay */
       z-index: 1;
     }
 
@@ -364,6 +363,7 @@
       position: relative;
       z-index: 2;
       padding: 60px 30px;
+      background: transparent; /* ensure content area is clear */
     }
 
     .contest-prizes {
@@ -375,24 +375,25 @@
     }
 
     .prize-card {
-      background: linear-gradient(135deg, rgba(0,255,170,0.18), rgba(0,255,170,0.08));
-      border: 2.5px solid #00ff9d;
+      background: rgba(0, 0, 0, 0.5); /* semi-transparent cards so robot shows through */
+      border: 2.5px solid #00ffaa;
       border-radius: 12px;
       padding: 20px;
-      box-shadow: 0 0 35px rgba(0, 255, 157, 0.5), inset 0 0 20px rgba(0,255,170,0.25);
+      box-shadow: 0 0 35px rgba(0, 255, 170, 0.5);
       transition: all 0.3s ease;
+      color: white;
     }
 
     .prize-card:hover {
       transform: translateY(-8px) scale(1.04);
-      box-shadow: 0 0 60px rgba(0, 255, 157, 0.85), 0 15px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 0 60px rgba(0, 255, 170, 0.85);
     }
 
     .prize-card h3 {
-      color: #00ffcc;
+      color: var(--green);
       margin: 0 0 8px;
       font-size: 1.6rem;
-      text-shadow: 0 0 20px rgba(0,255,204,0.6);
+      text-shadow: 0 0 20px rgba(0,255,170,0.6);
     }
 
     .countdown-wrapper *, .contest-wrapper * {
@@ -495,12 +496,12 @@
   <h2>💥 PRE-LAUNCH TWEET PARTY 💥</h2>
   <div class="contest-wrapper">
     <div class="contest-content">
-      <p style="font-size: 2.4rem; font-weight: bold; color: #fff; margin: 20px auto 40px; line-height: 1.3; max-width: 900px;">
+      <p style="font-size: 2.4rem; font-weight: bold; color: #fff; margin: 20px auto 40px; line-height: 1.3; max-width: 900px; text-shadow: 0 0 20px black;">
         Grind & win BIG before launch! 🎮➡️🍱🪡🏥💚<br>
         <span style="color:var(--green);">200K $G2G AIRDROP</span> + <span style="color:#ffdd00;">$150 USDC (on Base)</span> up for grabs! 😱🤑
       </p>
 
-      <p style="font-size: 1.9rem; font-weight: bold; color: #ffdd00; margin: 20px auto 30px; max-width: 600px;">
+      <p style="font-size: 1.9rem; font-weight: bold; color: #ffdd00; margin: 20px auto 30px; max-width: 600px; text-shadow: 0 0 15px black;">
         MUST BE A FOLLOWER
       </p>
 
@@ -536,21 +537,21 @@
         </div>
       </div>
 
-      <p style="font-size: 1.9rem; font-weight: bold; color: #ffdd00; margin: 50px auto 20px; max-width: 600px;">
+      <p style="font-size: 1.9rem; font-weight: bold; color: #ffdd00; margin: 50px auto 20px; max-width: 600px; text-shadow: 0 0 15px black;">
         Total: 200,000 $G2G + $150 USDC (split top 5)
       </p>
 
-      <p style="font-size: 2.1rem; font-weight: bold; color: #fff; margin: 30px auto 15px; max-width: 500px;">
+      <p style="font-size: 2.1rem; font-weight: bold; color: #fff; margin: 30px auto 15px; max-width: 500px; text-shadow: 0 0 15px black;">
         DATES
       </p>
-      <p style="font-size: 1.8rem; color: var(--green); font-weight: bold; margin: 0 auto 40px; max-width: 500px;">
+      <p style="font-size: 1.8rem; color: var(--green); font-weight: bold; margin: 0 auto 40px; max-width: 500px; text-shadow: 0 0 20px black;">
         Start: March 3 @ 8AM EST (UTC -5)<br>
         End: March 21 @ 10PM EST (UTC -5)
       </p>
 
-      <h3 style="color:#00ffcc; font-size:2.1rem; margin:40px auto 20px;">HOW TO ENTER</h3>
+      <h3 style="color:#00ffcc; font-size:2.1rem; margin:40px auto 20px; text-shadow: 0 0 20px black;">HOW TO ENTER</h3>
 
-      <ol style="max-width:720px; margin:0 auto 40px; font-size:1.45rem; line-height:1.7; padding-left:40px;">
+      <ol style="max-width:720px; margin:0 auto 40px; font-size:1.45rem; line-height:1.7; padding-left:40px; color: white;">
         <li>Create an original <strong>“GIVING” MESSAGE</strong></li>
         <li><strong>Must use BOTH hashtags</strong> in every post: <strong>#Grind2Give</strong> AND <strong>#G2G</strong></li>
         <li>Must Tag <strong>@H2GamingX</strong></li>
@@ -559,16 +560,16 @@
         <li>Must Post <strong>at least 25</strong> qualifying tweets to qualify</li>
       </ol>
 
-      <p style="font-size:1.6rem; font-style:italic; color:#ccc; max-width:800px; margin:30px auto 40px;">
+      <p style="font-size:1.6rem; font-style:italic; color:#ddd; max-width:800px; margin:30px auto 40px; text-shadow: 0 0 10px black;">
         Focus on <strong>original posts</strong> — no retweets or quotes counted!
       </p>
 
-      <p style="font-size:1.7rem; font-weight:bold; color:#fff; margin:20px auto 40px; max-width:800px;">
+      <p style="font-size:1.7rem; font-weight:bold; color:#fff; margin:20px auto 40px; max-width:800px; text-shadow: 0 0 15px black;">
         Grind hard. Give harder. More cash spots = more winners! 💪💚💰<br>
         Jump in now! #Grind2Give #G2G #Matthew25_40
       </p>
 
-      <p style="font-size:1.6rem; color:#ccc; margin:0 auto 40px; max-width:800px;">
+      <p style="font-size:1.6rem; color:#ccc; margin:0 auto 40px; max-width:800px; text-shadow: 0 0 10px black;">
         Visit website for $G2G info @ <a href="http://grind2give.org" target="_blank" rel="noopener noreferrer" style="color:var(--green);">http://grind2give.org</a>
       </p>
 
