@@ -221,41 +221,44 @@
     }
 
     #countdown {
-      font-size: 5.2rem;
+      font-size: 5.4rem;
       font-weight: 900;
-      color: #66ffdd;                     /* brighter, more vivid cyan-green */
-      letter-spacing: 7px;
-      padding: 45px 40px;
+      color: #88ffdd;                     /* very bright cyan-green */
+      letter-spacing: 8px;
+      padding: 50px 45px;
       margin: 20px auto;
       max-width: 95%;
       display: inline-block;
-      background: rgba(0, 0, 0, 0.58);
-      border-radius: 28px;
-      border: 3px solid rgba(102, 255, 221, 0.65);
+      background: rgba(0, 0, 0, 0.52);
+      border-radius: 32px;
+      border: 3.5px solid rgba(136, 255, 221, 0.75);
       box-shadow: 
-        0 0 40px rgba(102, 255, 221, 0.8),
-        0 0 80px rgba(102, 255, 221, 0.55),
-        0 0 120px rgba(102, 255, 221, 0.3);
+        0 0 50px rgba(136, 255, 221, 0.9),
+        0 0 100px rgba(136, 255, 221, 0.7),
+        0 0 160px rgba(136, 255, 221, 0.5);
       text-shadow: 
-        0 0 30px #66ffdd,
-        0 0 60px #66ffdd,
-        0 0 100px rgba(102, 255, 221, 0.9),
-        0 0 140px rgba(102, 255, 221, 0.7),
-        4px 4px 10px rgba(0,0,0,0.95);
-      animation: bright-pulse 2.5s ease-in-out infinite alternate;
+        0 0 40px #88ffdd,
+        0 0 80px #88ffdd,
+        0 0 120px #88ffdd,
+        0 0 180px rgba(136, 255, 221, 0.9),
+        0 0 240px rgba(136, 255, 221, 0.6),
+        5px 5px 12px rgba(0,0,0,0.9);
+      animation: super-bright-pulse 2.2s ease-in-out infinite alternate;
+      filter: brightness(1.15);
+      text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       transform: translateZ(0);
     }
 
-    @keyframes bright-pulse {
+    @keyframes super-bright-pulse {
       from {
         transform: scale(1.00);
-        box-shadow: 0 0 40px rgba(102, 255, 221, 0.8), 0 0 80px rgba(102, 255, 221, 0.55);
+        box-shadow: 0 0 50px rgba(136, 255, 221, 0.9), 0 0 100px rgba(136, 255, 221, 0.7);
       }
       to {
-        transform: scale(1.04);
-        box-shadow: 0 0 70px rgba(102, 255, 221, 1), 0 0 120px rgba(102, 255, 221, 0.8);
+        transform: scale(1.05);
+        box-shadow: 0 0 90px rgba(136, 255, 221, 1), 0 0 180px rgba(136, 255, 221, 0.85);
       }
     }
 
@@ -353,10 +356,10 @@
     .countdown-wrapper, .contest-wrapper {
       margin: 40px auto;
       max-width: 1000px;
-      border-radius: 28px;
+      border-radius: 32px;
       overflow: hidden;
-      box-shadow: 0 0 80px rgba(0, 255, 170, 0.5);
-      border: 2px solid rgba(0, 255, 170, 0.45);
+      box-shadow: 0 0 100px rgba(0, 255, 170, 0.6);
+      border: 2px solid rgba(0, 255, 170, 0.5);
       position: relative;
     }
 
@@ -428,7 +431,7 @@
       .verse { font-size: 1.5rem; }
       h2 { font-size: 3.2rem; }
       #countdown { 
-        font-size: 3.8rem; 
+        font-size: 4rem; 
         padding: 35px 25px; 
         letter-spacing: 5px; 
       }
