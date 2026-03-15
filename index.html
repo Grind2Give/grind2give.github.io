@@ -223,36 +223,39 @@
     #countdown {
       font-size: 5.2rem;
       font-weight: 900;
-      color: #40ffcc;
-      letter-spacing: 6px;
+      color: #66ffdd;                     /* brighter, more vivid cyan-green */
+      letter-spacing: 7px;
       padding: 45px 40px;
       margin: 20px auto;
       max-width: 95%;
       display: inline-block;
       background: rgba(0, 0, 0, 0.58);
       border-radius: 28px;
-      border: 2.5px solid rgba(64, 255, 204, 0.55);
+      border: 3px solid rgba(102, 255, 221, 0.65);
       box-shadow: 
-        0 0 35px rgba(64, 255, 204, 0.7),
-        0 0 70px rgba(64, 255, 204, 0.45);
+        0 0 40px rgba(102, 255, 221, 0.8),
+        0 0 80px rgba(102, 255, 221, 0.55),
+        0 0 120px rgba(102, 255, 221, 0.3);
       text-shadow: 
-        0 0 25px rgba(64, 255, 204, 0.95),
-        0 0 45px rgba(64, 255, 204, 0.7),
-        3px 3px 8px rgba(0,0,0,0.95);
-      animation: gentle-pulse 2.8s ease-in-out infinite alternate;
+        0 0 30px #66ffdd,
+        0 0 60px #66ffdd,
+        0 0 100px rgba(102, 255, 221, 0.9),
+        0 0 140px rgba(102, 255, 221, 0.7),
+        4px 4px 10px rgba(0,0,0,0.95);
+      animation: bright-pulse 2.5s ease-in-out infinite alternate;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       transform: translateZ(0);
     }
 
-    @keyframes gentle-pulse {
+    @keyframes bright-pulse {
       from {
         transform: scale(1.00);
-        box-shadow: 0 0 35px rgba(64, 255, 204, 0.7), 0 0 70px rgba(64, 255, 204, 0.45);
+        box-shadow: 0 0 40px rgba(102, 255, 221, 0.8), 0 0 80px rgba(102, 255, 221, 0.55);
       }
       to {
-        transform: scale(1.035);
-        box-shadow: 0 0 55px rgba(64, 255, 204, 0.9), 0 0 90px rgba(64, 255, 204, 0.6);
+        transform: scale(1.04);
+        box-shadow: 0 0 70px rgba(102, 255, 221, 1), 0 0 120px rgba(102, 255, 221, 0.8);
       }
     }
 
@@ -427,7 +430,7 @@
       #countdown { 
         font-size: 3.8rem; 
         padding: 35px 25px; 
-        letter-spacing: 4px; 
+        letter-spacing: 5px; 
       }
       .buttons-container { flex-direction: column; }
       .cta { width: 90%; max-width: 400px; }
