@@ -667,8 +667,9 @@
 </footer>
 
 <script>
-  // Launch target: March 22, 2026 at 10:00 PM EST (UTC-5 offset)
-  const launchDate = new Date("2026-03-22T22:00:00-05:00").getTime();
+  // Launch target: March 22, 2026 at 10:00 PM EDT (Eastern Daylight Time, UTC-4)
+  // Corrected for Daylight Saving Time (March 8 – Nov 1, 2026)
+  const launchDate = new Date("2026-03-22T22:00:00-04:00").getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
