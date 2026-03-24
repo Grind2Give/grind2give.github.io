@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Grind2Give White Paper – Gaming Grind → Real-World Good</title>
-  <meta name="description" content="Grind2Give ($G2G) on Base: 1% buy / 8% sell tax powers community-voted charity, ETH reflections, auto-burn & LP burn. Gaming with purpose." />
+  <title>Grind2Give V2 White Paper – Gaming Grind → Real-World Good</title>
+  <meta name="description" content="Grind2Give ($G2G) V2 on Base: 0% buy / 5% sell tax powers community-voted charity, ETH reflections, and real impact. Gaming with purpose." />
   <style>
     :root {
-      --green: #00ff88;
+      --green: #00ffaa;
       --dark: #0f0f1a;
       --light: #e0e0ff;
       --gray: #1a1a2e;
-      --glow: rgba(0, 255, 136, 0.4);
+      --glow: rgba(0, 255, 170, 0.5);
     }
     body {
       margin: 0;
@@ -28,12 +28,12 @@
       padding: 20px 40px;
       background: rgba(26, 26, 46, 0.85);
       border-radius: 12px;
-      box-shadow: 0 0 40px rgba(0, 255, 136, 0.15);
+      box-shadow: 0 0 40px rgba(0, 255, 170, 0.15);
     }
     header {
       text-align: center;
       padding-bottom: 40px;
-      border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+      border-bottom: 1px solid rgba(0, 255, 170, 0.2);
     }
     h1 {
       font-size: 3.5rem;
@@ -63,10 +63,10 @@
     th, td {
       padding: 16px;
       text-align: left;
-      border-bottom: 1px solid rgba(0, 255, 136, 0.15);
+      border-bottom: 1px solid rgba(0, 255, 170, 0.15);
     }
     th {
-      background: rgba(0, 255, 136, 0.1);
+      background: rgba(0, 255, 170, 0.1);
       color: var(--green);
       font-weight: bold;
     }
@@ -96,20 +96,12 @@
       padding: 60px 0 100px;
       color: #888;
       font-size: 0.95rem;
-      border-top: 1px solid rgba(0, 255, 136, 0.1);
-    }
-    .social-link {
-      color: var(--green);
-      text-decoration: none;
-    }
-    .social-link:hover {
-      text-decoration: underline;
+      border-top: 1px solid rgba(0, 255, 170, 0.1);
     }
     @media (max-width: 768px) {
       .container { padding: 20px; }
       h1 { font-size: 2.8rem; }
       h2 { font-size: 2rem; }
-      table, th, td { font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -118,117 +110,76 @@
 <div class="container">
 
 <header>
-  <h1>Grind2Give White Paper</h1>
+  <h1>Grind2Give V2 White Paper</h1>
   <p class="subtitle"><strong>Gaming Grind → Real-World Good</strong></p>
-  <p class="subtitle">$G2G on Base • Version 2.1 – March 2026</p>
+  <p class="subtitle">$G2G on Base • Version 2.0 – March 2026</p>
   <p class="subtitle">Created by Grind2Give Team • @H2GamingX</p>
 </header>
 
 <h2>Abstract</h2>
-<p>Grind2Give ($G2G) is a community-driven ERC-20 utility token on the Base blockchain that transforms gaming streams, chat participation and grinds into verifiable charitable impact.</p>
-<p>Through an asymmetric <strong>1% buy / 8% sell / 0% transfer</strong> tax structure, every public trade automatically contributes to causes chosen by the community — turning playtime into purpose.</p>
-<p>Inspired by Matthew 25:40 — “Truly I tell you, whatever you did for one of the least of these brothers and sisters of mine, you did for me” — Grind2Give exists to prove that collective gaming hustle can feed the hungry, equip kids with sports opportunities, support families in crisis, and lift up the overlooked.</p>
+<p>Grind2Give ($G2G) V2 is a community-first ERC-20 utility token on Base that turns gaming streams, participation, and trading into real charitable impact.</p>
+<p>With a clean <strong>0% buy / 5% sell tax</strong>, every sell automatically generates ETH reflections for holders and sends funds to community-voted charities — proving that the grind can feed the hungry, clothe the naked, and lift up the least of these.</p>
+<p>Inspired by Matthew 25:40, Grind2Give is more than a token — it's a movement where pixels become plates, lobbies become lunch, and streams become second chances.</p>
 
-<h2>Token Deployment Summary</h2>
+<h2>Token Details</h2>
 <table>
   <tr><th>Property</th><th>Value</th></tr>
   <tr><td>Token Name</td><td>Grind2Give</td></tr>
-  <tr><td>Symbol</td><td>G2G</td></tr>
-  <tr><td>Blockchain</td><td>Base (Ethereum Layer 2)</td></tr>
-  <tr><td>Logo</td><td>Base logo + custom G2G artwork</td></tr>
-  <tr><td>Initial Supply</td><td>25,400,000 G2G</td></tr>
+  <tr><td>Symbol</td><td>$G2G</td></tr>
+  <tr><td>Blockchain</td><td>Base</td></tr>
+  <tr><td>Contract Address</td><td><a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank" style="color:var(--green);">0x578ec5f37e0e459dec94805bf7b122e931eb34e4</a></td></tr>
+  <tr><td>Total Supply</td><td>25,400,000 $G2G</td></tr>
   <tr><td>Decimals</td><td>18</td></tr>
-  <tr><td>Default Exchange</td><td>Uniswap V2 (Base)</td></tr>
-  <tr><td>Main Liquidity Pool</td><td>G2G/ETH</td></tr>
-  <tr><td>Optional Features</td><td>
-    Token recovery: Enabled<br>
-    Immutable metadata: Enabled
-  </td></tr>
+  <tr><td>DEX</td><td>Uniswap V2 / V3 on Base</td></tr>
+  <tr><td>Liquidity</td><td>100% locked for 3 years via PinkSale</td></tr>
 </table>
 
-<h2>Tax Structure (Asymmetric)</h2>
+<h2>Tax Structure (V2)</h2>
 <ul>
-  <li><strong>Buy Tax</strong>: 1.00%</li>
-  <li><strong>Sell Tax</strong>: 8.00%</li>
-  <li><strong>Transfer Tax</strong>: 0.00% (free internal moves)</li>
+  <li><strong>Buy Tax</strong>: 0%</li>
+  <li><strong>Sell Tax</strong>: 5%</li>
+  <li><strong>Transfer Tax</strong>: 0%</li>
 </ul>
 
 <table>
-  <tr><th>Portion</th><th>Buy %</th><th>Sell %</th><th>Transfer %</th><th>Destination & Purpose</th></tr>
-  <tr><td>Charity</td><td>0.59%</td><td>4.00%</td><td>0.00%</td><td>Auto-sent to Safe multisig charity pool wallet (0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406). Community votes monthly on recipient via Twitch/X polls. Funds forwarded live via The Giving Block — core mission engine.</td></tr>
-  <tr><td>Dividends (Reflections)</td><td>0.25%</td><td>2.50%</td><td>0.00%</td><td>Auto-redistributed in ETH to holders with ≥10,000 G2G. Auto-claim every 7 days (300,000 gas units). Callback gas limit: 2300 units. Rewards long-term support.</td></tr>
-  <tr><td>Auto-Burn</td><td>0.08%</td><td>0.75%</td><td>0.00%</td><td>Permanently removed from circulation. Adds gradual scarcity and long-term value.</td></tr>
-  <tr><td>Liquidity (Auto-LP)</td><td>0.08%</td><td>0.75%</td><td>0.00%</td><td>Auto-added back to the main DEX pool. Builds depth and stability over time. LP tokens burned.</td></tr>
+  <tr><th>Portion</th><th>Sell %</th><th>Purpose</th></tr>
+  <tr><td>ETH Reflections</td><td>2%</td><td>Automatically distributed in ETH to all holders. Long-term holders earn passively.</td></tr>
+  <tr><td>Charity Pool</td><td>2.5%</td><td>Auto-sent in ETH to Safe multisig wallet. Community votes monthly on recipient. Funds forwarded live via The Giving Block with full on-chain proof.</td></tr>
+  <tr><td>Auto-Burn</td><td>0.5%</td><td>Permanently removed from circulation for increasing scarcity.</td></tr>
 </table>
 
-<p><strong>Swap threshold ratio</strong>: 0.5% of liquidity — small, frequent swaps minimize selling pressure.</p>
+<h2>Liquidity & Security</h2>
+<p><strong>100% of liquidity is locked for 3 years.</strong></p>
+<p>View lock proof: <a href="https://www.pinksale.finance/pinklock/base/record/1036398" target="_blank" style="color:var(--green);">PinkSale LP Lock</a></p>
+<p>Temporary fair-launch protections (anti-sniper, cooldown, limits) are active and will be removed once the chart stabilizes, followed by ownership renouncement.</p>
 
-<h2>Token Distribution & Wallets</h2>
-<p>All wallets are public (addresses shared at launch on stream/X/Basescan) for full transparency.</p>
-
-<table>
-  <tr><th>Allocation</th><th>%</th><th>Tokens</th><th>Wallet / Purpose & Notes</th></tr>
-  <tr><td>Liquidity Pool</td><td>80%</td><td>20,090,000</td><td>Paired with initial ETH/WETH on Aerodrome (Base). LP locked for 3 years (36 months).</td></tr>
-  <tr><td>Launch Burn</td><td>5%</td><td>1,270,000</td><td>Sent to dead address at launch for instant scarcity.</td></tr>
-  <tr><td>G2G Game (Telegram Mini-App)</td><td>5.91%</td><td>1,500,000</td><td>Allocated for in-game rewards, Telegram Mini-App economy, participation incentives, and mini-app ecosystem growth.</td></tr>
-  <tr><td>Airdrops / Rewards Wallet</td><td>3.5%</td><td>889,000</td><td>Single public wallet for stream drops, giveaways, lobby rewards, chat activity (earns reflections).</td></tr>
-  <tr><td>Founder & Mission Support Wallet</td><td>4%</td><td>1,016,000</td><td>Public wallet controlled by the founder — stream operational costs, energy/utilities, equipment maintenance, project sustainability (earns reflections).</td></tr>
-  <tr><td>Community Engagement Staff Wallet</td><td>1%</td><td>254,000</td><td>Public wallet controlled by the community engagement staff member — X/Twitch/Discord promotion, community growth, engagement initiatives (earns reflections).</td></tr>
-  <tr><td>Project Operations Staff Wallet</td><td>1%</td><td>254,000</td><td>Public wallet controlled by the operations staff member — project coordination, tools, charity logistics, operations (earns reflections).</td></tr>
-  <tr><td>Future New Pair Reserve Wallet</td><td>0.5%</td><td>127,000</td><td>Public reserve wallet — seeding LP on future pairs (e.g., USDC pair later). Earns reflections until used.</td></tr>
-</table>
-
-<h2>Charity Pool Wallet – Safe Multisig Secured</h2>
-<p>All charity tax flows to this Safe multisig wallet (via safe.global), requiring approval from multiple trusted signers for any outgoing transfers.</p>
+<h2>Charity Pool – Safe Multisig</h2>
+<p>All charity funds flow to a secure Safe multisig wallet requiring multiple approvals.</p>
 <p style="font-size:1.6rem; color:var(--green); font-weight:bold; text-align:center;">
-  Address: <a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" style="color:inherit;">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a>
-</p>
-<p style="color:#aaa; text-align:center;">
-  Multisig eliminates single-point control. Funds forwarded only to voted charities via The Giving Block. Full on-chain transparency.
+  Charity Wallet: <a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" style="color:inherit;">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a>
 </p>
 
-<h2>Launch Process</h2>
-<ol>
-  <li>Deploy token on Base — full supply to founder wallet</li>
-  <li>Burn 5% to dead address</li>
-  <li>Fund public wallets (G2G Game 1.5M, airdrops 889K, founder 1.016M, community engagement staff 254K, project operations staff 254K, future reserve 127K)</li>
-  <li>Pre-launch airdrops from rewards wallet to build hype</li>
-  <li>60 sec anti-bot measures</li>
-  <li>Add liquidity live on stream (initial ETH/WETH + 80% supply = 20.09M G2G) on Aerodrome</li>
-  <li>Renounce ownership + verify contract on Basescan</li>
-</ol>
-
-<h2>Community & Promotion</h2>
+<h2>How It Works</h2>
 <ul>
-  <li>Streams: Any game — airdrops tied to participation (lobby joins, winners, chat activity) on <a href="https://www.twitch.tv/grind2give" target="_blank" style="color:var(--green);">twitch.tv/grind2give</a></li>
-  <li>Onboarding: Simple guides for Phantom Wallet → Base network → add $G2G token</li>
-  <li>Transparency: Live Basescan overlays, wallet balances, donation receipts</li>
+  <li>Community votes monthly on the next charity via streams and socials</li>
+  <li>Live donations shown on stream with on-chain receipts</li>
+  <li>Holders earn automatic ETH reflections</li>
+  <li>Full transparency: all wallets public on Basescan</li>
 </ul>
 
-<h2>Charitable Execution (Community-Voted via The Giving Block)</h2>
-<ul>
-  <li>Tax auto-sends to Safe multisig charity pool wallet</li>
-  <li>Monthly community votes on charities (Twitch/X polls)</li>
-  <li>Funds forwarded live via The Giving Block widget (receipts + on-chain proof shared)</li>
-  <li>Random Acts of Kindness (from Founder & Mission Support Wallet): Live-stream spontaneous help</li>
-</ul>
+<h2>Buy $G2G</h2>
+<p>Direct swap link: <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x578eC5f37E0E459dec94805Bf7B122e931EB34E4" target="_blank" style="color:var(--green);">Buy on Uniswap (Base)</a></p>
+<p>Use Phantom wallet (easiest for Base) → Import the contract above → Swap ETH or USDC for $G2G.</p>
 
-<h2>Risks & Disclaimers</h2>
-<ul>
-  <li>No financial advice — $G2G is a utility/community token, not an investment. Value may go to zero.</li>
-  <li>Volatility — Crypto markets are unpredictable.</li>
-  <li>Tax — Token transactions are not charitable donations. Direct donations to qualified charities may be tax-deductible (consult a tax professional).</li>
-  <li>Legal — Fair launch, no securities promises.</li>
-</ul>
-
-<h2>Closing Vision</h2>
-<p>Grind2Give is more than a token — it's a call to action. Through gaming grind, community participation, and automatic giving, we turn streams into real help for the least of these. Every trade supports causes chosen by the community via The Giving Block, every holder earns reflections, and every stream can make a difference.</p>
-<p>Whatever you do — whether playing, holding, trading, or simply watching — know that it can contribute to something eternal.</p>
-<p><strong>Grind to give.</strong><br>Grind2Give.</p>
+<h2>Vision</h2>
+<p>Grind2Give V2 is built for longevity and real impact. Every sell helps someone in need. Every holder earns passively. Every stream becomes a force for good.</p>
+<p><strong>Whatever you did for one of the least of these… you did for me.</strong><br>
+Matthew 25:40</p>
+<p><strong>Grind hard. Give harder.</strong></p>
 
 <footer>
-  <p>Created by Grind2Give Team (@H2GamingX) • March 2026</p>
-  <p><a href="/" style="color: var(--green);">← Back to grind2give.org</a></p>
+  <p>Grind2Give Team • March 2026 • @H2GamingX</p>
+  <p><a href="https://grind2give.org" class="back-link">← Back to grind2give.org</a></p>
 </footer>
 
 </div>
