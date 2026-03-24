@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Grind2Give V2 • Gaming with Purpose</title>
-  <meta name="description" content="Grind2Give V2 is LIVE on Base — 100% LP locked for 3 years • ETH reflections • 2.5% charity tax • Turn your gaming grind into real-world impact." />
+  <meta name="description" content="Grind2Give V2 is LIVE on Base — 100% LP locked for 3 years • Trade $G2G now on Uniswap!" />
   <meta name="theme-color" content="#00ffaa" />
 
   <link rel="preload" href="https://grind2give.org/newlogo.jpg" as="image">
@@ -12,17 +12,14 @@
   <style>
     :root {
       --green: #00ffaa;
-      --glow: rgba(0, 255, 170, 0.6);
-      --dark: #0a0a12;
+      --glow: rgba(0, 255, 170, 0.65);
     }
 
     body {
       margin: 0;
       font-family: system-ui, -apple-system, sans-serif;
       color: #f0fff0;
-      line-height: 1.6;
-      font-size: 1.2rem;
-      background: #0a0a12; /* Pure solid black */
+      background: #000000;           /* Pure deep black */
       min-height: 100vh;
       position: relative;
       text-align: center;
@@ -34,7 +31,6 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: transparent;
       background-image: 
         radial-gradient(circle, var(--green) 0.8px, transparent 1px),
         radial-gradient(circle, var(--green) 0.6px, transparent 1px),
@@ -53,7 +49,6 @@
     }
 
     header {
-      position: relative;
       padding-top: 160px;
       min-height: 85vh;
       display: flex;
@@ -66,7 +61,6 @@
     .logo-top {
       max-width: 420px;
       width: 90%;
-      height: auto;
       margin-bottom: 25px;
       filter: drop-shadow(0 0 45px var(--glow));
     }
@@ -78,7 +72,6 @@
       border-radius: 50px;
       font-weight: bold;
       font-size: 1.75rem;
-      display: inline-block;
       margin-bottom: 15px;
       box-shadow: 0 0 40px var(--glow);
     }
@@ -105,23 +98,23 @@
       text-shadow: 0 0 50px black;
     }
 
-    .cta {
+    .buy-btn {
       display: inline-block;
-      background: var(--green);
+      background: linear-gradient(90deg, #00ffaa, #ffdd00);
       color: #000;
-      padding: 20px 65px;
-      font-size: 1.9rem;
+      padding: 26px 90px;
+      font-size: 2.3rem;
       font-weight: bold;
-      border-radius: 16px;
+      border-radius: 20px;
       text-decoration: none;
+      margin: 25px 10px;
+      box-shadow: 0 0 70px var(--glow);
       transition: all 0.4s ease;
-      box-shadow: 0 0 50px var(--glow);
-      margin: 10px;
     }
 
-    .cta:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 80px var(--glow);
+    .buy-btn:hover {
+      transform: scale(1.09);
+      box-shadow: 0 0 100px #ffdd00;
     }
 
     section {
@@ -130,30 +123,18 @@
       padding: 50px 20px;
       background: rgba(15,15,26,0.75);
       border-radius: 16px;
-      position: relative;
       z-index: 2;
     }
 
     .contract-address {
       font-family: monospace;
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       color: var(--green);
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
       padding: 15px 25px;
       border-radius: 12px;
       display: inline-block;
       word-break: break-all;
-    }
-
-    .lp-link {
-      color: #ffdd00;
-      font-weight: bold;
-      text-shadow: 0 0 15px #ffdd00;
-    }
-
-    @media (max-width: 768px) {
-      .logo-top { max-width: 320px; }
-      header { padding-top: 130px; }
     }
   </style>
 </head>
@@ -167,73 +148,69 @@
   <p class="tagline">Gaming Grind → Real-World Good → Real-World Change 🗺️</p>
   <p class="verse">Matthew 25:40 — "Whatever you did for one of the least of these… you did for me."</p>
   
-  <div class="buttons-container" style="margin-top: 40px;">
+  <div style="margin-top: 30px;">
     <a href="https://twitter.com/H2GamingX" class="cta" target="_blank" rel="noopener">Follow on X</a>
     <a href="https://www.twitch.tv/grind2give" class="cta twitch-cta" target="_blank" rel="noopener">Watch Live on Twitch</a>
     <a href="https://kick.com/grind2give" class="cta kick-cta" target="_blank" rel="noopener">Watch Live on Kick</a>
-    <a href="https://grind-2-give-products.printify.me/" class="cta merch-cta" target="_blank" rel="noopener">Shop Merch 🍱🪡🏥💚</a>
+    <a href="https://grind-2-give-products.printify.me/" class="cta merch-cta" target="_blank" rel="noopener">Shop Merch</a>
   </div>
 </header>
 
 <main>
+  <!-- BUY SECTION - NOW WITH YOUR REAL LINK -->
   <section>
-    <h2>The Mission</h2>
-    <p>Grind2Give turns every stream, every match, every trade into real measurable good. V2 brings stronger security, locked liquidity, automatic ETH reflections to holders, and direct charity contributions — all while staying true to the heart: community-voted donations that help the least of these.</p>
-    <p>Here's how V2 works:</p>
-    <ul>
-      <li>Community votes monthly on the next charity</li>
-      <li>Live transparent donations shown on stream (on-chain proof)</li>
-      <li>5% sell tax only: 2% ETH reflections to holders • 2.5% to charity pool (paid in ETH) • 0.5% auto-burn</li>
-      <li>Full transparency: public wallets + on-chain tracking</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Grind2Give V2 Token Details</h2>
-    <p class="launch-info">Official V2 Contract on Base</p>
-    <p class="contract-address">
-      0x578ec5f37e0e459dec94805bf7b122e931eb34e4<br>
-      <a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank" rel="noopener" style="color:var(--green);">View on Basescan →</a>
-    </p>
-
-    <h2 style="margin-top:50px;">Liquidity & Security</h2>
-    <p><strong>100% Liquidity Locked for 3 Years</strong></p>
-    <p><a href="https://www.pinksale.finance/pinklock/base/record/1036398" target="_blank" rel="noopener" class="lp-link">🔒 View LP Lock Proof on PinkSale</a></p>
-
-    <p>Temporary fair-launch protections (will be removed once chart is healthy):</p>
-    <ul>
-      <li>Anti-sniper & anti-whale limits</li>
-      <li>1-minute cooldown</li>
-      <li>Max buy/sell: 63,500 $G2G • Max wallet: 254,000 $G2G</li>
-    </ul>
-    <p>Plan: Remove all limits + renounce ownership permanently.</p>
-  </section>
-
-  <section>
-    <h2>V2 Airdrops & Community</h2>
-    <p class="launch-info">V1 holders received 1:1 migration to V2. Ongoing airdrops and rewards for active chat & viewers during live streams!</p>
-    <p class="live-notice">
-      Drop your Base wallet in chat on <a href="https://www.twitch.tv/grind2give" target="_blank">Twitch</a> or <a href="https://kick.com/grind2give" target="_blank">Kick</a> — follow <a href="https://twitter.com/H2GamingX" target="_blank">@H2GamingX</a> for drops & updates.
-    </p>
-  </section>
-
-  <div class="whitepaper-section" style="background: rgba(0,255,170,0.08); border-top: 2px solid var(--green); border-bottom: 2px solid var(--green);">
-    <a href="https://grind2give.org/whitepaper.html" 
-       class="whitepaper-cta" 
+    <h2>💰 Trade $G2G V2 Now</h2>
+    <p style="font-size:2.1rem; color:var(--green); margin-bottom:30px;">Liquidity Added • Live on Uniswap (Base)</p>
+    
+    <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x578eC5f37E0E459dec94805Bf7B122e931EB34E4" 
+       class="buy-btn" 
        target="_blank" 
        rel="noopener noreferrer">
-       📖 READ THE UPDATED WHITE PAPER (V2)
+      BUY $G2G NOW 🚀
     </a>
-  </div>
+
+    <p style="margin-top:40px; font-size:1.4rem;">
+      Contract Address:<br>
+      <span class="contract-address">0x578ec5f37e0e459dec94805bf7b122e931eb34e4</span><br>
+      <a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank" style="color:var(--green);">View on Basescan →</a>
+    </p>
+
+    <p style="margin-top:30px; color:#aaa; font-size:1.3rem;">
+      Easy way: Open the button above in Phantom browser or copy contract → Import token → Swap
+    </p>
+  </section>
+
+  <!-- Liquidity & Security -->
+  <section>
+    <h2>Liquidity & Security</h2>
+    <p><strong>100% Liquidity Locked for 3 Years</strong></p>
+    <p><a href="https://www.pinksale.finance/pinklock/base/record/1036398" target="_blank" style="color:#ffdd00; font-weight:bold;">🔒 View LP Lock Proof on PinkSale</a></p>
+
+    <p style="margin-top:30px;">Temporary protections active (anti-sniper, cooldown, limits). Will be removed + ownership renounced once chart stabilizes.</p>
+  </section>
+
+  <!-- Mission -->
+  <section>
+    <h2>The Mission</h2>
+    <p>Grind2Give turns every stream, every match, every trade into real measurable good. V2 brings stronger security, ETH reflections to holders, and direct charity contributions — all while staying true to the heart: community-voted donations that help the least of these.</p>
+    <ul>
+      <li>Community votes monthly on the next charity</li>
+      <li>5% sell tax only: 2% ETH reflections • 2.5% to charity pool (in ETH) • 0.5% auto-burn</li>
+      <li>Full on-chain transparency</li>
+    </ul>
+  </section>
+
+  <!-- Airdrops -->
+  <section>
+    <h2>V2 Airdrops & Community</h2>
+    <p class="launch-info">V1 holders received 1:1 migration to V2. Ongoing airdrops for active chat & viewers during live streams!</p>
+    <p>Drop your Base wallet in chat on Twitch or Kick — follow <a href="https://twitter.com/H2GamingX" target="_blank">@H2GamingX</a> for updates.</p>
+  </section>
+
 </main>
 
-<footer>
-  <p class="footer-links">
-    Follow <a href="https://twitter.com/H2GamingX" target="_blank">@H2GamingX</a> • 
-    Live on <a href="https://www.twitch.tv/grind2give" target="_blank">Twitch @grind2give</a> • 
-    <a href="https://kick.com/grind2give" target="_blank">Kick @grind2give</a> • 
-    Merch <a href="https://grind-2-give-products.printify.me/" target="_blank">Shop Now</a>
-  </p>
+<footer style="padding:80px 20px; color:#666; font-size:1.2rem;">
+  Grind hard. Give harder. 💚
 </footer>
 
 </body>
