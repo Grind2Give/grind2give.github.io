@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Grind2Give V2 White Paper – Gaming Grind → Real-World Good</title>
-  <meta name="description" content="Grind2Give ($G2G) V2 on Base: 0% buy / 5% sell tax powers community-voted charity, ETH reflections, and real impact. Gaming with purpose." />
+  <meta name="description" content="Grind2Give ($G2G) V2 on Base: 0% buy / 5% sell tax powers community-voted charity, ETH reflections, and real impact." />
   <style>
     :root {
       --green: #00ffaa;
       --dark: #0f0f1a;
       --light: #e0e0ff;
-      --gray: #1a1a2e;
       --glow: rgba(0, 255, 170, 0.5);
     }
     body {
@@ -70,26 +69,13 @@
       color: var(--green);
       font-weight: bold;
     }
-    ul, ol {
-      padding-left: 30px;
-      margin: 20px 0;
-    }
-    li {
-      margin: 12px 0;
-    }
-    .highlight {
-      color: var(--green);
-      font-weight: bold;
-    }
+    .highlight { color: var(--green); font-weight: bold; }
     .back-link {
       display: inline-block;
       margin: 40px 0 60px;
       color: var(--green);
       font-size: 1.3rem;
       text-decoration: none;
-    }
-    .back-link:hover {
-      text-decoration: underline;
     }
     footer {
       text-align: center;
@@ -130,7 +116,7 @@
   <tr><td>Contract Address</td><td><a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank" style="color:var(--green);">0x578ec5f37e0e459dec94805bf7b122e931eb34e4</a></td></tr>
   <tr><td>Total Supply</td><td>25,400,000 $G2G</td></tr>
   <tr><td>Decimals</td><td>18</td></tr>
-  <tr><td>DEX</td><td>Uniswap V2 / V3 on Base</td></tr>
+  <tr><td>DEX</td><td>Uniswap on Base</td></tr>
   <tr><td>Liquidity</td><td>100% locked for 3 years via PinkSale</td></tr>
 </table>
 
@@ -143,38 +129,31 @@
 
 <table>
   <tr><th>Portion</th><th>Sell %</th><th>Purpose</th></tr>
-  <tr><td>ETH Reflections</td><td>2%</td><td>Automatically distributed in ETH to all holders. Long-term holders earn passively.</td></tr>
-  <tr><td>Charity Pool</td><td>2.5%</td><td>Auto-sent in ETH to Safe multisig wallet. Community votes monthly on recipient. Funds forwarded live via The Giving Block with full on-chain proof.</td></tr>
-  <tr><td>Auto-Burn</td><td>0.5%</td><td>Permanently removed from circulation for increasing scarcity.</td></tr>
+  <tr><td>ETH Reflections</td><td>2%</td><td>Automatically distributed in ETH to all holders.</td></tr>
+  <tr><td>Charity Pool</td><td>2.5%</td><td>Auto-sent in ETH to Safe multisig wallet. Community-voted monthly.</td></tr>
+  <tr><td>Auto-Burn</td><td>0.5%</td><td>Permanently removed from circulation.</td></tr>
+</table>
+
+<h2>Public Wallets & Allocations</h2>
+<table>
+  <tr><th>Wallet Name</th><th>Address</th><th>Purpose</th></tr>
+  <tr><td>Airdrop Wallet</td><td><a href="https://basescan.org/address/0x6DC308A15906E902f8175a8a6be6B97E8c6Efd3A" target="_blank" style="color:var(--green);">0x6DC308A15906E902f8175a8a6be6B97E8c6Efd3A</a></td><td>Stream drops, giveaways, chat rewards</td></tr>
+  <tr><td>Telegram Mini App Game Rewards Wallet</td><td><a href="https://basescan.org/address/0x3d40cF657BDc7499386B9Ab927aef9EA1a8d3Edd" target="_blank" style="color:var(--green);">0x3d40cF657BDc7499386B9Ab927aef9EA1a8d3Edd</a></td><td>In-game rewards and Telegram Mini-App ecosystem</td></tr>
+  <tr><td>Future New Pair Wallet</td><td><a href="https://basescan.org/address/0xb9D467cdb4ab7FF00Fb8C6c3cC3c86667F1c3fB1" target="_blank" style="color:var(--green);">0xb9D467cdb4ab7FF00Fb8C6c3cC3c86667F1c3fB1</a></td><td>Seeding future liquidity pairs (e.g. USDC pair)</td></tr>
+  <tr><td>Dev / Mission Support Wallet</td><td><a href="https://basescan.org/address/0xBd2889B21dDB1B2D9696Ea5E3377c59293F19dae" target="_blank" style="color:var(--green);">0xBd2889B21dDB1B2D9696Ea5E3377c59293F19dae</a></td><td>Project development, operations, mission support & sustainability</td></tr>
+  <tr><td>Charity Pool Wallet (Safe Multisig)</td><td><a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" style="color:var(--green);">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a></td><td>All charity funds – community voted</td></tr>
 </table>
 
 <h2>Liquidity & Security</h2>
-<p><strong>100% of liquidity is locked for 3 years.</strong></p>
+<p><strong>100% Liquidity Locked for 3 Years</strong></p>
 <p>View lock proof: <a href="https://www.pinksale.finance/pinklock/base/record/1036398" target="_blank" style="color:var(--green);">PinkSale LP Lock</a></p>
-<p>Temporary fair-launch protections (anti-sniper, cooldown, limits) are active and will be removed once the chart stabilizes, followed by ownership renouncement.</p>
-
-<h2>Charity Pool – Safe Multisig</h2>
-<p>All charity funds flow to a secure Safe multisig wallet requiring multiple approvals.</p>
-<p style="font-size:1.6rem; color:var(--green); font-weight:bold; text-align:center;">
-  Charity Wallet: <a href="https://basescan.org/address/0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406" target="_blank" style="color:inherit;">0x5Ba7b052C9548648B1E8a9a0AbCCfd13cc60C406</a>
-</p>
-
-<h2>How It Works</h2>
-<ul>
-  <li>Community votes monthly on the next charity via streams and socials</li>
-  <li>Live donations shown on stream with on-chain receipts</li>
-  <li>Holders earn automatic ETH reflections</li>
-  <li>Full transparency: all wallets public on Basescan</li>
-</ul>
 
 <h2>Buy $G2G</h2>
-<p>Direct swap link: <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x578eC5f37E0E459dec94805Bf7B122e931EB34E4" target="_blank" style="color:var(--green);">Buy on Uniswap (Base)</a></p>
-<p>Use Phantom wallet (easiest for Base) → Import the contract above → Swap ETH or USDC for $G2G.</p>
+<p>Direct swap: <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x578eC5f37E0E459dec94805Bf7B122e931EB34E4" target="_blank" style="color:var(--green);">Buy on Uniswap (Base)</a></p>
 
 <h2>Vision</h2>
-<p>Grind2Give V2 is built for longevity and real impact. Every sell helps someone in need. Every holder earns passively. Every stream becomes a force for good.</p>
-<p><strong>Whatever you did for one of the least of these… you did for me.</strong><br>
-Matthew 25:40</p>
+<p>Grind2Give V2 turns every grind into real impact. Holders earn ETH reflections, the community decides where charity goes, and every trade helps the least of these.</p>
+<p><strong>Matthew 25:40 — “Whatever you did for one of the least of these… you did for me.”</strong></p>
 <p><strong>Grind hard. Give harder.</strong></p>
 
 <footer>
