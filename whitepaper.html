@@ -82,6 +82,30 @@
       font-size: 1.3rem;
       text-decoration: none;
     }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    .contact-card {
+      background: rgba(15, 15, 26, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 255, 170, 0.2);
+      transition: all 0.3s ease;
+    }
+    .contact-card:hover {
+      border-color: var(--green);
+      box-shadow: 0 0 20px rgba(0, 255, 170, 0.3);
+    }
+    .contact-type {
+      color: var(--green);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
     footer {
       text-align: center;
       padding: 60px 0 100px;
@@ -209,6 +233,29 @@ The natural leftover supply after LP creation and initial allocations. This flex
 <p>Grind2Give V2 turns every grind into real impact. Holders earn ETH reflections, the community decides where charity goes each month, and every trade helps the least of these.</p>
 <p><strong>Matthew 25:40 — “Whatever you did for one of the least of these… you did for me.”</strong></p>
 <p><strong>Grind hard. Give harder.</strong></p>
+
+<!-- New Contact Section -->
+<h2>Contact Us</h2>
+<p style="margin-bottom: 25px;">Have questions about the project, want to get involved, or need support? Reach out to the Grind2Give team using the dedicated channels below:</p>
+
+<div class="contact-grid">
+  <div class="contact-card">
+    <div class="contact-type">Development & Technical</div>
+    <p><a href="mailto:dev@grind2give.org" style="color:var(--green); text-decoration:none;">dev@grind2give.org</a></p>
+  </div>
+  <div class="contact-card">
+    <div class="contact-type">Mission & Charity</div>
+    <p><a href="mailto:mission@grind2give.org" style="color:var(--green); text-decoration:none;">mission@grind2give.org</a></p>
+  </div>
+  <div class="contact-card">
+    <div class="contact-type">Gaming & Community</div>
+    <p><a href="mailto:play@grind2give.org" style="color:var(--green); text-decoration:none;">play@grind2give.org</a></p>
+  </div>
+  <div class="contact-card">
+    <div class="contact-type">General Support</div>
+    <p><a href="mailto:support@grind2give.org" style="color:var(--green); text-decoration:none;">support@grind2give.org</a></p>
+  </div>
+</div>
 
 <footer>
   <p>Grind2Give Team • March 2026 • @H2GamingX</p>
