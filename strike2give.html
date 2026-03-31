@@ -28,14 +28,6 @@
       position: relative;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(0,255,170,0.15), transparent);
-      z-index: 1;
-    }
-
     h1 {
       font-size: 5.5rem;
       font-weight: 900;
@@ -85,26 +77,6 @@
       max-width: 1100px;
       margin: 0 auto;
     }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 40px;
-      margin-top: 60px;
-    }
-
-    .card {
-      background: #111;
-      padding: 40px 30px;
-      border-radius: 20px;
-      border: 2px solid rgba(0,255,170,0.2);
-    }
-
-    footer {
-      padding: 80px 20px;
-      background: #000;
-      color: #666;
-    }
   </style>
 </head>
 <body>
@@ -119,7 +91,7 @@
     </p>
     
     <div>
-      <a href="#" class="btn btn-primary">🎮 Play Now (Coming Soon)</a>
+      <a href="https://forms.gle/yourformlink" class="btn btn-primary">Join Waitlist →</a>
       <a href="/how-to-buy.html" class="btn btn-primary" style="background:#222; color:white;">Buy $G2G</a>
     </div>
   </div>
@@ -127,41 +99,24 @@
   <!-- Features -->
   <section>
     <h2 style="font-size:3rem; margin-bottom:20px;">Bowl. Compete. Win. Give.</h2>
-    <div class="features">
-      <div class="card">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 60px;">
+      <div style="background:#111; padding:40px 30px; border-radius:20px;">
         <h3 style="color:var(--green); font-size:2rem;">🌍 Global PvP</h3>
-        <p>Challenge real players from around the world in intense 1v1 bowling matches.</p>
+        <p>Challenge real players from around the world in intense bowling matches.</p>
       </div>
-      <div class="card">
+      <div style="background:#111; padding:40px 30px; border-radius:20px;">
         <h3 style="color:var(--gold); font-size:2rem;">💰 Real Rewards</h3>
         <p>Win actual $G2G tokens. The better you bowl, the more you earn.</p>
       </div>
-      <div class="card">
+      <div style="background:#111; padding:40px 30px; border-radius:20px;">
         <h3 style="color:var(--green); font-size:2rem;">❤️ Real Impact</h3>
         <p>Every game you play helps fund real charities through Grind2Give.</p>
       </div>
     </div>
   </section>
 
-  <!-- How it Works -->
-  <section style="background:#111;">
-    <h2 style="font-size:3rem; margin-bottom:50px;">How It Works</h2>
-    <p style="font-size:1.6rem; max-width:700px; margin:0 auto 60px;">
-      Bowl → Strike → Win $G2G → Help Charity<br>
-      <strong>Strike2Give… And Get!</strong>
-    </p>
-  </section>
-
-  <!-- Call to Action -->
-  <section>
-    <h2 style="font-size:3.2rem; margin-bottom:30px;">Ready to Start Striking?</h2>
-    <a href="#" class="btn btn-primary" style="font-size:2.2rem; padding:28px 80px;">
-      Join the Waitlist
-    </a>
-  </section>
-
-  <footer>
-    <p style="font-size:1.4rem; margin-bottom:15px;">Strike2Give — Part of the Grind2Give Ecosystem</p>
+  <footer style="padding:80px 20px; background:#000; color:#666;">
+    <p style="font-size:1.4rem;">Strike2Give — Part of the Grind2Give Ecosystem</p>
     <p>🎳 Gaming with Purpose 💚</p>
   </footer>
 
