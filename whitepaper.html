@@ -13,8 +13,7 @@
       --glow: rgba(0, 255, 170, 0.5);
     }
     body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       font-family: system-ui, -apple-system, sans-serif;
       background: var(--dark);
       color: var(--light);
@@ -28,44 +27,21 @@
       background: rgba(26, 26, 46, 0.9);
       border-radius: 12px;
     }
-    header {
-      text-align: center;
-      padding-bottom: 30px;
-      border-bottom: 1px solid rgba(0, 255, 170, 0.2);
-    }
-    h1 {
-      font-size: clamp(2.4rem, 7vw, 3.5rem);
-      margin: 0 0 15px;
-      color: var(--green);
-    }
-    .subtitle {
-      font-size: clamp(1.1rem, 4vw, 1.4rem);
-      color: #aaa;
-      margin: 8px 0;
-    }
-    h2 {
-      color: var(--green);
-      font-size: clamp(1.8rem, 6vw, 2.4rem);
-      margin: 50px 0 25px;
-    }
+    h1 { font-size: clamp(2.4rem, 7vw, 3.5rem); color: var(--green); }
+    h2 { color: var(--green); font-size: clamp(1.8rem, 6vw, 2.4rem); margin: 50px 0 25px; }
     table {
       width: 100%;
       border-collapse: collapse;
       margin: 25px 0;
       background: rgba(15, 15, 26, 0.8);
       border-radius: 8px;
-      overflow: hidden;
     }
     th, td {
-      padding: 14px 10px;
+      padding: 14px 12px;
       text-align: left;
       border-bottom: 1px solid rgba(0, 255, 170, 0.15);
-      vertical-align: middle;
     }
-    th {
-      background: rgba(0, 255, 170, 0.1);
-      color: var(--green);
-    }
+    th { background: rgba(0, 255, 170, 0.1); color: var(--green); }
     .contract {
       font-family: monospace;
       word-break: break-all;
@@ -73,18 +49,10 @@
       font-size: 0.95rem;
       line-height: 1.4;
     }
-    footer {
-      text-align: center;
-      padding: 50px 20px 80px;
-      color: #888;
-      font-size: 0.95rem;
-    }
+    footer { text-align: center; padding: 50px 20px 80px; color: #888; }
 
-    /* Mobile Improvements */
     @media (max-width: 768px) {
       .container { margin: 15px 10px; padding: 20px 15px; }
-      th, td { padding: 12px 8px; font-size: 0.93rem; }
-      table { font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -102,7 +70,6 @@
 <h2>Abstract</h2>
 <p>Grind2Give ($G2G) V2 is a community-first ERC-20 utility token on Base that turns gaming streams, participation, and trading into real charitable impact.</p>
 <p>With a clean <strong>0% buy / 5% sell tax</strong>, every sell automatically generates ETH reflections for holders and sends funds to community-voted charities.</p>
-<p>Inspired by Matthew 25:40, Grind2Give is more than a token — it's a movement where pixels become plates, lobbies become lunch, and streams become second chances.</p>
 
 <h2>Token Details</h2>
 <table>
@@ -110,11 +77,7 @@
   <tr><td>Token Name</td><td>Grind2Give v2</td></tr>
   <tr><td>Symbol</td><td>$G2G</td></tr>
   <tr><td>Blockchain</td><td>Base</td></tr>
-  <tr><td>Contract Address</td>
-    <td class="contract">
-      <a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank" style="color:var(--green);">0x578ec5f37e0e459dec94805bf7b122e931eb34e4</a>
-    </td>
-  </tr>
+  <tr><td>Contract Address</td><td class="contract"><a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank" style="color:var(--green);">0x578ec5f37e0e459dec94805bf7b122e931eb34e4</a></td></tr>
   <tr><td>Total Supply</td><td>25,400,000 $G2G</td></tr>
 </table>
 
@@ -134,9 +97,9 @@
   <tr><td><strong>LP Lock</strong></td><td>20,320,000 $G2G</td><td><strong>80%</strong></td><td>Liquidity Pool (100% locked for 3 years)</td></tr>
   <tr><td>Dev / Support Wallet</td><td>1,016,000 $G2G</td><td><strong>4%</strong></td><td>Project development and operations</td></tr>
   <tr><td>Airdrops & Community Rewards</td><td>1,016,000 $G2G</td><td><strong>4%</strong></td><td>Giveaways, stream rewards, and community events</td></tr>
-  <tr><td>Strike2Give Bowling Game Rewards</td><td>889,000 $G2G</td><td><strong>3.5%</strong></td><td>Rewards for Strike2Give PvP Bowling Game</td></tr>
-  <tr><td>Future FPS Game Rewards</td><td>889,000 $G2G</td><td><strong>3.5%</strong></td><td>Rewards for future FPS game</td></tr>
-  <tr><td>Burned</td><td>1,270,000 $G2G</td><td><strong>5%</strong></td><td>Permanently burned at launch</td></tr>
+  <tr><td>Strike2Give Bowling Game Rewards</td><td>1,000,000 $G2G</td><td><strong>3.94%</strong></td><td>Rewards for Strike2Give PvP Bowling Game</td></tr>
+  <tr><td>Future FPS Game Rewards</td><td>1,000,000 $G2G</td><td><strong>3.94%</strong></td><td>Rewards for future FPS game</td></tr>
+  <tr><td>Burned</td><td>1,048,000 $G2G</td><td><strong>4.12%</strong></td><td>Permanently burned at launch</td></tr>
 </table>
 
 <h2>Public Wallets & Allocations</h2>
