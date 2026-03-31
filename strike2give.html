@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strike2Give - PvP Bowling</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+    
+    :root {
+      --green: #00ffaa;
+      --gold: #ffdd00;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #111 0%, #1a0033 100%);
+      padding: 140px 20px 100px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0,255,170,0.15), transparent);
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 5.5rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--green), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .tagline {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 30px;
+    }
+
+    .description {
+      font-size: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto 50px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 22px 70px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      margin: 15px;
+      transition: all 0.4s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--green), var(--gold));
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 60px rgba(0,255,170,0.6);
+    }
+
+    section {
+      padding: 90px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .card {
+      background: #111;
+      padding: 40px 30px;
+      border-radius: 20px;
+      border: 2px solid rgba(0,255,170,0.2);
+    }
+
+    footer {
+      padding: 80px 20px;
+      background: #000;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Strike2Give</h1>
+    <p class="tagline">Strike2Give… And Get! 🎳</p>
+    <p class="description">
+      Fast-paced PvP bowling where every strike wins you real $G2G tokens<br>
+      and helps feed people in need.
+    </p>
+    
+    <div>
+      <a href="#" class="btn btn-primary">🎮 Play Now (Coming Soon)</a>
+      <a href="/how-to-buy.html" class="btn btn-primary" style="background:#222; color:white;">Buy $G2G</a>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section>
+    <h2 style="font-size:3rem; margin-bottom:20px;">Bowl. Compete. Win. Give.</h2>
+    <div class="features">
+      <div class="card">
+        <h3 style="color:var(--green); font-size:2rem;">🌍 Global PvP</h3>
+        <p>Challenge real players from around the world in intense 1v1 bowling matches.</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--gold); font-size:2rem;">💰 Real Rewards</h3>
+        <p>Win actual $G2G tokens. The better you bowl, the more you earn.</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--green); font-size:2rem;">❤️ Real Impact</h3>
+        <p>Every game you play helps fund real charities through Grind2Give.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it Works -->
+  <section style="background:#111;">
+    <h2 style="font-size:3rem; margin-bottom:50px;">How It Works</h2>
+    <p style="font-size:1.6rem; max-width:700px; margin:0 auto 60px;">
+      Bowl → Strike → Win $G2G → Help Charity<br>
+      <strong>Strike2Give… And Get!</strong>
+    </p>
+  </section>
+
+  <!-- Call to Action -->
+  <section>
+    <h2 style="font-size:3.2rem; margin-bottom:30px;">Ready to Start Striking?</h2>
+    <a href="#" class="btn btn-primary" style="font-size:2.2rem; padding:28px 80px;">
+      Join the Waitlist
+    </a>
+  </section>
+
+  <footer>
+    <p style="font-size:1.4rem; margin-bottom:15px;">Strike2Give — Part of the Grind2Give Ecosystem</p>
+    <p>🎳 Gaming with Purpose 💚</p>
+  </footer>
+
+</body>
+</html>
