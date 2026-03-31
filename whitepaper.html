@@ -27,44 +27,21 @@
       background: rgba(26, 26, 46, 0.9);
       border-radius: 12px;
     }
-    header {
-      text-align: center;
-      padding-bottom: 30px;
-      border-bottom: 1px solid rgba(0, 255, 170, 0.2);
-    }
-    h1 {
-      font-size: clamp(2.4rem, 7vw, 3.5rem);
-      margin: 0 0 15px;
-      color: var(--green);
-    }
-    .subtitle {
-      font-size: clamp(1.1rem, 4vw, 1.4rem);
-      color: #aaa;
-      margin: 8px 0;
-    }
-    h2 {
-      color: var(--green);
-      font-size: clamp(1.8rem, 6vw, 2.4rem);
-      margin: 50px 0 25px;
-    }
+    h1 { font-size: clamp(2.4rem, 7vw, 3.5rem); color: var(--green); }
+    h2 { color: var(--green); font-size: clamp(1.8rem, 6vw, 2.4rem); margin: 50px 0 25px; }
     table {
       width: 100%;
       border-collapse: collapse;
       margin: 25px 0;
       background: rgba(15, 15, 26, 0.8);
       border-radius: 8px;
-      overflow: hidden;
     }
     th, td {
       padding: 14px 12px;
       text-align: left;
       border-bottom: 1px solid rgba(0, 255, 170, 0.15);
-      vertical-align: middle;
     }
-    th {
-      background: rgba(0, 255, 170, 0.1);
-      color: var(--green);
-    }
+    th { background: rgba(0, 255, 170, 0.1); color: var(--green); }
     .contract {
       font-family: monospace;
       word-break: break-all;
@@ -72,16 +49,15 @@
       font-size: 0.95rem;
       line-height: 1.4;
     }
-    footer {
-      text-align: center;
-      padding: 50px 20px 80px;
-      color: #888;
-      font-size: 0.95rem;
+    .disclaimer {
+      background: rgba(255, 100, 100, 0.1);
+      border: 1px solid rgba(255, 100, 100, 0.3);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 40px 0;
+      font-size: 0.98rem;
     }
-
-    @media (max-width: 768px) {
-      .container { margin: 15px 10px; padding: 20px 15px; }
-    }
+    footer { text-align: center; padding: 50px 20px 80px; color: #888; }
   </style>
 </head>
 <body>
@@ -141,6 +117,22 @@
   <tr><td>V2 Future FPS Game Wallet</td><td class="contract"><a href="https://basescan.org/address/0x0AF01193fB3F87c1e2C9cd69515F14c4B5A8aF7A" target="_blank" style="color:var(--green);">0x0AF01193fB3F87c1e2C9cd69515F14c4B5A8aF7A</a></td><td>Future FPS game rewards</td></tr>
   <tr><td>Dev/Support Wallet</td><td class="contract"><a href="https://basescan.org/address/0xBd2889B21dDB1B2D9696Ea5E3377c59293F19dae" target="_blank" style="color:var(--green);">0xBd2889B21dDB1B2D9696Ea5E3377c59293F19dae</a></td><td>Development and operations</td></tr>
 </table>
+
+<h2>Charity Mechanism</h2>
+<p>2.5% of every sell is automatically sent to the Charity Multisig Wallet. The community votes monthly on the next charity recipient via X (Twitter) polls. Donations are sent through <strong>The Giving Block</strong> and all donation proofs are publicly posted on X, Telegram, and Facebook.</p>
+
+<h2>Security & Future Plans</h2>
+<p>• Smart contract has not been audited yet, but an audit is planned in the near future.<br>
+• Ownership will be renounced after the game logic and core features are fully completed and tested.</p>
+
+<h2>Risks & Legal Disclaimer</h2>
+<div class="disclaimer">
+  <strong>Important Disclaimer:</strong><br><br>
+  $G2G is a highly speculative cryptocurrency. Investing involves significant risk and you may lose all your invested capital. 
+  There is no guarantee of profit, charity impact, or token value appreciation. This whitepaper is for informational purposes only 
+  and does not constitute financial, legal, or investment advice. Always do your own research (DYOR). 
+  Grind2Give is a community-driven project and participants are responsible for their own decisions.
+</div>
 
 <h2>Vision</h2>
 <p>Grind2Give V2 turns every grind into real impact. Holders earn ETH reflections, the community decides where charity goes each month, and every trade helps the least of these.</p>
