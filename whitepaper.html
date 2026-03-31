@@ -57,7 +57,7 @@
       overflow: hidden;
     }
     th, td {
-      padding: 14px 12px;
+      padding: 14px 10px;
       text-align: left;
       border-bottom: 1px solid rgba(0, 255, 170, 0.15);
       vertical-align: middle;
@@ -65,7 +65,6 @@
     th {
       background: rgba(0, 255, 170, 0.1);
       color: var(--green);
-      width: 38%;
     }
     .contract {
       font-family: monospace;
@@ -81,9 +80,11 @@
       font-size: 0.95rem;
     }
 
+    /* Mobile Improvements */
     @media (max-width: 768px) {
       .container { margin: 15px 10px; padding: 20px 15px; }
-      th, td { padding: 12px 10px; font-size: 0.95rem; }
+      th, td { padding: 12px 8px; font-size: 0.93rem; }
+      table { font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -115,9 +116,6 @@
     </td>
   </tr>
   <tr><td>Total Supply</td><td>25,400,000 $G2G</td></tr>
-  <tr><td>Decimals</td><td>18</td></tr>
-  <tr><td>DEX</td><td>Uniswap on Base</td></tr>
-  <tr><td>Liquidity</td><td>100% locked for 3 years via PinkSale</td></tr>
 </table>
 
 <h2>Tax Structure (V2)</h2>
@@ -148,7 +146,7 @@
   <tr><td>LP Wallet</td><td class="contract"><a href="https://basescan.org/address/0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd" target="_blank" style="color:var(--green);">0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd</a></td><td>Liquidity Pool Wallet</td></tr>
   <tr><td>V2 Airdrop Wallet</td><td class="contract"><a href="https://basescan.org/address/0x6DC308A15906E902f8175a8a6be6B97E8c6Efd3A" target="_blank" style="color:var(--green);">0x6DC308A15906E902f8175a8a6be6B97E8c6Efd3A</a></td><td>Stream drops and community rewards</td></tr>
   <tr><td>V2 Strike2Give Bowling Game Rewards Wallet</td><td class="contract"><a href="https://basescan.org/address/0x3d40cF657BDc7499386B9Ab927aef9EA1a8d3Edd" target="_blank" style="color:var(--green);">0x3d40cF657BDc7499386B9Ab927aef9EA1a8d3Edd</a></td><td>Bowling game rewards</td></tr>
-  <tr><td>V2 Future FPS Game Wallet</td><td class="contract"><a href="https://basescan.org/address/0x0AF01193fB3F87c1e2C9cd69515F14c4B5A8aF7A" target="_blank" style="color:var(--green);">0xb9D467cdb4ab7FF00Fb8C6c3cC3c86667F1c3fB1</a></td><td>Future FPS game rewards</td></tr>
+  <tr><td>V2 Future FPS Game Wallet</td><td class="contract"><a href="https://basescan.org/address/0x0AF01193fB3F87c1e2C9cd69515F14c4B5A8aF7A" target="_blank" style="color:var(--green);">0x0AF01193fB3F87c1e2C9cd69515F14c4B5A8aF7A</a></td><td>Future FPS game rewards</td></tr>
   <tr><td>Dev/Support Wallet</td><td class="contract"><a href="https://basescan.org/address/0xBd2889B21dDB1B2D9696Ea5E3377c59293F19dae" target="_blank" style="color:var(--green);">0xBd2889B21dDB1B2D9696Ea5E3377c59293F19dae</a></td><td>Development and operations</td></tr>
 </table>
 
