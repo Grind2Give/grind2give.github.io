@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Grind2Give V2 • Gaming with Purpose</title>
   <meta name="description" content="Grind2Give V2 is LIVE on Base — 100% LP locked for 3 years • Trade $G2G now on Uniswap!" />
-  <meta name="theme-color" content="#00ffaa" />
-
-  <link rel="preload" href="https://grind2give.org/newlogo.jpg" as="image">
 
   <style>
     :root {
@@ -24,27 +21,6 @@
       overflow-x: hidden;
     }
 
-    /* Sparkle effect */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: 
-        radial-gradient(circle, var(--green) 0.8px, transparent 1px),
-        radial-gradient(circle, var(--green) 0.6px, transparent 1px),
-        radial-gradient(circle, var(--green) 1px, transparent 1.5px);
-      background-size: 180px 180px, 250px 250px, 320px 320px;
-      opacity: 0.75;
-      animation: sparkle 12s linear infinite;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    @keyframes sparkle {
-      0%   { background-position: 0 0, 40px 60px, 80px 30px; }
-      100% { background-position: 180px 180px, 290px 310px, 400px 250px; }
-    }
-
     header {
       padding-top: 120px;
       min-height: 85vh;
@@ -53,49 +29,23 @@
       justify-content: center;
       align-items: center;
       z-index: 2;
-      padding-bottom: 60px;
     }
 
     .logo-top {
       max-width: 380px;
       width: 85%;
       margin-bottom: 25px;
-      filter: drop-shadow(0 0 45px var(--glow));
-    }
-
-    .v2-badge {
-      background: linear-gradient(90deg, #00ffaa, #ffdd00);
-      color: #000;
-      padding: 10px 32px;
-      border-radius: 50px;
-      font-weight: bold;
-      font-size: 1.6rem;
-      margin-bottom: 15px;
-      box-shadow: 0 0 40px var(--glow);
     }
 
     h1 {
       font-size: clamp(2.8rem, 9vw, 5.5rem);
-      margin: 10px 0 20px;
       color: var(--green);
-      text-shadow: 0 0 60px var(--glow);
     }
 
     .tagline {
       font-size: clamp(1.5rem, 5.5vw, 2.4rem);
       color: var(--green);
-      text-shadow: 0 0 40px var(--glow);
-      margin: 0 0 30px;
-      padding: 0 20px;
-    }
-
-    .verse {
-      font-size: clamp(1.1rem, 4vw, 1.6rem);
-      color: #f8f8ff;
-      font-style: italic;
-      max-width: 880px;
-      padding: 0 20px;
-      text-shadow: 0 0 50px black;
+      margin: 10px 0 30px;
     }
 
     .buttons {
@@ -103,45 +53,44 @@
       flex-wrap: wrap;
       gap: 15px;
       justify-content: center;
-      margin-top: 30px;
       padding: 0 20px;
     }
 
     .buy-btn, .howto-btn, .game-btn {
-      display: inline-block;
-      background: linear-gradient(90deg, #00ffaa, #ffdd00);
-      color: #000;
       padding: 20px 50px;
       font-size: clamp(1.4rem, 4.5vw, 2rem);
       font-weight: bold;
       border-radius: 20px;
       text-decoration: none;
-      box-shadow: 0 0 70px var(--glow);
-      transition: all 0.4s ease;
       min-width: 240px;
-    }
-
-    .buy-btn:hover, .howto-btn:hover, .game-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 100px #ffdd00;
+      background: linear-gradient(90deg, #00ffaa, #ffdd00);
+      color: #000;
     }
 
     section {
       max-width: 1200px;
-      margin: 80px auto;
-      padding: 50px 20px;
+      margin: 60px auto;
+      padding: 40px 20px;
       background: rgba(15,15,26,0.75);
       border-radius: 16px;
     }
 
-    .contract-address {
-      font-family: monospace;
-      font-size: 1.2rem;
+    .whitepaper-section {
+      background: rgba(0,255,170,0.08);
+      border: 2px solid var(--green);
+    }
+
+    .whitepaper-btn {
+      background: rgba(0,255,170,0.15);
       color: var(--green);
-      background: rgba(0,0,0,0.7);
-      padding: 15px 20px;
-      border-radius: 12px;
-      word-break: break-all;
+      border: 2px solid var(--green);
+      padding: 18px 50px;
+      font-size: 1.6rem;
+      font-weight: bold;
+      border-radius: 16px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -149,11 +98,9 @@
 
 <header>
   <img src="https://grind2give.org/newlogo.jpg" alt="Grind2Give Logo" class="logo-top">
-
-  <div class="v2-badge">V2 IS LIVE 🚀</div>
+  <div style="background: linear-gradient(90deg, #00ffaa, #ffdd00); color:#000; padding:10px 32px; border-radius:50px; font-weight:bold; margin-bottom:15px;">V2 IS LIVE 🚀</div>
   <h1>Grind2Give</h1>
   <p class="tagline">Gaming Grind → Real-World Good → Real-World Change 🗺️</p>
-  <p class="verse">Matthew 25:40 — "Whatever you did for one of the least of these… you did for me."</p>
   
   <div class="buttons">
     <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x578eC5f37E0E459dec94805Bf7B122e931EB34E4" class="buy-btn" target="_blank">BUY $G2G NOW 🚀</a>
@@ -163,27 +110,21 @@
 </header>
 
 <main>
-  <section>
-    <h2>💰 Trade $G2G V2 Now</h2>
-    <p style="font-size:1.8rem; color:var(--green); margin:20px 0;">Liquidity Added • Live on Uniswap (Base)</p>
-  </section>
-
-  <!-- Other sections remain the same -->
-  <section>
-    <h2>Liquidity & Security</h2>
-    <p><strong>100% Liquidity Locked for 3 Years</strong></p>
-    <p><a href="https://www.pinksale.finance/pinklock/base/record/1036398" target="_blank" style="color:#ffdd00; font-weight:bold;">🔒 View LP Lock Proof on PinkSale</a></p>
-  </section>
-
-  <section>
-    <h2>Our Mission</h2>
-    <p style="font-size:1.3rem; max-width:900px; margin:0 auto 30px;">
-      Grind2Give turns your gaming, streaming, and trading into real-world impact.
+  <!-- Whitepaper Section - Now Mobile Friendly -->
+  <section class="whitepaper-section">
+    <h2>📖 Official White Paper (V2)</h2>
+    <p style="font-size:1.35rem; max-width:800px; margin:20px auto;">
+      Full details on tokenomics, charity mechanics, security, and our long-term vision.
     </p>
+    <a href="https://grind2give.org/whitepaper.html" class="whitepaper-btn">
+      READ THE V2 WHITE PAPER
+    </a>
   </section>
+
+  <!-- Other sections... -->
 </main>
 
-<footer style="padding:80px 20px; color:#666; font-size:1.1rem;">
+<footer style="padding:60px 20px; color:#666;">
   Grind hard. Give harder. 💚
 </footer>
 
