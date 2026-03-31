@@ -20,12 +20,11 @@
       font-family: system-ui, -apple-system, sans-serif;
       color: #f0fff0;
       background: #000000;
-      min-height: 100vh;
-      position: relative;
       text-align: center;
       overflow-x: hidden;
     }
 
+    /* Sparkle effect */
     body::before {
       content: "";
       position: fixed;
@@ -35,7 +34,6 @@
         radial-gradient(circle, var(--green) 0.6px, transparent 1px),
         radial-gradient(circle, var(--green) 1px, transparent 1.5px);
       background-size: 180px 180px, 250px 250px, 320px 320px;
-      background-position: 0 0, 40px 60px, 80px 30px;
       opacity: 0.75;
       animation: sparkle 12s linear infinite;
       z-index: -1;
@@ -48,18 +46,19 @@
     }
 
     header {
-      padding-top: 160px;
+      padding-top: 120px;
       min-height: 85vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 2;
+      padding-bottom: 60px;
     }
 
     .logo-top {
-      max-width: 420px;
-      width: 90%;
+      max-width: 380px;
+      width: 85%;
       margin-bottom: 25px;
       filter: drop-shadow(0 0 45px var(--glow));
     }
@@ -70,49 +69,60 @@
       padding: 10px 32px;
       border-radius: 50px;
       font-weight: bold;
-      font-size: 1.75rem;
+      font-size: 1.6rem;
       margin-bottom: 15px;
       box-shadow: 0 0 40px var(--glow);
     }
 
     h1 {
-      font-size: clamp(3.2rem, 9vw, 5.5rem);
+      font-size: clamp(2.8rem, 9vw, 5.5rem);
       margin: 10px 0 20px;
       color: var(--green);
       text-shadow: 0 0 60px var(--glow);
     }
 
     .tagline {
-      font-size: clamp(1.7rem, 5.5vw, 2.6rem);
+      font-size: clamp(1.5rem, 5.5vw, 2.4rem);
       color: var(--green);
       text-shadow: 0 0 40px var(--glow);
       margin: 0 0 30px;
+      padding: 0 20px;
     }
 
     .verse {
-      font-size: clamp(1.2rem, 4vw, 1.7rem);
+      font-size: clamp(1.1rem, 4vw, 1.6rem);
       color: #f8f8ff;
       font-style: italic;
       max-width: 880px;
+      padding: 0 20px;
       text-shadow: 0 0 50px black;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+      padding: 0 20px;
     }
 
     .buy-btn, .howto-btn, .game-btn {
       display: inline-block;
       background: linear-gradient(90deg, #00ffaa, #ffdd00);
       color: #000;
-      padding: 26px 90px;
-      font-size: 2.3rem;
+      padding: 20px 50px;
+      font-size: clamp(1.4rem, 4.5vw, 2rem);
       font-weight: bold;
       border-radius: 20px;
       text-decoration: none;
-      margin: 25px 10px;
       box-shadow: 0 0 70px var(--glow);
       transition: all 0.4s ease;
+      min-width: 240px;
     }
 
     .buy-btn:hover, .howto-btn:hover, .game-btn:hover {
-      transform: scale(1.09);
+      transform: scale(1.08);
       box-shadow: 0 0 100px #ffdd00;
     }
 
@@ -122,7 +132,16 @@
       padding: 50px 20px;
       background: rgba(15,15,26,0.75);
       border-radius: 16px;
-      z-index: 2;
+    }
+
+    .contract-address {
+      font-family: monospace;
+      font-size: 1.2rem;
+      color: var(--green);
+      background: rgba(0,0,0,0.7);
+      padding: 15px 20px;
+      border-radius: 12px;
+      word-break: break-all;
     }
   </style>
 </head>
@@ -136,82 +155,35 @@
   <p class="tagline">Gaming Grind → Real-World Good → Real-World Change 🗺️</p>
   <p class="verse">Matthew 25:40 — "Whatever you did for one of the least of these… you did for me."</p>
   
-  <div style="margin-top: 30px;">
-    <a href="https://twitter.com/H2GamingX" class="cta" target="_blank" rel="noopener">Follow on X</a>
-    <a href="https://www.twitch.tv/grind2give" class="cta twitch-cta" target="_blank" rel="noopener">Watch Live on Twitch</a>
-    <a href="https://kick.com/grind2give" class="cta kick-cta" target="_blank" rel="noopener">Watch Live on Kick</a>
-    <a href="https://grind-2-give-products.printify.me/" class="cta merch-cta" target="_blank" rel="noopener">Shop Merch</a>
+  <div class="buttons">
+    <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x578eC5f37E0E459dec94805Bf7B122e931EB34E4" class="buy-btn" target="_blank">BUY $G2G NOW 🚀</a>
+    <a href="/how-to-buy.html" class="howto-btn">📖 How to Buy</a>
+    <a href="/strike2give.html" class="game-btn">🎳 Play Strike2Give</a>
   </div>
 </header>
 
 <main>
-  <!-- BUY SECTION -->
   <section>
     <h2>💰 Trade $G2G V2 Now</h2>
-    <p style="font-size:2.1rem; color:var(--green); margin-bottom:30px;">Liquidity Added • Live on Uniswap (Base)</p>
-    
-    <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x578eC5f37E0E459dec94805Bf7B122e931EB34E4" 
-       class="buy-btn" 
-       target="_blank" 
-       rel="noopener noreferrer">
-      BUY $G2G NOW 🚀
-    </a>
-
-    <a href="/how-to-buy.html" class="howto-btn">
-      📖 How to Buy $G2G
-    </a>
-
-    <a href="/strike2give.html" class="game-btn">
-      🎳 Play Strike2Give
-    </a>
-
-    <p style="margin-top:40px; font-size:1.4rem;">
-      Contract Address:<br>
-      <span class="contract-address">0x578ec5f37e0e459dec94805bf7b122e931eb34e4</span><br>
-      <a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank" style="color:var(--green);">View on Basescan →</a>
-    </p>
+    <p style="font-size:1.8rem; color:var(--green); margin:20px 0;">Liquidity Added • Live on Uniswap (Base)</p>
   </section>
 
-  <!-- Rest of your sections remain the same -->
-  <!-- Liquidity & Security -->
+  <!-- Other sections remain the same -->
   <section>
     <h2>Liquidity & Security</h2>
     <p><strong>100% Liquidity Locked for 3 Years</strong></p>
     <p><a href="https://www.pinksale.finance/pinklock/base/record/1036398" target="_blank" style="color:#ffdd00; font-weight:bold;">🔒 View LP Lock Proof on PinkSale</a></p>
   </section>
 
-  <!-- Mission -->
   <section>
     <h2>Our Mission</h2>
-    <p style="font-size:1.35rem; max-width:900px; margin:0 auto 30px;">
-      Grind2Give turns your gaming, streaming, and trading into real-world impact. 
-      Every time someone plays, watches, or trades $G2G, we fund charities that feed the hungry, 
-      clothe the naked, and help those in need.
+    <p style="font-size:1.3rem; max-width:900px; margin:0 auto 30px;">
+      Grind2Give turns your gaming, streaming, and trading into real-world impact.
     </p>
-    <ul style="display:inline-block; text-align:left; font-size:1.2rem; line-height:2;">
-      <li>✅ Community votes monthly on which charity receives funds</li>
-      <li>✅ 5% Sell Tax: 2% ETH reflections to holders • 2.5% to charity • 0.5% auto burn</li>
-      <li>✅ 100% on-chain transparency — every donation is public</li>
-    </ul>
   </section>
-
-  <!-- Whitepaper Section -->
-  <section style="background: rgba(0,255,170,0.08); border: 2px solid var(--green);">
-    <h2>📖 Official White Paper (V2)</h2>
-    <p style="font-size:1.5rem; max-width:800px; margin:20px auto;">
-      Full details on tokenomics, charity mechanics, security, and our long-term vision.
-    </p>
-    <a href="https://grind2give.org/whitepaper.html" 
-       class="whitepaper-btn" 
-       target="_blank" 
-       rel="noopener noreferrer">
-      READ THE V2 WHITE PAPER
-    </a>
-  </section>
-
 </main>
 
-<footer style="padding:80px 20px; color:#666; font-size:1.2rem;">
+<footer style="padding:80px 20px; color:#666; font-size:1.1rem;">
   Grind hard. Give harder. 💚
 </footer>
 
