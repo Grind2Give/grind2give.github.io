@@ -21,6 +21,26 @@
       overflow-x: hidden;
     }
 
+    /* Green Sparkle Effect */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle, var(--green) 0.8px, transparent 1px),
+        radial-gradient(circle, var(--green) 0.6px, transparent 1px),
+        radial-gradient(circle, var(--green) 1px, transparent 1.5px);
+      background-size: 180px 180px, 250px 250px, 320px 320px;
+      opacity: 0.75;
+      animation: sparkle 12s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes sparkle {
+      0%   { background-position: 0 0, 40px 60px, 80px 30px; }
+      100% { background-position: 180px 180px, 290px 310px, 400px 250px; }
+    }
+
     header {
       padding-top: 120px;
       min-height: 85vh;
@@ -28,7 +48,6 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 2;
     }
 
     .logo-top {
@@ -45,7 +64,6 @@
     .tagline {
       font-size: clamp(1.5rem, 5.5vw, 2.4rem);
       color: var(--green);
-      margin: 10px 0 30px;
     }
 
     .buttons {
@@ -53,7 +71,7 @@
       flex-wrap: wrap;
       gap: 15px;
       justify-content: center;
-      padding: 0 20px;
+      margin-top: 30px;
     }
 
     .buy-btn, .howto-btn, .game-btn {
@@ -69,28 +87,10 @@
 
     section {
       max-width: 1200px;
-      margin: 60px auto;
-      padding: 40px 20px;
+      margin: 70px auto;
+      padding: 50px 20px;
       background: rgba(15,15,26,0.75);
       border-radius: 16px;
-    }
-
-    .whitepaper-section {
-      background: rgba(0,255,170,0.08);
-      border: 2px solid var(--green);
-    }
-
-    .whitepaper-btn {
-      background: rgba(0,255,170,0.15);
-      color: var(--green);
-      border: 2px solid var(--green);
-      padding: 18px 50px;
-      font-size: 1.6rem;
-      font-weight: bold;
-      border-radius: 16px;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 20px;
     }
   </style>
 </head>
@@ -110,21 +110,34 @@
 </header>
 
 <main>
-  <!-- Whitepaper Section - Now Mobile Friendly -->
-  <section class="whitepaper-section">
+  <!-- Mission Section with PinkLock -->
+  <section>
+    <h2>Our Mission</h2>
+    <p style="font-size:1.35rem; max-width:900px; margin:0 auto 30px;">
+      Grind2Give turns your gaming, streaming, and trading into real-world impact. 
+      Every time someone plays, watches, or trades $G2G, we fund charities that feed the hungry and help those in need.
+    </p>
+    <p style="font-size:1.2rem; margin:20px auto;">
+      <strong>100% Liquidity Locked for 3 Years</strong><br>
+      <a href="https://www.pinksale.finance/pinklock/base/record/1036398" target="_blank" style="color:#ffdd00; font-weight:bold;">
+        🔒 View LP Lock Proof on PinkSale
+      </a>
+    </p>
+  </section>
+
+  <!-- Whitepaper -->
+  <section style="background: rgba(0,255,170,0.08); border: 2px solid var(--green);">
     <h2>📖 Official White Paper (V2)</h2>
-    <p style="font-size:1.35rem; max-width:800px; margin:20px auto;">
+    <p style="font-size:1.4rem; max-width:800px; margin:20px auto;">
       Full details on tokenomics, charity mechanics, security, and our long-term vision.
     </p>
-    <a href="https://grind2give.org/whitepaper.html" class="whitepaper-btn">
+    <a href="https://grind2give.org/whitepaper.html" style="background:rgba(0,255,170,0.15); color:var(--green); border:2px solid var(--green); padding:18px 50px; border-radius:16px; text-decoration:none; font-weight:bold; display:inline-block;">
       READ THE V2 WHITE PAPER
     </a>
   </section>
-
-  <!-- Other sections... -->
 </main>
 
-<footer style="padding:60px 20px; color:#666;">
+<footer style="padding:80px 20px; color:#666; font-size:1.1rem;">
   Grind hard. Give harder. 💚
 </footer>
 
