@@ -25,7 +25,6 @@
       justify-content: center;
       align-items: center;
       padding: 80px 20px 100px;
-      position: relative;
     }
 
     h1 {
@@ -35,7 +34,6 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 12px;
-      text-shadow: 0 0 40px rgba(0,255,170,0.8);
     }
 
     .tagline {
@@ -43,7 +41,6 @@
       font-weight: 700;
       color: #00ffaa;
       margin-bottom: 25px;
-      text-shadow: 0 0 30px rgba(0,255,170,0.6);
     }
 
     .description {
@@ -53,15 +50,6 @@
       line-height: 1.65;
     }
 
-    .btn-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-      width: 100%;
-      max-width: 600px;
-    }
-
     .btn {
       display: inline-block;
       padding: 20px 60px;
@@ -69,6 +57,7 @@
       font-weight: 700;
       border-radius: 50px;
       text-decoration: none;
+      margin: 12px;
       transition: all 0.4s;
       min-width: 260px;
     }
@@ -82,13 +71,6 @@
       transform: scale(1.05);
       box-shadow: 0 0 50px rgba(0,255,170,0.8);
     }
-
-    footer {
-      padding: 60px 20px;
-      background: #000;
-      color: #666;
-      font-size: 1.1rem;
-    }
   </style>
 </head>
 <body>
@@ -101,8 +83,8 @@
       Earn real $G2G rewards through daily logins and winning matches
     </p>
     
-    <div class="btn-container">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd0bwkoDjn1bvkqWzd-UTq_VFOPKEVaaMGGSEBGW_X3Z1D3ow/viewform?usp=header" 
+    <div>
+      <a href="https://forms.gle/v5ByeQrqUFvn4qEE7" 
          target="_blank" 
          class="btn btn-primary">
         Join Waitlist → Early Access
@@ -114,7 +96,7 @@
     </div>
   </div>
 
-  <footer>
+  <footer style="padding:60px 20px; background:#000; color:#666;">
     Strike2Give — Part of the Grind2Give Ecosystem 💚
   </footer>
 
