@@ -1,124 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Strike2Give - PvP Bowling</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grind2Give V2 • Gaming with Purpose</title>
+  <meta name="description" content="Grind2Give V2 is LIVE on Base — 100% LP locked for 3 years • Trade $G2G now on Uniswap!" />
+  <meta name="theme-color" content="#00ffaa" />
+
+  <link rel="preload" href="https://grind2give.org/newlogo.jpg" as="image">
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
-    
     :root {
       --green: #00ffaa;
-      --gold: #ffdd00;
+      --glow: rgba(0, 255, 170, 0.65);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
     body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #0a0a0a;
-      color: #fff;
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #f0fff0;
+      background: #000000;
+      min-height: 100vh;
+      position: relative;
       text-align: center;
       overflow-x: hidden;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #111 0%, #1a0033 100%);
-      padding: 140px 20px 100px;
-      position: relative;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle, var(--green) 0.8px, transparent 1px),
+        radial-gradient(circle, var(--green) 0.6px, transparent 1px),
+        radial-gradient(circle, var(--green) 1px, transparent 1.5px);
+      background-size: 180px 180px, 250px 250px, 320px 320px;
+      background-position: 0 0, 40px 60px, 80px 30px;
+      opacity: 0.75;
+      animation: sparkle 12s linear infinite;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    @keyframes sparkle {
+      0%   { background-position: 0 0, 40px 60px, 80px 30px; }
+      100% { background-position: 180px 180px, 290px 310px, 400px 250px; }
+    }
+
+    header {
+      padding-top: 160px;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .logo-top {
+      max-width: 420px;
+      width: 90%;
+      margin-bottom: 25px;
+      filter: drop-shadow(0 0 45px var(--glow));
+    }
+
+    .v2-badge {
+      background: linear-gradient(90deg, #00ffaa, #ffdd00);
+      color: #000;
+      padding: 10px 32px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.75rem;
+      margin-bottom: 15px;
+      box-shadow: 0 0 40px var(--glow);
     }
 
     h1 {
-      font-size: 5.5rem;
-      font-weight: 900;
-      background: linear-gradient(90deg, var(--green), var(--gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
+      font-size: clamp(3.2rem, 9vw, 5.5rem);
+      margin: 10px 0 20px;
+      color: var(--green);
+      text-shadow: 0 0 60px var(--glow);
     }
 
     .tagline {
-      font-size: 2.4rem;
-      font-weight: 700;
+      font-size: clamp(1.7rem, 5.5vw, 2.6rem);
       color: var(--green);
-      margin-bottom: 30px;
+      text-shadow: 0 0 40px var(--glow);
+      margin: 0 0 30px;
     }
 
-    .description {
-      font-size: 1.5rem;
-      max-width: 800px;
-      margin: 0 auto 50px;
-      line-height: 1.6;
+    .verse {
+      font-size: clamp(1.2rem, 4vw, 1.7rem);
+      color: #f8f8ff;
+      font-style: italic;
+      max-width: 880px;
+      text-shadow: 0 0 50px black;
     }
 
-    .btn {
+    .buy-btn, .howto-btn, .game-btn {
       display: inline-block;
-      padding: 22px 70px;
-      font-size: 1.8rem;
-      font-weight: 700;
-      border-radius: 50px;
-      text-decoration: none;
-      margin: 15px;
-      transition: all 0.4s;
-    }
-
-    .btn-primary {
-      background: linear-gradient(90deg, var(--green), var(--gold));
+      background: linear-gradient(90deg, #00ffaa, #ffdd00);
       color: #000;
+      padding: 26px 90px;
+      font-size: 2.3rem;
+      font-weight: bold;
+      border-radius: 20px;
+      text-decoration: none;
+      margin: 25px 10px;
+      box-shadow: 0 0 70px var(--glow);
+      transition: all 0.4s ease;
     }
 
-    .btn-primary:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 60px rgba(0,255,170,0.6);
+    .buy-btn:hover, .howto-btn:hover, .game-btn:hover {
+      transform: scale(1.09);
+      box-shadow: 0 0 100px #ffdd00;
     }
 
     section {
-      padding: 90px 20px;
-      max-width: 1100px;
-      margin: 0 auto;
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 50px 20px;
+      background: rgba(15,15,26,0.75);
+      border-radius: 16px;
+      z-index: 2;
     }
   </style>
 </head>
 <body>
 
-  <!-- Hero Section -->
-  <div class="hero">
-    <h1>Strike2Give</h1>
-    <p class="tagline">Strike2Give… And Get! 🎳</p>
-    <p class="description">
-      Fast-paced PvP bowling where every strike wins you real $G2G tokens<br>
-      and helps feed people in need.
-    </p>
-    
-    <div>
-      <a href="https://forms.gle/yourformlink" class="btn btn-primary">Join Waitlist →</a>
-      <a href="/how-to-buy.html" class="btn btn-primary" style="background:#222; color:white;">Buy $G2G</a>
-    </div>
-  </div>
+<header>
+  <img src="https://grind2give.org/newlogo.jpg" alt="Grind2Give Logo" class="logo-top">
 
-  <!-- Features -->
+  <div class="v2-badge">V2 IS LIVE 🚀</div>
+  <h1>Grind2Give</h1>
+  <p class="tagline">Gaming Grind → Real-World Good → Real-World Change 🗺️</p>
+  <p class="verse">Matthew 25:40 — "Whatever you did for one of the least of these… you did for me."</p>
+  
+  <div style="margin-top: 30px;">
+    <a href="https://twitter.com/H2GamingX" class="cta" target="_blank" rel="noopener">Follow on X</a>
+    <a href="https://www.twitch.tv/grind2give" class="cta twitch-cta" target="_blank" rel="noopener">Watch Live on Twitch</a>
+    <a href="https://kick.com/grind2give" class="cta kick-cta" target="_blank" rel="noopener">Watch Live on Kick</a>
+    <a href="https://grind-2-give-products.printify.me/" class="cta merch-cta" target="_blank" rel="noopener">Shop Merch</a>
+  </div>
+</header>
+
+<main>
+  <!-- BUY SECTION -->
   <section>
-    <h2 style="font-size:3rem; margin-bottom:20px;">Bowl. Compete. Win. Give.</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 60px;">
-      <div style="background:#111; padding:40px 30px; border-radius:20px;">
-        <h3 style="color:var(--green); font-size:2rem;">🌍 Global PvP</h3>
-        <p>Challenge real players from around the world in intense bowling matches.</p>
-      </div>
-      <div style="background:#111; padding:40px 30px; border-radius:20px;">
-        <h3 style="color:var(--gold); font-size:2rem;">💰 Real Rewards</h3>
-        <p>Win actual $G2G tokens. The better you bowl, the more you earn.</p>
-      </div>
-      <div style="background:#111; padding:40px 30px; border-radius:20px;">
-        <h3 style="color:var(--green); font-size:2rem;">❤️ Real Impact</h3>
-        <p>Every game you play helps fund real charities through Grind2Give.</p>
-      </div>
-    </div>
+    <h2>💰 Trade $G2G V2 Now</h2>
+    <p style="font-size:2.1rem; color:var(--green); margin-bottom:30px;">Liquidity Added • Live on Uniswap (Base)</p>
+    
+    <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x578eC5f37E0E459dec94805Bf7B122e931EB34E4" 
+       class="buy-btn" 
+       target="_blank" 
+       rel="noopener noreferrer">
+      BUY $G2G NOW 🚀
+    </a>
+
+    <a href="/how-to-buy.html" class="howto-btn">
+      📖 How to Buy $G2G
+    </a>
+
+    <a href="/strike2give.html" class="game-btn">
+      🎳 Play Strike2Give
+    </a>
+
+    <p style="margin-top:40px; font-size:1.4rem;">
+      Contract Address:<br>
+      <span class="contract-address">0x578ec5f37e0e459dec94805bf7b122e931eb34e4</span><br>
+      <a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank" style="color:var(--green);">View on Basescan →</a>
+    </p>
   </section>
 
-  <footer style="padding:80px 20px; background:#000; color:#666;">
-    <p style="font-size:1.4rem;">Strike2Give — Part of the Grind2Give Ecosystem</p>
-    <p>🎳 Gaming with Purpose 💚</p>
-  </footer>
+  <!-- Rest of your sections remain the same -->
+  <!-- Liquidity & Security -->
+  <section>
+    <h2>Liquidity & Security</h2>
+    <p><strong>100% Liquidity Locked for 3 Years</strong></p>
+    <p><a href="https://www.pinksale.finance/pinklock/base/record/1036398" target="_blank" style="color:#ffdd00; font-weight:bold;">🔒 View LP Lock Proof on PinkSale</a></p>
+  </section>
+
+  <!-- Mission -->
+  <section>
+    <h2>Our Mission</h2>
+    <p style="font-size:1.35rem; max-width:900px; margin:0 auto 30px;">
+      Grind2Give turns your gaming, streaming, and trading into real-world impact. 
+      Every time someone plays, watches, or trades $G2G, we fund charities that feed the hungry, 
+      clothe the naked, and help those in need.
+    </p>
+    <ul style="display:inline-block; text-align:left; font-size:1.2rem; line-height:2;">
+      <li>✅ Community votes monthly on which charity receives funds</li>
+      <li>✅ 5% Sell Tax: 2% ETH reflections to holders • 2.5% to charity • 0.5% auto burn</li>
+      <li>✅ 100% on-chain transparency — every donation is public</li>
+    </ul>
+  </section>
+
+  <!-- Whitepaper Section -->
+  <section style="background: rgba(0,255,170,0.08); border: 2px solid var(--green);">
+    <h2>📖 Official White Paper (V2)</h2>
+    <p style="font-size:1.5rem; max-width:800px; margin:20px auto;">
+      Full details on tokenomics, charity mechanics, security, and our long-term vision.
+    </p>
+    <a href="https://grind2give.org/whitepaper.html" 
+       class="whitepaper-btn" 
+       target="_blank" 
+       rel="noopener noreferrer">
+      READ THE V2 WHITE PAPER
+    </a>
+  </section>
+
+</main>
+
+<footer style="padding:80px 20px; color:#666; font-size:1.2rem;">
+  Grind hard. Give harder. 💚
+</footer>
 
 </body>
 </html>
