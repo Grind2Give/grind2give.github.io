@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Strike2Give Bowling - Phase 3 Fix 34: Aim Bar Stays Visible After Release + Gutter Ball No Longer Disappears (your new locked baseline)</title>
+    <title>Strike2Give Bowling - Phase 3 Fix 37: TEST ONLY Overlay + Deterministic Pins</title>
     <style>
         body { margin: 0; overflow: hidden; background: #000; }
         #info { position: absolute; top: 10px; left: 10px; color: #fff; background: rgba(0,0,0,0.75); padding: 12px; border-radius: 8px; font-family: Arial; z-index: 100; }
@@ -39,10 +39,36 @@
 
         #debug { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.85); color: #0ff; font-family: monospace; font-size: 14px; padding: 10px; border-radius: 6px; z-index: 300; min-width: 260px; pointer-events: none; }
         #foul { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; font-size: 90px; font-weight: bold; text-shadow: 0 0 25px #000; display: none; z-index: 200; pointer-events: none; font-family: Arial Black, sans-serif; }
+
+        /* TEST ONLY OVERLAY */
+        #testOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 0, 0.15);
+            color: #ff0000;
+            font-family: Arial Black, sans-serif;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            pointer-events: none;
+            text-shadow: 0 0 20px #000;
+            letter-spacing: 4px;
+            user-select: none;
+        }
     </style>
 </head>
 <body>
-    <div id="info">Strike2Give Bowling - Phase 3 Fix 34: Aim Bar Stays Visible After Release + Gutter Ball No Longer Disappears (your new locked baseline)<br>Current Ball: <span id="currentBallName">Basic Hammer</span></div>
+    <!-- TEST ONLY OVERLAY -->
+    <div id="testOverlay">TEST ONLY — NOT LIVE OR BETA</div>
+
+    <div id="info">Strike2Give Bowling - Phase 3 Fix 37: TEST ONLY Overlay + Deterministic Pins<br>Current Ball: <span id="currentBallName">Basic Hammer</span></div>
     <div id="timer">25</div>
 
     <div id="spinMeterContainer">
@@ -63,18 +89,14 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script>
-        console.log("✅ PHASE 3 FIX 34 LOCKED BASELINE – aim bar stays visible after release + gutter ball no longer disappears");
+        console.log("✅ PHASE 3 FIX 37 LOCKED BASELINE – TEST ONLY overlay added");
 
         // ====================== TUNABLE LANE SETTINGS ======================
         const laneWidth = 26;
         const gutterChannelWidth = 7;
         const gutterDepth      = 8;
         const gutterOffset     = 1;
-        // ===================================================================
-
-        // ====================== TUNABLE COLLECTOR SETTINGS ======================
         const COLLECTOR_EXTRA_WIDTH = 15.5;
-        // ========================================================================
 
         let balls = [
             {id:1, name:"Basic Hammer", tier:"basic", primary:"power", power:5, control:3, spin:3, precision:3, bounce:1, color:0x0066ff},
@@ -143,7 +165,7 @@
         foulLine.position.set(0, 0.12, seamZ - 9.5); scene.add(foulLine);
 
         const dotMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
-        const darkPlankIndices = [2, 3.9, 5.8, 9.5, 11.4, 13.3  ];
+        const darkPlankIndices = [2, 3.9, 5.8, 9.5, 11.4, 13.3];
         darkPlankIndices.forEach(i => {
             const leftX = -laneWidth / 2 + i * plankWidth + .35;
             const rightX = -laneWidth / 2 + i * plankWidth - .95;
@@ -207,7 +229,6 @@
         ];
         pinPositions.forEach(pos => createPin(pos[0], pos[1]));
 
-        // VISIBLE PIN ENCLOSURE – now as wide as the gutters and moved back to collector area
         const pinBoxMat = new THREE.MeshLambertMaterial({ color: 0x3C2F2F });
         const fullGutterWidth = laneWidth + 2 * (gutterChannelWidth + gutterOffset + 2);
 
@@ -321,6 +342,10 @@
         const keys = {};
         let fullView = false;
 
+        const FIXED_TIMESTEP = 1 / 60;
+        let accumulator = 0;
+        const PIN_COLLISION_SUBSTEPS = 10;
+
         function onMouseClick(event) {
             if (isRolling || isDragging) return;
             mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -363,9 +388,6 @@
         function launchBall() {
             const pullDistance = Math.max(0, ballMesh.position.z - 23);
             if (pullDistance <= 0) return;
-
-            // AIM BAR STAYS VISIBLE AFTER RELEASE (reverted per your request)
-            // No hide here — other players can now see your spin/aim path
 
             const frontOfBall = ballMesh.position.z - ballRadiusBase;
             if (frontOfBall < foulDetectionZ) {
@@ -430,9 +452,9 @@
                     const dist = Math.sqrt(distSq) || 0.01;
                     const nx = dx / dist;
                     const nz = dz / dist;
-                    const impulse = Math.max(speed * 1.8, 6.0);
-                    const lift = 4.5 + speed * 1.2;
-                    const spinFactor = 5 + speed * 1.1;
+                    const impulse = Math.max(8.5, speed * 1.55);
+                    const lift = 5.0 + speed * 0.85;
+                    const spinFactor = 5.5 + speed * 0.9;
                     pin.velocity.set(nx * impulse * 1.15, lift, nz * impulse * 1.1);
                     pin.angularVelocity.set(nz * spinFactor * 1.3, 0, -nx * spinFactor * 1.3);
                     pin.isStanding = false;
@@ -504,7 +526,7 @@
                         if (pin.velocity.y < 0.35) pin.velocity.y = 0;
                         pin.angularVelocity.multiplyScalar(0.78);
                         
-                        if (Math.abs(pin.velocity.x) < 0.12 && Math.abs(pin.velocity.z) < 0.12) {
+                        if (Math.abs(pin.velocity.x) < 0.08 && Math.abs(pin.velocity.z) < 0.08) {
                             pin.velocity.set(0, 0, 0);
                             pin.angularVelocity.set(0, 0, 0);
                         }
@@ -627,19 +649,73 @@
         function animate() {
             requestAnimationFrame(animate);
             const now = Date.now();
-            const delta = (now - lastTime) / 1000 || 0.016;
+            let delta = (now - lastTime) / 1000 || 0.016;
             lastTime = now;
+            if (delta > 0.1) delta = 0.1;
 
-            if (isDragging) {
-                const frontZ = ballMesh.position.z - ballRadiusBase;
-                const isFoulNow = frontZ < foulDetectionZ;
-                let percent = parseFloat(spinIndicator.style.left) || 50;
-                let normalized = (percent - 50) / 50;
-                let spinPower = Math.pow(Math.abs(normalized), 2.4) * Math.sign(normalized) * 0.92;
-                debugPanel.innerHTML = `Ball Center Z: <b>${ballMesh.position.z.toFixed(2)}</b><br>X Position: <b>${ballMesh.position.x.toFixed(2)}</b><br>Front Z: <b>${frontZ.toFixed(2)}</b><br>Status: <b style="color:${isFoulNow ? '#f00' : '#0f0'}">${isFoulNow ? 'FOUL!' : 'LEGAL'}</b><br><span style="color:#0f0">Spin Value: <b>${spinPower.toFixed(3)}</b></span>`;
-                debugPanel.style.display = 'block';
-            } else {
-                debugPanel.style.display = 'none';
+            accumulator += delta;
+
+            while (accumulator >= FIXED_TIMESTEP) {
+                if (isRolling) {
+                    const speed = ballVelocity.length();
+                    ballMesh.rotation.x -= speed * 0.095;
+                    ballMesh.rotation.z = -ballVelocity.x * 0.75;
+
+                    let hookFactor = 0;
+                    if (ballMesh.position.z < HOOK_START_Z) hookFactor = Math.min(1.0, (HOOK_START_Z - ballMesh.position.z) / 45);
+                    ballVelocity.x += spinAtRelease * FIXED_TIMESTEP * 2.8 * hookFactor;
+
+                    ballVelocity.multiplyScalar(FRICTION_BASE);
+                    ballMesh.position.add(ballVelocity.clone().multiplyScalar(FIXED_TIMESTEP * 24));
+
+                    if (!inGutter && Math.abs(ballMesh.position.x) > 12.5) inGutter = true;
+
+                    if (inGutter) {
+                        const targetGutterX = ballMesh.position.x > 0 ? 15.75 : -15.75;
+                        ballMesh.position.x = ballMesh.position.x * 0.85 + targetGutterX * 0.15;
+                        ballMesh.position.y = Math.max(GUTTER_BALL_Y +3.8, ballMesh.position.y - 0.25);
+                        ballVelocity.z *= 0.9985;
+                        ballVelocity.x *= 0.35;
+                    } else {
+                        ballMesh.position.y = LANE_TOP_Y;
+                    }
+
+                    if (!goingToCollector && (hasHitPins || ballVelocity.length() < MIN_VELOCITY || ballMesh.position.z < (inGutter ? GUTTER_END_Z - 60 : LANE_END_Z + 35))) {
+                        goingToCollector = true;
+                        ballVelocity.z = -Math.abs(ballVelocity.z) * 0.48;
+                    }
+
+                    if (goingToCollector) {
+                        ballVelocity.z *= 1.0;
+                        if (ballMesh.position.z < COLLECTOR_Z - 5) {
+                            ballMesh.position.y = Math.max(-8.8, ballMesh.position.y -2.8);
+                            ballVelocity.set(0, 0, 0);
+                            if (endRollTimeout === null) endRollTimeout = setTimeout(endRoll, 800);
+                        }
+                    }
+
+                    if (ballMesh.position.z < -235 - laneExtension) {
+                        ballMesh.position.y = Math.max(GUTTER_BALL_Y, ballMesh.position.y - 0.35);
+                        if (!inGutter) {
+                            ballVelocity.z *= 0.79;
+                            ballVelocity.x *= 0.62;
+                        } else {
+                            ballVelocity.z *= 0.985;
+                        }
+                    }
+
+                    checkBallPinCollisions();
+                    updatePins(FIXED_TIMESTEP);
+                    for (let i = 0; i < PIN_COLLISION_SUBSTEPS; i++) {
+                        checkPinPinCollisions();
+                    }
+
+                    const endZ = inGutter ? GUTTER_END_Z : LANE_END_Z;
+                    if (!hasHitPins && (ballVelocity.length() < MIN_VELOCITY || ballMesh.position.z < endZ)) {
+                        if (endRollTimeout === null) endRollTimeout = setTimeout(endRoll, 1800);
+                    }
+                }
+                accumulator -= FIXED_TIMESTEP;
             }
 
             if (!isRolling) {
@@ -655,68 +731,6 @@
                 if (keys['ArrowLeft']) aimAngle -= 0.012;
                 if (keys['ArrowRight']) aimAngle += 0.012;
                 aimAngle = Math.max(-0.7, Math.min(0.7, aimAngle));
-            }
-
-            if (isRolling) {
-                const speed = ballVelocity.length();
-                ballMesh.rotation.x -= speed * 0.095;
-                ballMesh.rotation.z = -ballVelocity.x * 0.75;
-
-                let hookFactor = 0;
-                if (ballMesh.position.z < HOOK_START_Z) hookFactor = Math.min(1.0, (HOOK_START_Z - ballMesh.position.z) / 45);
-                ballVelocity.x += spinAtRelease * delta * 2.8 * hookFactor;
-
-                const friction = FRICTION_BASE;
-                ballVelocity.multiplyScalar(friction);
-
-                ballMesh.position.add(ballVelocity.clone().multiplyScalar(delta * 24));
-
-                if (!inGutter && Math.abs(ballMesh.position.x) > 12.5) inGutter = true;
-
-                if (inGutter) {
-                    const targetGutterX = ballMesh.position.x > 0 ? 15.75 : -15.75;
-                    ballMesh.position.x = ballMesh.position.x * 0.85 + targetGutterX * 0.15;
-                    ballMesh.position.y = Math.max(GUTTER_BALL_Y +3.8, ballMesh.position.y - 0.25);
-                    ballVelocity.z *= 0.9985;
-                    ballVelocity.x *= 0.35;
-                } else {
-                    ballMesh.position.y = LANE_TOP_Y;
-                }
-
-                if (!goingToCollector && (hasHitPins || ballVelocity.length() < MIN_VELOCITY || ballMesh.position.z < (inGutter ? GUTTER_END_Z - 60 : LANE_END_Z + 35))) {
-                    goingToCollector = true;
-                    ballVelocity.z = -Math.abs(ballVelocity.z) * 0.48;
-                }
-
-                if (goingToCollector) {
-                    ballVelocity.z *= 1.0;
-                    if (ballMesh.position.z < COLLECTOR_Z - 5) {
-                        ballMesh.position.y = Math.max(-8.8, ballMesh.position.y -2.8);   // FIXED: higher floor so gutter ball stays visible in collector
-                        ballVelocity.set(0, 0, 0);
-                        if (endRollTimeout === null) endRollTimeout = setTimeout(endRoll, 800);
-                    }
-                }
-
-                if (ballMesh.position.z < -235 - laneExtension) {
-                    ballMesh.position.y = Math.max(GUTTER_BALL_Y, ballMesh.position.y - 0.35);
-                    if (!inGutter) {
-                        ballVelocity.z *= 0.79;
-                        ballVelocity.x *= 0.62;
-                    } else {
-                        ballVelocity.z *= 0.985;
-                    }
-                }
-
-                checkBallPinCollisions();
-                updatePins(delta);
-                for (let i = 0; i < 6; i++) {
-                    checkPinPinCollisions();
-                }
-
-                const endZ = inGutter ? GUTTER_END_Z : LANE_END_Z;
-                if (!hasHitPins && (ballVelocity.length() < MIN_VELOCITY || ballMesh.position.z < endZ)) {
-                    if (endRollTimeout === null) endRollTimeout = setTimeout(endRoll, 1800);
-                }
             }
 
             if (isRolling && ballMesh.position.z < PIN_AREA_Z) {
