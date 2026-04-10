@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Strike2Give Bowling - Phase 3 Fix 37: TEST ONLY Overlay + Deterministic Pins</title>
+    <title>Strike2Give Bowling - Phase 3 Fix 41: Pin Knockdown Detection + Result Feedback</title>
     <style>
         body { margin: 0; overflow: hidden; background: #000; }
         #info { position: absolute; top: 10px; left: 10px; color: #fff; background: rgba(0,0,0,0.75); padding: 12px; border-radius: 8px; font-family: Arial; z-index: 100; }
@@ -62,13 +62,33 @@
             letter-spacing: 4px;
             user-select: none;
         }
+
+        /* NEW: Pin Result Feedback */
+        #pinResult {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00ff88;
+            font-family: Arial Black, sans-serif;
+            font-size: 72px;
+            font-weight: bold;
+            text-shadow: 0 0 25px #000, 0 0 40px #00ff88;
+            display: none;
+            z-index: 250;
+            pointer-events: none;
+            white-space: nowrap;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
     </style>
 </head>
 <body>
     <!-- TEST ONLY OVERLAY -->
     <div id="testOverlay">TEST ONLY — NOT LIVE OR BETA</div>
 
-    <div id="info">Strike2Give Bowling - Phase 3 Fix 37: TEST ONLY Overlay + Deterministic Pins<br>Current Ball: <span id="currentBallName">Basic Hammer</span></div>
+    <div id="info">Strike2Give Bowling - Phase 3 Fix 41: Pin Knockdown Detection + Result Feedback<br>Current Ball: <span id="currentBallName">Basic Hammer</span></div>
     <div id="timer">25</div>
 
     <div id="spinMeterContainer">
@@ -86,16 +106,17 @@
 
     <div id="debug"></div>
     <div id="foul">FOUL!</div>
+    <!-- NEW: Pin Result -->
+    <div id="pinResult"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script>
-        console.log("✅ PHASE 3 FIX 37 LOCKED BASELINE – TEST ONLY overlay added");
+        console.log("✅ PHASE 3 FIX 41 – Pin Knockdown Detection + Result Feedback");
 
-        // ====================== TUNABLE LANE SETTINGS ======================
         const laneWidth = 26;
         const gutterChannelWidth = 7;
-        const gutterDepth      = 8;
-        const gutterOffset     = 1;
+        const gutterDepth = 8;
+        const gutterOffset = 1;
         const COLLECTOR_EXTRA_WIDTH = 15.5;
 
         let balls = [
@@ -133,7 +154,6 @@
         const ballRadiusBase = 1.58;
         const LANE_TOP_Y = 0.5;
 
-        // Lane planks
         const lighterWood = 0x8B5A2B;
         const darkerWood = 0x6B3E2A;
         const numPlanks = 15;
@@ -195,13 +215,13 @@
             scene.add(arrow);
         }
         const darkCenters = [1.75, 3.5, 5.5, 7.25, 9.15, 11, 12.9].map(i => -laneWidth / 2 + (i + .25) * plankWidth);
-        createArrow(darkCenters[3], -77);
-        createArrow(darkCenters[2], -68);
-        createArrow(darkCenters[4], -68);
-        createArrow(darkCenters[1], -59);
-        createArrow(darkCenters[5], -59);
-        createArrow(darkCenters[0], -50);
-        createArrow(darkCenters[6], -50);
+        createArrow(darkCenters[3], -110);
+        createArrow(darkCenters[2], -100);
+        createArrow(darkCenters[4], -100);
+        createArrow(darkCenters[1], -90);
+        createArrow(darkCenters[5], -90);
+        createArrow(darkCenters[0], -80);
+        createArrow(darkCenters[6], -80);
 
         let pins = [];
         function createPin(x, z) {
@@ -319,6 +339,7 @@
         const MAX_ROLL_TIME = 25;
         const timerElement = document.getElementById('timer');
         const foulElement = document.getElementById('foul');
+        const pinResultElement = document.getElementById('pinResult'); // NEW
         const debugPanel = document.getElementById('debug');
         const FRICTION_BASE = 0.99999;
         const MIN_VELOCITY = 0.005;
@@ -372,9 +393,18 @@
         });
         dom.addEventListener('mouseup', () => { if (isDragging) { isDragging = false; launchBall(); } });
 
-        dom.addEventListener('touchstart', e => { if (isRolling || !e.touches.length) return; isDragging = true; const t = e.touches[0]; dragStartMouse.set(t.clientX, t.clientY); dragStartBallPos.copy(ballMesh.position); });
+        dom.addEventListener('touchstart', e => { 
+            if (isRolling || !e.touches.length) return; 
+            e.preventDefault();
+            isDragging = true; 
+            const t = e.touches[0]; 
+            dragStartMouse.set(t.clientX, t.clientY); 
+            dragStartBallPos.copy(ballMesh.position); 
+        });
+
         dom.addEventListener('touchmove', e => {
             if (!isDragging) return;
+            e.preventDefault();
             const t = e.touches[0];
             const deltaX = (t.clientX - dragStartMouse.x) * 0.14;
             const deltaZ = (t.clientY - dragStartMouse.y) * 0.085;
@@ -397,7 +427,7 @@
                 spinAtRelease = 0;
             } else {
                 const power = 3.4 + pullDistance * 0.1;
-                const baseVx = ballMesh.position.x * 0.008 + Math.sin(aimAngle) * 3.8;
+                const baseVx = ballMesh.position.x * 0.0085 + Math.sin(aimAngle) * 3.8;
                 let percent = parseFloat(spinIndicator.style.left) || 50;
                 let normalized = (percent - 50) / 50;
                 let spinPower = Math.pow(Math.abs(normalized), 2.4);
@@ -437,6 +467,30 @@
             });
         }
 
+        // NEW: Count how many pins are still standing
+        function countStandingPins() {
+            return pins.filter(pin => pin.isStanding).length;
+        }
+
+        // NEW: Show big feedback text after a roll
+        function showPinResult(standing) {
+            const knocked = 10 - standing;
+            const resultEl = pinResultElement;
+            let text = `${knocked} PINS`;
+            if (knocked === 10) text = "STRIKE!";
+            else if (knocked === 0) text = "GUTTER";
+
+            resultEl.textContent = text;
+            resultEl.style.display = 'block';
+            resultEl.style.opacity = '1';
+
+            // Auto-hide after 2 seconds
+            setTimeout(() => {
+                resultEl.style.opacity = '0';
+                setTimeout(() => { resultEl.style.display = 'none'; }, 600);
+            }, 2000);
+        }
+
         function checkBallPinCollisions() {
             if (!isRolling || ballVelocity.length() < 0.3 || ballMesh.position.z > PIN_DECK_Z) return;
             const bPos = ballMesh.position;
@@ -452,13 +506,20 @@
                     const dist = Math.sqrt(distSq) || 0.01;
                     const nx = dx / dist;
                     const nz = dz / dist;
+
+                    const overlap = (ballRadiusBase + pin.radius) - dist + 0.1;
+                    pin.group.position.x += nx * overlap * 0.6;
+                    pin.group.position.z += nz * overlap * 0.6;
+
                     const impulse = Math.max(8.5, speed * 1.55);
                     const lift = 5.0 + speed * 0.85;
                     const spinFactor = 5.5 + speed * 0.9;
                     pin.velocity.set(nx * impulse * 1.15, lift, nz * impulse * 1.1);
                     pin.angularVelocity.set(nz * spinFactor * 1.3, 0, -nx * spinFactor * 1.3);
                     pin.isStanding = false;
-                    ballVelocity.multiplyScalar(0.92);
+
+                    ballVelocity.multiplyScalar(0.65);
+
                     if (!hasHitPins) {
                         hasHitPins = true;
                         if (endRollTimeout) clearTimeout(endRollTimeout);
@@ -549,6 +610,11 @@
             spinAtRelease = 0;
             aimAngle = 0;
             hasHitPins = false;
+
+            // NEW: Show pin knockdown result BEFORE resetting pins
+            const standing = countStandingPins();
+            showPinResult(standing);
+
             ballMesh.position.set(0, LANE_TOP_Y, 23);
             if (mainAimBar) mainAimBar.visible = true;
             highlights.forEach(h => { if (h) h.visible = true; });
@@ -605,43 +671,36 @@
 
             const pullDistance = Math.max(0, ballMesh.position.z - 23);
             const power = 3.4 + pullDistance * 0.1;
-            const baseVx = ballMesh.position.x * 0.008 + Math.sin(aimAngle) * 3.8;
+            const baseVx = ballMesh.position.x * 0.0085 + Math.sin(aimAngle) * 3.8;
             const baseVz = -power;
 
+            const projectionDistance = 195;
+            const steps = 65;
+
             const points = [];
-            const steps = 40;
-            const distanceMultiplier = 35.5;
+            const dirScale = projectionDistance / Math.abs(baseVz);
+
             for (let i = 0; i < steps; i++) {
                 const t = i / (steps - 1);
-                const x = ballMesh.position.x + t * baseVx * distanceMultiplier;
-                const z = ballMesh.position.z + t * baseVz * distanceMultiplier;
-                points.push(new THREE.Vector3(x, ballMesh.position.y, z));
+                const x = ballMesh.position.x + t * baseVx * dirScale;
+                const z = ballMesh.position.z + t * baseVz * dirScale;
+                points.push(new THREE.Vector3(x, ballMesh.position.y + 0.02, z));
             }
 
             if (mainAimBar) scene.remove(mainAimBar);
             const curve = new THREE.CatmullRomCurve3(points);
-            const tubeGeo = new THREE.TubeGeometry(curve, 8, 1., 8, false);
+            const tubeGeo = new THREE.TubeGeometry(curve, 12, 0.85, 8, false);
             mainAimBar = new THREE.Mesh(tubeGeo, aimBarMaterial);
             scene.add(mainAimBar);
-
-            const numHighlights = 10;
-            if (highlights.length === 0) {
-                for (let k = 0; k < numHighlights; k++) {
-                    const highlight = new THREE.Mesh(new THREE.ConeGeometry(0.25, 0.95, 4), new THREE.MeshBasicMaterial({ color: 0x39FF14, transparent: true, opacity: 0.35 }));
-                    highlight.rotation.x = Math.PI / 2;
-                    scene.add(highlight);
-                    highlights.push(highlight);
-                }
-            }
 
             const baseSpeed = 1.6;
             for (let k = 0; k < highlights.length; k++) {
                 const offset = k * 0.16;
                 const headT = ((lightProgress + offset) % baseSpeed) / baseSpeed;
-                const highlightX = ballMesh.position.x + headT * baseVx * distanceMultiplier * 0.95;
-                const highlightZ = ballMesh.position.z + headT * baseVz * distanceMultiplier * 0.95;
-                highlights[k].position.set(highlightX, ballMesh.position.y + 0.05, highlightZ);
-                highlights[k].scale.setScalar(1.4);
+                const highlightX = ballMesh.position.x + headT * baseVx * dirScale * 0.98;
+                const highlightZ = ballMesh.position.z + headT * baseVz * dirScale * 0.98;
+                highlights[k].position.set(highlightX, ballMesh.position.y + 0.08, highlightZ);
+                highlights[k].scale.setScalar(1.35);
             }
             lightProgress += 0.009;
         }
