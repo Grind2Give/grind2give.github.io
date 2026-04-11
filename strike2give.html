@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Strike2Give Bowling - Phase 3 Fix 114</title>
+    <title>Strike2Give Bowling - Phase 3 Fix 115</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/sprite-graffiti');
         body { 
@@ -12,7 +12,6 @@
         }
         #info { position: absolute; top: 10px; left: 10px; color: #fff; background: rgba(0,0,0,0.75); padding: 12px; border-radius: 8px; font-family: Arial; z-index: 100; }
 
-        /* === SCOREBOARD AT TOP CENTERED + YELLOW FONT === */
         #scorePanel {
             position: absolute; 
             top: 20px; 
@@ -47,7 +46,6 @@
         }
         #timer.pulse { animation: pulse 0.6s infinite; font-size: 52px; }
 
-        /* === TEST BANNER RIGHT UNDER SCOREBOARD === */
         #testBanner {
             position: absolute; 
             top: 115px; 
@@ -67,20 +65,38 @@
             border: 2px solid #ff6666;
         }
 
-        #spinMeterContainer { 
-            position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); 
-            width: 380px; height: 26px; background: #222; border: 3px solid #fff; 
-            border-radius: 13px; z-index: 100; overflow: hidden; box-shadow: 0 0 12px rgba(255,255,255,0.3); 
+        #hookMeter {
+            position: absolute; 
+            bottom: 80px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            width: 380px; 
+            height: 30px; 
+            background: #222; 
+            border: 3px solid #fff; 
+            border-radius: 15px; 
+            z-index: 200; 
+            overflow: hidden; 
+            display: none;
         }
-        #spinMeter { position: relative; width: 100%; height: 100%; background: linear-gradient(to right, #ff2222, #ff5555, #3399ff, #66aaff, #44ff88, #66aaff, #3399ff, #ff5555, #ff2222); }
-        #spinIndicator { 
-            position: absolute; top: 50%; transform: translate(-50%, -50%); 
-            width: 22px; height: 22px; background: #ffffff; border: 3px solid #00ccff; 
-            border-radius: 50%; box-shadow: 0 0 15px #00ccff; 
+        #hookBar {
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%);
+            width: 100%; 
+            height: 100%; 
+            background: linear-gradient(to right, #ff2222, #ff5555, #ff2222);
         }
-        .tick { position: absolute; top: 0; bottom: 0; width: 3px; background: rgba(255,255,255,0.85); box-shadow: 0 0 6px rgba(255,255,255,0.6); }
-        #tickHighLeft { left: 11%; } #tickMediumLeft { left: 24%; } #tickLittleLeft { left: 37%; } #tickCenter { left: 50%; }
-        #tickLittleRight { left: 63%; } #tickMediumRight { left: 76%; } #tickHighRight { left: 89%; }
+        #hookIndicator {
+            position: absolute; 
+            top: 50%; 
+            transform: translate(-50%, -50%);
+            width: 24px; height: 24px; 
+            background: #ffffff; 
+            border: 3px solid #ff0000; 
+            border-radius: 50%; 
+            box-shadow: 0 0 15px #ff0000;
+        }
 
         #remainingPins {
             position: absolute; top: 225px; left: 50%; transform: translateX(-50%);
@@ -108,7 +124,6 @@
             text-align: center; 
             letter-spacing: 4px;
         }
-        #playAgain:hover { transform: translateX(-50%) scale(1.08); box-shadow: 0 0 80px #ffcc00; }
 
         #pinResult, #timeUp {
             position: absolute; 
@@ -143,7 +158,7 @@
 </head>
 <body>
 
-<div id="info">Strike2Give Bowling - Phase 3 Fix 114<br>Current Ball: <span id="currentBallName">Basic Hammer</span></div>
+<div id="info">Strike2Give Bowling - Phase 3 Fix 115<br>Current Ball: <span id="currentBallName">Basic Hammer</span></div>
 
 <div id="scorePanel">
     <div id="scoreboard">
@@ -155,24 +170,15 @@
     <div id="timer">25</div>
 </div>
 
-<!-- TEST BANNER RIGHT UNDER SCOREBOARD -->
 <div id="testBanner">TEST ONLY - NOT LIVE NOT BETA</div>
+
+<div id="hookMeter">
+    <div id="hookBar"></div>
+    <div id="hookIndicator"></div>
+</div>
 
 <div id="remainingPins">
     <svg id="pinDiagram" viewBox="0 0 220 195" xmlns="http://www.w3.org/2000/svg"></svg>
-</div>
-
-<div id="spinMeterContainer">
-    <div id="spinMeter">
-        <div class="tick" id="tickHighLeft"></div>
-        <div class="tick" id="tickMediumLeft"></div>
-        <div class="tick" id="tickLittleLeft"></div>
-        <div class="tick" id="tickCenter"></div>
-        <div class="tick" id="tickLittleRight"></div>
-        <div class="tick" id="tickMediumRight"></div>
-        <div class="tick" id="tickHighRight"></div>
-        <div id="spinIndicator"></div>
-    </div>
 </div>
 
 <div id="foul">FOUL!</div>
@@ -182,7 +188,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script>
-console.log("✅ PHASE 3 FIX 114 – FULL COMPLETE CODE | 'TEST ONLY - NOT LIVE NOT BETA' added right under scoreboard");
+console.log("✅ PHASE 3 FIX 115 – FULL COMPLETE CODE | Phaser-style swipe controls + oscillating hook meter added");
 
 const laneWidth = 26;
 const gutterChannelWidth = 7;
@@ -278,45 +284,6 @@ pinPositions.forEach(pos => {
     scene.add(dot);
 });
 
-const dotMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
-const darkPlankIndices = [2, 3.9, 5.8, 9.5, 11.4, 13.3];
-darkPlankIndices.forEach(i => {
-    const leftX = -laneWidth / 2 + i * plankWidth + .35;
-    const rightX = -laneWidth / 2 + i * plankWidth - .95;
-    const leftDot = new THREE.Mesh(new THREE.CircleGeometry(0.32, 12), dotMat);
-    leftDot.rotation.x = -Math.PI / 2; leftDot.position.set(leftX, 0.3, 12); scene.add(leftDot);
-    const rightDot = new THREE.Mesh(new THREE.CircleGeometry(0.32, 12), dotMat);
-    rightDot.rotation.x = -Math.PI / 2; rightDot.position.set(rightX, 0.3, 12); scene.add(rightDot);
-});
-
-const approachPlankIndices = [1.85,3.80,5.75,7.7,9.65,11.55,13.3];
-const approachDotZ = seamZ + 4;
-approachPlankIndices.forEach(i => {
-    const centerX = -laneWidth / 2. + (i-.1) * plankWidth;
-    const radius = (i === 10) ? 0.50 : 0.32;
-    const dot = new THREE.Mesh(new THREE.CircleGeometry(radius, 25), dotMat);
-    dot.rotation.x = -Math.PI / 2;
-    dot.position.set(centerX, 0.1, approachDotZ); scene.add(dot);
-});
-
-const arrowMat = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide });
-function createArrow(x, z) {
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array([0,0,0, -1.35,-3.2,0, 1.35,-3.2,0]), 3));
-    const arrow = new THREE.Mesh(geo, arrowMat);
-    arrow.position.set(x, 0.48, z);
-    arrow.rotation.x = -Math.PI / 2;
-    scene.add(arrow);
-}
-const darkCenters = [1.75, 3.5, 5.5, 7.25, 9.15, 11, 12.9].map(i => -laneWidth / 2 + (i + .25) * plankWidth);
-createArrow(darkCenters[3], -110);
-createArrow(darkCenters[2], -100);
-createArrow(darkCenters[4], -100);
-createArrow(darkCenters[1], -90);
-createArrow(darkCenters[5], -90);
-createArrow(darkCenters[0], -80);
-createArrow(darkCenters[6], -80);
-
 let pins = [];
 function createPin(x, z) {
     const h = PIN_HEIGHT_SCALE;
@@ -378,9 +345,6 @@ let aimAngle = 0;
 let isRolling = false;
 let inGutter = false;
 let goingToCollector = false;
-let isDragging = false;
-let dragStartMouse = new THREE.Vector2();
-let dragStartBallPos = new THREE.Vector3();
 let currentTimer = 25;
 let timerInterval = null;
 let endRollTimeout = null;
@@ -399,30 +363,17 @@ const GUTTER_END_Z = -275 - laneExtension;
 const HOOK_START_Z = -115;
 const GUTTER_BALL_Y = -4.5;
 
-let spinPhase = 0;
-const spinIndicator = document.getElementById('spinIndicator');
-const aimBarMaterial = new THREE.MeshBasicMaterial({ color: 0xffcc00, transparent: true, opacity: 0.3, depthWrite: false });
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
-const dom = renderer.domElement;
-const keys = {};
-let fullView = false;
-const FIXED_TIMESTEP = 1 / 60;
-let accumulator = 0;
-const PIN_COLLISION_SUBSTEPS = 4;
+let isHolding = false;
+let pullStartY = 0;
+let power = 0;
+let hookTime = 0;
+let currentHook = 0;
+const hookSpeed = 0.0035;
 
-let mainAimBar;
-let highlights = [];
+const hookMeter = document.getElementById('hookMeter');
+const hookIndicator = document.getElementById('hookIndicator');
+
 let ballMesh;
-
-function createAimHighlights() {
-    highlights = [];
-    for (let i = 0; i < 6; i++) {
-        const h = new THREE.Mesh(new THREE.SphereGeometry(0.65, 16, 16), new THREE.MeshBasicMaterial({ color: 0xffcc00 }));
-        scene.add(h);
-        highlights.push(h);
-    }
-}
 
 function createBallMesh() {
     if (ballMesh) scene.remove(ballMesh);
@@ -450,7 +401,6 @@ function createPreviewBalls() {
 function updateRemainingPinsVisual(message = "") {
     const container = document.getElementById('remainingPins');
     const svg = document.getElementById('pinDiagram');
-    
     svg.innerHTML = `<g>
         <circle cx="40" cy="20" r="13" fill="#ffcc00" stroke="#fff" stroke-width="4"/>
         <circle cx="80" cy="20" r="13" fill="#ffcc00" stroke="#fff" stroke-width="4"/>
@@ -468,15 +418,11 @@ function updateRemainingPinsVisual(message = "") {
     const standing = pins.map(p => p.isStanding);
     const circles = svg.querySelectorAll('circle');
     const order = [6,7,8,9,3,4,5,1,2,0];
-
     for (let i = 0; i < 10; i++) {
         if (!standing[i]) circles[order[i]].setAttribute('fill', '#555555');
     }
     container.style.display = 'block';
-
-    setTimeout(() => {
-        hideRemainingPinsVisual();
-    }, 3000);
+    setTimeout(() => { hideRemainingPinsVisual(); }, 3000);
 }
 
 function hideRemainingPinsVisual() {
@@ -510,7 +456,6 @@ function getCurrentScore() {
 
 function updateScoreboard() {
     document.getElementById('totalScore').textContent = getCurrentScore();
-
     let runningTotal = 0;
     for (let f = 1; f <= 3; f++) {
         const rollsDiv = document.getElementById('frame' + f);
@@ -527,11 +472,7 @@ function updateScoreboard() {
         rollsDiv.innerHTML = html;
 
         let frameTotal = '';
-        const isComplete = (f < currentFrame) || 
-                          (rollsInCurrentFrame === 2) || 
-                          (frameData[0] === 10 && rollsInCurrentFrame === 1) ||
-                          (f === 3 && frameData.length > 0);
-
+        const isComplete = (f < currentFrame) || (rollsInCurrentFrame === 2) || (frameData[0] === 10 && rollsInCurrentFrame === 1) || (f === 3 && frameData.length > 0);
         if (isComplete) {
             let frameScore = 0;
             if (frameData.length > 0) {
@@ -591,11 +532,7 @@ function showTimeUp() {
 
 function startNewRoll() {
     updateScoreboard();
-
-    if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-    }
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
 
     ballMesh.position.set(0, LANE_TOP_Y, 23);
     ballVelocity.set(0,0,0);
@@ -609,9 +546,6 @@ function startNewRoll() {
     timerHasStarted = false;
     pinsStandingAtStartOfRoll = countStandingPins();
 
-    if (mainAimBar) mainAimBar.visible = true;
-    highlights.forEach(h => { if (h) h.visible = true; });
-
     timerElement.style.display = 'block';
     timerElement.textContent = "READY";
     timerElement.style.color = '#ffcc00';
@@ -623,10 +557,7 @@ function startNewRoll() {
 }
 
 function startNewTurnTimer() {
-    if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-    }
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
     currentTimer = MAX_ROLL_TIME;
     timerElement.style.display = 'block';
     timerElement.textContent = currentTimer;
@@ -638,12 +569,10 @@ function startNewTurnTimer() {
     timerInterval = setInterval(() => {
         if (currentTimer > 0) currentTimer--;
         timerElement.textContent = currentTimer;
-
         if (currentTimer > 15) timerElement.style.color = '#ffcc00';
         else if (currentTimer > 10) timerElement.style.color = '#ffff00';
         else if (currentTimer > 5) timerElement.style.color = '#ffcc00';
         else timerElement.style.color = '#ff8800';
-
         if (currentTimer <= 5) timerElement.classList.add('pulse');
         else timerElement.classList.remove('pulse');
 
@@ -739,36 +668,25 @@ function endCurrentRoll() {
 }
 
 function endTurnAfterTimeUp() {
-    if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-    }
-
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
     isRolling = false;
     ballVelocity.set(0,0,0);
     spinAtRelease = 0;
     aimAngle = 0;
     hasHitPins = false;
     ballMesh.position.set(0, LANE_TOP_Y, 23);
-    if (mainAimBar) mainAimBar.visible = true;
-    highlights.forEach(h => { if (h) h.visible = true; });
-
     const knockedThisRoll = 0;
     allRolls.push(knockedThisRoll);
     frameRolls[currentFrame-1].push(knockedThisRoll);
     rollsInCurrentFrame++;
-
-    const indicatorMessage = gutterMessage;
     showTimeUp();
     updateScoreboard();
-
     if (rollsInCurrentFrame === 1 && knockedThisRoll < 10) {
         clearFallenPins();
-        updateRemainingPinsVisual(indicatorMessage);
+        updateRemainingPinsVisual(gutterMessage);
     } else {
         hideRemainingPinsVisual();
     }
-
     if (isFrameComplete(knockedThisRoll)) {
         advanceToNextFrame();
     } else {
@@ -809,23 +727,20 @@ function launchBall() {
         timerInterval = null;
     }
 
-    const pullDistance = Math.max(0, ballMesh.position.z - 23);
-    if (pullDistance <= 0) return;
-    const frontOfBall = ballMesh.position.z - ballRadiusBase;
-    if (frontOfBall < foulDetectionZ) {
-        foulElement.style.display = 'block';
-        setTimeout(() => { foulElement.style.display = 'none'; }, 1800);
-        ballVelocity.set(ballMesh.position.x * 0.003, 0, -3.5);
-        spinAtRelease = 0;
+    const swipeUpDist = pullStartY - (ballMesh.position.z * -1 + 300);
+    if (swipeUpDist > 45 && power > 80) {
+        const swingPos = Math.sin(hookTime);
+        const hook = swingPos * 1.4;
+        const vx = hook * 220;
+        const vy = -power;
+        ballVelocity.set(vx, 0, vy);
+        spinAtRelease = hook * 12;
+        currentHook = hook * 110;
     } else {
-        const power = 3.4 + pullDistance * 0.1;
-        const baseVx = ballMesh.position.x * 0.0085 + Math.sin(aimAngle) * 3.8;
-        let percent = parseFloat(spinIndicator.style.left) || 50;
-        let normalized = (percent - 50) / 50;
-        let spinPower = Math.pow(Math.abs(normalized), 2.4);
-        spinAtRelease = Math.sign(normalized) * spinPower * 0.92;
-        ballVelocity.set(baseVx, 0, -power);
+        resetBallAndTimer();
+        return;
     }
+
     isRolling = true;
     inGutter = false;
     goingToCollector = false;
@@ -933,15 +848,19 @@ function updatePins(delta) {
     }
 }
 
-function updateSpinTicker() {
-    const tickerSpeed = 1.8 * (11 - currentBall.control) / 5;
-    spinPhase += tickerSpeed * 0.016;
-    const percent = (Math.sin(spinPhase) + 1) * 50;
-    spinIndicator.style.left = percent + '%';
-}
-
 let lastTime = Date.now();
 let lightProgress = 0;
+let mainAimBar;
+let highlights = [];
+
+function createAimHighlights() {
+    highlights = [];
+    for (let i = 0; i < 6; i++) {
+        const h = new THREE.Mesh(new THREE.SphereGeometry(0.65, 16, 16), new THREE.MeshBasicMaterial({ color: 0xffcc00 }));
+        scene.add(h);
+        highlights.push(h);
+    }
+}
 
 function updateAimLine() {
     if (mainAimBar) mainAimBar.visible = true;
@@ -964,7 +883,7 @@ function updateAimLine() {
     if (mainAimBar) scene.remove(mainAimBar);
     const curve = new THREE.CatmullRomCurve3(points);
     const tubeGeo = new THREE.TubeGeometry(curve, 12, 0.85, 8, false);
-    mainAimBar = new THREE.Mesh(tubeGeo, aimBarMaterial);
+    mainAimBar = new THREE.Mesh(tubeGeo, new THREE.MeshBasicMaterial({ color: 0xffcc00, transparent: true, opacity: 0.3, depthWrite: false }));
     scene.add(mainAimBar);
     const baseSpeed = 1.6;
     for (let k = 0; k < highlights.length; k++) {
@@ -985,63 +904,61 @@ function animate() {
     let delta = (now - lastTime) / 1000 || 0.016;
     lastTime = now;
     if (delta > 0.1) delta = 0.1;
-    accumulator += delta;
-    while (accumulator >= FIXED_TIMESTEP) {
-        if (gameOver) { accumulator -= FIXED_TIMESTEP; continue; }
-        if (isRolling) {
-            const speed = ballVelocity.length();
-            ballMesh.rotation.x -= speed * 0.095;
-            ballMesh.rotation.z = -ballVelocity.x * 0.75;
-            let hookFactor = 0;
-            if (ballMesh.position.z < HOOK_START_Z) hookFactor = Math.min(1.0, (HOOK_START_Z - ballMesh.position.z) / 45);
-            ballVelocity.x += spinAtRelease * FIXED_TIMESTEP * 2.8 * hookFactor;
-            ballVelocity.multiplyScalar(FRICTION_BASE);
-            ballMesh.position.add(ballVelocity.clone().multiplyScalar(FIXED_TIMESTEP * 24));
-            if (!inGutter && Math.abs(ballMesh.position.x) > 12.5) inGutter = true;
-            if (inGutter) {
-                const targetGutterX = ballMesh.position.x > 0 ? 15.75 : -15.75;
-                ballMesh.position.x = ballMesh.position.x * 0.85 + targetGutterX * 0.15;
-                ballMesh.position.y = Math.max(GUTTER_BALL_Y +3.8, ballMesh.position.y - 0.25);
-                ballVelocity.z *= 0.9985;
-                ballVelocity.x *= 0.15;
-            } else {
-                ballMesh.position.y = LANE_TOP_Y;
-            }
-            if (!goingToCollector && (hasHitPins || ballVelocity.length() < MIN_VELOCITY || ballMesh.position.z < (inGutter ? GUTTER_END_Z - 60 : LANE_END_Z + 35))) {
-                goingToCollector = true;
-                ballVelocity.z = -Math.abs(ballVelocity.z) * 0.48;
-            }
-            if (goingToCollector) {
-                ballVelocity.z *= 1.0;
-                if (ballMesh.position.z < COLLECTOR_Z - 5) {
-                    ballMesh.position.y = Math.max(-8.8, ballMesh.position.y -2.8);
-                    ballVelocity.set(0, 0, 0);
-                    if (endRollTimeout === null) endRollTimeout = setTimeout(endCurrentRoll, 800);
-                }
-            }
-            if (ballMesh.position.z < -235 - laneExtension) {
-                ballMesh.position.y = Math.max(GUTTER_BALL_Y, ballMesh.position.y - 0.35);
-                if (!inGutter) { ballVelocity.z *= 0.79; ballVelocity.x *= 0.62; } else { ballVelocity.z *= 0.985; }
-            }
-            checkBallPinCollisions();
-            updatePins(FIXED_TIMESTEP);
-            for (let i = 0; i < PIN_COLLISION_SUBSTEPS; i++) checkPinPinCollisions();
-            const endZ = inGutter ? GUTTER_END_Z : LANE_END_Z;
-            if (!hasHitPins && (ballVelocity.length() < MIN_VELOCITY || ballMesh.position.z < endZ)) {
-                if (endRollTimeout === null) endRollTimeout = setTimeout(endCurrentRoll, 1800);
-            }
-        }
-        accumulator -= FIXED_TIMESTEP;
+
+    if (isHolding) {
+        hookTime += hookSpeed * delta * 60;
+        const offset = Math.sin(hookTime) * 170;
+        hookIndicator.style.left = (50 + offset / 1.7) + '%';
     }
 
-    if (!isRolling && !gameOver) {
-        updateSpinTicker();
+    if (isRolling) {
+        const speed = ballVelocity.length();
+        ballMesh.rotation.x -= speed * 0.095;
+        ballMesh.rotation.z = -ballVelocity.x * 0.75;
+        let hookFactor = 0;
+        if (ballMesh.position.z < HOOK_START_Z) hookFactor = Math.min(1.0, (HOOK_START_Z - ballMesh.position.z) / 45);
+        ballVelocity.x += spinAtRelease * delta * 2.8 * hookFactor;
+        ballVelocity.multiplyScalar(FRICTION_BASE);
+        ballMesh.position.add(ballVelocity.clone().multiplyScalar(delta * 24));
+        if (!inGutter && Math.abs(ballMesh.position.x) > 12.5) inGutter = true;
+        if (inGutter) {
+            const targetGutterX = ballMesh.position.x > 0 ? 15.75 : -15.75;
+            ballMesh.position.x = ballMesh.position.x * 0.85 + targetGutterX * 0.15;
+            ballMesh.position.y = Math.max(GUTTER_BALL_Y +3.8, ballMesh.position.y - 0.25);
+            ballVelocity.z *= 0.9985;
+            ballVelocity.x *= 0.15;
+        } else {
+            ballMesh.position.y = LANE_TOP_Y;
+        }
+        if (!goingToCollector && (hasHitPins || ballVelocity.length() < MIN_VELOCITY || ballMesh.position.z < (inGutter ? GUTTER_END_Z - 60 : LANE_END_Z + 35))) {
+            goingToCollector = true;
+            ballVelocity.z = -Math.abs(ballVelocity.z) * 0.48;
+        }
+        if (goingToCollector) {
+            ballVelocity.z *= 1.0;
+            if (ballMesh.position.z < COLLECTOR_Z - 5) {
+                ballMesh.position.y = Math.max(-8.8, ballMesh.position.y -2.8);
+                ballVelocity.set(0, 0, 0);
+                if (endRollTimeout === null) endRollTimeout = setTimeout(endCurrentRoll, 800);
+            }
+        }
+        if (ballMesh.position.z < -235 - laneExtension) {
+            ballMesh.position.y = Math.max(GUTTER_BALL_Y, ballMesh.position.y - 0.35);
+            if (!inGutter) { ballVelocity.z *= 0.79; ballVelocity.x *= 0.62; } else { ballVelocity.z *= 0.985; }
+        }
+        checkBallPinCollisions();
+        updatePins(delta);
+        for (let i = 0; i < 4; i++) checkPinPinCollisions();
+        const endZ = inGutter ? GUTTER_END_Z : LANE_END_Z;
+        if (!hasHitPins && (ballVelocity.length() < MIN_VELOCITY || ballMesh.position.z < endZ)) {
+            if (endRollTimeout === null) endRollTimeout = setTimeout(endCurrentRoll, 1800);
+        }
+    }
+
+    if (!isRolling && !gameOver && !isHolding) {
         updateAimLine();
         if (!fullView) { camera.position.set(0, 26, 85); camera.lookAt(0, 14, 20); }
         else { camera.position.set(0, 140, 220); camera.lookAt(0, 0, -80); }
-        if (keys['ArrowLeft']) aimAngle -= 0.012;
-        if (keys['ArrowRight']) aimAngle += 0.012;
-        aimAngle = Math.max(-0.7, Math.min(0.7, aimAngle));
     }
 
     if (isRolling && ballMesh.position.z < -140) {
@@ -1049,7 +966,6 @@ function animate() {
         camera.position.y = 12;
         camera.position.z = camera.position.z * 0.88 + (-152 - laneExtension / 2) * 0.12;
         camera.lookAt(0, 2, -205 - laneExtension);
-        if (ballMesh.position.y > 1.2) ballMesh.position.y = 1.2;
     } else if (isRolling) {
         const targetCameraZ = ballMesh.position.z + 62;
         camera.position.z = camera.position.z * 0.82 + targetCameraZ * 0.18;
@@ -1061,43 +977,73 @@ function animate() {
     renderer.render(scene, camera);
 }
 
-dom.addEventListener('mousedown', e => { 
-    if (isRolling || gameOver || !timerHasStarted) return; 
-    isDragging = true; 
-    dragStartMouse.set(e.clientX, e.clientY); 
-    dragStartBallPos.copy(ballMesh.position); 
-});
-dom.addEventListener('mousemove', e => { 
-    if (!isDragging) return; 
-    const deltaX = (e.clientX - dragStartMouse.x) * 0.14; 
-    const deltaZ = (e.clientY - dragStartMouse.y) * 0.085; 
-    ballMesh.position.x = dragStartBallPos.x + deltaX; 
-    ballMesh.position.z = dragStartBallPos.z + deltaZ; 
-    ballMesh.position.x = Math.max(-11.5, Math.min(11.5, ballMesh.position.x)); 
-    ballMesh.position.z = Math.max(MIN_PULL_Z, Math.min(MAX_PULL_Z, ballMesh.position.z)); 
-});
-dom.addEventListener('mouseup', () => { if (isDragging) { isDragging = false; launchBall(); } });
+const dom = renderer.domElement;
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+const keys = {};
+let fullView = false;
+const FIXED_TIMESTEP = 1 / 60;
+let accumulator = 0;
+const PIN_COLLISION_SUBSTEPS = 4;
 
-dom.addEventListener('touchstart', e => { 
-    if (isRolling || gameOver || !e.touches.length || !timerHasStarted) return; 
-    e.preventDefault(); 
-    isDragging = true; 
-    const t = e.touches[0]; 
-    dragStartMouse.set(t.clientX, t.clientY); 
-    dragStartBallPos.copy(ballMesh.position); 
-});
-dom.addEventListener('touchmove', e => { 
-    if (!isDragging) return; 
-    e.preventDefault(); 
-    const t = e.touches[0]; 
-    const deltaX = (t.clientX - dragStartMouse.x) * 0.14; 
-    const deltaZ = (t.clientY - dragStartMouse.y) * 0.085; 
-    ballMesh.position.x = dragStartBallPos.x + deltaX; 
-    ballMesh.position.z = dragStartBallPos.z + deltaZ; 
-    ballMesh.position.x = Math.max(-8.5, Math.min(8.5, ballMesh.position.x)); 
-    ballMesh.position.z = Math.max(MIN_PULL_Z, Math.min(MAX_PULL_Z, ballMesh.position.z)); 
-});
-dom.addEventListener('touchend', () => { if (isDragging) { isDragging = false; launchBall(); } });
+function onDown(e) {
+    if (isRolling || gameOver || !timerHasStarted) return;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    mouse.x = (clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObject(ballMesh);
+    if (intersects.length > 0) {
+        isHolding = true;
+        pullStartY = clientY;
+        power = 0;
+        hookTime = 0;
+        ballMesh.position.z = 23;
+        ballVelocity.set(0,0,0);
+        hookMeter.style.display = 'block';
+    }
+}
+
+function onMove(e) {
+    if (!isHolding) return;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const dy = clientY - pullStartY;
+    if (dy > 0) {
+        power = Math.min(dy * 2.2, 950);
+        ballMesh.position.z = Math.max(MIN_PULL_Z, 23 + dy * 0.35);
+    }
+    ballMesh.position.x = Math.max(-11.5, Math.min(11.5, (clientX / window.innerWidth * laneWidth) - laneWidth / 2));
+}
+
+function onUp(e) {
+    if (!isHolding) return;
+    isHolding = false;
+    hookMeter.style.display = 'none';
+    const clientY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+    const swipeUpDist = pullStartY - clientY;
+    if (swipeUpDist > 45 && power > 80) {
+        const swingPos = Math.sin(hookTime);
+        const hook = swingPos * 1.4;
+        const vx = hook * 220;
+        const vy = -power;
+        ballVelocity.set(vx, 0, vy);
+        spinAtRelease = hook * 12;
+        currentHook = hook * 110;
+        isRolling = true;
+        ballLaunchedThisTurn = true;
+    } else {
+        resetBallAndTimer();
+    }
+}
+
+dom.addEventListener('mousedown', onDown);
+dom.addEventListener('mousemove', onMove);
+dom.addEventListener('mouseup', onUp);
+dom.addEventListener('touchstart', onDown);
+dom.addEventListener('touchmove', onMove);
+dom.addEventListener('touchend', onUp);
 
 dom.addEventListener('mousedown', e => {
     if (isRolling || gameOver) return;
