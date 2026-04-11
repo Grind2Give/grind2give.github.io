@@ -2,46 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Strike2Give Bowling - Phase 3 Fix 110</title>
+    <title>Strike2Give Bowling - Phase 3 Fix 114</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/sprite-graffiti');
         body { 
             margin: 0; 
             overflow: hidden; 
-            background: url('Strike2GiveBlack.png') no-repeat center center fixed; 
-            background-size: cover; 
+            background: #0f172a; 
         }
         #info { position: absolute; top: 10px; left: 10px; color: #fff; background: rgba(0,0,0,0.75); padding: 12px; border-radius: 8px; font-family: Arial; z-index: 100; }
 
-        /* === ONE UNIFIED PANEL === */
+        /* === SCOREBOARD AT TOP CENTERED + YELLOW FONT === */
         #scorePanel {
-            position: absolute; top: 50%; left: 40px; transform: translateY(-50%);
+            position: absolute; 
+            top: 20px; 
+            left: 50%; 
+            transform: translateX(-50%);
             background: linear-gradient(#111827, #1e2937); 
-            border: 4px solid #1eff00; border-radius: 18px;
+            border: 4px solid #ffcc00; 
+            border-radius: 18px;
             padding: 12px 25px; 
-            box-shadow: 0 0 18px #00ff00;
+            box-shadow: 0 0 18px #ffcc00;
             z-index: 180; 
             display: flex; 
             flex-direction: row; 
             align-items: center; 
             gap: 25px;
             font-family: 'Sprite Graffiti', sans-serif;
+            max-width: 95%;
         }
         #scoreboard { display: flex; gap: 18px; align-items: center; }
         .frame { text-align: center; min-width: 72px; padding: 4px; border-radius: 10px; transition: all 0.3s; }
         .frame.active { background: #e0f0ff; box-shadow: 0 0 15px #00aaff; border: 3px solid #00aaff; color: #000; }
-        .frameNum { font-size: 16px; color: #50fd00; margin-bottom: 4px; }
+        .frameNum { font-size: 16px; color: #ffcc00; margin-bottom: 4px; }
         .rolls { font-size: 24px; height: 30px; display: flex; justify-content: center; gap: 8px; }
-        .rollBox { background: #1e2937; padding: 4px 10px; border-radius: 6px; min-width: 26px; box-shadow: 0 0 8px #5eff00; }
-        .score { font-size: 28px; font-weight: bold; color: #39ff14; margin-top: 4px; text-shadow: 0 0 10px #39ff14; min-height: 32px; }
+        .rollBox { background: #1e2937; padding: 4px 10px; border-radius: 6px; min-width: 26px; box-shadow: 0 0 8px #ffcc00; }
+        .score { font-size: 28px; font-weight: bold; color: #ffcc00; margin-top: 4px; text-shadow: 0 0 12px #ffcc00; min-height: 32px; }
 
         #timer {
-            color: #39ff14; font-size: 38px; font-weight: bold; text-shadow: 0 0 15px #39ff14; 
+            color: #ffcc00; font-size: 38px; font-weight: bold; text-shadow: 0 0 15px #ffcc00; 
             background: rgba(0,0,0,0.6); padding: 10px 35px; border-radius: 12px; 
             display: block; font-family: 'Sprite Graffiti', sans-serif;
-            box-shadow: 0 0 18px #39ff14; min-width: 110px; text-align: center;
+            box-shadow: 0 0 18px #ffcc00; min-width: 110px; text-align: center;
         }
         #timer.pulse { animation: pulse 0.6s infinite; font-size: 52px; }
+
+        /* === TEST BANNER RIGHT UNDER SCOREBOARD === */
+        #testBanner {
+            position: absolute; 
+            top: 115px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            color: #ff4444; 
+            font-family: 'Sprite Graffiti', sans-serif; 
+            font-size: 21px; 
+            font-weight: bold; 
+            letter-spacing: 3px;
+            text-shadow: 0 0 12px #000; 
+            z-index: 190; 
+            white-space: nowrap;
+            background: rgba(20,0,0,0.7);
+            padding: 6px 28px;
+            border-radius: 30px;
+            border: 2px solid #ff6666;
+        }
 
         #spinMeterContainer { 
             position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); 
@@ -61,7 +85,7 @@
         #remainingPins {
             position: absolute; top: 225px; left: 50%; transform: translateX(-50%);
             background: rgba(0,0,0,0.85); padding: 18px 30px; border-radius: 20px;
-            border: 4px solid #5eff00; z-index: 170; display: none; box-shadow: 0 0 35px #5eff00;
+            border: 4px solid #ffcc00; z-index: 170; display: none; box-shadow: 0 0 35px #ffcc00;
         }
         #pinDiagram { width: 220px; height: 195px; }
 
@@ -72,19 +96,19 @@
             left: 50%; 
             transform: translateX(-50%);
             z-index: 400; 
-            background: #39ff14; 
+            background: #ffcc00; 
             color: #000;
             font-family: 'Sprite Graffiti', sans-serif; 
             font-size: 48px; 
             font-weight: bold;
             padding: 20px 70px; 
             border-radius: 50px; 
-            box-shadow: 0 0 40px #39ff14, 0 0 60px #39ff14, 0 10px 30px rgba(0,0,0,0.6);
+            box-shadow: 0 0 40px #ffcc00, 0 0 60px #ffcc00, 0 10px 30px rgba(0,0,0,0.6);
             cursor: pointer; 
             text-align: center; 
             letter-spacing: 4px;
         }
-        #playAgain:hover { transform: translateX(-50%) scale(1.08); box-shadow: 0 0 80px #39ff14; }
+        #playAgain:hover { transform: translateX(-50%) scale(1.08); box-shadow: 0 0 80px #ffcc00; }
 
         #pinResult, #timeUp {
             position: absolute; 
@@ -94,8 +118,8 @@
             font-family: 'Sprite Graffiti', sans-serif; 
             font-size: 78px; 
             font-weight: bold;
-            color: #39ff14;
-            text-shadow: 0 0 25px #000, 0 0 40px #39ff14; 
+            color: #ffcc00;
+            text-shadow: 0 0 25px #000, 0 0 40px #ffcc00; 
             display: none; 
             z-index: 260;
             white-space: nowrap; 
@@ -103,28 +127,36 @@
             opacity: 0; 
             transition: opacity 0.6s ease;
         }
-        #timeUp { color: #5eff00; text-shadow: 0 0 25px #000, 0 0 40px #5eff00; }
+        #timeUp { color: #ffcc00; text-shadow: 0 0 25px #000, 0 0 40px #ffcc00; }
         #foul { 
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            color: #5eff00; font-size: 90px; font-weight: bold; 
+            color: #ffcc00; font-size: 90px; font-weight: bold; 
             text-shadow: 0 0 25px #000; display: none; z-index: 200; 
             font-family: 'Sprite Graffiti', sans-serif; 
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.18); }
         }
     </style>
 </head>
 <body>
 
-<div id="info">Strike2Give Bowling - Phase 3 Fix 110<br>Current Ball: <span id="currentBallName">Basic Hammer</span></div>
+<div id="info">Strike2Give Bowling - Phase 3 Fix 114<br>Current Ball: <span id="currentBallName">Basic Hammer</span></div>
 
 <div id="scorePanel">
     <div id="scoreboard">
         <div class="frame" id="frameContainer1"><div class="frameNum">1</div><div class="rolls" id="frame1"></div><div class="score" id="score1"></div></div>
         <div class="frame" id="frameContainer2"><div class="frameNum">2</div><div class="rolls" id="frame2"></div><div class="score" id="score2"></div></div>
         <div class="frame" id="frameContainer3"><div class="frameNum">3</div><div class="rolls" id="frame3"></div><div class="score" id="score3"></div></div>
-        <div style="font-size:28px; color:#5eff00; font-weight:bold; margin-left:20px;">TOTAL<br><span id="totalScore" style="font-size:42px;color:#39ff14;">0</span></div>
+        <div style="font-size:28px; color:#ffcc00; font-weight:bold; margin-left:20px;">TOTAL<br><span id="totalScore" style="font-size:42px;color:#ffcc00;">0</span></div>
     </div>
     <div id="timer">25</div>
 </div>
+
+<!-- TEST BANNER RIGHT UNDER SCOREBOARD -->
+<div id="testBanner">TEST ONLY - NOT LIVE NOT BETA</div>
 
 <div id="remainingPins">
     <svg id="pinDiagram" viewBox="0 0 220 195" xmlns="http://www.w3.org/2000/svg"></svg>
@@ -150,7 +182,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script>
-console.log("✅ PHASE 3 FIX 110 – FULL COMPLETE CODE | Pin indicator box now disappears after exactly 3 seconds");
+console.log("✅ PHASE 3 FIX 114 – FULL COMPLETE CODE | 'TEST ONLY - NOT LIVE NOT BETA' added right under scoreboard");
 
 const laneWidth = 26;
 const gutterChannelWidth = 7;
@@ -162,18 +194,10 @@ const PIN_WIDTH_SCALE = 0.8;
 const PIN_LAY_HEIGHT = 0.95;
 
 let balls = [
-    {id:1, name:"Basic Hammer", tier:"basic", primary:"power", power:5, control:3, spin:3, precision:3, bounce:1, color:0x0066ff},
-    {id:2, name:"Basic Spare", tier:"basic", primary:"precision", power:3, control:3, spin:3, precision:5, bounce:1, color:0x00cc88},
-    {id:3, name:"Basic Curve", tier:"basic", primary:"spin", power:3, control:3, spin:5, precision:1, bounce:3, color:0xff8800},
-    {id:4, name:"Basic Bounce", tier:"basic", primary:"bounce", power:1, control:3, spin:3, precision:3, bounce:5, color:0xff00ff},
-    {id:9, name:"Epic Thunder", tier:"epic", primary:"power", power:8, control:4, spin:4, precision:4, bounce:3, color:0xff2222},
-    {id:10, name:"Epic Sniper", tier:"epic", primary:"precision", power:4, control:4, spin:4, precision:8, bounce:3, color:0x22ff88},
-    {id:17, name:"Grinder Crusher", tier:"grinder", primary:"power", power:12, control:6, spin:6, precision:6, bounce:5, color:0x8800ff},
-    {id:18, name:"Grinder Razor", tier:"spin", power:6, control:6, spin:12, precision:5, bounce:6, color:0x00ffff},
-    {id:29, name:"Hero Titan", tier:"hero", primary:"power", power:15, control:8, spin:8, precision:8, bounce:7, color:0xffff00},
-    {id:30, name:"Hero Ghost", tier:"hero", primary:"bounce", power:7, control:8, spin:8, precision:8, bounce:15, color:0x00ffff}
+    {name: "Basic Hammer", color: 0x222222, control: 8},
+    {name: "Strike Master", color: 0x000000, control: 10},
+    {name: "Power Hook", color: 0x660000, control: 7}
 ];
-
 let currentBall = balls[0];
 let allRolls = [];
 let frameRolls = [[], [], []];
@@ -298,9 +322,9 @@ function createPin(x, z) {
     const h = PIN_HEIGHT_SCALE;
     const w = PIN_WIDTH_SCALE;
     const group = new THREE.Group();
-    const lowerBody = new THREE.Mesh(new THREE.CylinderGeometry(1.38 * w, 1.62 * w, 3.1 * h, 32), new THREE.MeshPhongMaterial({ color: 0xF8F8F8, shininess: 90, specular: 0x222222 }));
+    const lowerBody = new THREE.Mesh(new THREE.CylinderGeometry(1.38 * w, 1.62 * w, 3.1 * h, 32), new THREE.MeshPhongMaterial({ color: 0xF8F8F8, shininess: 90 }));
     lowerBody.position.y = 2.05 * h; group.add(lowerBody);
-    const upperBody = new THREE.Mesh(new THREE.CylinderGeometry(1.62 * w, 0.78 * w, 2.4 * h, 32), new THREE.MeshPhongMaterial({ color: 0xF8F8F8, shininess: 90, specular: 0x222222 }));
+    const upperBody = new THREE.Mesh(new THREE.CylinderGeometry(1.62 * w, 0.78 * w, 2.4 * h, 32), new THREE.MeshPhongMaterial({ color: 0xF8F8F8, shininess: 90 }));
     upperBody.position.y = 4.55 * h; group.add(upperBody);
     const stripe = new THREE.Mesh(new THREE.CylinderGeometry(1.65 * w, 1.65 * w, 0.48 * h, 32), new THREE.MeshPhongMaterial({ color: 0xFF0000, shininess: 60 }));
     stripe.position.y = 3.55 * h; group.add(stripe);
@@ -316,69 +340,21 @@ function createPin(x, z) {
 }
 pinPositions.forEach(pos => createPin(pos[0], pos[1]));
 
-const pinBoxMat = new THREE.MeshLambertMaterial({ color: 0x3C2F2F });
+const enclosureMat = new THREE.MeshPhongMaterial({ color: 0x1a2533, shininess: 15, side: THREE.DoubleSide });
+
 const fullGutterWidth = laneWidth + 2 * (gutterChannelWidth + gutterOffset + 2);
-const pinCeiling = new THREE.Mesh(new THREE.BoxGeometry(fullGutterWidth, 3, 70), pinBoxMat);
+
+const pinCeiling = new THREE.Mesh(new THREE.BoxGeometry(fullGutterWidth, 3, 70), enclosureMat);
 pinCeiling.position.set(0, 16, -235 - laneExtension); scene.add(pinCeiling);
-const pinLeftWall = new THREE.Mesh(new THREE.BoxGeometry(2, 22, 70), pinBoxMat);
+
+const pinLeftWall = new THREE.Mesh(new THREE.BoxGeometry(2, 22, 70), enclosureMat);
 pinLeftWall.position.set(-(laneWidth/2.5 + gutterChannelWidth + gutterOffset + 1), 6, -235 - laneExtension); scene.add(pinLeftWall);
-const pinRightWall = new THREE.Mesh(new THREE.BoxGeometry(2, 22, 70), pinBoxMat);
+
+const pinRightWall = new THREE.Mesh(new THREE.BoxGeometry(2, 22, 70), enclosureMat);
 pinRightWall.position.set(+(laneWidth/2.5 + gutterChannelWidth + gutterOffset + 1), 6, -235 - laneExtension); scene.add(pinRightWall);
-const pinBackWall = new THREE.Mesh(new THREE.BoxGeometry(fullGutterWidth, 21, 2), pinBoxMat);
+
+const pinBackWall = new THREE.Mesh(new THREE.BoxGeometry(fullGutterWidth, 21, 2), enclosureMat);
 pinBackWall.position.set(0, 6, -278 - laneExtension); scene.add(pinBackWall);
-
-let previewBalls = [];
-function createPreviewBalls() {
-    previewBalls.forEach(b => scene.remove(b));
-    previewBalls = [];
-    const rackMat = new THREE.MeshLambertMaterial({ color: 0x8B5A2B });
-    const rackBase = new THREE.Mesh(new THREE.BoxGeometry(19, 1.2, 14), rackMat);
-    rackBase.position.set(26.5, -0.1, 52);
-    scene.add(rackBase);
-    const previewRadius = 1.65;
-    const startX = 14.5;
-    const spacingX = 3.8;
-    const row1Z = 47;
-    const row2Z = 55.5;
-    balls.forEach((b, i) => {
-        const row = Math.floor(i / 5);
-        const col = i % 5;
-        const z = row === 0 ? row1Z : row2Z;
-        const x = startX + col * spacingX;
-        const pBall = new THREE.Mesh(new THREE.SphereGeometry(previewRadius, 48, 48), new THREE.MeshPhongMaterial({ color: b.color, shininess: 95, specular: 0x555555 }));
-        pBall.position.set(x, 1.05 + (row * 0.1), z);
-        pBall.userData = { ballData: b };
-        scene.add(pBall);
-        previewBalls.push(pBall);
-    });
-}
-
-let mainAimBar = null;
-let highlights = [];
-function createAimHighlights() {
-    highlights.forEach(h => scene.remove(h));
-    highlights = [];
-    const highlightMat = new THREE.MeshBasicMaterial({ color: 0x39FF14, transparent: true, opacity: 0.85 });
-    for (let i = 0; i < 12; i++) {
-        const h = new THREE.Mesh(new THREE.SphereGeometry(0.35, 16, 16), highlightMat);
-        scene.add(h);
-        highlights.push(h);
-    }
-}
-
-let ballMesh = null;
-function createBallMesh() {
-    if (ballMesh) scene.remove(ballMesh);
-    const radius = ballRadiusBase + (currentBall.precision / 15) * 0.9;
-    ballMesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 48, 48), new THREE.MeshPhongMaterial({ color: currentBall.color, shininess: 95, specular: 0x555555 }));
-    ballMesh.position.set(0, LANE_TOP_Y, 23);
-    scene.add(ballMesh);
-}
-
-const loader = new THREE.TextureLoader();
-const logoTexture = loader.load('back of lane sample.png');
-const logoPlane = new THREE.Mesh(new THREE.PlaneGeometry(45, 20), new THREE.MeshBasicMaterial({ map: logoTexture, side: THREE.DoubleSide, transparent: true }));
-logoPlane.position.set(0, 5.5, -275.5 - laneExtension); scene.add(logoPlane);
 
 const collectorMat = new THREE.MeshLambertMaterial({ color: 0x111111 });
 const LANE_END_Z = -225 - laneExtension;
@@ -420,14 +396,12 @@ const timeUpElement = document.getElementById('timeUp');
 const FRICTION_BASE = 0.99999;
 const MIN_VELOCITY = 0.005;
 const GUTTER_END_Z = -275 - laneExtension;
-const PIN_AREA_Z = -140 - laneExtension / 2;
 const HOOK_START_Z = -115;
-const PIN_DECK_Z = -175;
 const GUTTER_BALL_Y = -4.5;
 
 let spinPhase = 0;
 const spinIndicator = document.getElementById('spinIndicator');
-const aimBarMaterial = new THREE.MeshBasicMaterial({ color: 0x39FF14, transparent: true, opacity: 0.3, depthWrite: false });
+const aimBarMaterial = new THREE.MeshBasicMaterial({ color: 0xffcc00, transparent: true, opacity: 0.3, depthWrite: false });
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 const dom = renderer.domElement;
@@ -437,7 +411,42 @@ const FIXED_TIMESTEP = 1 / 60;
 let accumulator = 0;
 const PIN_COLLISION_SUBSTEPS = 4;
 
-/* ====================== PIN INDICATOR NOW AUTO-HIDES AFTER 3 SECONDS ====================== */
+let mainAimBar;
+let highlights = [];
+let ballMesh;
+
+function createAimHighlights() {
+    highlights = [];
+    for (let i = 0; i < 6; i++) {
+        const h = new THREE.Mesh(new THREE.SphereGeometry(0.65, 16, 16), new THREE.MeshBasicMaterial({ color: 0xffcc00 }));
+        scene.add(h);
+        highlights.push(h);
+    }
+}
+
+function createBallMesh() {
+    if (ballMesh) scene.remove(ballMesh);
+    const geo = new THREE.SphereGeometry(ballRadiusBase, 32, 32);
+    const mat = new THREE.MeshPhongMaterial({ color: currentBall.color, shininess: 100 });
+    ballMesh = new THREE.Mesh(geo, mat);
+    ballMesh.position.set(0, LANE_TOP_Y, 23);
+    scene.add(ballMesh);
+}
+
+function createPreviewBalls() {
+    const previewGroup = new THREE.Group();
+    previewGroup.position.set(0, -8, 70);
+    for (let i = 0; i < balls.length; i++) {
+        const geo = new THREE.SphereGeometry(1.8, 32, 32);
+        const mat = new THREE.MeshPhongMaterial({ color: balls[i].color });
+        const ball = new THREE.Mesh(geo, mat);
+        ball.position.set(-12 + i * 6, 0, 0);
+        ball.userData.ballData = balls[i];
+        previewGroup.add(ball);
+    }
+    scene.add(previewGroup);
+}
+
 function updateRemainingPinsVisual(message = "") {
     const container = document.getElementById('remainingPins');
     const svg = document.getElementById('pinDiagram');
@@ -465,7 +474,6 @@ function updateRemainingPinsVisual(message = "") {
     }
     container.style.display = 'block';
 
-    // AUTO-HIDE AFTER 3 SECONDS
     setTimeout(() => {
         hideRemainingPinsVisual();
     }, 3000);
@@ -565,7 +573,7 @@ function resetPins() {
 function countStandingPins() { return pins.filter(pin => pin.isStanding).length; }
 function getRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-function showResult(text, color = '#39ff14') {
+function showResult(text, color = '#ffcc00') {
     const resultEl = pinResultElement;
     resultEl.textContent = text;
     resultEl.style.color = color;
@@ -606,7 +614,7 @@ function startNewRoll() {
 
     timerElement.style.display = 'block';
     timerElement.textContent = "READY";
-    timerElement.style.color = '#39ff14';
+    timerElement.style.color = '#ffcc00';
     timerElement.classList.remove('pulse');
 
     setTimeout(() => { timerElement.textContent = "SET"; }, 1000);
@@ -622,7 +630,7 @@ function startNewTurnTimer() {
     currentTimer = MAX_ROLL_TIME;
     timerElement.style.display = 'block';
     timerElement.textContent = currentTimer;
-    timerElement.style.color = '#39ff14';
+    timerElement.style.color = '#ffcc00';
     timerElement.classList.remove('pulse');
     ballLaunchedThisTurn = false;
     timerHasStarted = true;
@@ -631,10 +639,10 @@ function startNewTurnTimer() {
         if (currentTimer > 0) currentTimer--;
         timerElement.textContent = currentTimer;
 
-        if (currentTimer > 15) timerElement.style.color = '#39ff14';
+        if (currentTimer > 15) timerElement.style.color = '#ffcc00';
         else if (currentTimer > 10) timerElement.style.color = '#ffff00';
-        else if (currentTimer > 5) timerElement.style.color = '#ff8800';
-        else timerElement.style.color = '#ff0000';
+        else if (currentTimer > 5) timerElement.style.color = '#ffcc00';
+        else timerElement.style.color = '#ff8800';
 
         if (currentTimer <= 5) timerElement.classList.add('pulse');
         else timerElement.classList.remove('pulse');
@@ -661,7 +669,7 @@ function advanceToNextFrame() {
     currentFrame++;
     if (currentFrame > MAX_FRAMES) {
         gameOver = true;
-        showResult(`GAME OVER — ${getCurrentScore()}`, '#39ff14');
+        showResult(`GAME OVER — ${getCurrentScore()}`, '#ffcc00');
         if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
         document.getElementById('playAgain').style.display = 'block';
         return;
@@ -689,25 +697,21 @@ function endCurrentRoll() {
     rollsInCurrentFrame++;
 
     let resultText = "";
-    let color = "#39ff14";
+    let color = "#ffcc00";
     let indicatorMessage = "";
 
     if (knockedThisRoll === 10 && rollsInCurrentFrame === 1) {
         resultText = getRandom(strikeMessages);
-        color = "#39ff14";
     } else if (rollsInCurrentFrame === 2 && (frameRolls[currentFrame-1][0] + knockedThisRoll === 10)) {
         resultText = getRandom(spareMessages);
-        color = "#39ff14";
     } else if (rollsInCurrentFrame === 2 && (frameRolls[currentFrame-1][0] + knockedThisRoll < 10)) {
         resultText = getRandom(missMessages);
-        color = "#39ff14";
     } else if (knockedThisRoll === 0) {
         resultText = gutterMessage;
-        color = "#ff0000";
+        color = "#ff8800";
         indicatorMessage = gutterMessage;
     } else {
         resultText = getRandom(missMessages);
-        color = "#39ff14";
         indicatorMessage = resultText;
     }
 
@@ -1100,7 +1104,7 @@ dom.addEventListener('mousedown', e => {
     mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
     raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(previewBalls);
+    const intersects = raycaster.intersectObjects(previewBalls ? previewBalls.children || [] : []);
     if (intersects.length > 0) {
         currentBall = intersects[0].object.userData.ballData;
         document.getElementById('currentBallName').textContent = currentBall.name;
