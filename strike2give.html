@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Strike2Give Bowling - P2E PvP • 3 Frames (Fix 198)</title>
+    <title>Strike2Give Bowling - P2E PvP • 3 Frames (Fix 200)</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/intro-rust');
         * { font-family: 'intro rust', sans-serif; color: #5eff00; }
@@ -18,8 +18,9 @@
 
         #info { position:absolute; top:10px; left:10px; background:rgba(0,0,0,0.75); padding:12px; border-radius:8px; z-index:100; font-size:14px; }
 
+        /* SCOREBOARD MOVED TO MIDDLE UNDER ARROWS */
         #scoreboardPanel {
-            position:absolute; top:40px; left:50%; transform:translateX(-50%);
+            position:absolute; top:205px; left:50%; transform:translateX(-50%);
             background:linear-gradient(#111827,#1e2937); border:3px solid #5eff00; border-radius:14px;
             padding:8px 16px; box-shadow:0 0 14px #5eff00; z-index:180; display:flex; flex-direction:row;
             align-items:center; gap:12px; max-width:92%;
@@ -115,17 +116,22 @@
         /* PHONE OPTIMIZATIONS */
         @media (max-width: 480px) {
             body { background-size: cover; background-position: center top; }
-            #gameOverPopup { width: 88%; padding: 15px 20px; }
-            #gameOverPopup h1 { font-size: 32px; }
-            #finalScoreBig { font-size: 25px; }
-            #coinPanel { top: 125px; left: 50%; right: auto; transform: translateX(-50%); font-size: 12px; padding: 6px 14px; }
+            /* SCOREBOARD UNDER ARROWS ON PHONE */
+            #scoreboardPanel { top: 165px; }
+            /* GAME OVER + PLAY AGAIN HALVED ON PHONE */
+            #gameOverPopup { width: 85%; padding: 22px 28px; }
+            #gameOverPopup h1 { font-size: 36px; }
+            #finalScoreBig { font-size: 46px; }
+            #popupPlayAgain { font-size: 26px; padding: 12px 48px; }
+            #playAgain { font-size: 26px; padding: 12px 40px; }
+            #coinPanel { top: 25px; left: 50%; right: auto; transform: translateX(-50%); font-size: 12px; padding: 6px 14px; }
             #aimSensitivityControl { display: flex; align-items: center; }
         }
     </style>
 </head>
 <body>
 
-<div id="info">Strike2Give Bowling<br>P2E PvP • 3 Frames (Fix 198)</div>
+<div id="info">Strike2Give Bowling<br>P2E PvP • 3 Frames (Fix 200)</div>
 
 <div id="scoreboardPanel">
     <div id="scoreboard">
@@ -194,14 +200,14 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script>
-console.log("%c✅ PHASE 3 FIX 198 — White Precision ball lifted higher (no more sinking)", "color:#00ffcc;font-size:18px;font-weight:bold");
+console.log("%c✅ PHASE 3 FIX 200 — Scoreboard in middle + Game Over halved on phone", "color:#00ffcc;font-size:18px;font-weight:bold");
 
-// =============================================
-// YELLOW AIM BAR SENSITIVITY — EDIT HERE
-// =============================================
-let AIM_POSITION_SENSITIVITY = 0.0065;
+// AIM BAR SENSITIVITY
+let AIM_POSITION_SENSITIVITY = 0.065;
 
 const ballRadiusBase = 2.05;
+
+const textureLoader = new THREE.TextureLoader();
 
 // PHYSICS
 const PHYSICS = {
@@ -217,7 +223,7 @@ const PHYSICS = {
 };
 
 const BALL_TYPES = [
-    {name: "Green Power",   color: 0x00ff00, power: 15, control: 15, bounce: 4, spin: 7, radius: ballRadiusBase},
+    {name: "Green Power",   color: 0x00ff00, power: 15, control: 15, bounce: 4, spin: 7, radius: ballRadiusBase, texture: 'g2g-coin.png'},
     {name: "White Precision", color: 0xffffff, power: 4, control: 15, bounce: 3, spin: 7, radius: ballRadiusBase * 1.5},
     {name: "Red Spin",      color: 0xff0000, power: 7, control: 15, bounce: 4, spin: 15, radius: ballRadiusBase},
     {name: "Black Bounce",  color: 0x111111, power: 4, control: 15, bounce: 15, spin: 7, radius: ballRadiusBase}
@@ -472,10 +478,28 @@ function createBallMesh() {
     if (ballMesh) scene.remove(ballMesh);
     const radius = currentBall.radius;
     const geo = new THREE.SphereGeometry(radius, 64, 64);
-    const mat = new THREE.MeshPhongMaterial({ color: currentBall.color, shininess: 140, specular: 0xaaaaaa, flatShading: false });
-    ballMesh = new THREE.Mesh(geo, mat);
+
+    let material;
+    if (currentBall.texture) {
+        const tex = textureLoader.load(currentBall.texture);
+        material = new THREE.MeshPhongMaterial({
+            map: tex,
+            shininess: 140,
+            specular: 0xaaaaaa,
+            emissive: 0x00aa00,
+            emissiveIntensity: 0.35
+        });
+    } else {
+        material = new THREE.MeshPhongMaterial({ 
+            color: currentBall.color, 
+            shininess: 140, 
+            specular: 0xaaaaaa, 
+            flatShading: false 
+        });
+    }
+
+    ballMesh = new THREE.Mesh(geo, material);
     
-    // White Precision ball lift — increased to stop sinking
     const lift = (currentBall.radius > ballRadiusBase) ? 0.85 : 0;
     ballMesh.position.set(0, LANE_TOP_Y + lift, 23);
     scene.add(ballMesh);
