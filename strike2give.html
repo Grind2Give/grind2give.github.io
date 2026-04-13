@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Strike2Give Bowling - P2E PvP • 3 Frames (Fix 191)</title>
+    <title>Strike2Give Bowling - P2E PvP • 3 Frames (Fix 194)</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/intro-rust');
         * { font-family: 'intro rust', sans-serif; }
@@ -30,7 +30,7 @@
         .score.pop { animation: popIn 0.6s cubic-bezier(0.68,-0.55,0.27,1.55); }
 
         #timer {
-            position:absolute; bottom:40px; left:40px;
+            position:absolute; top:85px; left:20px;
             color:#5eff00; font-size:55px; font-weight:bold; text-shadow:0 0 15px #000;
             background:rgba(0,0,0,0.6); padding:8px 30px; border-radius:12px;
             box-shadow:0 0 18px #5eff00; min-width:100px; text-align:center; z-index:190;
@@ -49,18 +49,18 @@
         #hookController {
             position:absolute; bottom:25px; left:50%; transform:translateX(-50%);
             width:92%; max-width:460px; height:68px; background:rgba(0,0,0,0.9); border:8px solid #00ffcc;
-            border-radius:40px; z-index:300; overflow:hidden; box-shadow:0 0 30px #00ffcc; display:none;
+            border-radius:18px; z-index:300; overflow:hidden; box-shadow:0 0 30px #00ffcc; display:none;
         }
         #hookBar {
             position:relative; width:100%; height:100%;
             background: linear-gradient(to right,
-                #ff2222 0%, #ff2222 15%,
-                #aa44ff 15%, #aa44ff 30%,
-                #3399ff 30%, #3399ff 45%,
-                #5eff00 45%, #5eff00 55%,
-                #3399ff 55%, #3399ff 70%,
-                #aa44ff 70%, #aa44ff 85%,
-                #ff2222 85%, #ff2222 100%);
+                #ff2222 0%, #ff2222 12%,
+                #aa44ff 12%, #aa44ff 27%,
+                #3399ff 27%, #3399ff 42%,
+                #5eff00 42%, #5eff00 58%,
+                #3399ff 58%, #3399ff 73%,
+                #aa44ff 73%, #aa44ff 88%,
+                #ff2222 88%, #ff2222 100%);
         }
         .hookTick { position:absolute; top:4px; bottom:4px; width:3px; background:rgba(255,255,255,0.9); box-shadow:0 0 10px #ffffff; z-index:2; }
         #hookPointer {
@@ -80,12 +80,11 @@
 
         #foul { position:absolute; top:42%; left:50%; transform:translate(-50%, -50%); font-size:110px; font-weight:900; color:#ff2222; text-shadow:0 0 35px #ff0000, 0 0 70px #ff0000; z-index:300; opacity:0; pointer-events:none; transition:opacity 0.4s ease; white-space:nowrap; }
 
-        #pinResult, #timeUp, #knockdownPopup {
+        #pinResult, #timeUp {
             position:absolute; top:38%; left:50%; transform:translate(-50%, -50%);
             font-size:78px; font-weight:900; color:#5eff00; text-shadow: none;
             z-index:310; opacity:0; pointer-events:none; white-space:nowrap; transition:all 0.4s ease;
         }
-        #knockdownPopup { font-size:62px; color:#ffcc00; text-shadow:0 0 20px #000; }
 
         #gameOverDisplay { position:absolute; bottom:120px; left:50%; transform:translateX(-50%); font-size:90px; font-weight:900; color:#ff4444; text-shadow:0 0 30px #000, 0 0 60px #ff0000; z-index:300; white-space:nowrap; opacity:0; transition:all 0.8s cubic-bezier(0.68,-0.55,0.27,1.55); }
         #gameOverDisplay.show { bottom:220px; opacity:1; }
@@ -154,7 +153,6 @@
             100% { transform:translate(-50%, -50%) scale(0.8); opacity:0; }
         }
 
-        /* BALL SELECTION POPUP */
         #ballSelectPopup {
             position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
             background:linear-gradient(#111827, #1e2937); border:8px solid #5eff00;
@@ -178,11 +176,18 @@
         #closeBallPopup {
             position:absolute; top:12px; right:18px; font-size:28px; color:#ff4444; cursor:pointer;
         }
+
+        /* MOBILE SCALING FIX */
+        @media (max-width: 480px) {
+            #scoreboardPanel { top: 20px; }
+            #gameOverPopup { top: 42%; }
+            /* add more rules here */
+        }
     </style>
 </head>
 <body>
 
-<div id="info">Strike2Give Bowling<br>P2E PvP • 3 Frames (Fix 191)</div>
+<div id="info">Strike2Give Bowling<br>P2E PvP • 3 Frames (Fix 194)</div>
 
 <div id="scoreboardPanel">
     <div id="scoreboard">
@@ -223,7 +228,6 @@
 <div id="foul">FOUL!</div>
 <div id="pinResult"></div>
 <div id="timeUp"></div>
-<div id="knockdownPopup"></div>
 <div id="gameOverDisplay">GAME OVER</div>
 <div id="startButton">START BOWLING</div>
 <div id="playAgain">PLAY AGAIN</div>
@@ -238,7 +242,6 @@
 
 <div id="readySetFly"></div>
 
-<!-- BALL SELECTION POPUP -->
 <div id="ballSelectPopup">
     <div id="closeBallPopup">✕</div>
     <h2 style="margin:0 0 10px 0; font-size:32px; color:#5eff00;">CHOOSE YOUR BALL</h2>
@@ -247,44 +250,39 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script>
-console.log("%c✅ PHASE 3 FIX 191 — Ball stats on top + beautiful popup selection + live X/Z debug + pin knockdown popup restored", "color:#00ffcc;font-size:18px;font-weight:bold");
+console.log("%c✅ PHASE 3 FIX 194 — Timer moved top-left + Select Ball button moved top-right + mobile media query added", "color:#00ffcc;font-size:18px;font-weight:bold");
 
 // =============================================
-// BALL STATS — EASY TO EDIT (TOP OF CODE)
+// PHYSICS SPECIFICATIONS — EDIT HERE
 // =============================================
+/*
+  POWER     : Higher = faster launch speed and stronger pin impact
+              Base speed = POWER_BASE + pullDistance * POWER_PULL_SCALE
+  CONTROL   : Higher = slower, more precise hook meter swing
+              Swing speed multiplier = 1 - (control/15 * CONTROL_SWING_DAMPEN)
+  SPIN      : Higher = stronger left/right hook after arrows
+              Spin multiplier = currentBall.spin * SPIN_STRENGTH
+  BOUNCE    : (Precision) Currently reserved — will control gutter/lane bounce in future updates
+*/
+
+const PHYSICS = {
+    POWER_BASE: 3.4,
+    POWER_PULL_SCALE: 0.14,
+    CONTROL_SWING_DAMPEN: 0.75,
+    SPIN_STRENGTH: 1.25,
+    BASE_VX_FACTOR: 0.0085,
+    AIM_ANGLE_MAX: 3.8,
+    HOOK_START_Z: -115,
+    FRICTION_BASE: 0.99995,
+    MIN_VELOCITY: 0.003
+};
+
+// BALL TYPES
 const BALL_TYPES = [
-    {
-        name: "Green Power",
-        color: 0x00ff00,
-        power: 15,
-        control: 15,
-        bounce: 4,
-        spin: 7
-    },
-    {
-        name: "White Precision",
-        color: 0xffffff,
-        power: 4,
-        control: 15,
-        bounce: 3,
-        spin: 7
-    },
-    {
-        name: "Red Spin",
-        color: 0xff0000,
-        power: 7,
-        control: 15,
-        bounce: 4,
-        spin: 15
-    },
-    {
-        name: "Black Bounce",
-        color: 0x111111,
-        power: 4,
-        control: 15,
-        bounce: 15,
-        spin: 7
-    }
+    {name: "Green Power",   color: 0x00ff00, power: 15, control: 15, bounce: 4, spin: 7},
+    {name: "White Precision", color: 0xffffff, power: 4, control: 15, bounce: 3, spin: 7},
+    {name: "Red Spin",      color: 0xff0000, power: 7, control: 15, bounce: 4, spin: 15},
+    {name: "Black Bounce",  color: 0x111111, power: 4, control: 15, bounce: 15, spin: 7}
 ];
 
 let currentBallIndex = 0;
@@ -503,12 +501,8 @@ const timerElement = document.getElementById('timer');
 const foulElement = document.getElementById('foul');
 const pinResultElement = document.getElementById('pinResult');
 const timeUpElement = document.getElementById('timeUp');
-const knockdownElement = document.getElementById('knockdownPopup');
 const readySetFly = document.getElementById('readySetFly');
-const FRICTION_BASE = 0.99995;
-const MIN_VELOCITY = 0.003;
 const GUTTER_END_Z = -275 - laneExtension;
-const HOOK_START_Z = -115;
 const GUTTER_BALL_Y = -4.5;
 
 let bowlingCrewState = 'positioning';
@@ -573,7 +567,7 @@ function populateBallPopup() {
             currentBallIndex = parseInt(card.dataset.index);
             currentBall = BALL_TYPES[currentBallIndex];
             createBallMesh();
-            populateBallPopup(); // refresh selection highlight
+            populateBallPopup();
             hideBallPopup();
         });
     });
@@ -617,7 +611,7 @@ function updateRemainingPinsVisual(message = "") {
         if (!standing[i]) circles[order[i]].setAttribute('fill', '#555555');
     }
     container.style.display = 'block';
-    setTimeout(() => { hideRemainingPinsVisual(); }, 2800);
+    setTimeout(() => { hideRemainingPinsVisual(); }, 3500);
 }
 
 function hideRemainingPinsVisual() {
@@ -775,16 +769,6 @@ function showResult(text, color = '#ffcc00', callback = null) {
     }, 2200);
 }
 
-function showKnockdownPopup(knocked) {
-    knockdownElement.textContent = `${knocked} PINS DOWN!`;
-    knockdownElement.style.display = 'block';
-    knockdownElement.style.opacity = '1';
-    setTimeout(() => {
-        knockdownElement.style.opacity = '0';
-        setTimeout(() => { knockdownElement.style.display = 'none'; }, 600);
-    }, 1800);
-}
-
 function showTimeUp() {
     timeUpElement.textContent = "TIMES UP - TURN LOST 💔";
     timeUpElement.style.display = 'block';
@@ -836,11 +820,8 @@ function finishRoll(knockedThisRoll) {
     }
 
     const nextAction = () => {
-        if (advance) {
-            advanceToNextFrame();
-        } else {
-            startNewRoll();
-        }
+        if (advance) advanceToNextFrame();
+        else startNewRoll();
     };
 
     if (rollsInCurrentFrame === 1 && knockedThisRoll < 10) {
@@ -851,9 +832,9 @@ function finishRoll(knockedThisRoll) {
         } else {
             updateRemainingPinsVisual(indicatorMessage);
         }
-    } else hideRemainingPinsVisual();
-
-    if (knockedThisRoll > 0) showKnockdownPopup(knockedThisRoll);
+    } else {
+        updateRemainingPinsVisual("");
+    }
 
     updateScoreboard();
 
@@ -870,11 +851,8 @@ function finishRoll(knockedThisRoll) {
         }
     }
 
-    if (resultText) {
-        showResult(resultText, color, nextAction);
-    } else {
-        nextAction();
-    }
+    if (resultText) showResult(resultText, color, nextAction);
+    else nextAction();
 }
 
 function endCurrentRoll() {
@@ -973,9 +951,7 @@ function startNewTurnTimer() {
         else if (currentTimer > 5) timerElement.style.color = '#ff8800';
         else timerElement.style.color = '#ff4444';
 
-        if (currentTimer <= 0 && !isRolling && !timedOut) {
-            showTimeUp();
-        }
+        if (currentTimer <= 0 && !isRolling && !timedOut) showTimeUp();
     }, 1000);
 }
 
@@ -1040,6 +1016,7 @@ function launchBall() {
 
     const pullDistance = Math.max(0, ballMesh.position.z - 23);
     const frontOfBall = ballMesh.position.z - ballRadiusBase;
+
     if (frontOfBall < foulDetectionZ) {
         foulElement.style.display = 'block';
         foulElement.style.opacity = '1';
@@ -1047,13 +1024,13 @@ function launchBall() {
         ballVelocity.set(ballMesh.position.x * 0.003, 0, -3.5);
         spinAtRelease = 0;
     } else {
-        const power = 3.4 + pullDistance * 0.14;
-        const baseVx = ballMesh.position.x * 0.0085 + Math.sin(aimAngle) * 3.8;
+        const power = PHYSICS.POWER_BASE + pullDistance * PHYSICS.POWER_PULL_SCALE * (currentBall.power / 10);
+        const baseVx = ballMesh.position.x * PHYSICS.BASE_VX_FACTOR + Math.sin(aimAngle) * PHYSICS.AIM_ANGLE_MAX;
         const percent = parseFloat(hookPointerEl.style.left) || 50;
         let normalized = (percent - 50) / 50;
         const distanceFromCenter = Math.abs(normalized);
         const strength = Math.pow(distanceFromCenter, 1.6);
-        spinAtRelease = normalized * 1.25 * strength;
+        spinAtRelease = normalized * PHYSICS.SPIN_STRENGTH * (currentBall.spin / 10) * strength;
         ballVelocity.set(baseVx, 0, -power);
     }
     isRolling = true;
@@ -1185,8 +1162,8 @@ function updateAimLine() {
     if (mainAimBar) mainAimBar.visible = true;
     highlights.forEach(h => { if (h) h.visible = true; });
     const pullDistance = Math.max(0, ballMesh.position.z - 23);
-    const power = 3.4 + pullDistance * 0.1;
-    const baseVx = ballMesh.position.x * 0.0085 + Math.sin(aimAngle) * 3.8;
+    const power = PHYSICS.POWER_BASE + pullDistance * PHYSICS.POWER_PULL_SCALE * (currentBall.power / 10);
+    const baseVx = ballMesh.position.x * PHYSICS.BASE_VX_FACTOR + Math.sin(aimAngle) * PHYSICS.AIM_ANGLE_MAX;
     const baseVz = -power;
     const projectionDistance = 100;
     const steps = 65;
@@ -1239,7 +1216,7 @@ function animate() {
 
         if (!isRolling && (bowlingCrewState === 'pulling' || bowlingCrewState === 'swinging')) {
             const controlFactor = currentBall.control / 15;
-            hookPhase += 0.065 * (1 - controlFactor * 0.75);
+            hookPhase += 0.065 * (1 - controlFactor * PHYSICS.CONTROL_SWING_DAMPEN);
             const percent = (Math.sin(hookPhase) + 1) * 50;
             hookPointerEl.style.left = percent + '%';
         }
@@ -1250,10 +1227,10 @@ function animate() {
             ballMesh.rotation.z = -ballVelocity.x * 0.75;
 
             let hookFactor = 0;
-            if (ballMesh.position.z < HOOK_START_Z) hookFactor = Math.min(1.0, (HOOK_START_Z - ballMesh.position.z) / 45);
+            if (ballMesh.position.z < PHYSICS.HOOK_START_Z) hookFactor = Math.min(1.0, (PHYSICS.HOOK_START_Z - ballMesh.position.z) / 45);
             ballVelocity.x += spinAtRelease * FIXED_TIMESTEP * 2.8 * hookFactor;
 
-            ballVelocity.multiplyScalar(FRICTION_BASE);
+            ballVelocity.multiplyScalar(PHYSICS.FRICTION_BASE);
 
             ballMesh.position.add(ballVelocity.clone().multiplyScalar(FIXED_TIMESTEP * 24));
 
@@ -1269,7 +1246,7 @@ function animate() {
                 ballMesh.position.y = LANE_TOP_Y;
             }
 
-            if (!goingToCollector && (hasHitPins || ballVelocity.length() < MIN_VELOCITY || ballMesh.position.z < (inGutter ? GUTTER_END_Z - 60 : LANE_END_Z + 35))) {
+            if (!goingToCollector && (hasHitPins || ballVelocity.length() < PHYSICS.MIN_VELOCITY || ballMesh.position.z < (inGutter ? GUTTER_END_Z - 60 : LANE_END_Z + 35))) {
                 goingToCollector = true;
                 ballVelocity.z = -Math.abs(ballVelocity.z) * 0.48;
             }
@@ -1295,7 +1272,7 @@ function animate() {
             for (let i = 0; i < PIN_COLLISION_SUBSTEPS; i++) checkPinPinCollisions();
 
             const endZ = inGutter ? GUTTER_END_Z : LANE_END_Z;
-            if (!hasHitPins && (ballVelocity.length() < MIN_VELOCITY || ballMesh.position.z < endZ)) {
+            if (!hasHitPins && (ballVelocity.length() < PHYSICS.MIN_VELOCITY || ballMesh.position.z < endZ)) {
                 if (endRollTimeout === null) endRollTimeout = setTimeout(endCurrentRoll, 1800);
             }
         }
@@ -1407,10 +1384,9 @@ document.getElementById('popupPlayAgain').addEventListener('click', newGame);
 
 document.getElementById('closeBallPopup').addEventListener('click', hideBallPopup);
 
-// Add a floating button to open ball popup (always visible once game started)
 const selectBallBtn = document.createElement('div');
 selectBallBtn.innerHTML = '🎳 SELECT BALL';
-selectBallBtn.style.cssText = 'position:absolute; bottom:110px; right:20px; background:#5eff00; color:#000; font-size:18px; font-weight:900; padding:10px 24px; border-radius:50px; box-shadow:0 0 20px #5eff00; z-index:500; cursor:pointer; white-space:nowrap;';
+selectBallBtn.style.cssText = 'position:absolute; top:85px; right:20px; background:#5eff00; color:#000; font-size:18px; font-weight:900; padding:10px 24px; border-radius:50px; box-shadow:0 0 20px #5eff00; z-index:500; cursor:pointer; white-space:nowrap;';
 document.body.appendChild(selectBallBtn);
 selectBallBtn.addEventListener('click', showBallPopup);
 
