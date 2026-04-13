@@ -114,11 +114,11 @@
 
         /* PHONE OPTIMIZATIONS */
         @media (max-width: 480px) {
-            body { background-size: contain; background-position: center top; }
-            #gameOverPopup { width: 88%; padding: 25px 30px; }
-            #gameOverPopup h1 { font-size: 42px; }
-            #finalScoreBig { font-size: 52px; }
-            #coinPanel { top: 25px; left: 50%; right: auto; transform: translateX(-50%); font-size: 12px; padding: 6px 14px; }
+            body { background-size: cover; background-position: center top; }
+            #gameOverPopup { width: 88%; padding: 15px 20px; }
+            #gameOverPopup h1 { font-size: 32px; }
+            #finalScoreBig { font-size: 25px; }
+            #coinPanel { top: 125px; left: 50%; right: auto; transform: translateX(-50%); font-size: 12px; padding: 6px 14px; }
             #aimSensitivityControl { display: flex; align-items: center; }
         }
     </style>
@@ -199,7 +199,7 @@ console.log("%c✅ PHASE 3 FIX 198 — White Precision ball lifted higher (no mo
 // =============================================
 // YELLOW AIM BAR SENSITIVITY — EDIT HERE
 // =============================================
-let AIM_POSITION_SENSITIVITY = 0.065;
+let AIM_POSITION_SENSITIVITY = 10.00065;
 
 const ballRadiusBase = 2.05;
 
