@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Strike2Give Bowling - P2E PvP • 3 Frames (Fix 181)</title>
+    <title>Strike2Give Bowling - P2E PvP • 3 Frames (Fix 183)</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/intro-rust');
         * { font-family: 'intro rust', sans-serif; }
@@ -172,13 +172,14 @@
             top:50%;
             left:50%;
             transform:translate(-50%, -50%);
-            font-size:88px;
+            font-size:110px;
             font-weight:900;
             color:#5eff00;
             text-shadow: none;
-            z-index:500;
+            z-index:999;
             white-space:nowrap;
             opacity:0;
+            display:none;
             pointer-events:none;
             transition:none;
         }
@@ -199,7 +200,7 @@
 </head>
 <body>
 
-<div id="info">Strike2Give Bowling<br>P2E PvP • 3 Frames (Fix 181)</div>
+<div id="info">Strike2Give Bowling<br>P2E PvP • 3 Frames (Fix 183)</div>
 
 <div id="scoreboardPanel">
     <div id="scoreboard">
@@ -253,7 +254,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script>
-console.log("%c✅ PHASE 3 FIX 181 — Full code delivered (READY! SET! BOWL! clearly visible in center • no GUTTER message after timeout)", "color:#00ffcc;font-size:18px;font-weight:bold");
+console.log("%c✅ PHASE 3 FIX 183 — Full code delivered (simple full-screen - no scaling wrapper)", "color:#00ffcc;font-size:18px;font-weight:bold");
 
 const laneWidth = 26;
 const gutterChannelWidth = 7;
@@ -780,7 +781,6 @@ function finishRoll(knockedThisRoll) {
     else if (rollsInCurrentFrame === 2 && (frameRolls[currentFrame-1][0] + knockedThisRoll === 10)) resultText = getRandom(spareMessages);
     else if (rollsInCurrentFrame === 2 && (frameRolls[currentFrame-1][0] + knockedThisRoll < 10)) resultText = getRandom(missMessages);
     else if (knockedThisRoll === 0) { 
-        // Do NOT show GUTTER message if this was a timeout loss
         if (!timedOut) {
             resultText = gutterMessage; 
             color = "#ff8800"; 
@@ -888,13 +888,15 @@ function startNewRoll() {
 
     setTimeout(() => {
         showReadySetBowlFly();
-    }, 3000);
+    }, 1200);
 }
 
 function showReadySetBowlFly() {
     if (gameOver) return;
 
-    readySetFly.style.left = '-120%';
+    console.log("%c🎳 SHOWING READY! SET! BOWL!", "color:#5eff00;font-size:16px;font-weight:bold");
+
+    readySetFly.style.display = 'block';
     readySetFly.style.opacity = '0';
     readySetFly.style.transition = 'none';
     readySetFly.innerHTML = 'READY!';
@@ -907,7 +909,10 @@ function showReadySetBowlFly() {
 
     setTimeout(() => {
         readySetFly.classList.remove('show');
-        startNewTurnTimer();
+        setTimeout(() => {
+            readySetFly.style.display = 'none';
+            startNewTurnTimer();
+        }, 800);
     }, 3400);
 }
 
