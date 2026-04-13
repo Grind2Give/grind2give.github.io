@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Strike2Give Bowling - P2E PvP • 3 Frames (Fix 183)</title>
+    <title>Strike2Give Bowling - P2E PvP • 3 Frames (Fix 191)</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/intro-rust');
         * { font-family: 'intro rust', sans-serif; }
         body { margin:0; padding:0; overflow:hidden; background:#0f172a; touch-action:none; }
+
         canvas { display:block; width:100% !important; height:100vh !important; }
 
         #info { position:absolute; top:10px; left:10px; color:#fff; background:rgba(0,0,0,0.75); padding:12px; border-radius:8px; z-index:100; font-size:14px; }
 
         #scoreboardPanel {
-            position:absolute; top:70px; left:50%; transform:translateX(-50%);
-            background:linear-gradient(#111827,#1e2937); border:4px solid #5eff00; border-radius:18px;
-            padding:10px 20px; box-shadow:0 0 18px #5eff00; z-index:180; display:flex; flex-direction:row;
-            align-items:center; gap:20px; max-width:95%;
+            position:absolute; top:40px; left:50%; transform:translateX(-50%);
+            background:linear-gradient(#111827,#1e2937); border:3px solid #5eff00; border-radius:14px;
+            padding:8px 16px; box-shadow:0 0 14px #5eff00; z-index:180; display:flex; flex-direction:row;
+            align-items:center; gap:12px; max-width:92%;
         }
-        #scoreboard { display:flex; gap:18px; align-items:center; }
-        .frame { text-align:center; min-width:78px; padding:6px; border-radius:10px; transition:all 0.3s; }
-        .frame.active { background:#000000; box-shadow:0 0 15px #ffffff; border:3px solid #5eff00; color:#000; }
-        .frameNum { font-size:42px; font-weight:900; color:#ffffff; margin-bottom:6px; text-shadow:0 0 12px #5eff00; line-height:1; }
-        .rolls { font-size:28px; height:34px; display:flex; justify-content:center; gap:8px; align-items:center; }
-        .rollBox { background:#5eff00; color:#000; padding:8px 12px; border-radius:8px; min-width:32px; font-weight:900; font-size:26px; box-shadow:0 0 8px #000; }
+        #scoreboard { display:flex; gap:12px; align-items:center; }
+        .frame { text-align:center; min-width:62px; padding:4px; border-radius:8px; transition:all 0.3s; }
+        .frame.active { background:#000000; box-shadow:0 0 12px #ffffff; border:2px solid #5eff00; color:#000; }
+        .frameNum { font-size:34px; font-weight:900; color:#ffffff; margin-bottom:4px; text-shadow:0 0 10px #5eff00; line-height:1; }
+        .rolls { font-size:22px; height:28px; display:flex; justify-content:center; gap:6px; align-items:center; }
+        .rollBox { background:#5eff00; color:#000; padding:6px 10px; border-radius:6px; min-width:26px; font-weight:900; font-size:22px; box-shadow:0 0 6px #000; }
         .rollBox.pop { animation: popIn 0.5s cubic-bezier(0.68,-0.55,0.27,1.55); }
-        .rollBox.split { background:#ffffff !important; color:#000 !important; box-shadow:0 0 15px #fff; }
-        .score { font-size:36px; font-weight:900; color:#5eff00; margin-top:6px; text-shadow:0 0 12px #5eff00; min-height:38px; line-height:1; }
+        .score { font-size:28px; font-weight:900; color:#5eff00; margin-top:4px; text-shadow:0 0 10px #5eff00; min-height:30px; line-height:1; }
         .score.pop { animation: popIn 0.6s cubic-bezier(0.68,-0.55,0.27,1.55); }
 
         #timer {
@@ -39,6 +39,13 @@
         #coinPanel { position:absolute; top:12px; right:12px; background:linear-gradient(#111827,#1e2937); border:4px solid #00ffcc; border-radius:18px; padding:10px 20px; box-shadow:0 0 18px #00ffcc; z-index:180; display:flex; flex-direction:column; align-items:flex-end; color:#fff; font-size:14px; text-align:right; }
         #coinPanel span { font-size:26px; font-weight:bold; }
 
+        #ballPositionDebug {
+            position:absolute; top:12px; left:50%; transform:translateX(-50%);
+            background:rgba(0,0,0,0.85); color:#00ffcc; font-size:14px; font-weight:bold;
+            padding:6px 18px; border-radius:30px; z-index:200; white-space:nowrap; box-shadow:0 0 12px #00ffcc;
+            display:flex; gap:12px; align-items:center;
+        }
+
         #hookController {
             position:absolute; bottom:25px; left:50%; transform:translateX(-50%);
             width:92%; max-width:460px; height:68px; background:rgba(0,0,0,0.9); border:8px solid #00ffcc;
@@ -47,11 +54,13 @@
         #hookBar {
             position:relative; width:100%; height:100%;
             background: linear-gradient(to right,
-                #ff2222 0%, #ff2222 20%,
-                #aa44ff 20%, #aa44ff 40%,
-                #3399ff 40%, #3399ff 60%,
-                #5eff00 60%, #5eff00 80%,
-                #ff2222 80%, #ff2222 100%);
+                #ff2222 0%, #ff2222 15%,
+                #aa44ff 15%, #aa44ff 30%,
+                #3399ff 30%, #3399ff 45%,
+                #5eff00 45%, #5eff00 55%,
+                #3399ff 55%, #3399ff 70%,
+                #aa44ff 70%, #aa44ff 85%,
+                #ff2222 85%, #ff2222 100%);
         }
         .hookTick { position:absolute; top:4px; bottom:4px; width:3px; background:rgba(255,255,255,0.9); box-shadow:0 0 10px #ffffff; z-index:2; }
         #hookPointer {
@@ -62,43 +71,29 @@
         .hookLabel { position:absolute; bottom:-26px; font-size:14px; font-weight:bold; color:#fff; }
         #hookLeft { left:15px; } #hookStraight { left:50%; transform:translateX(-50%); } #hookRight { right:15px; }
 
-        @keyframes sweepInFromRight {
-            0% { transform: translateX(120%) rotate(12deg); opacity:0; }
-            100% { transform: translateX(-50%) rotate(0deg); opacity:1; }
-        }
-        @keyframes flipOutToLeft {
-            0% { transform: translateX(-50%) rotate(0deg); opacity:1; }
-            100% { transform: translateX(-220%) rotate(-25deg); opacity:0; }
-        }
+        @keyframes sweepInFromRight { 0% { transform: translateX(120%) rotate(12deg); opacity:0; } 100% { transform: translateX(-50%) rotate(0deg); opacity:1; } }
+        @keyframes flipOutToLeft { 0% { transform: translateX(-50%) rotate(0deg); opacity:1; } 100% { transform: translateX(-220%) rotate(-25deg); opacity:0; } }
         #scoreboardPanel.sweepIn { animation: sweepInFromRight 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards; }
         #scoreboardPanel.flipOut { animation: flipOutToLeft 0.7s cubic-bezier(0.4,0,1,1) forwards; }
 
-        @keyframes popIn {
-            0% { transform: scale(0.3); opacity:0; }
-            70% { transform: scale(1.15); }
-            100% { transform: scale(1); opacity:1; }
-        }
+        @keyframes popIn { 0% { transform: scale(0.3); opacity:0; } 70% { transform: scale(1.15); } 100% { transform: scale(1); opacity:1; } }
 
-        #splitPopup {
-            position:absolute; top:280px; left:50%; transform:translateX(-50%);
-            background:rgba(255,255,255,0.95); color:#000; font-size:48px; font-weight:900;
-            padding:15px 50px; border-radius:50px; box-shadow:0 0 40px #fff;
-            z-index:350; white-space:nowrap; opacity:0; pointer-events:none;
-            transition:all 0.4s ease;
-        }
-        #splitPopup.show { opacity:1; top:240px; }
+        #foul { position:absolute; top:42%; left:50%; transform:translate(-50%, -50%); font-size:110px; font-weight:900; color:#ff2222; text-shadow:0 0 35px #ff0000, 0 0 70px #ff0000; z-index:300; opacity:0; pointer-events:none; transition:opacity 0.4s ease; white-space:nowrap; }
 
-        #gameOverDisplay {
-            position:absolute; bottom:-300px; left:50%; transform:translateX(-50%);
-            font-size:90px; font-weight:900; color:#ff4444; text-shadow:0 0 30px #000, 0 0 60px #ff0000;
-            z-index:300; white-space:nowrap; opacity:0; transition:all 0.8s cubic-bezier(0.68,-0.55,0.27,1.55);
+        #pinResult, #timeUp, #knockdownPopup {
+            position:absolute; top:38%; left:50%; transform:translate(-50%, -50%);
+            font-size:78px; font-weight:900; color:#5eff00; text-shadow: none;
+            z-index:310; opacity:0; pointer-events:none; white-space:nowrap; transition:all 0.4s ease;
         }
-        #gameOverDisplay.show { bottom:180px; opacity:1; }
+        #knockdownPopup { font-size:62px; color:#ffcc00; text-shadow:0 0 20px #000; }
+
+        #gameOverDisplay { position:absolute; bottom:120px; left:50%; transform:translateX(-50%); font-size:90px; font-weight:900; color:#ff4444; text-shadow:0 0 30px #000, 0 0 60px #ff0000; z-index:300; white-space:nowrap; opacity:0; transition:all 0.8s cubic-bezier(0.68,-0.55,0.27,1.55); }
+        #gameOverDisplay.show { bottom:220px; opacity:1; }
 
         #startButton {
-            position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-            background:#5eff00; color:#000; font-size:52px; font-weight:900; padding:25px 80px;
-            border-radius:60px; box-shadow:0 0 40px #5eff00; z-index:400; cursor:pointer;
+            position:absolute; bottom:40px; left:50%; transform:translateX(-50%);
+            background:#5eff00; color:#000; font-size:28px; font-weight:900; padding:12px 40px;
+            border-radius:50px; box-shadow:0 0 25px #5eff00; z-index:400; cursor:pointer;
             white-space:nowrap; display:none;
         }
 
@@ -121,21 +116,6 @@
             padding:12px 18px; box-shadow:0 0 22px #5eff00; display:none;
         }
 
-        #foul {
-            position:absolute; top:42%; left:50%; transform:translate(-50%, -50%);
-            font-size:110px; font-weight:900; color:#ff2222; text-shadow:0 0 35px #ff0000, 0 0 70px #ff0000;
-            z-index:300; opacity:0; pointer-events:none; transition:opacity 0.4s ease;
-            white-space:nowrap;
-        }
-
-        #pinResult, #timeUp {
-            position:absolute; top:38%; left:50%; transform:translate(-50%, -50%);
-            font-size:78px; font-weight:900; 
-            color:#5eff00; 
-            text-shadow: none;
-            z-index:310; opacity:0; pointer-events:none; white-space:nowrap; transition:all 0.4s ease;
-        }
-
         #gameOverPopup {
             position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
             background:linear-gradient(#111827, #1e2937); border:8px solid #ff4444;
@@ -143,64 +123,66 @@
             z-index:600; display:none; text-align:center; color:#fff; max-width:460px; width:92%;
             animation: popupPop 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
-        #gameOverPopup h1 {
-            font-size:68px; color:#ff4444; margin:0 0 15px 0; text-shadow:0 0 25px #ff0000;
-        }
-        .popupScore {
-            font-size:32px; margin:20px 0 8px; color:#5eff00;
-        }
-        #finalScoreBig {
-            font-size:82px; font-weight:900; color:#5eff00; text-shadow:0 0 20px #5eff00;
-            margin-bottom:30px;
-        }
-        .popupCoins {
-            font-size:26px; margin:15px 0; color:#ffcc00;
-        }
+        #gameOverPopup h1 { font-size:68px; color:#ff4444; margin:0 0 15px 0; text-shadow:0 0 25px #ff0000; }
+        .popupScore { font-size:32px; margin:20px 0 8px; color:#5eff00; }
+        #finalScoreBig { font-size:82px; font-weight:900; color:#5eff00; text-shadow:0 0 20px #5eff00; margin-bottom:30px; }
+        .popupCoins { font-size:26px; margin:15px 0; color:#ffcc00; }
         #popupPlayAgain {
             background:#5eff00; color:#000; font-size:42px; font-weight:900;
             padding:18px 70px; border-radius:60px; margin-top:30px; cursor:pointer;
             box-shadow:0 0 40px #ffcc00; display:inline-block;
         }
 
-        @keyframes popupPop {
-            0% { transform: translate(-50%, -50%) scale(0.6); opacity:0; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity:1; }
-        }
+        @keyframes popupPop { 0% { transform: translate(-50%, -50%) scale(0.6); opacity:0; } 100% { transform: translate(-50%, -50%) scale(1); opacity:1; } }
 
         #readySetFly {
-            position:absolute;
-            top:50%;
-            left:50%;
-            transform:translate(-50%, -50%);
-            font-size:110px;
-            font-weight:900;
-            color:#5eff00;
-            text-shadow: none;
-            z-index:999;
-            white-space:nowrap;
-            opacity:0;
-            display:none;
-            pointer-events:none;
-            transition:none;
+            position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+            font-size:110px; font-weight:900; color:#5eff00; text-shadow: none;
+            z-index:999; white-space:nowrap; opacity:0; display:none; pointer-events:none; transition:none;
         }
         #readySetFly.show { animation: flyAcross 3.4s ease-in-out forwards; }
         @keyframes flyAcross {
-            0%   { transform:translate(-50%, -50%) scale(0.8); opacity:0; }
-            12%  { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
-            32%  { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
-            36%  { transform:translate(-50%, -50%) scale(0.9); opacity:0; }
-            40%  { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
-            60%  { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
-            64%  { transform:translate(-50%, -50%) scale(0.9); opacity:0; }
-            68%  { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
-            88%  { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
+            0% { transform:translate(-50%, -50%) scale(0.8); opacity:0; }
+            12% { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
+            32% { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
+            36% { transform:translate(-50%, -50%) scale(0.9); opacity:0; }
+            40% { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
+            60% { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
+            64% { transform:translate(-50%, -50%) scale(0.9); opacity:0; }
+            68% { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
+            88% { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
             100% { transform:translate(-50%, -50%) scale(0.8); opacity:0; }
+        }
+
+        /* BALL SELECTION POPUP */
+        #ballSelectPopup {
+            position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+            background:linear-gradient(#111827, #1e2937); border:8px solid #5eff00;
+            border-radius:24px; padding:30px 40px; z-index:800; width:92%; max-width:560px;
+            box-shadow:0 0 80px #5eff00; display:none; text-align:center; color:#fff;
+        }
+        .ballGrid { display:grid; grid-template-columns:repeat(2, 1fr); gap:18px; margin-top:20px; }
+        .ballCard {
+            background:rgba(255,255,255,0.08); border:4px solid #222; border-radius:18px;
+            padding:14px; cursor:pointer; transition:all 0.3s;
+        }
+        .ballCard:hover { border-color:#5eff00; transform:scale(1.05); }
+        .ballCard.selected { border-color:#5eff00; box-shadow:0 0 25px #5eff00; }
+        .ballIcon {
+            width:68px; height:68px; border-radius:50%; margin:0 auto 10px;
+            display:flex; align-items:center; justify-content:center; font-size:32px; box-shadow:0 0 20px #000;
+        }
+        .ballName { font-size:20px; font-weight:900; margin-bottom:8px; }
+        .ballStats { font-size:15px; line-height:1.4; text-align:left; }
+        .ballStats span { color:#00ffcc; font-weight:bold; }
+        #closeBallPopup {
+            position:absolute; top:12px; right:18px; font-size:28px; color:#ff4444; cursor:pointer;
         }
     </style>
 </head>
 <body>
 
-<div id="info">Strike2Give Bowling<br>P2E PvP • 3 Frames (Fix 183)</div>
+<div id="info">Strike2Give Bowling<br>P2E PvP • 3 Frames (Fix 191)</div>
 
 <div id="scoreboardPanel">
     <div id="scoreboard">
@@ -218,15 +200,19 @@
     <div style="color:#ffaa00; font-size:13px;">G2G <span id="g2gDisplay">45</span> <span style="font-size:11px;">(18+)</span></div>
 </div>
 
+<div id="ballPositionDebug">BALL X: <span id="ballX">0</span> Z: <span id="ballZ">23</span></div>
+
 <div id="testBanner">TEST ONLY - NOT LIVE NOT BETA</div>
 <div id="remainingPins"><svg id="pinDiagram" viewBox="0 0 220 195" xmlns="http://www.w3.org/2000/svg"></svg></div>
 
 <div id="hookController">
     <div id="hookBar">
-        <div class="hookTick" style="left:20%"></div>
-        <div class="hookTick" style="left:40%"></div>
-        <div class="hookTick" style="left:60%"></div>
-        <div class="hookTick" style="left:80%"></div>
+        <div class="hookTick" style="left:15%"></div>
+        <div class="hookTick" style="left:30%"></div>
+        <div class="hookTick" style="left:45%"></div>
+        <div class="hookTick" style="left:55%"></div>
+        <div class="hookTick" style="left:70%"></div>
+        <div class="hookTick" style="left:85%"></div>
         <div id="hookPointer"></div>
     </div>
     <div class="hookLabel" id="hookLeft">HOOK LEFT</div>
@@ -237,7 +223,7 @@
 <div id="foul">FOUL!</div>
 <div id="pinResult"></div>
 <div id="timeUp"></div>
-<div id="splitPopup">SPLIT!</div>
+<div id="knockdownPopup"></div>
 <div id="gameOverDisplay">GAME OVER</div>
 <div id="startButton">START BOWLING</div>
 <div id="playAgain">PLAY AGAIN</div>
@@ -252,26 +238,58 @@
 
 <div id="readySetFly"></div>
 
+<!-- BALL SELECTION POPUP -->
+<div id="ballSelectPopup">
+    <div id="closeBallPopup">✕</div>
+    <h2 style="margin:0 0 10px 0; font-size:32px; color:#5eff00;">CHOOSE YOUR BALL</h2>
+    <div id="ballGrid" class="ballGrid"></div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script>
-console.log("%c✅ PHASE 3 FIX 183 — Full code delivered (simple full-screen - no scaling wrapper)", "color:#00ffcc;font-size:18px;font-weight:bold");
+console.log("%c✅ PHASE 3 FIX 191 — Ball stats on top + beautiful popup selection + live X/Z debug + pin knockdown popup restored", "color:#00ffcc;font-size:18px;font-weight:bold");
 
-const laneWidth = 26;
-const gutterChannelWidth = 7;
-const gutterDepth = 8;
-const gutterOffset = 1;
-const COLLECTOR_EXTRA_WIDTH = 15.5;
-const PIN_HEIGHT_SCALE = 1.05;
-const PIN_WIDTH_SCALE = 0.6;
-const PIN_LAY_HEIGHT = 0.75;
-
-let balls = [
-    {name: "Basic Hammer", color: 0x222222, control: 8},
-    {name: "Strike Master", color: 0x000000, control: 10},
-    {name: "Power Hook", color: 0x660000, control: 7}
+// =============================================
+// BALL STATS — EASY TO EDIT (TOP OF CODE)
+// =============================================
+const BALL_TYPES = [
+    {
+        name: "Green Power",
+        color: 0x00ff00,
+        power: 15,
+        control: 15,
+        bounce: 4,
+        spin: 7
+    },
+    {
+        name: "White Precision",
+        color: 0xffffff,
+        power: 4,
+        control: 15,
+        bounce: 3,
+        spin: 7
+    },
+    {
+        name: "Red Spin",
+        color: 0xff0000,
+        power: 7,
+        control: 15,
+        bounce: 4,
+        spin: 15
+    },
+    {
+        name: "Black Bounce",
+        color: 0x111111,
+        power: 4,
+        control: 15,
+        bounce: 15,
+        spin: 7
+    }
 ];
-let currentBall = balls[0];
+
 let currentBallIndex = 0;
+let currentBall = BALL_TYPES[0];
+
 let gCoins = 1250;
 let g2gCoins = 45;
 
@@ -301,7 +319,6 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.shadowMap.enabled = false;
 document.body.appendChild(renderer.domElement);
 
-scene.fog = new THREE.Fog(0x0f172a, 80, 420);
 scene.add(new THREE.AmbientLight(0xdddddd, 0.7));
 const hemiLight = new THREE.HemisphereLight(0xaaaaaa, 0x444444, 0.9);
 hemiLight.position.set(0, 50, 0);
@@ -318,12 +335,12 @@ const LANE_TOP_Y = 0.5;
 const lighterWood = 0x8B5A2B;
 const darkerWood = 0x6B3E2A;
 const numPlanks = 15;
-const plankWidth = laneWidth / numPlanks;
+const plankWidth = 26 / numPlanks;
 
 for (let i = 0; i < numPlanks; i++) {
     const color = (i % 2 === 0) ? lighterWood : darkerWood;
     const plank = new THREE.Mesh(new THREE.BoxGeometry(plankWidth, 2.2, 300 + laneExtension), new THREE.MeshLambertMaterial({ color }));
-    const x = -laneWidth / 2 + (i + 0.5) * plankWidth;
+    const x = -13 + (i + 0.5) * plankWidth;
     plank.position.set(x, -2.5, -80 - laneExtension / 2);
     scene.add(plank);
 }
@@ -331,18 +348,18 @@ for (let i = 0; i < numPlanks; i++) {
 for (let i = 0; i < numPlanks; i++) {
     const color = (i % 2 === 0) ? lighterWood : darkerWood;
     const plank = new THREE.Mesh(new THREE.BoxGeometry(plankWidth, 2.25, 25), new THREE.MeshLambertMaterial({ color }));
-    const x = -laneWidth / 2 + (i + 0.5) * plankWidth;
+    const x = -13 + (i + 0.5) * plankWidth;
     plank.position.set(x, -2.45, seamZ + 12.5); scene.add(plank);
 }
 
 for (let i = 0; i < numPlanks; i++) {
     const color = (i % 2 === 0) ? lighterWood : darkerWood;
     const plank = new THREE.Mesh(new THREE.BoxGeometry(plankWidth, 2.25, 30), new THREE.MeshLambertMaterial({ color }));
-    const x = -laneWidth / 2 + (i + 0.5) * plankWidth;
+    const x = -13 + (i + 0.5) * plankWidth;
     plank.position.set(x, -2.45, seamZ + 37.5); scene.add(plank);
 }
 
-const foulLine = new THREE.Mesh(new THREE.BoxGeometry(laneWidth + 2, .25, .15), new THREE.MeshLambertMaterial({ color: 0xFF0000 }));
+const foulLine = new THREE.Mesh(new THREE.BoxGeometry(28, .25, .15), new THREE.MeshLambertMaterial({ color: 0xFF0000 }));
 foulLine.position.set(0, 0.12, seamZ - 9.5); scene.add(foulLine);
 
 const pinPositions = [
@@ -363,8 +380,8 @@ pinPositions.forEach(pos => {
 const dotMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
 const darkPlankIndices = [2, 3.9, 5.8, 9.5, 11.4, 13.3];
 darkPlankIndices.forEach(i => {
-    const leftX = -laneWidth / 2 + i * plankWidth + .35;
-    const rightX = -laneWidth / 2 + i * plankWidth - .95;
+    const leftX = -13 + i * plankWidth + .35;
+    const rightX = -13 + i * plankWidth - .95;
     const leftDot = new THREE.Mesh(new THREE.CircleGeometry(0.32, 12), dotMat);
     leftDot.rotation.x = -Math.PI / 2; leftDot.position.set(leftX, 0.3, 12); scene.add(leftDot);
     const rightDot = new THREE.Mesh(new THREE.CircleGeometry(0.32, 12), dotMat);
@@ -374,7 +391,7 @@ darkPlankIndices.forEach(i => {
 const approachPlankIndices = [1.85,3.80,5.75,7.7,9.65,11.55,13.3];
 const approachDotZ = seamZ + 4;
 approachPlankIndices.forEach(i => {
-    const centerX = -laneWidth / 2. + (i-.1) * plankWidth;
+    const centerX = -13 + (i-.1) * plankWidth;
     const radius = (i === 10) ? 0.50 : 0.32;
     const dot = new THREE.Mesh(new THREE.CircleGeometry(radius, 25), dotMat);
     dot.rotation.x = -Math.PI / 2;
@@ -390,7 +407,7 @@ function createArrow(x, z) {
     arrow.rotation.x = -Math.PI / 2;
     scene.add(arrow);
 }
-const darkCenters = [1.75, 3.5, 5.5, 7.25, 9.15, 11, 12.9].map(i => -laneWidth / 2 + (i + .25) * plankWidth);
+const darkCenters = [1.75, 3.5, 5.5, 7.25, 9.15, 11, 12.9].map(i => -13 + (i + .25) * plankWidth);
 createArrow(darkCenters[3], -110);
 createArrow(darkCenters[2], -100);
 createArrow(darkCenters[4], -100);
@@ -401,8 +418,8 @@ createArrow(darkCenters[6], -80);
 
 let pins = [];
 function createPin(x, z, index) {
-    const h = PIN_HEIGHT_SCALE;
-    const w = PIN_WIDTH_SCALE;
+    const h = 1.85;
+    const w = 0.75;
     const group = new THREE.Group();
     const lowerBody = new THREE.Mesh(new THREE.CylinderGeometry(1.38 * w, 1.62 * w, 3.1 * h, 48), new THREE.MeshPhongMaterial({ color: 0xF8F8F8, shininess: 25, emissive: 0x222222, emissiveIntensity: 0.18 }));
     lowerBody.position.y = 2.05 * h; group.add(lowerBody);
@@ -433,35 +450,34 @@ pinPositions.forEach((pos, i) => createPin(pos[0], pos[1], i));
 
 const enclosureMat = new THREE.MeshPhongMaterial({ color: 0x1a2533, shininess: 15, side: THREE.DoubleSide });
 
-const fullGutterWidth = laneWidth + 2 * (gutterChannelWidth + gutterOffset + 2);
+const fullGutterWidth = 26 + 2 * (7 + 1 + 2);
+const pinCeiling = new THREE.Mesh(new THREE.BoxGeometry(fullGutterWidth, 20, 100), enclosureMat);
+pinCeiling.position.set(0, 35, -235 - laneExtension); scene.add(pinCeiling);
 
-const pinCeiling = new THREE.Mesh(new THREE.BoxGeometry(fullGutterWidth, 3, 70), enclosureMat);
-pinCeiling.position.set(0, 16, -235 - laneExtension); scene.add(pinCeiling);
+const pinLeftWall = new THREE.Mesh(new THREE.BoxGeometry(2, 52, 100), enclosureMat);
+pinLeftWall.position.set(-(13 + 7 + 1 + 1), 14, -235 - laneExtension); scene.add(pinLeftWall);
 
-const pinLeftWall = new THREE.Mesh(new THREE.BoxGeometry(2, 22, 70), enclosureMat);
-pinLeftWall.position.set(-(laneWidth/2.5 + gutterChannelWidth + gutterOffset + 1), 6, -235 - laneExtension); scene.add(pinLeftWall);
+const pinRightWall = new THREE.Mesh(new THREE.BoxGeometry(2, 52, 100), enclosureMat);
+pinRightWall.position.set(+(13 + 7 + 1 + 1), 14, -235 - laneExtension); scene.add(pinRightWall);
 
-const pinRightWall = new THREE.Mesh(new THREE.BoxGeometry(2, 22, 70), enclosureMat);
-pinRightWall.position.set(+(laneWidth/2.5 + gutterChannelWidth + gutterOffset + 1), 6, -235 - laneExtension); scene.add(pinRightWall);
-
-const pinBackWall = new THREE.Mesh(new THREE.BoxGeometry(fullGutterWidth, 21, 2), enclosureMat);
-pinBackWall.position.set(0, 6, -278 - laneExtension); scene.add(pinBackWall);
+const pinBackWall = new THREE.Mesh(new THREE.BoxGeometry(fullGutterWidth, 32, 2), enclosureMat);
+pinBackWall.position.set(0, 14, -278 - laneExtension); scene.add(pinBackWall);
 
 const collectorMat = new THREE.MeshLambertMaterial({ color: 0x111111 });
 const LANE_END_Z = -225 - laneExtension;
 const COLLECTOR_Z = LANE_END_Z;
-const collectorFloor = new THREE.Mesh(new THREE.BoxGeometry(laneWidth + COLLECTOR_EXTRA_WIDTH, 2, 120), collectorMat);
+const collectorFloor = new THREE.Mesh(new THREE.BoxGeometry(26 + 15.5, 2, 120), collectorMat);
 collectorFloor.position.set(0, -8.8, LANE_END_Z - 60); scene.add(collectorFloor);
-const collectorBack = new THREE.Mesh(new THREE.BoxGeometry(laneWidth + COLLECTOR_EXTRA_WIDTH, 12, 3), collectorMat);
+const collectorBack = new THREE.Mesh(new THREE.BoxGeometry(26 + 15.5, 12, 3), collectorMat);
 collectorBack.position.set(0, -1, LANE_END_Z - 55); scene.add(collectorBack);
 
 const gutterMat = new THREE.MeshLambertMaterial({ color: 0x5C4033 });
 const gutterLength = 295;
 const gutterStartZ = seamZ -15 ; 
-const leftGutter = new THREE.Mesh(new THREE.BoxGeometry(gutterChannelWidth, gutterDepth, gutterLength), gutterMat);
-leftGutter.position.set( -(laneWidth / 2 + gutterOffset + gutterChannelWidth / 3), -gutterDepth / 1 + 1.0, gutterStartZ - gutterLength / 2); scene.add(leftGutter);
-const rightGutter = new THREE.Mesh(new THREE.BoxGeometry(gutterChannelWidth, gutterDepth, gutterLength), gutterMat);
-rightGutter.position.set( +(laneWidth / 2 + gutterOffset + gutterChannelWidth / 3), -gutterDepth / 1 + 1.0, gutterStartZ - gutterLength / 2); scene.add(rightGutter);
+const leftGutter = new THREE.Mesh(new THREE.BoxGeometry(7, 8, gutterLength), gutterMat);
+leftGutter.position.set( -(13 + 1 + 7 / 3), -8 / 1 + 1.0, gutterStartZ - gutterLength / 2); scene.add(leftGutter);
+const rightGutter = new THREE.Mesh(new THREE.BoxGeometry(7, 8, gutterLength), gutterMat);
+rightGutter.position.set( +(13 + 1 + 7 / 3), -8 / 1 + 1.0, gutterStartZ - gutterLength / 2); scene.add(rightGutter);
 
 let ballMesh;
 let ballVelocity = new THREE.Vector3(0,0,0);
@@ -487,7 +503,7 @@ const timerElement = document.getElementById('timer');
 const foulElement = document.getElementById('foul');
 const pinResultElement = document.getElementById('pinResult');
 const timeUpElement = document.getElementById('timeUp');
-const splitPopup = document.getElementById('splitPopup');
+const knockdownElement = document.getElementById('knockdownPopup');
 const readySetFly = document.getElementById('readySetFly');
 const FRICTION_BASE = 0.99995;
 const MIN_VELOCITY = 0.003;
@@ -519,9 +535,6 @@ const PIN_COLLISION_SUBSTEPS = 8;
 let lastTime = Date.now();
 let lightProgress = 0;
 
-let previewGroup;
-let previewBalls = [];
-
 function createBallMesh() {
     if (ballMesh) scene.remove(ballMesh);
     const geo = new THREE.SphereGeometry(ballRadiusBase, 64, 64);
@@ -531,57 +544,49 @@ function createBallMesh() {
     scene.add(ballMesh);
 }
 
-function createPreviewBalls() {
-    if (previewGroup) scene.remove(previewGroup);
-    previewGroup = new THREE.Group();
-    previewGroup.position.set(0, -8, 70);
-    previewBalls = [];
-    for (let i = 0; i < balls.length; i++) {
-        const geo = new THREE.SphereGeometry(1.8, 32, 32);
-        const mat = new THREE.MeshPhongMaterial({ color: balls[i].color, shininess: 120, emissive: 0x222222, emissiveIntensity: 0.3 });
-        const ball = new THREE.Mesh(geo, mat);
-        ball.position.set(-12 + i * 6, 0, 0);
-        ball.userData.ballData = balls[i];
-        ball.userData.index = i;
-        previewGroup.add(ball);
-        previewBalls.push(ball);
-    }
-    scene.add(previewGroup);
-    updateSelectedBallVisual();
+function updateBallPositionDebug() {
+    if (!ballMesh) return;
+    document.getElementById('ballX').textContent = ballMesh.position.x.toFixed(2);
+    document.getElementById('ballZ').textContent = ballMesh.position.z.toFixed(2);
 }
 
-function updateSelectedBallVisual() {
-    previewBalls.forEach((ball, i) => {
-        if (i === currentBallIndex) {
-            ball.scale.setScalar(1.18);
-            ball.material.emissiveIntensity = 1.2;
-            ball.material.emissive.setHex(0x88ffff);
-        } else {
-            ball.scale.setScalar(1);
-            ball.material.emissiveIntensity = 0.3;
-            ball.material.emissive.setHex(0x222222);
-        }
+function populateBallPopup() {
+    const grid = document.getElementById('ballGrid');
+    grid.innerHTML = '';
+    BALL_TYPES.forEach((ball, i) => {
+        const cardHTML = `
+        <div class="ballCard ${i === currentBallIndex ? 'selected' : ''}" data-index="${i}">
+            <div class="ballIcon" style="background-color:#${ball.color.toString(16).padStart(6,'0')};">🎳</div>
+            <div class="ballName">${ball.name}</div>
+            <div class="ballStats">
+                Power <span>${ball.power}</span><br>
+                Control <span>${ball.control}</span><br>
+                Bounce <span>${ball.bounce}</span><br>
+                Spin <span>${ball.spin}</span>
+            </div>
+        </div>`;
+        grid.innerHTML += cardHTML;
+    });
+
+    grid.querySelectorAll('.ballCard').forEach(card => {
+        card.addEventListener('click', () => {
+            currentBallIndex = parseInt(card.dataset.index);
+            currentBall = BALL_TYPES[currentBallIndex];
+            createBallMesh();
+            populateBallPopup(); // refresh selection highlight
+            hideBallPopup();
+        });
     });
 }
 
-function handleBallSelection(e) {
+function showBallPopup() {
     if (isRolling || gameOver || !timerHasStarted) return;
-    const rect = dom.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    mouse.x = ((clientX - rect.left) / rect.width) * 2 - 1;
-    mouse.y = -((clientY - rect.top) / rect.height) * 2 + 1;
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(previewBalls);
-    if (intersects.length > 0) {
-        const selectedIndex = intersects[0].object.userData.index;
-        if (selectedIndex !== currentBallIndex) {
-            currentBallIndex = selectedIndex;
-            currentBall = balls[selectedIndex];
-            createBallMesh();
-            updateSelectedBallVisual();
-        }
-    }
+    document.getElementById('ballSelectPopup').style.display = 'block';
+    populateBallPopup();
+}
+
+function hideBallPopup() {
+    document.getElementById('ballSelectPopup').style.display = 'none';
 }
 
 function updateCoinDisplay() {
@@ -612,7 +617,7 @@ function updateRemainingPinsVisual(message = "") {
         if (!standing[i]) circles[order[i]].setAttribute('fill', '#555555');
     }
     container.style.display = 'block';
-    setTimeout(() => { hideRemainingPinsVisual(); }, 3000);
+    setTimeout(() => { hideRemainingPinsVisual(); }, 2800);
 }
 
 function hideRemainingPinsVisual() {
@@ -711,18 +716,33 @@ function updateScoreboard() {
     triggerScoreboardSweep();
 }
 
-function isSplit(knockedThisRoll) {
-    if (rollsInCurrentFrame !== 1 || knockedThisRoll === 10) return false;
-    const standing = pins.filter(p => p.isStanding);
-    if (standing.length !== 2) return false;
-    const indices = standing.map(p => p.index).sort((a,b)=>a-b);
-    return (indices[0] === 6 && indices[1] === 9) || (indices[0] === 3 && indices[1] === 8) || (indices[0] === 4 && indices[1] === 7);
+function getSplitMessage() {
+    const standing = pins.filter(p => p.isStanding).map(p => p.index + 1);
+    if (standing.length < 2) return "";
+    const sorted = [...standing].sort((a,b)=>a-b);
+
+    if (sorted.includes(7) && sorted.includes(10) && sorted.length === 2) return "7-10 SPLIT!";
+    if (sorted.includes(4) && sorted.includes(6) && sorted.length === 2) return "4-6 SPLIT!";
+    if (sorted.includes(7) && sorted.includes(9) && sorted.length === 2) return "7-9 SPLIT!";
+    if (sorted.includes(4) && sorted.includes(10) && sorted.length === 2) return "4-10 SPLIT!";
+    if (sorted.includes(6) && sorted.includes(7) && sorted.length === 2) return "6-7 SPLIT!";
+    if (sorted.includes(4) && sorted.includes(7) && sorted.length === 2) return "4-7 SPLIT!";
+    if (sorted.includes(7) && sorted.includes(8) && sorted.includes(9) && sorted.includes(10) && sorted.length === 4) return "7-10 WASHOUT!";
+    if (sorted.includes(4) && sorted.includes(6) && sorted.includes(7) && sorted.includes(10) && sorted.length === 4) return "4-6-7-10 SPLIT!";
+    if (sorted.includes(1) && sorted.length > 1 && sorted[0] === 1) return "HEAD PIN SPLIT!";
+    if (sorted.length >= 2 && (sorted[sorted.length-1] - sorted[0] > 3)) return "BIG SPLIT!";
+
+    return "SPLIT!";
 }
 
-function showSplitPopup() {
-    splitPopup.textContent = "SPLIT!";
-    splitPopup.style.opacity = "1";
-    setTimeout(() => { splitPopup.style.opacity = "0"; }, 1800);
+function hasGapBetweenPins() {
+    const standing = pins.filter(p => p.isStanding);
+    if (standing.length < 2) return false;
+    const indices = standing.map(p => p.index).sort((a,b) => a - b);
+    for (let i = 1; i < indices.length; i++) {
+        if (indices[i] - indices[i-1] > 1) return true;
+    }
+    return false;
 }
 
 function resetPins() {
@@ -740,13 +760,29 @@ function resetPins() {
 function countStandingPins() { return pins.filter(pin => pin.isStanding).length; }
 function getRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-function showResult(text, color = '#ffcc00') {
+function showResult(text, color = '#ffcc00', callback = null) {
     const resultEl = pinResultElement;
     resultEl.textContent = text;
     resultEl.style.color = color;
     resultEl.style.display = 'block';
     resultEl.style.opacity = '1';
-    setTimeout(() => { resultEl.style.opacity = '0'; setTimeout(() => { resultEl.style.display = 'none'; }, 600); }, 2200);
+    setTimeout(() => {
+        resultEl.style.opacity = '0';
+        setTimeout(() => {
+            resultEl.style.display = 'none';
+            if (callback) callback();
+        }, 600);
+    }, 2200);
+}
+
+function showKnockdownPopup(knocked) {
+    knockdownElement.textContent = `${knocked} PINS DOWN!`;
+    knockdownElement.style.display = 'block';
+    knockdownElement.style.opacity = '1';
+    setTimeout(() => {
+        knockdownElement.style.opacity = '0';
+        setTimeout(() => { knockdownElement.style.display = 'none'; }, 600);
+    }, 1800);
 }
 
 function showTimeUp() {
@@ -771,8 +807,6 @@ function finishRoll(knockedThisRoll) {
     frameRolls[currentFrame-1].push(knockedThisRoll);
     rollsInCurrentFrame = frameRolls[currentFrame-1].length;
 
-    if (rollsInCurrentFrame === 1 && isSplit(knockedThisRoll)) showSplitPopup();
-
     let resultText = "";
     let color = "#ffcc00";
     let indicatorMessage = "";
@@ -789,12 +823,37 @@ function finishRoll(knockedThisRoll) {
     }
     else resultText = getRandom(missMessages);
 
-    if (resultText) showResult(resultText, color);
+    let advance = false;
+    if (!isFinalFrame) {
+        if (rollsInCurrentFrame >= 2 || knockedThisRoll === 10) advance = true;
+    } else {
+        if (rollsInCurrentFrame >= 3) advance = true;
+        else if (rollsInCurrentFrame === 2) {
+            const first = frameRolls[2][0] || 0;
+            const second = frameRolls[2][1] || 0;
+            if (!(first === 10 || first + second === 10)) advance = true;
+        }
+    }
+
+    const nextAction = () => {
+        if (advance) {
+            advanceToNextFrame();
+        } else {
+            startNewRoll();
+        }
+    };
 
     if (rollsInCurrentFrame === 1 && knockedThisRoll < 10) {
         clearFallenPins();
-        updateRemainingPinsVisual(indicatorMessage);
+        if (hasGapBetweenPins()) {
+            const splitMsg = getSplitMessage();
+            showResult(splitMsg, "#ffffff");
+        } else {
+            updateRemainingPinsVisual(indicatorMessage);
+        }
     } else hideRemainingPinsVisual();
+
+    if (knockedThisRoll > 0) showKnockdownPopup(knockedThisRoll);
 
     updateScoreboard();
 
@@ -811,25 +870,10 @@ function finishRoll(knockedThisRoll) {
         }
     }
 
-    let advance = false;
-
-    if (!isFinalFrame) {
-        if (rollsInCurrentFrame >= 2 || knockedThisRoll === 10) {
-            advance = true;
-        }
+    if (resultText) {
+        showResult(resultText, color, nextAction);
     } else {
-        if (rollsInCurrentFrame >= 3) advance = true;
-        else if (rollsInCurrentFrame === 2) {
-            const first = frameRolls[2][0] || 0;
-            const second = frameRolls[2][1] || 0;
-            if (!(first === 10 || first + second === 10)) advance = true;
-        }
-    }
-
-    if (advance) {
-        advanceToNextFrame();
-    } else {
-        startNewRoll();
+        nextAction();
     }
 }
 
@@ -886,15 +930,11 @@ function startNewRoll() {
     hookControllerEl.style.display = 'none';
     pinsStandingAtStartOfRoll = countStandingPins();
 
-    setTimeout(() => {
-        showReadySetBowlFly();
-    }, 1200);
+    showReadySetBowlFly();
 }
 
 function showReadySetBowlFly() {
     if (gameOver) return;
-
-    console.log("%c🎳 SHOWING READY! SET! BOWL!", "color:#5eff00;font-size:16px;font-weight:bold");
 
     readySetFly.style.display = 'block';
     readySetFly.style.opacity = '0';
@@ -968,12 +1008,6 @@ function showGameOver() {
     document.getElementById('gameOverPopup').style.display = 'block';
 
     if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-}
-
-function resetBallAndTimer() {
-    if (endRollTimeout) clearTimeout(endRollTimeout);
-    endRollTimeout = null;
-    startNewRoll();
 }
 
 function newGame() {
@@ -1132,8 +1166,8 @@ function updatePins(delta) {
             pin.velocity.multiplyScalar(0.932);
             pin.angularVelocity.multiplyScalar(0.885);
 
-            if (pin.group.position.y < PIN_LAY_HEIGHT) {
-                pin.group.position.y = PIN_LAY_HEIGHT;
+            if (pin.group.position.y < 0.70) {
+                pin.group.position.y = 0.70;
                 pin.velocity.y = Math.abs(pin.velocity.y) * 0.62;
                 pin.velocity.x *= 0.73;
                 pin.velocity.z *= 0.73;
@@ -1204,7 +1238,8 @@ function animate() {
         if (gameOver) { accumulator -= FIXED_TIMESTEP; continue; }
 
         if (!isRolling && (bowlingCrewState === 'pulling' || bowlingCrewState === 'swinging')) {
-            hookPhase += 0.065;
+            const controlFactor = currentBall.control / 15;
+            hookPhase += 0.065 * (1 - controlFactor * 0.75);
             const percent = (Math.sin(hookPhase) + 1) * 50;
             hookPointerEl.style.left = percent + '%';
         }
@@ -1266,6 +1301,8 @@ function animate() {
         }
         accumulator -= FIXED_TIMESTEP;
     }
+
+    updateBallPositionDebug();
 
     if (!isRolling && !gameOver) {
         updateAimLine();
@@ -1336,22 +1373,11 @@ function endDrag(e) {
     if (turnLostMessageActive || !isDragging) return;
     isDragging = false;
 
-    if (isTouchInput) {
-        const clientY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
-        const swipeDeltaY = swipeStartY - clientY;
-        if ((bowlingCrewState === 'pulling' || bowlingCrewState === 'swinging') && swipeDeltaY > 35) {
-            launchBall();
-        } else {
-            bowlingCrewState = 'positioning';
-            hookControllerEl.style.display = 'none';
-        }
+    if (bowlingCrewState === 'pulling' || bowlingCrewState === 'swinging') {
+        launchBall();
     } else {
-        if (bowlingCrewState === 'pulling' || bowlingCrewState === 'swinging') {
-            launchBall();
-        } else {
-            bowlingCrewState = 'positioning';
-            hookControllerEl.style.display = 'none';
-        }
+        bowlingCrewState = 'positioning';
+        hookControllerEl.style.display = 'none';
     }
 }
 
@@ -1364,12 +1390,9 @@ dom.addEventListener('touchstart', startDrag, { passive: false });
 dom.addEventListener('touchmove', moveDrag, { passive: false });
 dom.addEventListener('touchend', endDrag);
 
-dom.addEventListener('click', handleBallSelection);
-dom.addEventListener('touchend', handleBallSelection);
-
 window.addEventListener('keydown', e => {
     keys[e.key] = true;
-    if (e.key.toLowerCase() === 'r' && !isRolling && !gameOver) resetBallAndTimer();
+    if (e.key.toLowerCase() === 'r' && !isRolling && !gameOver) { ballMesh.position.set(0, LANE_TOP_Y, 23); }
     if (e.key.toLowerCase() === 'v') fullView = !fullView;
 });
 window.addEventListener('keyup', e => { keys[e.key] = false; });
@@ -1382,11 +1405,18 @@ document.getElementById('startButton').addEventListener('click', () => {
 
 document.getElementById('popupPlayAgain').addEventListener('click', newGame);
 
-createPreviewBalls();
+document.getElementById('closeBallPopup').addEventListener('click', hideBallPopup);
+
+// Add a floating button to open ball popup (always visible once game started)
+const selectBallBtn = document.createElement('div');
+selectBallBtn.innerHTML = '🎳 SELECT BALL';
+selectBallBtn.style.cssText = 'position:absolute; bottom:110px; right:20px; background:#5eff00; color:#000; font-size:18px; font-weight:900; padding:10px 24px; border-radius:50px; box-shadow:0 0 20px #5eff00; z-index:500; cursor:pointer; white-space:nowrap;';
+document.body.appendChild(selectBallBtn);
+selectBallBtn.addEventListener('click', showBallPopup);
+
 createAimHighlights();
 createBallMesh();
 updateCoinDisplay();
-updateSelectedBallVisual();
 
 animate();
 
