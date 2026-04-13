@@ -199,7 +199,7 @@ console.log("%c✅ PHASE 3 FIX 198 — White Precision ball lifted higher (no mo
 // =============================================
 // YELLOW AIM BAR SENSITIVITY — EDIT HERE
 // =============================================
-let AIM_POSITION_SENSITIVITY = 10.00065;
+let AIM_POSITION_SENSITIVITY = 0.0065;
 
 const ballRadiusBase = 2.05;
 
@@ -477,7 +477,7 @@ function createBallMesh() {
     
     // White Precision ball lift — increased to stop sinking
     const lift = (currentBall.radius > ballRadiusBase) ? 0.85 : 0;
-    ballMesh.position.set(0, LANE_TOP_Y + lift, 23);
+    ballMesh.position.set(0, LANE_TOP_Y + lift, 53);
     scene.add(ballMesh);
 }
 
