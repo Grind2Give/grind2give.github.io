@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Strike2Give Bowling - P2E PvP • 3 Frames (Fix 159)</title>
+    <title>Strike2Give Bowling - P2E PvP • 3 Frames (Fix 181)</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/intro-rust');
         * { font-family: 'intro rust', sans-serif; }
@@ -35,7 +35,6 @@
             background:rgba(0,0,0,0.6); padding:8px 30px; border-radius:12px;
             box-shadow:0 0 18px #5eff00; min-width:100px; text-align:center; z-index:190;
         }
-        #timer.pulse { animation:pulse 0.6s infinite; }
 
         #coinPanel { position:absolute; top:12px; right:12px; background:linear-gradient(#111827,#1e2937); border:4px solid #00ffcc; border-radius:18px; padding:10px 20px; box-shadow:0 0 18px #00ffcc; z-index:180; display:flex; flex-direction:column; align-items:flex-end; color:#fff; font-size:14px; text-align:right; }
         #coinPanel span { font-size:26px; font-weight:bold; }
@@ -48,11 +47,11 @@
         #hookBar {
             position:relative; width:100%; height:100%;
             background: linear-gradient(to right,
-                #ff2222 0%, #ff2222 12%,
-                #aa44ff 20%, #3399ff 32%,
-                #5eff00 42%, #5eff00 58%,
-                #3399ff 68%, #aa44ff 80%,
-                #ff2222 88%, #ff2222 100%);
+                #ff2222 0%, #ff2222 20%,
+                #aa44ff 20%, #aa44ff 40%,
+                #3399ff 40%, #3399ff 60%,
+                #5eff00 60%, #5eff00 80%,
+                #ff2222 80%, #ff2222 100%);
         }
         .hookTick { position:absolute; top:4px; bottom:4px; width:3px; background:rgba(255,255,255,0.9); box-shadow:0 0 10px #ffffff; z-index:2; }
         #hookPointer {
@@ -109,7 +108,6 @@
             box-shadow:0 0 40px #ffcc00; z-index:400; cursor:pointer;
         }
 
-        /* ====================== FIX 159 UI POLISH ====================== */
         #testBanner {
             position:absolute; top:12px; left:50%; transform:translateX(-50%);
             background:linear-gradient(#ff2222, #cc0000); color:#fff; font-size:13px; font-weight:bold;
@@ -132,18 +130,76 @@
 
         #pinResult, #timeUp {
             position:absolute; top:38%; left:50%; transform:translate(-50%, -50%);
-            font-size:78px; font-weight:900; text-shadow:0 0 30px #000, 0 0 55px #5eff00;
+            font-size:78px; font-weight:900; 
+            color:#5eff00; 
+            text-shadow: none;
             z-index:310; opacity:0; pointer-events:none; white-space:nowrap; transition:all 0.4s ease;
         }
-        #pinResult { color:#5eff00; }
-        #timeUp { color:#ff8800; font-size:68px; text-shadow:0 0 30px #000, 0 0 55px #ff8800; }
 
-        @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.18);} }
+        #gameOverPopup {
+            position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+            background:linear-gradient(#111827, #1e2937); border:8px solid #ff4444;
+            border-radius:24px; padding:40px 50px; box-shadow:0 0 80px #ff0000, 0 0 40px #000;
+            z-index:600; display:none; text-align:center; color:#fff; max-width:460px; width:92%;
+            animation: popupPop 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        #gameOverPopup h1 {
+            font-size:68px; color:#ff4444; margin:0 0 15px 0; text-shadow:0 0 25px #ff0000;
+        }
+        .popupScore {
+            font-size:32px; margin:20px 0 8px; color:#5eff00;
+        }
+        #finalScoreBig {
+            font-size:82px; font-weight:900; color:#5eff00; text-shadow:0 0 20px #5eff00;
+            margin-bottom:30px;
+        }
+        .popupCoins {
+            font-size:26px; margin:15px 0; color:#ffcc00;
+        }
+        #popupPlayAgain {
+            background:#5eff00; color:#000; font-size:42px; font-weight:900;
+            padding:18px 70px; border-radius:60px; margin-top:30px; cursor:pointer;
+            box-shadow:0 0 40px #ffcc00; display:inline-block;
+        }
+
+        @keyframes popupPop {
+            0% { transform: translate(-50%, -50%) scale(0.6); opacity:0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity:1; }
+        }
+
+        #readySetFly {
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%, -50%);
+            font-size:88px;
+            font-weight:900;
+            color:#5eff00;
+            text-shadow: none;
+            z-index:500;
+            white-space:nowrap;
+            opacity:0;
+            pointer-events:none;
+            transition:none;
+        }
+        #readySetFly.show { animation: flyAcross 3.4s ease-in-out forwards; }
+        @keyframes flyAcross {
+            0%   { transform:translate(-50%, -50%) scale(0.8); opacity:0; }
+            12%  { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
+            32%  { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
+            36%  { transform:translate(-50%, -50%) scale(0.9); opacity:0; }
+            40%  { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
+            60%  { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
+            64%  { transform:translate(-50%, -50%) scale(0.9); opacity:0; }
+            68%  { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
+            88%  { transform:translate(-50%, -50%) scale(1.1); opacity:1; }
+            100% { transform:translate(-50%, -50%) scale(0.8); opacity:0; }
+        }
     </style>
 </head>
 <body>
 
-<div id="info">Strike2Give Bowling<br>P2E PvP • 3 Frames (Fix 159)</div>
+<div id="info">Strike2Give Bowling<br>P2E PvP • 3 Frames (Fix 181)</div>
 
 <div id="scoreboardPanel">
     <div id="scoreboard">
@@ -166,12 +222,10 @@
 
 <div id="hookController">
     <div id="hookBar">
-        <div class="hookTick" style="left:12%"></div>
-        <div class="hookTick" style="left:24%"></div>
-        <div class="hookTick" style="left:36%"></div>
-        <div class="hookTick" style="left:64%"></div>
-        <div class="hookTick" style="left:76%"></div>
-        <div class="hookTick" style="left:88%"></div>
+        <div class="hookTick" style="left:20%"></div>
+        <div class="hookTick" style="left:40%"></div>
+        <div class="hookTick" style="left:60%"></div>
+        <div class="hookTick" style="left:80%"></div>
         <div id="hookPointer"></div>
     </div>
     <div class="hookLabel" id="hookLeft">HOOK LEFT</div>
@@ -187,9 +241,19 @@
 <div id="startButton">START BOWLING</div>
 <div id="playAgain">PLAY AGAIN</div>
 
+<div id="gameOverPopup">
+    <h1>GAME OVER</h1>
+    <div class="popupScore">FINAL SCORE</div>
+    <div id="finalScoreBig">0</div>
+    <div class="popupCoins">COINS EARNED: <span id="coinsEarnedDisplay" style="font-size:32px;">+0</span> G-COINS</div>
+    <div id="popupPlayAgain">PLAY AGAIN</div>
+</div>
+
+<div id="readySetFly"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script>
-console.log("%c✅ PHASE 3 FIX 159 — Full code delivered (Fix 158 base + complete UI polish)", "color:#00ffcc;font-size:18px;font-weight:bold");
+console.log("%c✅ PHASE 3 FIX 181 — Full code delivered (READY! SET! BOWL! clearly visible in center • no GUTTER message after timeout)", "color:#00ffcc;font-size:18px;font-weight:bold");
 
 const laneWidth = 26;
 const gutterChannelWidth = 7;
@@ -223,7 +287,6 @@ const strikeMessages = ["STRIKE 🔥", "BOOM 💥", "FIRE 🚀", "LEGEND 💪"];
 const spareMessages = ["SPARE 🔥", "CLEAN 💪"];
 const missMessages = ["MISS 😞", "CLOSE ⚠️"];
 const gutterMessage = "GUTTER 😟";
-const splitMessage = "SPLIT!";
 
 const MIN_PULL_Z = 25.08;
 const MAX_PULL_Z = 40;
@@ -234,6 +297,7 @@ const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = false;
 document.body.appendChild(renderer.domElement);
 
 scene.fog = new THREE.Fog(0x0f172a, 80, 420);
@@ -339,18 +403,19 @@ function createPin(x, z, index) {
     const h = PIN_HEIGHT_SCALE;
     const w = PIN_WIDTH_SCALE;
     const group = new THREE.Group();
-    const lowerBody = new THREE.Mesh(new THREE.CylinderGeometry(1.38 * w, 1.62 * w, 3.1 * h, 48), new THREE.MeshLambertMaterial({ color: 0xF8F8F8 }));
+    const lowerBody = new THREE.Mesh(new THREE.CylinderGeometry(1.38 * w, 1.62 * w, 3.1 * h, 48), new THREE.MeshPhongMaterial({ color: 0xF8F8F8, shininess: 25, emissive: 0x222222, emissiveIntensity: 0.18 }));
     lowerBody.position.y = 2.05 * h; group.add(lowerBody);
-    const upperBody = new THREE.Mesh(new THREE.CylinderGeometry(1.62 * w, 0.78 * w, 2.4 * h, 48), new THREE.MeshLambertMaterial({ color: 0xF8F8F8 }));
+    const upperBody = new THREE.Mesh(new THREE.CylinderGeometry(1.62 * w, 0.78 * w, 2.4 * h, 48), new THREE.MeshPhongMaterial({ color: 0xF8F8F8, shininess: 25, emissive: 0x222222, emissiveIntensity: 0.18 }));
     upperBody.position.y = 4.55 * h; group.add(upperBody);
-    const stripe = new THREE.Mesh(new THREE.CylinderGeometry(1.65 * w, 1.65 * w, 0.48 * h, 48), new THREE.MeshLambertMaterial({ color: 0xFF0000 }));
+    const stripe = new THREE.Mesh(new THREE.CylinderGeometry(1.65 * w, 1.65 * w, 0.48 * h, 48), new THREE.MeshPhongMaterial({ color: 0xFF0000, shininess: 20, emissive: 0x440000, emissiveIntensity: 0.3 }));
     stripe.position.y = 3.55 * h; group.add(stripe);
-    const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.48 * w, 0.78 * w, 1.15 * h, 48), new THREE.MeshLambertMaterial({ color: 0xF8F8F8 }));
+    const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.48 * w, 0.78 * w, 1.15 * h, 48), new THREE.MeshPhongMaterial({ color: 0xF8F8F8, shininess: 25, emissive: 0x222222, emissiveIntensity: 0.18 }));
     neck.position.y = 6.35 * h; group.add(neck);
-    const head = new THREE.Mesh(new THREE.SphereGeometry(0.68 * w, 48, 48), new THREE.MeshLambertMaterial({ color: 0xF8F8F8 }));
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.68 * w, 48, 48), new THREE.MeshPhongMaterial({ color: 0xF8F8F8, shininess: 30, emissive: 0x222222, emissiveIntensity: 0.18 }));
     head.position.y = 7.35 * h; group.add(head);
     group.position.set(x, -1.85 * h, z);
     scene.add(group);
+    group.traverse((child) => { if (child.isMesh) { child.castShadow = false; child.receiveShadow = false; } });
     const pinData = { 
         group, 
         velocity: new THREE.Vector3(), 
@@ -413,6 +478,8 @@ let endRollTimeout = null;
 let hasHitPins = false;
 let ballLaunchedThisTurn = false;
 let timerHasStarted = false;
+let timedOut = false;
+let turnLostMessageActive = false;
 
 const MAX_ROLL_TIME = 25;
 const timerElement = document.getElementById('timer');
@@ -420,6 +487,7 @@ const foulElement = document.getElementById('foul');
 const pinResultElement = document.getElementById('pinResult');
 const timeUpElement = document.getElementById('timeUp');
 const splitPopup = document.getElementById('splitPopup');
+const readySetFly = document.getElementById('readySetFly');
 const FRICTION_BASE = 0.99995;
 const MIN_VELOCITY = 0.003;
 const GUTTER_END_Z = -275 - laneExtension;
@@ -681,131 +749,44 @@ function showResult(text, color = '#ffcc00') {
 }
 
 function showTimeUp() {
-    timeUpElement.textContent = "ROLL LOST";
+    timeUpElement.textContent = "TIMES UP - TURN LOST 💔";
     timeUpElement.style.display = 'block';
     timeUpElement.style.opacity = '1';
-    setTimeout(() => { timeUpElement.style.opacity = '0'; setTimeout(() => { timeUpElement.style.display = 'none'; endTurnAfterTimeUp(); }, 600); }, 2200);
+    timedOut = true;
+    turnLostMessageActive = true;
+
+    setTimeout(() => {
+        timeUpElement.style.opacity = '0';
+        setTimeout(() => {
+            timeUpElement.style.display = 'none';
+            turnLostMessageActive = false;
+            endTurnAfterTimeUp();
+        }, 600);
+    }, 2200);
 }
 
-function startNewRoll() {
-    updateScoreboard();
-    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-    ballMesh.position.set(0, LANE_TOP_Y, 23);
-    ballVelocity.set(0,0,0);
-    spinAtRelease = 0;
-    aimAngle = 0;
-    isRolling = false;
-    inGutter = false;
-    goingToCollector = false;
-    hasHitPins = false;
-    ballLaunchedThisTurn = false;
-    timerHasStarted = false;
-    bowlingCrewState = 'positioning';
-    hookControllerEl.style.display = 'none';
-    pinsStandingAtStartOfRoll = countStandingPins();
-    timerElement.style.display = 'block';
-    timerElement.textContent = "READY";
-    setTimeout(() => { timerElement.textContent = "SET"; }, 1000);
-    setTimeout(() => { timerElement.textContent = "BOWL!"; }, 2000);
-    setTimeout(() => { startNewTurnTimer(); }, 3000);
-}
-
-function startNewTurnTimer() {
-    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-    currentTimer = MAX_ROLL_TIME;
-    timerElement.style.display = 'block';
-    timerElement.textContent = currentTimer;
-    timerElement.style.color = '#5eff00';
-    timerElement.classList.remove('pulse');
-    ballLaunchedThisTurn = false;
-    timerHasStarted = true;
-    timerInterval = setInterval(() => {
-        if (currentTimer > 0) currentTimer--;
-        timerElement.textContent = currentTimer;
-
-        if (currentTimer > 15) timerElement.style.color = '#5eff00';
-        else if (currentTimer > 10) timerElement.style.color = '#ffff00';
-        else if (currentTimer > 5) timerElement.style.color = '#ff8800';
-        else timerElement.style.color = '#ff4444';
-
-        if (currentTimer <= 5) timerElement.classList.add('pulse');
-        else timerElement.classList.remove('pulse');
-
-        if (currentTimer <= 0 && !isRolling) {
-            if (!ballLaunchedThisTurn) showTimeUp();
-            else endCurrentRoll();
-        }
-    }, 1000);
-}
-
-function isFrameComplete(knockedThisRoll) {
-    if (!isFinalFrame) return (rollsInCurrentFrame === 1 && knockedThisRoll === 10) || rollsInCurrentFrame === 2;
-    if (rollsInCurrentFrame >= 3) return true;
-    if (rollsInCurrentFrame === 1) return false;
-    if (rollsInCurrentFrame === 2) {
-        const first = frameRolls[2][0] || 0;
-        const second = frameRolls[2][1] || 0;
-        if (first === 10 || first + second === 10) return false;
-        return true;
-    }
-    return false;
-}
-
-function advanceToNextFrame() {
-    currentFrame++;
-    if (currentFrame > MAX_FRAMES) {
-        gameOver = true;
-        const reward = Math.floor(getCurrentScore() * 2) + 100;
-        gCoins += reward;
-        updateCoinDisplay();
-        showGameOver();
-        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-        return;
-    }
-    isFinalFrame = (currentFrame === MAX_FRAMES);
-    resetPins();
-    rollsInCurrentFrame = 0;
-    frameRolls[currentFrame-1] = [];
-    startNewRoll();
-}
-
-function showGameOver() {
-    const go = document.getElementById('gameOverDisplay');
-    go.style.bottom = '-300px';
-    go.style.opacity = '0';
-    setTimeout(() => { go.classList.add('show'); }, 100);
-    document.getElementById('playAgain').style.display = 'block';
-}
-
-function endCurrentRoll() {
-    isRolling = false;
-    inGutter = false;
-    goingToCollector = false;
-    ballVelocity.set(0,0,0);
-    spinAtRelease = 0;
-    aimAngle = 0;
-    hasHitPins = false;
-    bowlingCrewState = 'positioning';
-    hookControllerEl.style.display = 'none';
-
-    const standingNow = countStandingPins();
-    const knockedThisRoll = Math.max(0, pinsStandingAtStartOfRoll - standingNow);
-
+function finishRoll(knockedThisRoll) {
     allRolls.push(knockedThisRoll);
     frameRolls[currentFrame-1].push(knockedThisRoll);
-    rollsInCurrentFrame++;
+    rollsInCurrentFrame = frameRolls[currentFrame-1].length;
 
-    if (rollsInCurrentFrame === 1 && isSplit(knockedThisRoll)) {
-        showSplitPopup();
-    }
+    if (rollsInCurrentFrame === 1 && isSplit(knockedThisRoll)) showSplitPopup();
 
     let resultText = "";
     let color = "#ffcc00";
     let indicatorMessage = "";
+
     if (knockedThisRoll === 10 && rollsInCurrentFrame === 1) resultText = getRandom(strikeMessages);
     else if (rollsInCurrentFrame === 2 && (frameRolls[currentFrame-1][0] + knockedThisRoll === 10)) resultText = getRandom(spareMessages);
     else if (rollsInCurrentFrame === 2 && (frameRolls[currentFrame-1][0] + knockedThisRoll < 10)) resultText = getRandom(missMessages);
-    else if (knockedThisRoll === 0) { resultText = gutterMessage; color = "#ff8800"; indicatorMessage = gutterMessage; }
+    else if (knockedThisRoll === 0) { 
+        // Do NOT show GUTTER message if this was a timeout loss
+        if (!timedOut) {
+            resultText = gutterMessage; 
+            color = "#ff8800"; 
+            indicatorMessage = gutterMessage; 
+        }
+    }
     else resultText = getRandom(missMessages);
 
     if (resultText) showResult(resultText, color);
@@ -830,8 +811,44 @@ function endCurrentRoll() {
         }
     }
 
-    if (isFrameComplete(knockedThisRoll)) advanceToNextFrame();
-    else startNewRoll();
+    let advance = false;
+
+    if (!isFinalFrame) {
+        if (rollsInCurrentFrame >= 2 || knockedThisRoll === 10) {
+            advance = true;
+        }
+    } else {
+        if (rollsInCurrentFrame >= 3) advance = true;
+        else if (rollsInCurrentFrame === 2) {
+            const first = frameRolls[2][0] || 0;
+            const second = frameRolls[2][1] || 0;
+            if (!(first === 10 || first + second === 10)) advance = true;
+        }
+    }
+
+    if (advance) {
+        advanceToNextFrame();
+    } else {
+        startNewRoll();
+    }
+}
+
+function endCurrentRoll() {
+    isRolling = false;
+    inGutter = false;
+    goingToCollector = false;
+    ballVelocity.set(0,0,0);
+    spinAtRelease = 0;
+    aimAngle = 0;
+    hasHitPins = false;
+    bowlingCrewState = 'positioning';
+    hookControllerEl.style.display = 'none';
+
+    const standingNow = countStandingPins();
+    const knockedThisRoll = Math.max(0, pinsStandingAtStartOfRoll - standingNow);
+
+    timedOut = false;
+    finishRoll(knockedThisRoll);
 }
 
 function endTurnAfterTimeUp() {
@@ -844,13 +861,108 @@ function endTurnAfterTimeUp() {
     ballMesh.position.set(0, LANE_TOP_Y, 23);
     bowlingCrewState = 'positioning';
     hookControllerEl.style.display = 'none';
-    const knockedThisRoll = 0;
-    allRolls.push(knockedThisRoll);
-    frameRolls[currentFrame-1].push(knockedThisRoll);
-    rollsInCurrentFrame++;
+
+    finishRoll(0);
+}
+
+function startNewRoll() {
+    rollsInCurrentFrame = (frameRolls[currentFrame-1] || []).length;
+
     updateScoreboard();
-    if (isFrameComplete(knockedThisRoll)) advanceToNextFrame();
-    else startNewRoll();
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+    ballMesh.position.set(0, LANE_TOP_Y, 23);
+    ballVelocity.set(0,0,0);
+    spinAtRelease = 0;
+    aimAngle = 0;
+    isRolling = false;
+    inGutter = false;
+    goingToCollector = false;
+    hasHitPins = false;
+    ballLaunchedThisTurn = false;
+    timerHasStarted = false;
+    timedOut = false;
+    turnLostMessageActive = false;
+    bowlingCrewState = 'positioning';
+    hookControllerEl.style.display = 'none';
+    pinsStandingAtStartOfRoll = countStandingPins();
+
+    setTimeout(() => {
+        showReadySetBowlFly();
+    }, 3000);
+}
+
+function showReadySetBowlFly() {
+    if (gameOver) return;
+
+    readySetFly.style.left = '-120%';
+    readySetFly.style.opacity = '0';
+    readySetFly.style.transition = 'none';
+    readySetFly.innerHTML = 'READY!';
+
+    void readySetFly.offsetWidth;
+    readySetFly.classList.add('show');
+
+    setTimeout(() => { readySetFly.innerHTML = 'SET!'; }, 1100);
+    setTimeout(() => { readySetFly.innerHTML = 'BOWL!'; }, 2100);
+
+    setTimeout(() => {
+        readySetFly.classList.remove('show');
+        startNewTurnTimer();
+    }, 3400);
+}
+
+function startNewTurnTimer() {
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+    currentTimer = MAX_ROLL_TIME;
+    timerElement.style.display = 'block';
+    timerElement.textContent = currentTimer;
+    timerElement.style.color = '#5eff00';
+    timerHasStarted = true;
+    timerInterval = setInterval(() => {
+        if (gameOver) { clearInterval(timerInterval); return; }
+        if (currentTimer > 0) currentTimer--;
+        timerElement.textContent = currentTimer;
+
+        if (currentTimer > 15) timerElement.style.color = '#5eff00';
+        else if (currentTimer > 10) timerElement.style.color = '#ffff00';
+        else if (currentTimer > 5) timerElement.style.color = '#ff8800';
+        else timerElement.style.color = '#ff4444';
+
+        if (currentTimer <= 0 && !isRolling && !timedOut) {
+            showTimeUp();
+        }
+    }, 1000);
+}
+
+function advanceToNextFrame() {
+    currentFrame++;
+    if (currentFrame > MAX_FRAMES) {
+        gameOver = true;
+        showGameOver();
+        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+        return;
+    }
+    isFinalFrame = (currentFrame === MAX_FRAMES);
+    resetPins();
+    rollsInCurrentFrame = 0;
+    frameRolls[currentFrame-1] = [];
+    startNewRoll();
+}
+
+function showGameOver() {
+    const finalScore = getCurrentScore();
+    const reward = Math.floor(finalScore * 2) + 100;
+    gCoins += reward;
+    updateCoinDisplay();
+
+    document.getElementById('gameOverDisplay').classList.remove('show');
+    document.getElementById('playAgain').style.display = 'none';
+
+    document.getElementById('finalScoreBig').textContent = finalScore;
+    document.getElementById('coinsEarnedDisplay').textContent = `+${reward}`;
+    document.getElementById('gameOverPopup').style.display = 'block';
+
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
 }
 
 function resetBallAndTimer() {
@@ -860,6 +972,7 @@ function resetBallAndTimer() {
 }
 
 function newGame() {
+    document.getElementById('gameOverPopup').style.display = 'none';
     document.getElementById('playAgain').style.display = 'none';
     document.getElementById('gameOverDisplay').classList.remove('show');
     gameOver = false;
@@ -883,8 +996,8 @@ function launchBall() {
     if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
     timerElement.textContent = "25";
     timerElement.style.color = '#5eff00';
-    timerElement.classList.remove('pulse');
     timerHasStarted = false;
+    timedOut = false;
 
     const pullDistance = Math.max(0, ballMesh.position.z - 23);
     const frontOfBall = ballMesh.position.z - ballRadiusBase;
@@ -1176,7 +1289,7 @@ function animate() {
 }
 
 function startDrag(e) {
-    if (isRolling || gameOver || !timerHasStarted) return;
+    if (turnLostMessageActive || isRolling || gameOver || !timerHasStarted) return;
     isDragging = true;
     isTouchInput = !!(e.touches && e.touches.length > 0);
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -1190,7 +1303,7 @@ function startDrag(e) {
 }
 
 function moveDrag(e) {
-    if (!isDragging) return;
+    if (turnLostMessageActive || !isDragging) return;
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
     const deltaX = (clientX - dragStartMouse.x) * 0.18;
@@ -1215,7 +1328,7 @@ function moveDrag(e) {
 }
 
 function endDrag(e) {
-    if (!isDragging) return;
+    if (turnLostMessageActive || !isDragging) return;
     isDragging = false;
 
     if (isTouchInput) {
@@ -1261,6 +1374,8 @@ document.getElementById('startButton').addEventListener('click', () => {
     document.getElementById('startButton').style.display = 'none';
     startNewRoll();
 });
+
+document.getElementById('popupPlayAgain').addEventListener('click', newGame);
 
 createPreviewBalls();
 createAimHighlights();
