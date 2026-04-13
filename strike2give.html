@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Strike2Give Bowling - P2E PvP • 3 Frames (Fix 194)</title>
+    <title>Strike2Give Bowling - P2E PvP • 3 Frames (Fix 196)</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/intro-rust');
         * { font-family: 'intro rust', sans-serif; }
-        body { margin:0; padding:0; overflow:hidden; background:#0f172a; touch-action:none; }
+        body { 
+            margin:0; 
+            padding:0; 
+            overflow:hidden; 
+            background: url('strike2givetop.png') no-repeat center center fixed; 
+            background-size: cover; 
+            background-color: #0f172a; /* fallback */
+            touch-action:none; 
+        }
 
         canvas { display:block; width:100% !important; height:100vh !important; }
 
@@ -31,13 +39,13 @@
 
         #timer {
             position:absolute; top:85px; left:20px;
-            color:#5eff00; font-size:55px; font-weight:bold; text-shadow:0 0 15px #000;
+            color:#5eff00; font-size:20px; font-weight:bold; text-shadow:0 0 15px #000;
             background:rgba(0,0,0,0.6); padding:8px 30px; border-radius:12px;
-            box-shadow:0 0 18px #5eff00; min-width:100px; text-align:center; z-index:190;
+            box-shadow:0 0 18px #5eff00; min-width:20px; text-align:center; z-index:190;
         }
 
-        #coinPanel { position:absolute; top:12px; right:12px; background:linear-gradient(#111827,#1e2937); border:4px solid #00ffcc; border-radius:18px; padding:10px 20px; box-shadow:0 0 18px #00ffcc; z-index:180; display:flex; flex-direction:column; align-items:flex-end; color:#fff; font-size:14px; text-align:right; }
-        #coinPanel span { font-size:26px; font-weight:bold; }
+        #coinPanel { position:absolute; top:170px; right:20px; background:linear-gradient(#111827,#1e2937); border:4px solid #00ffcc; border-radius:18px; padding:10px 20px; box-shadow:0 0 18px #00ffcc; z-index:180; display:flex; flex-direction:column; align-items:flex-end; color:#fff; font-size:14px; text-align:right; }
+        #coinPanel span { font-size:16px; font-weight:bold; }
 
         #ballPositionDebug {
             position:absolute; top:12px; left:50%; transform:translateX(-50%);
@@ -104,7 +112,7 @@
 
         #testBanner {
             position:absolute; top:12px; left:50%; transform:translateX(-50%);
-            background:linear-gradient(#ff2222, #cc0000); color:#fff; font-size:13px; font-weight:bold;
+            background:linear-gradient(#ff2222, #cc0000); color:#fff; font-size:20px; font-weight:bold;
             padding:4px 20px; border-radius:30px; box-shadow:0 0 15px #ff0000; z-index:200;
             letter-spacing:1.5px; white-space:nowrap;
         }
@@ -187,7 +195,7 @@
 </head>
 <body>
 
-<div id="info">Strike2Give Bowling<br>P2E PvP • 3 Frames (Fix 194)</div>
+<div id="info">Strike2Give Bowling<br>P2E PvP • 3 Frames (Fix 196)</div>
 
 <div id="scoreboardPanel">
     <div id="scoreboard">
@@ -250,25 +258,18 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script>
-console.log("%c✅ PHASE 3 FIX 194 — Timer moved top-left + Select Ball button moved top-right + mobile media query added", "color:#00ffcc;font-size:18px;font-weight:bold");
+console.log("%c✅ PHASE 3 FIX 196 — Background image fixed + White Precision ball is now 1.5× larger", "color:#00ffcc;font-size:18px;font-weight:bold");
 
 // =============================================
-// PHYSICS SPECIFICATIONS — EDIT HERE
+// BALL RADIUS SIZE — EDIT HERE
 // =============================================
-/*
-  POWER     : Higher = faster launch speed and stronger pin impact
-              Base speed = POWER_BASE + pullDistance * POWER_PULL_SCALE
-  CONTROL   : Higher = slower, more precise hook meter swing
-              Swing speed multiplier = 1 - (control/15 * CONTROL_SWING_DAMPEN)
-  SPIN      : Higher = stronger left/right hook after arrows
-              Spin multiplier = currentBall.spin * SPIN_STRENGTH
-  BOUNCE    : (Precision) Currently reserved — will control gutter/lane bounce in future updates
-*/
+const ballRadiusBase = 2.05;   // ← All balls use this size EXCEPT White Precision
 
+// PHYSICS SPECIFICATIONS
 const PHYSICS = {
     POWER_BASE: 3.4,
     POWER_PULL_SCALE: 0.14,
-    CONTROL_SWING_DAMPEN: 0.75,
+    CONTROL_SWING_DAMPEN: 1.75,
     SPIN_STRENGTH: 1.25,
     BASE_VX_FACTOR: 0.0085,
     AIM_ANGLE_MAX: 3.8,
@@ -277,12 +278,12 @@ const PHYSICS = {
     MIN_VELOCITY: 0.003
 };
 
-// BALL TYPES
+// BALL TYPES (White Precision radius is 1.5× bigger)
 const BALL_TYPES = [
-    {name: "Green Power",   color: 0x00ff00, power: 15, control: 15, bounce: 4, spin: 7},
-    {name: "White Precision", color: 0xffffff, power: 4, control: 15, bounce: 3, spin: 7},
-    {name: "Red Spin",      color: 0xff0000, power: 7, control: 15, bounce: 4, spin: 15},
-    {name: "Black Bounce",  color: 0x111111, power: 4, control: 15, bounce: 15, spin: 7}
+    {name: "Green Power",   color: 0x00ff00, power: 15, control: 15, bounce: 4, spin: 7, radius: ballRadiusBase},
+    {name: "White Precision", color: 0xffffff, power: 4, control: 15, bounce: 3, spin: 7, radius: ballRadiusBase * 1.5}, // 1.5× bigger
+    {name: "Red Spin",      color: 0xff0000, power: 7, control: 15, bounce: 4, spin: 15, radius: ballRadiusBase},
+    {name: "Black Bounce",  color: 0x111111, power: 4, control: 15, bounce: 15, spin: 7, radius: ballRadiusBase}
 ];
 
 let currentBallIndex = 0;
@@ -310,11 +311,13 @@ const MAX_PULL_Z = 40;
 const laneExtension = 85;
 
 const scene = new THREE.Scene();
+scene.background = null; // lets CSS background image show through
+
 const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 4000);
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // transparent so image shows
+renderer.setClearColor(0x000000, 0); // fully transparent
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.shadowMap.enabled = false;
 document.body.appendChild(renderer.domElement);
 
 scene.add(new THREE.AmbientLight(0xdddddd, 0.7));
@@ -327,13 +330,14 @@ scene.add(dirLight);
 
 const seamZ = 20;
 const foulDetectionZ = 19.30;
-const ballRadiusBase = 2.05;
 const LANE_TOP_Y = 0.5;
 
 const lighterWood = 0x8B5A2B;
 const darkerWood = 0x6B3E2A;
 const numPlanks = 15;
 const plankWidth = 26 / numPlanks;
+
+// (rest of your baseline code continues unchanged below)
 
 for (let i = 0; i < numPlanks; i++) {
     const color = (i % 2 === 0) ? lighterWood : darkerWood;
@@ -416,8 +420,8 @@ createArrow(darkCenters[6], -80);
 
 let pins = [];
 function createPin(x, z, index) {
-    const h = 1.85;
-    const w = 0.75;
+    const h = 2;
+    const w = 1;
     const group = new THREE.Group();
     const lowerBody = new THREE.Mesh(new THREE.CylinderGeometry(1.38 * w, 1.62 * w, 3.1 * h, 48), new THREE.MeshPhongMaterial({ color: 0xF8F8F8, shininess: 25, emissive: 0x222222, emissiveIntensity: 0.18 }));
     lowerBody.position.y = 2.05 * h; group.add(lowerBody);
@@ -452,11 +456,11 @@ const fullGutterWidth = 26 + 2 * (7 + 1 + 2);
 const pinCeiling = new THREE.Mesh(new THREE.BoxGeometry(fullGutterWidth, 20, 100), enclosureMat);
 pinCeiling.position.set(0, 35, -235 - laneExtension); scene.add(pinCeiling);
 
-const pinLeftWall = new THREE.Mesh(new THREE.BoxGeometry(2, 52, 100), enclosureMat);
-pinLeftWall.position.set(-(13 + 7 + 1 + 1), 14, -235 - laneExtension); scene.add(pinLeftWall);
+const pinLeftWall = new THREE.Mesh(new THREE.BoxGeometry(2, 55, 100), enclosureMat);
+pinLeftWall.position.set(-(13 + 7 + 1 + 1), 16, -225 - laneExtension); scene.add(pinLeftWall);
 
-const pinRightWall = new THREE.Mesh(new THREE.BoxGeometry(2, 52, 100), enclosureMat);
-pinRightWall.position.set(+(13 + 7 + 1 + 1), 14, -235 - laneExtension); scene.add(pinRightWall);
+const pinRightWall = new THREE.Mesh(new THREE.BoxGeometry(2, 55, 100), enclosureMat);
+pinRightWall.position.set(+(13 + 7 + 1 + 1), 16, -225 - laneExtension); scene.add(pinRightWall);
 
 const pinBackWall = new THREE.Mesh(new THREE.BoxGeometry(fullGutterWidth, 32, 2), enclosureMat);
 pinBackWall.position.set(0, 14, -278 - laneExtension); scene.add(pinBackWall);
@@ -531,7 +535,11 @@ let lightProgress = 0;
 
 function createBallMesh() {
     if (ballMesh) scene.remove(ballMesh);
-    const geo = new THREE.SphereGeometry(ballRadiusBase, 64, 64);
+    
+    // White Precision ball is 1.5× bigger than the others
+    const radius = currentBall.radius;
+    
+    const geo = new THREE.SphereGeometry(radius, 64, 64);
     const mat = new THREE.MeshPhongMaterial({ color: currentBall.color, shininess: 140, specular: 0xaaaaaa, flatShading: false });
     ballMesh = new THREE.Mesh(geo, mat);
     ballMesh.position.set(0, LANE_TOP_Y, 23);
@@ -1051,12 +1059,12 @@ function checkBallPinCollisions() {
         const dx = bPos.x - pPos.x;
         const dz = bPos.z - pPos.z;
         const distSq = dx*dx + dz*dz;
-        const minDistSq = Math.pow(ballRadiusBase + pin.radius, 2);
+        const minDistSq = Math.pow(currentBall.radius + pin.radius, 2); // uses dynamic radius
         if (distSq < minDistSq) {
             const dist = Math.sqrt(distSq) || 0.01;
             const nx = dx / dist;
             const nz = dz / dist;
-            const overlap = (ballRadiusBase + pin.radius) - dist + 0.18;
+            const overlap = (currentBall.radius + pin.radius) - dist + 0.18;
             pPos.x += nx * overlap * 0.85;
             pPos.z += nz * overlap * 0.85;
             const impulse = Math.max(12.5, speed * 2.15);
