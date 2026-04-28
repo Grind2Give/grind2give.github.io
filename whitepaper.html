@@ -84,12 +84,12 @@
 
   <h1>Grind2Give V2 White Paper</h1>
   <p class="subtitle"><strong>Gaming Grind → Real-World Good</strong></p>
-  <p class="subtitle">$G2G on Base • Version 2.0 – March 2026</p>
+  <p class="subtitle">$G2G on Base • Version 2.0 – April 2026</p>
   <p class="subtitle">Created by Grind2Give Team • @H2GamingX</p>
 
   <h2>Abstract</h2>
   <p>Grind2Give ($G2G) V2 is a community-first ERC-20 utility token on Base that turns gaming streams, participation, and trading into real charitable impact.</p>
-  <p>With a clean <strong>0% buy / 5% sell tax</strong>, every sell automatically generates ETH reflections for holders and sends funds to community-voted charities.</p>
+  <p>With a clean <strong>0% buy / 5% sell tax</strong> and <strong>3% transfer tax</strong>, every transaction automatically generates ETH reflections for holders and sends funds to community-voted charities.</p>
 
   <h2>Token Details</h2>
   <table>
@@ -102,12 +102,12 @@
   </table>
 
   <h2>Tax Structure (V2)</h2>
-  <p><strong>Buy Tax:</strong> 0% | <strong>Sell Tax:</strong> 5% | <strong>Transfer Tax:</strong> 0%</p>
+  <p><strong>Buy Tax:</strong> 0% | <strong>Sell Tax:</strong> 5% | <strong>Transfer Tax:</strong> 3%</p>
   <table>
     <tr><th>Distribution</th><th>Percentage</th><th>Purpose</th></tr>
-    <tr><td>Charity Pool</td><td>2.5%</td><td>Auto-sent in ETH to Safe multisig wallet. Community-voted monthly.</td></tr>
-    <tr><td>ETH Reflections</td><td>2%</td><td>Automatically distributed in ETH to all holders.</td></tr>
-    <tr><td>Auto-Burn</td><td>0.5%</td><td>Permanently removed from circulation.</td></tr>
+    <tr><td>Charity Pool</td><td>2.5% (Sell) / 1.5% (Transfer)</td><td>Auto-sent in ETH to Safe multisig wallet. Community-voted monthly.</td></tr>
+    <tr><td>ETH Reflections</td><td>2% (Sell) / 1.5% (Transfer)</td><td>Automatically distributed in ETH to all holders.</td></tr>
+    <tr><td>Auto-Burn</td><td>0.5% (Sell only)</td><td>Permanently removed from circulation.</td></tr>
   </table>
 
   <h2>Token Allocation</h2>
@@ -128,13 +128,13 @@
     <tr><td>LP Wallet</td><td class="contract"><a href="https://basescan.org/address/0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd" target="_blank" style="color:var(--green);">0xeec21C954d350721A44887CeFd6F4DE51bDF17Bd</a></td><td>Liquidity Pool Wallet</td></tr>
     <tr><td>LP Token Pair (G2G/ETH)</td><td class="contract"><a href="https://basescan.org/address/0x8D560495B7a24c16e2613D1A9A04bC153c53c990" target="_blank" style="color:var(--green);">0x8D560495B7a24c16e2613D1A9A04bC153c53c990</a></td><td>Uniswap V2 Pair</td></tr>
     <tr><td>V2 Airdrop Wallet</td><td class="contract"><a href="https://basescan.org/address/0x6DC308A15906E902f8175a8a6be6B97E8c6Efd3A" target="_blank" style="color:var(--green);">0x6DC308A15906E902f8175a8a6be6B97E8c6Efd3A</a></td><td>Stream drops and community rewards</td></tr>
-    <tr><td>Strike2Give Bowling Game Rewards Multisig</td><td class="contract"><a href="https://basescan.org/address/0xB3844f4fEa0Ad0d4FaDFe240C791CB5146140201" target="_blank" style="color:var(--green);">0xB3844f4fEa0Ad0d4FaDFe240C791CB5146140201</a></td><td>Strike2Give Bowling Game rewards</td></tr>
-    <tr><td>Future FPS Game Rewards Multisig</td><td class="contract"><a href="https://basescan.org/address/0x65Ca29424BB2773647D596bEF0165728317BF5E6" target="_blank" style="color:var(--green);">0x65Ca29424BB2773647D596bEF0165728317BF5E6</a></td><td>Future FPS game rewards</td></tr>
+    <tr><td>Strike2Give Bowling Game Rewards Multisig</td><td class="contract"><a href="https://basescan.org/address/0x3d40cF657BDc7499386B9Ab927aef9EA1a8d3Edd" target="_blank" style="color:var(--green);">0x3d40cF657BDc7499386B9Ab927aef9EA1a8d3Edd</a></td><td>Strike2Give Bowling Game rewards</td></tr>
+    <tr><td>Future FPS Game Rewards Multisig</td><td class="contract"><a href="https://basescan.org/address/0x0AF01193fB3F87c1e2C9cd69515F14c4B5A8aF7A" target="_blank" style="color:var(--green);">0x0AF01193fB3F87c1e2C9cd69515F14c4B5A8aF7A</a></td><td>Future FPS game rewards</td></tr>
     <tr><td>Dev/Support Wallet</td><td class="contract"><a href="https://basescan.org/address/0xBd2889B21dDB1B2D9696Ea5E3377c59293F19dae" target="_blank" style="color:var(--green);">0xBd2889B21dDB1B2D9696Ea5E3377c59293F19dae</a></td><td>Development and operations</td></tr>
   </table>
 
   <h2>Charity Mechanism</h2>
-  <p>2.5% of every sell is automatically sent to the Charity Multisig Wallet. The community votes monthly on the next charity recipient via X (Twitter) polls. Donations are sent through <strong>The Giving Block</strong> and all donation proofs are publicly posted on X, Telegram, and Facebook.</p>
+  <p>2.5% of every sell and 1.5% of every transfer is automatically sent to the Charity Multisig Wallet. The community votes monthly on the next charity recipient via X (Twitter) polls. Donations are sent through <strong>The Giving Block</strong> and all donation proofs are publicly posted on X, Telegram, and Facebook.</p>
 
   <h2>Security & Future Plans</h2>
   <p>• Smart contract has not been audited yet. An independent audit is planned in the near future.<br>
@@ -154,7 +154,7 @@
   <p><strong>Grind hard. Give harder.</strong></p>
 
   <footer>
-    <p>Grind2Give Team • March 2026 • @H2GamingX</p>
+    <p>Grind2Give Team • April 2026 • @H2GamingX</p>
     <p><a href="https://grind2give.org" style="color:var(--green);">← Back to grind2give.org</a></p>
   </footer>
 
