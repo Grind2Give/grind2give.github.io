@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grind2Give V2 • Liquidity Pool Locks</title>
+  <meta name="description" content="All Liquidity Pool Locks for $G2G - Updated weekly every Friday" />
+
+  <style>
+    :root {
+      --green: #00ffaa;
+      --glow: rgba(0, 255, 170, 0.65);
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #f0fff0;
+      background: #000000;
+      text-align: center;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* Green Sparkle Effect */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle, var(--green) 0.8px, transparent 1px),
+        radial-gradient(circle, var(--green) 0.6px, transparent 1px),
+        radial-gradient(circle, var(--green) 1px, transparent 1.5px);
+      background-size: 180px 180px, 250px 250px, 320px 320px;
+      opacity: 0.75;
+      animation: sparkle 12s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes sparkle {
+      0%   { background-position: 0 0, 40px 60px, 80px 30px; }
+      100% { background-position: 180px 180px, 290px 310px, 400px 250px; }
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 40px 20px;
+      background: rgba(15,15,26,0.92);
+      border-radius: 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 7vw, 4.2rem);
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #aaa;
+      font-size: 1.4rem;
+      margin-bottom: 40px;
+    }
+
+    table {
+      width: 100%;
+      max-width: 920px;
+      margin: 40px auto;
+      border-collapse: collapse;
+      background: rgba(0,0,0,0.5);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 18px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,255,170,0.2);
+    }
+
+    th {
+      background: rgba(0,255,170,0.15);
+      color: var(--green);
+    }
+
+    .view-link {
+      color: var(--green);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .view-link:hover {
+      text-decoration: underline;
+    }
+
+    .weekly {
+      font-size: 1.25rem;
+      color: #ffdd00;
+      margin: 30px 0;
+    }
+
+    footer {
+      margin-top: 60px;
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 32px;
+      background: rgba(0,255,170,0.1);
+      color: var(--green);
+      border: 2px solid var(--green);
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🔒 Liquidity Pool Locks</h1>
+  <p class="subtitle">$G2G on Base — 100% Liquidity Locked</p>
+
+  <p class="weekly">
+    ✅ We add a new Liquidity Lock <strong>every Friday</strong>
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Lock Record</th>
+        <th>View on PinkSale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1040127" target="_blank" class="view-link">View Lock →</a></td></tr>
+      <tr><td>2</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1039093" target="_blank" class="view-link">View Lock →</a></td></tr>
+      <tr><td>3</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1038318" target="_blank" class="view-link">View Lock →</a></td></tr>
+      <tr><td>4</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1037453" target="_blank" class="view-link">View Lock →</a></td></tr>
+      <tr><td>5</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1036817" target="_blank" class="view-link">View Lock →</a></td></tr>
+      <tr><td>6</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1036539" target="_blank" class="view-link">View Lock →</a></td></tr>
+      <tr><td>7</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1036531" target="_blank" class="view-link">View Lock →</a></td></tr>
+      <tr><td>8</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1036398" target="_blank" class="view-link">View Lock →</a></td></tr>
+    </tbody>
+  </table>
+
+  <footer>
+    <p>All locks are permanent and publicly verifiable.</p>
+    <a href="https://grind2give.org" class="back-btn">← Back to Grind2Give Homepage</a>
+  </footer>
+</div>
+
+</body>
+</html>
