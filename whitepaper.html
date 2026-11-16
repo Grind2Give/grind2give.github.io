@@ -3,180 +3,290 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Grind2Give V2 White Paper – Grind → Give → Real-World Change</title>
+  <title>Grind2Give White Paper – Grind → Give → Real-World Change</title>
   <style>
     :root {
-      --green: #00ffaa;
-      --glow: rgba(0, 255, 170, 0.5);
+      --green: #00e69a;
+      --green-deep: #00b37a;
+      --gold: #f0d78c;
+      --text: #f7fff9;
+      --muted: #a8c4b8;
     }
+
     body {
-      margin: 0; padding: 0;
-      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #000000;
-      color: #f0fff0;
-      line-height: 1.7;
-    }
-
-    /* Tiny Green Shooting Stars */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: 
-        radial-gradient(circle, var(--green) 0.8px, transparent 1px),
-        radial-gradient(circle, var(--green) 0.6px, transparent 1px),
-        radial-gradient(circle, var(--green) 1px, transparent 1.5px);
-      background-size: 180px 180px, 250px 250px, 320px 320px;
-      opacity: 0.65;
-      animation: sparkle 18s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes sparkle {
-      0%   { background-position: 0 0, 40px 60px, 80px 30px; }
-      100% { background-position: 220px 200px, 310px 340px, 460px 270px; }
+      color: var(--text);
+      line-height: 1.75;
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 960px;
       margin: 40px auto;
-      padding: 40px 20px;
-      background: rgba(15,15,26,0.92);
-      border-radius: 16px;
-      position: relative;
-      z-index: 2;
+      padding: 48px 36px;
+      background: rgba(12, 18, 15, 0.7);
+      border: 1px solid rgba(0, 230, 154, 0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
     }
 
-    h1 { font-size: clamp(2.6rem, 7vw, 3.8rem); color: var(--green); text-align: center; }
-    .subtitle { text-align: center; color: #aaa; margin-bottom: 40px; }
-    h2 { color: var(--green); margin: 60px 0 25px; }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 3.4rem);
+      color: var(--green);
+      text-align: center;
+      margin: 0 0 8px;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--gold);
+      margin: 4px 0;
+      font-size: 1.1rem;
+    }
+
+    h2 {
+      color: var(--green);
+      margin: 56px 0 16px;
+      font-size: 1.55rem;
+      border-bottom: 1px solid rgba(0, 230, 154, 0.15);
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      color: var(--gold);
+      margin: 28px 0 12px;
+      font-size: 1.15rem;
+    }
+
+    p { color: var(--muted); margin: 0 0 16px; }
+    p strong { color: var(--text); }
+
+    ul { color: var(--muted); padding-left: 20px; margin: 12px 0 20px; }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text); }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 25px 0;
-      background: rgba(0,0,0,0.6);
+      margin: 24px 0;
+      background: rgba(0, 0, 0, 0.4);
       border-radius: 12px;
+      overflow: hidden;
     }
+
     th, td {
-      padding: 14px 12px;
+      padding: 14px 16px;
       text-align: left;
-      border-bottom: 1px solid rgba(0,255,170,0.2);
+      border-bottom: 1px solid rgba(0, 230, 154, 0.15);
     }
-    th { background: rgba(0,255,170,0.1); color: var(--green); }
+
+    th {
+      background: rgba(0, 230, 154, 0.08);
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    td { color: var(--muted); }
+
     .contract {
-      font-family: monospace;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       word-break: break-all;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
+
+    .note {
+      background: linear-gradient(135deg, rgba(0, 230, 154, 0.08), rgba(240, 215, 140, 0.04));
+      border: 1px solid rgba(0, 230, 154, 0.2);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
     .disclaimer {
-      background: rgba(255,100,100,0.1);
-      border: 1px solid rgba(255,100,100,0.3);
+      background: rgba(255, 100, 100, 0.08);
+      border: 1px solid rgba(255, 100, 100, 0.25);
       padding: 20px;
       border-radius: 12px;
       margin: 40px 0;
     }
-    .security-box {
-      background: rgba(0,255,170,0.08);
-      border: 2px solid var(--green);
-      padding: 25px;
-      border-radius: 12px;
-      margin: 40px 0;
+
+    a { color: var(--green); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      padding: 60px 20px 40px;
+      color: #5a7a6a;
     }
-    footer { text-align: center; padding: 60px 20px; color: #888; }
+
+    @media (max-width: 680px) {
+      .container { padding: 32px 20px; margin: 20px; }
+    }
   </style>
 </head>
 <body>
 
 <div class="container">
 
-  <h1>Grind2Give V2 White Paper</h1>
+  <h1>Grind2Give White Paper</h1>
   <p class="subtitle"><strong>Grind → Give → Real-World Change</strong></p>
-  <p class="subtitle">$G2G on Base • Version 2.0 – Rebranded 2026</p>
-  <p class="subtitle">Part of the Grind2Give Creative Capital umbrella • Created by Grind2Give Team • @Grind2GiveDev</p>
+  <p class="subtitle">$G2G on Base • Uniswap V2</p>
 
   <h2>Abstract</h2>
-  <p>Grind2Give ($G2G) V2 is a community-first ERC-20 utility token on Base that turns everyday activity into real charitable impact. We have completely <strong>revamped and rebranded</strong> the project to reach more people than ever before.</p>
-  <p>What began as a gaming-powered vision has expanded into a full giving movement — now creating books, videos, music, and much more — while still keeping Strike2Give (our original PvP bowling game) as part of the long-term vision.</p>
-  <p>With a clear <strong>10% Buy Tax</strong> sent directly to Greater Church of Acworth, every purchase automatically funds real-world outreach.</p>
+  <p>Grind2Give ($G2G) is a community-first ERC-20 token on Base built around a single idea: everyday trading activity can be turned into consistent, transparent support for children fighting cancer. What began as a simple desire to give from the heart has grown into a focused on-chain mechanism. Every buy of $G2G contributes a fixed portion toward St. Jude Children’s Research Hospital, and that contribution moves automatically once a defined threshold is reached.</p>
+  <p>Most cryptocurrencies are designed solely to capture value for holders or traders. Most charity tokens rely on manual processes, periodic decisions, or off-chain promises. Grind2Give takes a different approach. The 10% buy tax is written into the contract. It accumulates until it reaches 0.5% of the liquidity pool balance, then the contract swaps the collected tokens and sends the resulting ETH to a public charity wallet. No one has to remember to donate. No vote is required. The flow is visible to anyone who looks at the chain.</p>
+  <p>Trust in this model rests on two things that can be checked independently. First, St. Jude Children’s Research Hospital is a long-standing, publicly accountable institution whose mission—treating children with cancer and other life-threatening diseases at no cost to families—is documented and audited by third parties. Second, the Grind2Give contract and charity wallet are open. Anyone can verify that tax is collected, that it accumulates, and that it is sent to the published address. There is no private wallet, no discretionary hold, and no claim that cannot be confirmed on Basescan or PinkSale.</p>
+  <p>This white paper describes the token mechanics, the charity selection, the protections built into the contract, the allocation of supply, and the risks that remain. It is written so that a reader can understand exactly what happens when $G2G is bought, how funds reach St. Jude, and how to verify each step without relying on the project’s word.</p>
+
+  <h2>Why St. Jude</h2>
+  <p>St. Jude Children’s Research Hospital was chosen because its mission is specific, measurable, and publicly documented. The hospital treats children with cancer and other life-threatening diseases, and it does so at no cost to families. Research, treatment, and care are funded so that no parent ever receives a bill for their child’s care. That model has been in place for decades and is supported by a large, ongoing base of donors and institutional oversight.</p>
+  <p>Several factors support trust in St. Jude as the recipient:</p>
+  <ul>
+    <li><strong>Public accountability.</strong> St. Jude publishes financial reports, is subject to independent audits, and maintains a long public record of how donations are used. Its work is not a private claim; it is an institution whose operations can be examined by anyone.</li>
+    <li><strong>Clear outcome.</strong> The goal is concrete: children receive treatment without their families facing medical bills, and research continues into better therapies. That outcome is easier to evaluate than vague “support” or open-ended grant programs.</li>
+    <li><strong>Established track record.</strong> The hospital has operated for more than sixty years. Its survival rates for certain childhood cancers and its no-cost model are widely reported and independently reviewed.</li>
+    <li><strong>No cost to families.</strong> Families never receive a bill for treatment, travel, housing, or food. The focus stays on the child’s care rather than financial burden.</li>
+    <li><strong>Research focus.</strong> St. Jude conducts and shares research that advances treatment for childhood cancer worldwide, not only for the children it treats directly.</li>
+    <li><strong>Transparent finances.</strong> Annual reports and Form 990 filings are public. Donors can see how funds are allocated between research, treatment, and operations.</li>
+    <li><strong>No affiliation required.</strong> St. Jude does not need to partner with or endorse a cryptocurrency project for funds to be useful. A donation to its published channels is used under the same rules that govern any other contribution.</li>
+  </ul>
+  <p>This decision to support St. Jude is made solely by the Grind2Give project. St. Jude is not affiliated with, does not endorse, and has no involvement in the $G2G token. The project simply routes a portion of trading activity to an organization whose work and finances are already public.</p>
+  <div class="note">
+    <strong>Charity wallet (ETH):</strong><br>
+    <span class="contract">0x92EE2370b56DC32794A6CD72585dC01d4288D314</span>
+  </div>
+
+  <h2>Why G2G</h2>
+  <p>Most tokens exist to capture value for holders or traders. Most charity efforts in crypto depend on manual donations, periodic votes, or off-chain promises that are hard to verify. Grind2Give is built differently. The giving is written into the contract, the destination is public, and the outcome can be checked by anyone.</p>
+  <p>Reasons participants choose $G2G:</p>
+  <ul>
+    <li><strong>Automatic impact.</strong> Every buy contributes 10% toward charity. No separate donation step is required.</li>
+    <li><strong>Defined threshold.</strong> Tax accumulates until it reaches 0.5% of the liquidity pool balance, then is swapped and sent. The rule is known in advance and does not depend on a person remembering to act.</li>
+    <li><strong>Public destination.</strong> Funds go to a published wallet that anyone can monitor. There is no intermediate private wallet controlled by the project.</li>
+    <li><strong>Established recipient.</strong> St. Jude Children’s Research Hospital has a long public record of treating children with cancer at no cost to families. Its finances and mission are independently documented.</li>
+    <li><strong>Locked liquidity.</strong> 80% of supply is in the Uniswap V2 pool and locked on PinkSale. The locks are visible in one place.</li>
+    <li><strong>Built-in limits.</strong> A 5-second cooldown, maximum buy size, and maximum wallet size reduce the ability of any single participant to dominate trading or holdings.</li>
+    <li><strong>Zero tax on sells and transfers.</strong> Only buys carry the 10% tax. Selling or moving tokens between wallets does not incur additional tax.</li>
+  </ul>
+  <h3>Trust in the Grind2Give side rests on verifiability rather than reputation</h3>
+  <ul>
+    <li><strong>Fixed tax.</strong> The 10% buy tax is set in the contract. It cannot be changed by a single person without the contract’s own rules being followed.</li>
+    <li><strong>Public threshold.</strong> Tax accumulates until it reaches 0.5% of the token balance in the liquidity pool, then is swapped and sent. The threshold is known in advance; it is not a discretionary decision.</li>
+    <li><strong>Public wallet.</strong> The charity address (0x92EE2370b56DC32794A6CD72585dC01d4288D314) is published here and on the website. Anyone can watch it on Basescan and see incoming transfers.</li>
+    <li><strong>Locked liquidity.</strong> Eighty percent of supply is in the Uniswap V2 pool and locked on PinkSale. The locks are visible at a single public link.</li>
+    <li><strong>No hidden flow.</strong> There is no intermediate wallet controlled by the project that receives the tax before it reaches the published charity address. The contract sends directly once the threshold is met.</li>
+  </ul>
+  <p>G2G does not promise price appreciation, governance rights, or returns. Its value proposition is that a portion of ordinary trading activity is routed, automatically and visibly, to a specific charitable purpose. Participants who want that outcome can verify the mechanism on-chain before they trade.</p>
 
   <h2>Token Details</h2>
   <table>
     <tr><th>Property</th><th>Value</th></tr>
-    <tr><td>Token Name</td><td>Grind2Give v2</td></tr>
+    <tr><td>Token Name</td><td>Grind2Give</td></tr>
     <tr><td>Symbol</td><td>$G2G</td></tr>
     <tr><td>Blockchain</td><td>Base</td></tr>
-    <tr><td>Contract Address</td><td class="contract"><a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank" style="color:var(--green);">0x578ec5f37e0e459dec94805bf7b122e931eb34e4</a></td></tr>
+    <tr><td>Contract Address</td><td class="contract"><a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank">0x578ec5f37e0e459dec94805bf7b122e931eb34e4</a></td></tr>
     <tr><td>Total Supply</td><td>25,400,000 $G2G</td></tr>
+    <tr><td>DEX</td><td>Uniswap V2 on Base</td></tr>
+    <tr><td>Buy Tax</td><td>10%</td></tr>
+    <tr><td>Sell / Transfer Tax</td><td>0%</td></tr>
   </table>
 
-  <h2>Tax Structure (V2 – Updated)</h2>
-  <p><strong>Buy Tax:</strong> 10% — Sent <strong>directly</strong> to Greater Church of Acworth</p>
-  <p style="background:rgba(0,255,170,0.08); border-left:4px solid var(--green); padding:18px 22px; border-radius:8px; margin:25px 0;">
-    <strong>Important note:</strong> This decision to support Greater Church of Acworth is made solely by the Grind2Give project. Greater Church of Acworth is not affiliated with, does not endorse, and has no involvement in the $G2G token or this cryptocurrency project. We simply chose to direct the tax proceeds to their real-world outreach because of the impact they are already making.
-  </p>
+  <h2>How the Tax Works</h2>
+  <p>The 10% buy tax is the sole mechanism that funds charity. Sells and transfers carry no tax. The tax is not sent on every individual trade. Instead, it accumulates inside the contract until a threshold is met.</p>
+  <h3>The 0.5% Threshold</h3>
+  <p>Taxes are held until the accumulated amount reaches 0.5% of the token balance in the liquidity pool. Once that level is reached, the contract automatically swaps the collected tokens for ETH and sends the proceeds to the St. Jude charity wallet. This approach reduces gas costs and ensures that transfers are large enough to be meaningful rather than fragmented across many tiny transactions.</p>
+  <div class="note">
+    <strong>Example:</strong> If the liquidity pool holds 1,000,000 $G2G, the threshold is 5,000 $G2G in accumulated tax. When that amount is reached, the contract swaps and sends the resulting ETH to the charity wallet. Until the threshold is hit, tax continues to accumulate with each buy.
+  </div>
+  <p>Anyone can verify the charity wallet balance and incoming transactions on Basescan at any time.</p>
 
-  <h2>Charity Partner</h2>
-  <p>Greater Church of Acworth is deeply involved in local outreach — running a food pantry, large community distributions, back-to-school support, and Friendsgiving events that feed hundreds of families. Through partnerships and their broader ministry network, they also contribute to compassion work that reaches beyond their city, supporting causes that reflect the same global heart seen in organizations like World Vision.</p>
-  <p style="text-align:center; margin:25px 0;">
-    <a href="https://www.greater.church/" target="_blank" rel="noopener noreferrer" style="color:var(--green); font-weight:bold; text-decoration:underline;">
-      Visit Greater Church of Acworth → greater.church
-    </a>
-  </p>
+  <h2>Token Utility</h2>
+  <p>$G2G is a utility token whose primary function is to route a portion of trading activity toward charity. Holding or trading the token does not confer governance rights, dividend claims, or equity in any entity. Its utility is defined by the on-chain mechanics described in this paper:</p>
+  <ul>
+    <li>Every buy contributes 10% toward the charity accumulation pool.</li>
+    <li>Once the threshold is met, funds move automatically to the public charity wallet.</li>
+    <li>Anti-whale limits (max buy, max wallet, cooldown) are enforced at the contract level to reduce large-scale concentration.</li>
+  </ul>
+  <p>The token is designed for participants who want their trading activity to produce a measurable, on-chain charitable outcome.</p>
 
   <h2>Investor Protections</h2>
   <table>
     <tr><th>Protection</th><th>Limit</th><th>Purpose</th></tr>
-    <tr><td>Cooldown Period</td><td>5 seconds</td><td>Prevents sniping bots and rapid successive trades</td></tr>
-    <tr><td>Maximum Wallet Balance</td><td>1,254,000 $G2G</td><td>~4.94% of total supply – protects against whale dominance</td></tr>
-    <tr><td>Maximum Transaction Size</td><td>508,000 $G2G</td><td>~2% of total supply – applies to buys, sells, and transfers</td></tr>
+    <tr><td>Cooldown Period</td><td>5 seconds</td><td>Reduces rapid successive trades and bot activity</td></tr>
+    <tr><td>Maximum Wallet Balance</td><td>1,254,000 $G2G</td><td>Limits concentration in any single wallet</td></tr>
+    <tr><td>Maximum Purchase Size</td><td>508,000 $G2G</td><td>Limits the size of individual buys</td></tr>
   </table>
 
-  <h2>Security & Ownership</h2>
-  <div class="security-box">
-    <p><strong>Contract Ownership has been transferred to a 2/3 Multisig Wallet</strong></p>
-    <p style="font-family: monospace; word-break: break-all; font-size:1.1rem; margin:15px 0;">
-      Multisig Address: <strong>0xcd3A2897aCcfb30993486a0c4ca49c35F215297C</strong>
-    </p>
-    <p>2 out of 3 signers are required for any ownership changes. This provides strong protection for the community and prevents any single point of failure.</p>
-  </div>
+  <h2>Liquidity</h2>
+  <p>Eighty percent of the total supply is allocated to the Uniswap V2 liquidity pool on Base and locked on PinkSale. Multiple lock records exist because liquidity has been added incrementally. All locks are visible in one place:</p>
+  <p><a href="https://www.pinksale.finance/pinklock/base/0x8D560495B7a24c16e2613D1A9A04bC153c53c990" target="_blank" rel="noopener">View all locks on PinkSale →</a></p>
 
   <h2>Token Allocation</h2>
   <table>
-    <tr><th>Allocation</th><th>Amount</th><th>Percentage</th><th>Purpose</th></tr>
-    <tr><td><strong>LP Lock</strong></td><td>20,320,000 $G2G</td><td><strong>80%</strong></td><td>Liquidity Pool (100% locked for 3 years)</td></tr>
-    <tr><td>Dev / Support Wallet</td><td>1,016,000 $G2G</td><td><strong>4%</strong></td><td>Project development and operations</td></tr>
-    <tr><td>Airdrops & Community Rewards</td><td>1,016,000 $G2G</td><td><strong>4%</strong></td><td>Giveaways, stream rewards, and community events</td></tr>
-    <tr><td>Strike2Give Bowling Game Rewards</td><td>1,000,000 $G2G</td><td><strong>3.94%</strong></td><td>Rewards for Strike2Give PvP Bowling Game (coming soon)</td></tr>
-    <tr><td>Future FPS Game Rewards</td><td>1,000,000 $G2G</td><td><strong>3.94%</strong></td><td>Rewards for future FPS game</td></tr>
-    <tr><td>Burned</td><td>1,048,000 $G2G</td><td><strong>4.12%</strong></td><td>Permanently burned at launch</td></tr>
+    <tr><th>Allocation</th><th>Percentage</th><th>Purpose</th></tr>
+    <tr><td><strong>LP Lock</strong></td><td><strong>80%</strong></td><td>Liquidity Pool (locked on PinkSale)</td></tr>
+    <tr><td>Burn</td><td>5%</td><td>Permanently removed from circulating supply</td></tr>
+    <tr><td>Dev / Mission</td><td>4%</td><td>Project development and ongoing operations</td></tr>
+    <tr><td>Airdrops</td><td>6%</td><td>Community distribution</td></tr>
+    <tr><td>Future Rewards</td><td>4%</td><td>Reserved for future community incentives</td></tr>
+    <tr><td>Reserves</td><td>1%</td><td>Operational reserves</td></tr>
   </table>
 
-  <h2>Charity Mechanism</h2>
-  <p>10% of every buy is automatically directed to support Greater Church of Acworth’s charitable work. This is a fixed decision made by the Grind2Give project. There is no monthly voting — the impact is consistent and transparent.</p>
+  <h2>Transparency</h2>
+  <p>All material flows are on-chain and publicly verifiable:</p>
+  <ul>
+    <li><strong>Token contract:</strong> <a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank">0x578eC5f37E0E459dec94805Bf7B122e931EB34E4</a></li>
+    <li><strong>Charity wallet:</strong> <span class="contract">0x92EE2370b56DC32794A6CD72585dC01d4288D314</span> — anyone can view incoming ETH transfers.</li>
+    <li><strong>Liquidity locks:</strong> <a href="https://www.pinksale.finance/pinklock/base/0x8D560495B7a24c16e2613D1A9A04bC153c53c990" target="_blank">PinkSale lock page</a></li>
+  </ul>
+  <p>No off-chain reporting is required to confirm that tax has been collected or that funds have reached the charity wallet.</p>
 
-  <h2>Security & Future Plans</h2>
-  <p>• Contract ownership has been transferred to a secure 2/3 Multisig Wallet (address above).<br>
-  • Smart contract has not been audited yet. An independent audit is planned in the near future.<br>
-  • Ownership will be renounced only after full development milestones and community approval.<br>
-  • Strike2Give remains part of the vision and is still in development.<br>
-  • The project continues to expand under the Grind2Give Creative Capital umbrella with books, videos, music, and more.</p>
+  <h2>Roadmap</h2>
+  <h3>Current Stage</h3>
+  <ul>
+    <li>Token live on Base with Uniswap V2 liquidity</li>
+    <li>10% buy tax routing to St. Jude charity wallet</li>
+    <li>Liquidity locked on PinkSale</li>
+    <li>Anti-whale protections active</li>
+  </ul>
+  <h3>Near Term</h3>
+  <ul>
+    <li>Continued incremental liquidity additions with corresponding PinkSale locks</li>
+    <li>Community airdrop distribution from the allocated pool</li>
+    <li>Public documentation of charity wallet activity</li>
+  </ul>
+  <h3>Longer Term</h3>
+  <ul>
+    <li>Exploration of additional transparent giving mechanisms</li>
+    <li>Community-driven ideas for future reward allocations</li>
+    <li>Ongoing review of contract parameters as the project matures</li>
+  </ul>
+  <p>No specific timelines are guaranteed. Progress depends on market conditions, community participation, and operational capacity.</p>
 
-  <h2>Risks & Legal Disclaimer</h2>
+  <h2>Risks</h2>
+  <p>Participants should be aware of the following:</p>
+  <ul>
+    <li><strong>Volatility:</strong> $G2G is a cryptocurrency. Its price can rise or fall sharply, and holders may lose their entire investment.</li>
+    <li><strong>No guarantee of impact:</strong> While the tax mechanism is on-chain, the ultimate use of funds by St. Jude is outside the control of this project.</li>
+    <li><strong>Smart contract risk:</strong> The contract has not undergone a formal third-party audit. Bugs or vulnerabilities could exist.</li>
+    <li><strong>Liquidity risk:</strong> Trading volume and liquidity depth may be limited, affecting the ability to buy or sell at desired prices.</li>
+    <li><strong>Regulatory uncertainty:</strong> Cryptocurrency regulation continues to evolve. Future rules could affect the token or its participants.</li>
+  </ul>
   <div class="disclaimer">
     <strong>Important Disclaimer:</strong><br><br>
-    Investing in $G2G carries significant risk. Cryptocurrency prices are highly volatile and you may lose all your invested capital. 
-    There is no guarantee of profit, charity impact, or token value. This whitepaper is for informational purposes only and does not 
-    constitute financial, legal, or investment advice. Always do your own research (DYOR).
+    Investing in $G2G carries significant risk. Cryptocurrency prices are highly volatile and you may lose all your invested capital. There is no guarantee of profit, charity impact, or token value. This whitepaper is for informational purposes only and does not constitute financial, legal, or investment advice. Always do your own research (DYOR).
   </div>
 
   <h2>Vision</h2>
-  <p>Grind2Give V2 turns every grind into real impact. We have rebranded and expanded so more people can participate in a movement of giving — through the token, creative content (books, videos, music), and future experiences like Strike2Give.</p>
+  <p>Grind2Give exists to connect ordinary trading activity with a concrete act of giving. Every buy contributes to a public charity wallet that supports St. Jude Children’s Research Hospital. The mechanism is automatic, the wallet is public, and the outcome is verifiable.</p>
   <p><strong>Matthew 25:40 — “Whatever you did for one of the least of these… you did for me.”</strong></p>
   <p><strong>Grind hard. Give harder.</strong></p>
 
   <footer>
-    <p>Grind2Give Team • Rebranded 2026 • Part of Grind2Give Creative Capital • @Grind2GiveDev</p>
-    <p><a href="https://grind2give.org" style="color:var(--green);">← Back to grind2give.org</a></p>
+    <p>Grind2Give • $G2G on Base</p>
+    <p><a href="https://grind2give.org">← Back to grind2give.org</a></p>
   </footer>
 
 </div>
