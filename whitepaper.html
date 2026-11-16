@@ -138,7 +138,6 @@
   <p>Grind2Give ($G2G) is a community-first ERC-20 token on Base built around a single idea: everyday trading activity can be turned into consistent, transparent support for children fighting cancer. What began as a simple desire to give from the heart has grown into a focused on-chain mechanism. Every buy of $G2G contributes a fixed portion toward St. Jude Children’s Research Hospital, and that contribution moves automatically once a defined threshold is reached.</p>
   <p>Most cryptocurrencies are designed solely to capture value for holders or traders. Most charity tokens rely on manual processes, periodic decisions, or off-chain promises. Grind2Give takes a different approach. The 10% buy tax is written into the contract. It accumulates until it reaches 0.5% of the liquidity pool balance, then the contract swaps the collected tokens and sends the resulting ETH to a public charity wallet. No one has to remember to donate. No vote is required. The flow is visible to anyone who looks at the chain.</p>
   <p>Trust in this model rests on two things that can be checked independently. First, St. Jude Children’s Research Hospital is a long-standing, publicly accountable institution whose mission—treating children with cancer and other life-threatening diseases at no cost to families—is documented and audited by third parties. Second, the Grind2Give contract and charity wallet are open. Anyone can verify that tax is collected, that it accumulates, and that it is sent to the published address. There is no private wallet, no discretionary hold, and no claim that cannot be confirmed on Basescan or PinkSale.</p>
-  <p>This white paper describes the token mechanics, the charity selection, the protections built into the contract, the allocation of supply, and the risks that remain. It is written so that a reader can understand exactly what happens when $G2G is bought, how funds reach St. Jude, and how to verify each step without relying on the project’s word.</p>
 
   <h2>Why St. Jude</h2>
   <p>St. Jude Children’s Research Hospital was chosen because its mission is specific, measurable, and publicly documented. The hospital treats children with cancer and other life-threatening diseases, and it does so at no cost to families. Research, treatment, and care are funded so that no parent ever receives a bill for their child’s care. That model has been in place for decades and is supported by a large, ongoing base of donors and institutional oversight.</p>
@@ -146,7 +145,7 @@
   <ul>
     <li><strong>Public accountability.</strong> St. Jude publishes financial reports, is subject to independent audits, and maintains a long public record of how donations are used. Its work is not a private claim; it is an institution whose operations can be examined by anyone.</li>
     <li><strong>Clear outcome.</strong> The goal is concrete: children receive treatment without their families facing medical bills, and research continues into better therapies. That outcome is easier to evaluate than vague “support” or open-ended grant programs.</li>
-    <li><strong>Established track record.</strong> The hospital has operated for more than sixty years. Its survival rates for certain childhood cancers and its no-cost model are widely reported and independently reviewed.</li>
+    <li><strong>Established track record.</strong> The hospital has operated for more than sixty years. Its survival rates for certain childhood cancers and its no-cost model are widely reported and independently reviewed. St. Jude has helped raise the overall U.S. childhood cancer survival rate from 20% in 1962 to more than 80% today. <a href="https://www.stjude.org/about-st-jude/impact.html" target="_blank" rel="noopener">See St. Jude’s impact →</a></li>
     <li><strong>No cost to families.</strong> Families never receive a bill for treatment, travel, housing, or food. The focus stays on the child’s care rather than financial burden.</li>
     <li><strong>Research focus.</strong> St. Jude conducts and shares research that advances treatment for childhood cancer worldwide, not only for the children it treats directly.</li>
     <li><strong>Transparent finances.</strong> Annual reports and Form 990 filings are public. Donors can see how funds are allocated between research, treatment, and operations.</li>
@@ -154,8 +153,9 @@
   </ul>
   <p>This decision to support St. Jude is made solely by the Grind2Give project. St. Jude is not affiliated with, does not endorse, and has no involvement in the $G2G token. The project simply routes a portion of trading activity to an organization whose work and finances are already public.</p>
   <div class="note">
-    <strong>Charity wallet (ETH):</strong><br>
-    <span class="contract">0x92EE2370b56DC32794A6CD72585dC01d4288D314</span>
+    <strong>Charity wallet (Ethereum mainnet):</strong><br>
+    <span class="contract">0x92EE2370b56DC32794A6CD72585dC01d4288D314</span><br>
+    Tax is collected on Base. Once the threshold is met, it is swapped and sent as ETH to this Ethereum mainnet address. The address and tax settings are visible on the token’s <a href="https://20lab.app/token/base/0x578eC5f37E0E459dec94805Bf7B122e931EB34E4" target="_blank" rel="noopener">20lab page</a>.
   </div>
 
   <h2>Why G2G</h2>
@@ -238,6 +238,7 @@
   <p>All material flows are on-chain and publicly verifiable:</p>
   <ul>
     <li><strong>Token contract:</strong> <a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank">0x578eC5f37E0E459dec94805Bf7B122e931EB34E4</a></li>
+    <li><strong>20lab token page:</strong> <a href="https://20lab.app/token/base/0x578eC5f37E0E459dec94805Bf7B122e931EB34E4" target="_blank" rel="noopener">View tax settings and contract details →</a></li>
     <li><strong>Charity wallet:</strong> <span class="contract">0x92EE2370b56DC32794A6CD72585dC01d4288D314</span> — anyone can view incoming ETH transfers.</li>
     <li><strong>Liquidity locks:</strong> <a href="https://www.pinksale.finance/pinklock/base/0x8D560495B7a24c16e2613D1A9A04bC153c53c990" target="_blank">PinkSale lock page</a></li>
   </ul>
@@ -263,7 +264,12 @@
     <li>Community-driven ideas for future reward allocations</li>
     <li>Ongoing review of contract parameters as the project matures</li>
   </ul>
-  <p>No specific timelines are guaranteed. Progress depends on market conditions, community participation, and operational capacity.</p>
+  <p>Any future mechanism will remain on-chain and publicly verifiable. No specific timelines are guaranteed. Progress depends on market conditions, community participation, and operational capacity.</p>
+
+  <h2>Security & Ownership</h2>
+  <p>Contract ownership is held by a 2/3 multisig wallet. Two of three signers from trusted parties are required for any ownership action. This reduces single-point-of-failure risk while the project continues to operate.</p>
+  <p><strong>Multisig (Safe on Base):</strong><br>
+  <a href="https://app.safe.global/home?safe=base:0xcd3A2897aCcfb30993486a0c4ca49c35F215297C" target="_blank" rel="noopener">0xcd3A2897aCcfb30993486a0c4ca49c35F215297C</a></p>
 
   <h2>Risks</h2>
   <p>Participants should be aware of the following:</p>
