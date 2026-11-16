@@ -73,7 +73,7 @@
       margin-top: 30px;
     }
 
-    .buy-btn, .howto-btn, .game-btn, .locks-btn, .token-btn {
+    .buy-btn, .howto-btn, .locks-btn, .token-btn {
       padding: 20px 50px;
       font-size: clamp(1.4rem, 4.5vw, 2rem);
       font-weight: bold;
@@ -109,34 +109,7 @@
       color: var(--green);
     }
 
-    table {
-      width: 100%;
-      max-width: 920px;
-      margin: 30px auto;
-      border-collapse: collapse;
-      background: rgba(0,0,0,0.4);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    th, td {
-      padding: 16px 12px;
-      text-align: left;
-      border-bottom: 1px solid rgba(0,255,170,0.2);
-    }
-
-    th {
-      background: rgba(0,255,170,0.15);
-      color: var(--green);
-    }
-
-    .weekly-note {
-      font-size: 1.1rem;
-      color: #aaa;
-      margin-top: 15px;
-    }
-
-    .security-box {
+    .security-box, .lp-box {
       background: rgba(0,255,170,0.08);
       border: 2px solid var(--green);
       border-radius: 12px;
@@ -165,8 +138,7 @@
   <div class="buttons">
     <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x578eC5f37E0E459dec94805Bf7B122e931EB34E4" class="buy-btn" target="_blank" rel="noopener noreferrer">BUY $G2G NOW 🚀</a>
     <a href="/how-to-buy.html" class="howto-btn">📖 How to Buy</a>
-    <a href="/strike2give.html" class="game-btn">🎳 Play Strike2Give (Coming Soon)</a>
-    <a href="liquidity-locks.html" class="locks-btn">🔒 View All LP Locks</a>
+    <a href="liquidity-locks.html" class="locks-btn">🔒 LP is Locked</a>
     <a href="https://20lab.app/token/base/0x578eC5f37E0E459dec94805Bf7B122e931EB34E4" class="token-btn" target="_blank" rel="noopener noreferrer">📊 Token Analytics</a>
   </div>
 </header>
@@ -193,7 +165,7 @@
       
       <p>Every time $G2G is bought:</p>
       <ul style="text-align:left; max-width:800px; margin:25px auto; font-size:1.25rem;">
-        <li><strong>10% Buy Tax</strong> — Converted and sent <strong>directly</strong> to St. Jude Children’s Research Hospital to support their lifesaving research and treatment of childhood cancer.</li>
+        <li><strong>10% Buy Tax only</strong> — Sells and transfers are 0%. The 10% collected on buys is converted and sent <strong>directly</strong> to St. Jude Children’s Research Hospital to support their lifesaving research and treatment of childhood cancer.</li>
       </ul>
       
       <p style="background:rgba(0,255,170,0.08); border-left:4px solid var(--green); padding:18px 22px; border-radius:8px; margin:30px 0;">
@@ -216,12 +188,12 @@
       
       <p><strong>What makes us truly unique:</strong></p>
       <ul style="text-align:left; max-width:800px; margin:25px auto; font-size:1.25rem;">
-        <li><strong>Giving at the core</strong> — Every buy directly funds real charity.</li>
-        <li><strong>Strike2Give still coming</strong> — Our original PvP bowling game remains part of the vision and is in development.</li>
+        <li><strong>Giving at the core</strong> — 10% of every buy funds real charity. Sells and transfers are tax-free.</li>
         <li><strong>Expanded impact</strong> — Beyond the token: books, videos, music, and more creative ways to spread the message of giving.</li>
         <li><strong>Fixed, transparent impact</strong> — 10% of every buy goes straight to St. Jude (by project decision only).</li>
         <li><strong>Radical transparency</strong> — All charity flow is on-chain and verifiable.</li>
         <li><strong>Built-in investor protections</strong> — Cooldown + max wallet + max tx limits.</li>
+        <li><strong>100% LP locked</strong> — Liquidity is locked for the long term.</li>
       </ul>
       
       <p>Grind2Give is the bridge between digital life and the Kingdom mandate. This is <strong>Matthew 25 in blockchain form</strong> — rebranded, expanded, and focused on reaching more people than ever.</p>
@@ -238,32 +210,15 @@
       </p>
     </div>
 
-    <h2 style="margin-top:40px;">🔒 Liquidity Pool Locks</h2>
-    <p style="font-size:1.25rem; max-width:900px; margin:20px auto;">
-      100% of Liquidity is locked for years. We add a new lock <strong>every Friday</strong>.
-    </p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Lock Record</th>
-          <th>View on PinkSale</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1040127" target="_blank" style="color:var(--green);">View Lock →</a></td></tr>
-        <tr><td>2</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1039093" target="_blank" style="color:var(--green);">View Lock →</a></td></tr>
-        <tr><td>3</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1038318" target="_blank" style="color:var(--green);">View Lock →</a></td></tr>
-        <tr><td>4</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1037453" target="_blank" style="color:var(--green);">View Lock →</a></td></tr>
-        <tr><td>5</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1036817" target="_blank" style="color:var(--green);">View Lock →</a></td></tr>
-        <tr><td>6</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1036539" target="_blank" style="color:var(--green);">View Lock →</a></td></tr>
-        <tr><td>7</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1036531" target="_blank" style="color:var(--green);">View Lock →</a></td></tr>
-        <tr><td>8</td><td>Liquidity Lock</td><td><a href="https://www.pinksale.finance/pinklock/base/record/1036398" target="_blank" style="color:var(--green);">View Lock →</a></td></tr>
-      </tbody>
-    </table>
-
-    <p class="weekly-note">New Liquidity Lock added every Friday</p>
+    <div class="lp-box">
+      <h2>🔒 Liquidity is Locked</h2>
+      <p style="font-size:1.25rem; margin:15px 0;">
+        <strong>100% of Liquidity Pool is locked</strong> for the long term.
+      </p>
+      <p style="color:#aaa; font-size:1.1rem;">
+        LP tokens are locked on PinkSale. This protects holders and prevents the liquidity from being removed.
+      </p>
+    </div>
   </section>
 
   <section style="background: rgba(0,255,170,0.08); border: 2px solid var(--green);">
