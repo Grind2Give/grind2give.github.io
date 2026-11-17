@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About the Creator • Grind2Give</title>
+  <title>Grind2Give White Paper – Grind → Give → Real-World Change</title>
   <style>
     :root {
       --green: #00e69a;
@@ -32,7 +32,7 @@
     }
 
     .container {
-      max-width: 860px;
+      max-width: 960px;
       margin: 40px auto;
       padding: 48px 36px;
       background: rgba(12, 18, 15, 0.85);
@@ -42,7 +42,7 @@
     }
 
     h1 {
-      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-size: clamp(2.4rem, 6vw, 3.4rem);
       color: var(--green);
       text-align: center;
       margin: 0 0 8px;
@@ -52,52 +52,84 @@
     .subtitle {
       text-align: center;
       color: var(--gold);
-      margin: 4px 0 32px;
+      margin: 4px 0;
       font-size: 1.1rem;
     }
 
     h2 {
       color: var(--green);
-      margin: 48px 0 16px;
-      font-size: 1.5rem;
+      margin: 56px 0 16px;
+      font-size: 1.55rem;
       border-bottom: 1px solid rgba(0, 230, 154, 0.15);
       padding-bottom: 8px;
+    }
+
+    h3 {
+      color: var(--gold);
+      margin: 28px 0 12px;
+      font-size: 1.15rem;
     }
 
     p { color: var(--muted); margin: 0 0 16px; }
     p strong { color: var(--text); }
 
-    .socials {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+    ul { color: var(--muted); padding-left: 20px; margin: 12px 0 20px; }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
       margin: 24px 0;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      overflow: hidden;
     }
 
-    .socials a {
-      display: inline-flex;
-      align-items: center;
-      background: transparent;
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(0, 230, 154, 0.15);
+    }
+
+    th {
+      background: rgba(0, 230, 154, 0.08);
       color: var(--green);
-      border: 1.5px solid rgba(0, 230, 154, 0.5);
-      padding: 10px 20px;
-      border-radius: 12px;
-      text-decoration: none;
       font-weight: 600;
     }
 
-    .socials a:hover {
-      background: rgba(0, 230, 154, 0.08);
+    td { color: var(--muted); }
+
+    .contract {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      word-break: break-all;
+      font-size: 0.9rem;
     }
+
+    .note {
+      background: linear-gradient(135deg, rgba(0, 230, 154, 0.08), rgba(240, 215, 140, 0.04));
+      border: 1px solid rgba(0, 230, 154, 0.2);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 24px 0;
+    }
+
+    .disclaimer {
+      background: rgba(255, 100, 100, 0.08);
+      border: 1px solid rgba(255, 100, 100, 0.25);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 40px 0;
+    }
+
+    a { color: var(--green); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
 
     footer {
       text-align: center;
       padding: 60px 20px 40px;
       color: #5a7a6a;
     }
-
-    a { color: var(--green); text-decoration: none; font-weight: 600; }
-    a:hover { text-decoration: underline; }
 
     @media (max-width: 680px) {
       .container { padding: 32px 20px; margin: 20px; }
@@ -108,25 +140,55 @@
 
 <div class="container">
 
-  <h1>About the Creator</h1>
-  <p class="subtitle">Art Hoskins • Grind2Give</p>
+  <h1>Grind2Give White Paper</h1>
+  <p class="subtitle"><strong>Grind → Give → Real-World Change</strong></p>
+  <p class="subtitle">$G2G on Base • Uniswap V2</p>
 
-  <h2>Life Outside of Crypto</h2>
-  <p>I’m Art Hoskins. Before Grind2Give, my life has been centered around faith, family, music, and community.</p>
-  <p>I grew up in Long Beach, California, and later moved to Georgia. I’ve been married for over 12 years and have seven children. Family is a big part of who I am.</p>
-  <p>I coach basketball and have always had a heart for giving back. That same desire to help others is what eventually led me to create Grind2Give — a way to turn everyday activity into real support for kids fighting cancer.</p>
-  <p>I’m also involved in music through Psalms 98.1 and work with Greater Church Acworth. My faith has been the foundation through different seasons of life.</p>
+  <h2>Abstract</h2>
+  <p>Grind2Give ($G2G) is a community-first ERC-20 token on Base built around a single idea: everyday trading activity can be turned into consistent, transparent support for children fighting cancer and other life-threatening diseases. Every buy of $G2G carries a 10% tax that is split between charity (8%), holder dividends (1.5%), and an automatic burn (0.5%).</p>
+  <p>The charity portion accumulates until it reaches 0.5% of the liquidity pool balance, then the contract swaps the collected tokens and sends the resulting ETH to a public charity wallet. The flow is visible to anyone who looks at the chain.</p>
 
-  <h2>Connect</h2>
-  <div class="socials">
-    <a href="https://x.com/Grind2GiveDev" target="_blank" rel="noopener">X / Twitter</a>
-    <a href="https://grind2give.org" target="_blank" rel="noopener">Website</a>
+  <h2>Token Details</h2>
+  <table>
+    <tr><th>Property</th><th>Value</th></tr>
+    <tr><td>Token Name</td><td>Grind2Give</td></tr>
+    <tr><td>Symbol</td><td>$G2G</td></tr>
+    <tr><td>Blockchain</td><td>Base</td></tr>
+    <tr><td>Contract Address</td><td class="contract"><a href="https://basescan.org/address/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank">0x578ec5f37e0e459dec94805bf7b122e931eb34e4</a></td></tr>
+    <tr><td>Total Supply</td><td>25,400,000 $G2G</td></tr>
+    <tr><td>Buy Tax</td><td>10% (8% charity, 1.5% dividend, 0.5% burn)</td></tr>
+    <tr><td>Sell / Transfer Tax</td><td>0%</td></tr>
+    <tr><td>Max Buy</td><td>1,200,000</td></tr>
+    <tr><td>Max Wallet</td><td>2,540,000</td></tr>
+  </table>
+
+  <h2>How the Tax Works</h2>
+  <p>The 10% buy tax is split as follows: 8% to charity, 1.5% to eligible holders as dividends, and 0.5% automatically burned. Sells and transfers carry no tax.</p>
+  <p>All taxes accumulate until they reach 0.5% of the token balance in the liquidity pool, then are automatically processed.</p>
+
+  <div class="note">
+    <strong>Charity wallet (Ethereum mainnet):</strong><br>
+    <span class="contract">0x92EE2370b56DC32794A6CD72585dC01d4288D314</span>
   </div>
 
-  <p>If you want to reach out, you can also email <a href="mailto:support@grind2give.org">support@grind2give.org</a>.</p>
+  <h2>Liquidity</h2>
+  <p>Eighty percent of the total supply is allocated to the Uniswap V2 liquidity pool on Base and locked on PinkSale.</p>
+  <p><a href="https://www.pinksale.finance/pinklock/base/0x8D560495B7a24c16e2613D1A9A04bC153c53c990" target="_blank" rel="noopener">View all locks on PinkSale →</a></p>
+
+  <h2>Disclaimer</h2>
+  <div class="disclaimer">
+    <strong>Important Disclaimer:</strong><br><br>
+    Investing in $G2G carries significant risk. Cryptocurrency prices are highly volatile and you may lose all your invested capital. There is no guarantee of profit, charity impact, or token value. This whitepaper is for informational purposes only and does not constitute financial, legal, or investment advice. Always do your own research (DYOR).
+  </div>
+
+  <h2>Vision</h2>
+  <p>Grind2Give exists to connect ordinary trading activity with a concrete act of giving. Every buy contributes to a public charity wallet that supports childhood cancer research and treatment, rewards eligible holders, and gradually reduces supply through a small burn.</p>
+  <p><strong>Matthew 25:40 — “Whatever you did for one of the least of these… you did for me.”</strong></p>
+  <p><strong>Grind hard. Give harder.</strong></p>
 
   <footer>
-    <p><a href="index.html">← Back to Grind2Give</a></p>
+    <p>Grind2Give • $G2G on Base</p>
+    <p><a href="index.html">← Back to grind2give.org</a></p>
   </footer>
 
 </div>
