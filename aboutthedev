@@ -1,0 +1,10 @@
+<div style="max-width: 800px; margin: 40px auto; text-align: center;">
+  <h2 style="color: #00e69a; margin-bottom: 20px;">About the Dev – Q&A</h2>
+  <video controls playsinline style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+    <source src="art-hoskins-grind2give-qa.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <p style="color: #a8c4b8; margin-top: 12px; font-size: 0.95rem;">
+    Who I am outside of crypto, why I started Grind2Give, and what this project means to me.
+  </p>
+</div>
