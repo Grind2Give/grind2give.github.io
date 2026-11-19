@@ -21,7 +21,6 @@
       line-height: 1.75;
     }
 
-    /* Logo background */
     body::before {
       content: "";
       position: fixed;
@@ -183,16 +182,8 @@
     <li><strong>Locked liquidity.</strong> 80% of supply is in the Uniswap V2 pool and locked on PinkSale. The locks are visible in one place.</li>
     <li><strong>Built-in limits.</strong> Maximum buy size and maximum wallet size reduce the ability of any single participant to dominate trading or holdings.</li>
     <li><strong>Zero tax on sells and transfers.</strong> Only buys carry the 10% tax. Selling or moving tokens between wallets does not incur additional tax.</li>
+    <li><strong>Ownership fully renounced.</strong> No further changes can be made to the contract by anyone.</li>
   </ul>
-  <h3>Trust in the Grind2Give side rests on verifiability rather than reputation</h3>
-  <ul>
-    <li><strong>Fixed tax.</strong> The 10% buy tax (8% charity, 1.5% dividend, 0.5% burn) is set in the contract.</li>
-    <li><strong>Public threshold.</strong> The charity portion accumulates until it reaches 0.5% of the token balance in the liquidity pool, then is swapped and sent. The threshold is known in advance; it is not a discretionary decision.</li>
-    <li><strong>Public wallet.</strong> The charity address (0x92EE2370b56DC32794A6CD72585dC01d4288D314) is published here and on the website. Anyone can watch it on Basescan and see incoming transfers.</li>
-    <li><strong>Locked liquidity.</strong> Eighty percent of supply is in the Uniswap V2 pool and locked on PinkSale. The locks are visible at a single public link.</li>
-    <li><strong>No hidden flow.</strong> There is no intermediate wallet controlled by the project that receives the tax before it reaches the published charity address. The contract sends directly once the threshold is met.</li>
-  </ul>
-  <p>G2G does not promise price appreciation or equity in any entity. Its value proposition is that a portion of ordinary trading activity is routed, automatically and visibly, to a specific charitable purpose, with additional rewards for holders and a small burn. Participants who want that outcome can verify the mechanism on-chain before they trade.</p>
 
   <h2>Token Details</h2>
   <table>
@@ -205,6 +196,7 @@
     <tr><td>DEX</td><td>Uniswap V2 on Base</td></tr>
     <tr><td>Buy Tax</td><td>10% (8% charity, 1.5% dividend, 0.5% burn)</td></tr>
     <tr><td>Sell / Transfer Tax</td><td>0%</td></tr>
+    <tr><td>Ownership</td><td>Fully renounced</td></tr>
   </table>
 
   <h2>How the Tax Works</h2>
@@ -264,6 +256,7 @@
     <li>10% buy tax (8% charity, 1.5% dividend, 0.5% burn)</li>
     <li>Liquidity locked on PinkSale</li>
     <li>Anti-whale protections active</li>
+    <li>Ownership fully renounced</li>
   </ul>
   <h3>Near Term</h3>
   <ul>
@@ -275,14 +268,14 @@
   <ul>
     <li>Exploration of additional transparent giving mechanisms</li>
     <li>Community-driven ideas for future reward allocations</li>
-    <li>Ongoing review of contract parameters as the project matures</li>
   </ul>
   <p>Any future mechanism will remain on-chain and publicly verifiable. No specific timelines are guaranteed. Progress depends on market conditions, community participation, and operational capacity.</p>
 
   <h2>Security & Ownership</h2>
-  <p>Contract ownership is held by a 2/3 multisig wallet. Two of three signers from trusted parties are required for any ownership action. This reduces single-point-of-failure risk while the project continues to operate.</p>
-  <p><strong>Multisig (Safe on Base):</strong><br>
-  <a href="https://app.safe.global/home?safe=base:0xcd3A2897aCcfb30993486a0c4ca49c35F215297C" target="_blank" rel="noopener">0xcd3A2897aCcfb30993486a0c4ca49c35F215297C</a></p>
+  <p><strong>Ownership of the token contract has been fully renounced.</strong> No individual or multi-sig can modify taxes, limits, max buy, max wallet, or any other owner-controlled functions. All contract parameters are now permanent and immutable.</p>
+  <div class="note">
+    <strong>What this means:</strong> The 10% buy tax (8% charity, 1.5% dividends, 0.5% burn), max buy of 1,200,000, max wallet of 2,540,000, and all other settings cannot be changed by anyone. The mechanism is locked as written.
+  </div>
 
   <h2>Risks</h2>
   <p>Participants should be aware of the following:</p>
