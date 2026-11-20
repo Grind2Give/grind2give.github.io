@@ -9,8 +9,7 @@
       --green: #00e69a;
       --gold: #f0d78c;
       --text: #f7fff9;
-      --muted: #a8c4b8;
-      --card: rgba(12, 18, 15, 0.85);
+      --muted: #d4ede4;
     }
     * { box-sizing: border-box; }
     body {
@@ -19,60 +18,50 @@
       background: #000;
       color: var(--text);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 30px 16px 50px;
+      padding: 20px 16px 40px;
     }
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background: url("logo.jpg") center center / cover no-repeat;
-      opacity: 0.12;
+      opacity: 0.1;
       z-index: -1;
     }
     .container {
-      background: var(--card);
-      border: 1px solid rgba(0, 230, 154, 0.2);
-      border-radius: 20px;
-      padding: 30px 20px;
-      max-width: 640px;
-      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
       text-align: center;
-      backdrop-filter: blur(8px);
     }
-    h1 { color: var(--green); margin: 0 0 6px; font-size: 1.8rem; }
-    .sub { color: var(--gold); margin-bottom: 20px; font-size: 0.95rem; }
+    h1 { color: var(--green); margin: 0 0 4px; font-size: 1.9rem; }
+    .sub { color: var(--gold); margin-bottom: 16px; font-size: 1rem; }
     video {
       width: 100%;
-      max-width: 560px;
-      border-radius: 12px;
-      margin: 10px 0 16px;
+      height: 65vh;
+      object-fit: contain;
       background: #000;
-      display: none;
-    }
-    .play-btn {
-      padding: 16px 40px;
-      background: var(--green);
-      color: #000;
-      border: none;
       border-radius: 12px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin: 20px 0;
+      margin: 10px 0;
     }
-    .play-btn:hover { background: #00c884; }
+    .play-msg {
+      color: var(--gold);
+      font-size: 1.05rem;
+      margin: 12px 0 20px;
+      font-weight: 600;
+    }
     .disclaimer {
-      font-size: 0.78rem;
+      font-size: 1.05rem;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.75;
       text-align: left;
-      max-width: 560px;
-      margin: 0 auto 20px;
+      max-width: 740px;
+      margin: 10px auto 20px;
+      background: rgba(8, 12, 10, 0.95);
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 230, 154, 0.25);
     }
-    #applySection { display: none; margin-top: 10px; }
+    #applySection { display: none; margin-top: 20px; }
     button {
       padding: 14px 28px;
       background: var(--green);
@@ -103,12 +92,12 @@
     <h1>Grind2Give Rewards</h1>
     <div class="sub">Ambassador Program</div>
 
-    <button class="play-btn" id="playBtn" onclick="startVideo()">Press Play</button>
-
-    <video id="promoVideo" playsinline>
+    <video id="promoVideo" autoplay playsinline controls>
       <source src="g2g-ambassador-compressed.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+
+    <div class="play-msg">If autoplay did not start, press play to continue to the application.</div>
 
     <div class="disclaimer">
       <strong>Disclaimer</strong><br><br>
@@ -132,15 +121,12 @@
     }
 
     const video = document.getElementById("promoVideo");
-    const playBtn = document.getElementById("playBtn");
     const applySection = document.getElementById("applySection");
 
-    function startVideo() {
-      video.style.display = "block";
-      playBtn.style.display = "none";
-      video.volume = 1;
-      video.play();
-    }
+    video.volume = 1;
+    video.play().catch(function() {
+      console.log("Autoplay blocked");
+    });
 
     video.addEventListener("ended", function() {
       applySection.style.display = "block";
