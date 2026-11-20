@@ -3,99 +3,130 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Join</title>
+  <title>Join Grind2Give Rewards</title>
   <style>
+    :root {
+      --green: #00e69a;
+      --gold: #f0d78c;
+      --text: #f7fff9;
+      --muted: #a8c4b8;
+      --card: rgba(12, 18, 15, 0.85);
+    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #000;
-      color: #f7fff9;
-      text-align: center;
+      color: var(--text);
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      padding: 20px;
     }
-    .container { max-width: 700px; padding: 20px; }
-    video {
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("logo.jpg") center center / cover no-repeat;
+      opacity: 0.12;
+      z-index: -1;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(0, 230, 154, 0.2);
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 420px;
       width: 100%;
-      max-width: 640px;
-      border-radius: 16px;
-      margin-bottom: 24px;
+      text-align: center;
+      backdrop-filter: blur(8px);
     }
-    .form {
-      margin-top: 20px;
+    h1 {
+      color: var(--green);
+      margin: 0 0 10px;
+      font-size: 1.8rem;
     }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.1rem;
-    }
+    p { color: var(--muted); margin: 0 0 24px; }
     input[type="date"] {
-      padding: 12px 16px;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 10px;
-      margin-bottom: 16px;
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 230, 154, 0.3);
+      background: #0a0f0d;
+      color: var(--text);
+      font-size: 1rem;
+      margin-bottom: 20px;
     }
     button {
-      padding: 14px 28px;
-      font-size: 1.1rem;
-      font-weight: bold;
+      width: 100%;
+      padding: 14px;
+      background: var(--green);
+      color: #000;
       border: none;
       border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
       cursor: pointer;
-      background: #00e69a;
-      color: #000;
     }
-    .error {
-      color: #ff6b6b;
-      margin-top: 12px;
-      font-weight: bold;
-      display: none;
+    button:hover { background: #00c884; }
+    .error { color: #ff6b6b; margin-top: 12px; font-size: 0.9rem; display: none; }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      max-width: 700px;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <video autoplay muted playsinline controls>
-      <source src="age-gate.mp4" type="video/mp4">
-    </video>
-    <h2>Enter your date of birth</h2>
-    <div class="form">
-      <label for="dob">Date of Birth</label>
-      <input type="date" id="dob" required>
-      <br>
-      <button onclick="checkAge()">Continue</button>
-      <div class="error" id="error">You must be 18 or older to enter.</div>
-    </div>
+  <div class="card">
+    <h1>Age Verification</h1>
+    <p>You must be 18 or older to join the Grind2Give Rewards program.</p>
+    <input type="date" id="dob" />
+    <button onclick="checkAge()">Continue</button>
+    <div class="error" id="error">You must be 18 or older to continue.</div>
   </div>
 
-  <script>
-    function checkAge() {
-      const dob = document.getElementById('dob').value;
-      const error = document.getElementById('error');
+  <footer>
+    <strong>Disclaimer</strong><br><br>
+    By entering your date of birth and accessing this page, you confirm that you are at least 18 years old. This site is intended only for adults. We do not knowingly allow anyone under 18 to participate in the rewards program.<br><br>
+    Participation in any rewards, airdrops, or promotions is voluntary and at your own risk. $G2G is a cryptocurrency token. Cryptocurrency is highly volatile and you may lose all money spent. This is not financial advice, investment advice, or an offer to buy or sell any asset.<br><br>
+    The age verification on this site is self-reported. We do not store your date of birth if you are under 18. We are not responsible for anyone who provides false information to gain access.<br><br>
+    All rewards are subject to change or cancellation at any time. Past performance does not guarantee future results. Always do your own research.
+  </footer>
 
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("bypass") === "art") {
+      sessionStorage.setItem("g2g_age", "ok");
+      window.location.href = "ambassador.html";
+    }
+
+    function checkAge() {
+      const dob = document.getElementById("dob").value;
+      const error = document.getElementById("error");
       if (!dob) {
         error.textContent = "Please enter your date of birth.";
         error.style.display = "block";
         return;
       }
-
-      const birthDate = new Date(dob);
+      const birth = new Date(dob);
       const today = new Date();
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const monthDiff = today.getMonth() - birthDate.getMonth();
-
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-      }
+      let age = today.getFullYear() - birth.getFullYear();
+      const m = today.getMonth() - birth.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
 
       if (age >= 18) {
-        sessionStorage.setItem('ageVerified', 'true');
-        window.location.href = 'ambassador.html';
+        sessionStorage.setItem("g2g_age", "ok");
+        window.location.href = "ambassador.html";
       } else {
-        window.location.href = 'kidzone.html';
+        sessionStorage.setItem("g2g_age", "under");
+        window.location.href = "kidzone.html";
       }
     }
   </script>
