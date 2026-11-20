@@ -117,7 +117,7 @@
 </head>
 <body>
   <div class="container">
-    <!-- Video Section (shows immediately) -->
+    <!-- Video (shows & autoplays immediately) -->
     <div id="video-section">
       <h1>G2G Ambassador Program</h1>
       <div class="subtitle">Watch the video first</div>
@@ -131,14 +131,17 @@
       <div class="video-note" id="video-note">Please watch the full video to continue.</div>
     </div>
 
-    <!-- Rules Section -->
+    <!-- Rules (appears after video ends) -->
     <div id="rules-section">
       <div class="rules-scroll-box" id="rules-box">
-        <!-- Paste all your existing rules content here -->
+        <!-- PASTE ALL YOUR RULES CONTENT HERE -->
+        <h2>Phase 1 Rules & Guidelines</h2>
+        <p>These rules apply after you have officially been selected and accepted as a G2G Ambassador.</p>
+        <!-- ... keep the rest of your rules ... -->
       </div>
     </div>
 
-    <!-- Apply Section -->
+    <!-- Apply (appears after scrolling rules to bottom) -->
     <div id="apply-section">
       <p>Applying means you have watched the video and read the rules and guidelines.</p>
       <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLScxNoH-jKaqRros4FAEp6aXWLrFB9qwq8W7m2_HwcTLD1w34Q/viewform?usp=header" target="_blank">Apply Now</a>
@@ -148,21 +151,19 @@
   <script>
     const video = document.getElementById('ambassador-video');
 
-    // Try to autoplay on load
+    // Autoplay on page load
     window.addEventListener('load', () => {
-      video.play().catch(() => {
-        // Browser blocked autoplay – user can still press play
-      });
+      video.play().catch(() => {});
     });
 
-    // Unlock rules when video ends
+    // Show rules when video ends
     video.addEventListener('ended', () => {
       document.getElementById('video-note').innerText = "Video complete. Please read the rules below.";
       document.getElementById('rules-section').style.display = 'block';
       document.getElementById('rules-section').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Unlock Apply when rules are scrolled to bottom
+    // Show Apply button when rules are scrolled to the bottom
     const rulesBox = document.getElementById('rules-box');
     const applySection = document.getElementById('apply-section');
 
