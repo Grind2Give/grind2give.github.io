@@ -3,35 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kids Zone</title>
+  <title>Not Available</title>
   <style>
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #000;
-      color: #f7fff9;
-      text-align: center;
+      color: #fff;
+      font-family: system-ui, sans-serif;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
+      text-align: center;
+      padding: 20px;
     }
-    .container { max-width: 700px; padding: 20px; }
     video {
       width: 100%;
-      max-width: 640px;
-      border-radius: 16px;
-      margin-bottom: 24px;
+      max-width: 560px;
+      border-radius: 12px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <video autoplay muted playsinline controls>
-      <source src="young-legends.mp4" type="video/mp4">
-    </video>
-    <h2>Thanks for checking us out!</h2>
-    <p>This program is only for adults 18+. Come back when you’re older.</p>
-  </div>
+  <video id="kidVideo" autoplay playsinline>
+    <source src="kidzone.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <script>
+    const video = document.getElementById("kidVideo");
+    video.volume = 1.0;
+    video.muted = false;
+
+    video.addEventListener("ended", function() {
+      window.location.href = "https://www.google.com";
+    });
+  </script>
 </body>
 </html>
