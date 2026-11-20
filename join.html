@@ -3,177 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>G2G Ambassador Program</title>
+  <title>Join Grind2Give Rewards</title>
   <style>
     :root {
       --green: #00e69a;
-      --green-deep: #00b37a;
       --gold: #f0d78c;
       --text: #f7fff9;
       --muted: #a8c4b8;
+      --card: rgba(12, 18, 15, 0.85);
     }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #000000;
+      background: #000;
       color: var(--text);
-      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
-
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: url("logo.jpg") center center / cover no-repeat;
-      opacity: 0.15;
+      background: url("joingate.jpg") center center / cover no-repeat;
+      opacity: 0.12;
       z-index: -1;
     }
-
-    .container {
-      max-width: 920px;
-      margin: 40px auto;
-      padding: 40px 24px;
-    }
-
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 3rem);
-      color: var(--green);
-      text-align: center;
-      margin: 0 0 8px;
-      font-weight: 800;
-    }
-
-    .subtitle {
-      text-align: center;
-      color: var(--gold);
-      margin: 4px 0 32px;
-      font-size: 1.15rem;
-    }
-
-    #rules-section,
-    #apply-section {
-      display: none;
-    }
-
-    .video-wrap {
-      max-width: 800px;
-      margin: 32px auto;
-      border-radius: 16px;
-      overflow: hidden;
+    .card {
+      background: var(--card);
       border: 1px solid rgba(0, 230, 154, 0.2);
-      background: #000;
-    }
-
-    video {
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 420px;
       width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .video-note {
       text-align: center;
-      color: var(--gold);
-      margin: 12px 0 28px;
-      font-weight: 600;
-    }
-
-    .rules-scroll-box {
-      max-width: 900px;
-      height: 640px;
-      margin: 40px auto;
-      padding: 32px 40px;
-      background: rgba(12, 18, 15, 0.75);
-      border: 1px solid rgba(0, 230, 154, 0.2);
-      border-radius: 16px;
-      overflow-y: auto;
       backdrop-filter: blur(8px);
-      line-height: 1.7;
-      font-size: 1.05rem;
     }
-
-    .rules-scroll-box h2 { color: var(--green); text-align: center; margin-top: 0; font-size: 1.6rem; }
-    .rules-scroll-box h3 { color: var(--gold); margin: 28px 0 8px; font-size: 1.2rem; }
-    .rules-scroll-box p, .rules-scroll-box li { color: var(--muted); }
-    .rules-scroll-box strong { color: var(--text); }
-    .rules-scroll-box ul { padding-left: 22px; margin-bottom: 16px; }
-
-    #apply-section { text-align: center; margin-top: 28px; }
-    #apply-section p { color: var(--gold); font-weight: 600; margin-bottom: 16px; }
-
-    .cta {
-      display: inline-block;
+    h1 {
+      color: var(--green);
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+    }
+    p { color: var(--muted); margin: 0 0 24px; }
+    input[type="date"] {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 230, 154, 0.3);
+      background: #0a0f0d;
+      color: var(--text);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
       background: var(--green);
       color: #000;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
       font-weight: 700;
-      padding: 14px 32px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 1.1rem;
+      cursor: pointer;
     }
-
-    .cta:hover { background: var(--green-deep); }
+    button:hover { background: #00c884; }
+    .error { color: #ff6b6b; margin-top: 12px; font-size: 0.9rem; display: none; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Video (shows & autoplays immediately) -->
-    <div id="video-section">
-      <h1>G2G Ambassador Program</h1>
-      <div class="subtitle">Watch the video first</div>
-
-      <div class="video-wrap">
-        <video id="ambassador-video" controls playsinline autoplay>
-          <source src="g2gairdrop.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div class="video-note" id="video-note">Please watch the full video to continue.</div>
-    </div>
-
-    <!-- Rules (appears after video ends) -->
-    <div id="rules-section">
-      <div class="rules-scroll-box" id="rules-box">
-        <!-- PASTE ALL YOUR RULES CONTENT HERE -->
-        <h2>Phase 1 Rules & Guidelines</h2>
-        <p>These rules apply after you have officially been selected and accepted as a G2G Ambassador.</p>
-        <!-- ... keep the rest of your rules ... -->
-      </div>
-    </div>
-
-    <!-- Apply (appears after scrolling rules to bottom) -->
-    <div id="apply-section">
-      <p>Applying means you have watched the video and read the rules and guidelines.</p>
-      <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLScxNoH-jKaqRros4FAEp6aXWLrFB9qwq8W7m2_HwcTLD1w34Q/viewform?usp=header" target="_blank">Apply Now</a>
-    </div>
+  <div class="card">
+    <h1>Enter Your Birthday</h1>
+    <p>Please confirm your date of birth to continue.</p>
+    <input type="date" id="dob" />
+    <button onclick="checkAge()">Continue</button>
+    <div class="error" id="error">Please enter a valid date.</div>
   </div>
 
   <script>
-    const video = document.getElementById('ambassador-video');
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("bypass") === "art") {
+      sessionStorage.setItem("g2g_age", "ok");
+      window.location.href = "ambassador.html";
+    }
 
-    // Autoplay on page load
-    window.addEventListener('load', () => {
-      video.play().catch(() => {});
-    });
-
-    // Show rules when video ends
-    video.addEventListener('ended', () => {
-      document.getElementById('video-note').innerText = "Video complete. Please read the rules below.";
-      document.getElementById('rules-section').style.display = 'block';
-      document.getElementById('rules-section').scrollIntoView({ behavior: 'smooth' });
-    });
-
-    // Show Apply button when rules are scrolled to the bottom
-    const rulesBox = document.getElementById('rules-box');
-    const applySection = document.getElementById('apply-section');
-
-    rulesBox.addEventListener('scroll', () => {
-      const atBottom = rulesBox.scrollHeight - rulesBox.scrollTop <= rulesBox.clientHeight + 40;
-      if (atBottom) {
-        applySection.style.display = 'block';
-        applySection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    function checkAge() {
+      const dob = document.getElementById("dob").value;
+      const error = document.getElementById("error");
+      if (!dob) {
+        error.textContent = "Please enter your date of birth.";
+        error.style.display = "block";
+        return;
       }
-    });
+      const birth = new Date(dob);
+      const today = new Date();
+      let age = today.getFullYear() - birth.getFullYear();
+      const m = today.getMonth() - birth.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+
+      if (age >= 18) {
+        sessionStorage.setItem("g2g_age", "ok");
+        window.location.href = "ambassador.html";
+      } else {
+        sessionStorage.setItem("g2g_age", "under");
+        window.location.href = "kidzone.html";
+      }
+    }
   </script>
 </body>
 </html>
