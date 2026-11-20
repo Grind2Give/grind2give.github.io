@@ -143,6 +143,11 @@
   </div>
 
   <script>
+    // Force entry through join.html
+    if (sessionStorage.getItem("g2g_age") !== "ok") {
+      window.location.href = "join.html";
+    }
+
     const video = document.getElementById('ambassador-video');
 
     window.addEventListener('load', () => {
