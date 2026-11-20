@@ -29,7 +29,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: url("joingate.jpg") center center / cover no-repeat;
+      background: url("logo.jpg") center center / cover no-repeat;
       opacity: 0.12;
       z-index: -1;
     }
@@ -72,33 +72,16 @@
     }
     button:hover { background: #00c884; }
     .error { color: #ff6b6b; margin-top: 12px; font-size: 0.9rem; display: none; }
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      text-align: center;
-      font-size: 0.78rem;
-      color: var(--muted);
-      max-width: 700px;
-      line-height: 1.6;
-    }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Age Verification</h1>
-    <p>You must be 18 or older to join the Grind2Give Rewards program.</p>
+    <h1>Enter Your Birthday</h1>
+    <p>Please confirm your date of birth to continue.</p>
     <input type="date" id="dob" />
     <button onclick="checkAge()">Continue</button>
-    <div class="error" id="error">You must be 18 or older to continue.</div>
+    <div class="error" id="error">Please enter a valid date.</div>
   </div>
-
-  <footer>
-    <strong>Disclaimer</strong><br><br>
-    By entering your date of birth and accessing this page, you confirm that you are at least 18 years old. This site is intended only for adults. We do not knowingly allow anyone under 18 to participate in the rewards program.<br><br>
-    Participation in any rewards, airdrops, or promotions is voluntary and at your own risk. $G2G is a cryptocurrency token. Cryptocurrency is highly volatile and you may lose all money spent. This is not financial advice, investment advice, or an offer to buy or sell any asset.<br><br>
-    The age verification on this site is self-reported. We do not store your date of birth if you are under 18. We are not responsible for anyone who provides false information to gain access.<br><br>
-    All rewards are subject to change or cancellation at any time. Past performance does not guarantee future results. Always do your own research.
-  </footer>
 
   <script>
     const params = new URLSearchParams(window.location.search);
