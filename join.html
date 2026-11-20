@@ -92,6 +92,7 @@
       }
 
       if (age >= 18) {
+        sessionStorage.setItem('ageVerified', 'true');
         window.location.href = 'ambassador.html';
       } else {
         window.location.href = 'kidzone.html';
