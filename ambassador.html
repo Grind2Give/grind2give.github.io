@@ -3,119 +3,298 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Grind2Give Rewards</title>
+  <title>G2G Ambassador Program</title>
   <style>
     :root {
       --green: #00e69a;
+      --green-deep: #00b37a;
       --gold: #f0d78c;
       --text: #f7fff9;
-      --muted: #d4ede4;
+      --muted: #a8c4b8;
     }
-    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #000;
+      background: #000000;
       color: var(--text);
-      min-height: 100vh;
-      padding: 16px 16px 30px;
+      line-height: 1.65;
     }
+
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background: url("logo.jpg") center center / cover no-repeat;
-      opacity: 0.1;
+      opacity: 0.15;
       z-index: -1;
     }
+
     .container {
-      max-width: 640px;
-      margin: 0 auto;
-      text-align: center;
+      max-width: 920px;
+      margin: 40px auto;
+      padding: 40px 24px;
     }
-    h1 { color: var(--green); margin: 0 0 4px; font-size: 1.7rem; }
-    .sub { color: var(--gold); margin-bottom: 8px; font-size: 0.95rem; }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      color: var(--green);
+      text-align: center;
+      margin: 0 0 8px;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--gold);
+      margin: 4px 0 32px;
+      font-size: 1.15rem;
+    }
+
+    /* Age Gate */
+    #age-gate {
+      text-align: center;
+      max-width: 560px;
+      margin: 80px auto;
+      padding: 48px 32px;
+      background: rgba(12, 18, 15, 0.85);
+      border: 1px solid rgba(0, 230, 154, 0.25);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    #age-gate h2 { color: var(--green); font-size: 1.8rem; margin-top: 0; }
+    #age-gate p { color: var(--muted); margin-bottom: 28px; }
+
+    .age-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    .age-btn {
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border: none;
+    }
+
+    .age-yes { background: var(--green); color: #000; }
+    .age-yes:hover { background: var(--green-deep); }
+    .age-no { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+    .age-no:hover { background: rgba(240, 216, 140, 0.1); }
+
+    /* Sections start hidden */
+    #video-section,
+    #rules-section,
+    #apply-section {
+      display: none;
+    }
+
+    .video-wrap {
+      max-width: 800px;
+      margin: 32px auto;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 230, 154, 0.2);
+      background: #000;
+    }
+
     video {
       width: 100%;
-      max-width: 420px;
       height: auto;
-      background: #000;
-      border-radius: 12px;
-      margin: 6px 0;
+      display: block;
     }
-    .play-msg {
+
+    .video-note {
+      text-align: center;
       color: var(--gold);
-      font-size: 1rem;
-      margin: 8px 0 12px;
+      margin: 12px 0 28px;
       font-weight: 600;
     }
-    .disclaimer {
-      font-size: 1.02rem;
-      color: var(--muted);
-      line-height: 1.7;
-      text-align: left;
-      max-width: 600px;
-      margin: 6px auto 16px;
-      background: rgba(8, 12, 10, 0.95);
-      padding: 20px;
+
+    .rules-scroll-box {
+      max-width: 900px;
+      height: 640px;
+      margin: 40px auto;
+      padding: 32px 40px;
+      background: rgba(12, 18, 15, 0.75);
+      border: 1px solid rgba(0, 230, 154, 0.2);
       border-radius: 16px;
-      border: 1px solid rgba(0, 230, 154, 0.25);
+      overflow-y: auto;
+      backdrop-filter: blur(8px);
+      line-height: 1.7;
+      font-size: 1.05rem;
     }
-    #applySection { display: none; margin-top: 16px; }
-    a.apply-btn {
+
+    .rules-scroll-box h2 { color: var(--green); text-align: center; margin-top: 0; font-size: 1.6rem; }
+    .rules-scroll-box h3 { color: var(--gold); margin: 28px 0 8px; font-size: 1.2rem; }
+    .rules-scroll-box p, .rules-scroll-box li { color: var(--muted); }
+    .rules-scroll-box strong { color: var(--text); }
+    .rules-scroll-box ul { padding-left: 22px; margin-bottom: 16px; }
+
+    #apply-section { text-align: center; margin-top: 28px; }
+    #apply-section p { color: var(--gold); font-weight: 600; margin-bottom: 16px; }
+
+    .cta {
       display: inline-block;
-      padding: 14px 28px;
       background: var(--green);
       color: #000;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
       font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 50px;
       text-decoration: none;
+      font-size: 1.1rem;
     }
-    a.apply-btn:hover { background: #00c884; }
+
+    .cta:hover { background: var(--green-deep); }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Grind2Give Rewards</h1>
-    <div class="sub">Ambassador Program</div>
-
-    <video id="promoVideo" autoplay playsinline controls>
-      <source src="g2gambassadorcompressed.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-
-    <div class="play-msg">If autoplay did not start, press play to continue to the application.</div>
-
-    <div class="disclaimer">
-      <strong>Disclaimer</strong><br><br>
-      By entering your date of birth and accessing this page, you confirm that you are at least 18 years old. This site is intended only for adults. We do not knowingly allow anyone under 18 to participate in the rewards program.<br><br>
-      Participation in any rewards, airdrops, or promotions is voluntary and at your own risk. $G2G is a cryptocurrency token. Cryptocurrency is highly volatile and you may lose all money spent. This is not financial advice, investment advice, or an offer to buy or sell any asset.<br><br>
-      The age verification on this site is self-reported. We do not store your date of birth if you are under 18. We are not responsible for anyone who provides false information to gain access.<br><br>
-      All rewards are subject to change or cancellation at any time. Past performance does not guarantee future results. Always do your own research.
+    <!-- 1. Age Gate -->
+    <div id="age-gate">
+      <h2>Age Verification</h2>
+      <p>You must be 18 years or older to view or apply for the G2G Ambassador Program.</p>
+      <div class="age-buttons">
+        <button class="age-btn age-yes" onclick="confirmAge()">I am 18 or older</button>
+        <button class="age-btn age-no" onclick="denyAge()">I am under 18</button>
+      </div>
     </div>
 
-    <div id="applySection">
-      <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScxNoH-jKaqRros4FAEp6aXWLrFB9qwq8W7m2_HwcTLD1w34Q/viewform?usp=header" target="_blank" rel="noopener">Apply Here</a>
+    <!-- 2. Video Section -->
+    <div id="video-section">
+      <h1>G2G Ambassador Program</h1>
+      <div class="subtitle">Watch the video first</div>
+
+      <div class="video-wrap">
+        <video id="ambassador-video" controls>
+          <source src="g2gairdrop.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="video-note" id="video-note">Please watch the full video to continue.</div>
+    </div>
+
+    <!-- 3. Rules Section -->
+    <div id="rules-section">
+      <div class="rules-scroll-box" id="rules-box">
+        <h2>Phase 1 Rules & Guidelines</h2>
+        <p>These rules apply after you have officially been selected and accepted as a G2G Ambassador.</p>
+
+        <h3>1. Phase 1 Mission</h3>
+        <p>As an approved G2G Ambassador, your Phase 1 assignment is to create one original post about Grind2Give (G2G) on X and represent the G2G community authentically.</p>
+
+        <h3>2. Original Content</h3>
+        <p>Your qualifying post must:</p>
+        <ul>
+          <li>Be written in your own words</li>
+          <li>Reflect your honest opinion</li>
+          <li>Be directly related to Grind2Give/G2G</li>
+          <li>Remain publicly visible during the required period</li>
+          <li>Not copy another Ambassador's content word-for-word</li>
+        </ul>
+
+        <h3>3. Required Ambassador Disclosure</h3>
+        <p>Because you will receive G2G for completing the Ambassador assignment, your qualifying post must include:</p>
+        <p><strong>#ad | G2G Ambassador. I receive G2G rewards for participating in the Grind2Give Ambassador Program.</strong></p>
+        <p>The disclosure must remain visible with the qualifying post for the entire Phase 1 period.</p>
+
+        <h3>4. Seven-Day Pin Requirement</h3>
+        <p>Your qualifying G2G post must remain pinned to your X profile for 7 consecutive days. If the post is removed or unpinned before the seven-day requirement is completed, Phase 1 is not complete.</p>
+
+        <h3>5. Public Post Requirement</h3>
+        <p>Your qualifying post and X profile must remain publicly accessible during the seven-day period so Grind2Give can verify completion.</p>
+
+        <h3>6. What You Can Talk About</h3>
+        <ul>
+          <li>The Grind2Give mission</li>
+          <li>Why G2G interests you</li>
+          <li>The G2G community</li>
+          <li>Your personal perspective on G2G</li>
+          <li>Community participation</li>
+          <li>Holder rewards</li>
+          <li>Token burns</li>
+          <li>Purpose and growth</li>
+          <li>The meaning behind Grind. Give. Grow.</li>
+        </ul>
+        <p>Use your own voice. We want G2G Ambassadors, not copy-and-paste advertisements.</p>
+
+        <h3>7. No Guaranteed Financial Claims</h3>
+        <p>Ambassadors must not promise or imply guaranteed financial results. Do not make claims such as “G2G is guaranteed to go up,” “You're guaranteed to make money,” or any guaranteed price prediction or investment-return claim.</p>
+
+        <h3>8. No Artificial Engagement</h3>
+        <p>Ambassadors must not use bots, fake accounts, purchased followers, purchased likes or reposts, fake comments, spam, or other methods intended to create misleading popularity.</p>
+
+        <h3>9. No Required Trading</h3>
+        <p>Ambassadors are not required to buy, sell, or trade G2G to complete Phase 1. Ambassadors must not create artificial trading activity for the purpose of making G2G appear more active.</p>
+
+        <h3>10. One Ambassador Position Per Person</h3>
+        <p>Each individual is permitted one Phase 1 Ambassador position and one Phase 1 completion reward. Using multiple identities, X accounts, or wallets may result in disqualification.</p>
+
+        <h3>11. Wallet Safety</h3>
+        <p>Only your public Base wallet address is needed to receive your G2G reward. Grind2Give will never ask for seed phrases, private keys, recovery phrases, wallet passwords, or login credentials.</p>
+
+        <h3>12. Platform Rules</h3>
+        <p>Ambassador content must comply with the rules and policies of X. Participation in the G2G Ambassador Program does not override any social-media platform’s rules.</p>
+
+        <h3>13. Phase 1 Verification</h3>
+        <p>After completing the full seven-day requirement, provide your qualifying X post for verification.</p>
+
+        <h3>14. Phase 1 Reward</h3>
+        <p>After successful completion and verification of all Phase 1 requirements, the Ambassador will receive <strong>50,000 $G2G</strong>. The reward is paid in G2G cryptocurrency. No specific dollar value, profit, or investment return is promised or guaranteed.</p>
+
+        <h3>15. Completion Is Required</h3>
+        <p>Being selected as a G2G Ambassador does not automatically earn the reward. The 50,000 G2G reward is earned only after all Phase 1 requirements have been successfully completed and verified.</p>
+
+        <h3>16. Age Requirement</h3>
+        <p>All G2G Ambassadors must be 18 years of age or older.</p>
+
+        <h3>17. Future Phases</h3>
+        <p>Successful completion of Phase 1 does not automatically guarantee acceptance into another Ambassador phase, additional rewards, future Ambassador positions, or employment with Grind2Give.</p>
+
+        <div style="height: 50px;"></div>
+        <p style="text-align:center; font-weight:700; color:#f0d78c;">
+          COMPLETE → VERIFY → RECEIVE 50,000 $G2G<br>
+          GRIND. GIVE. GROW.
+        </p>
+        <div style="height: 30px;"></div>
+      </div>
+    </div>
+
+    <!-- 4. Apply Section -->
+    <div id="apply-section">
+      <p>Applying means you have watched the video and read the rules and guidelines.</p>
+      <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLScxNoH-jKaqRros4FAEp6aXWLrFB9qwq8W7m2_HwcTLD1w34Q/viewform?usp=header" target="_blank">Apply Now</a>
     </div>
   </div>
 
   <script>
-    if (sessionStorage.getItem("g2g_age") !== "ok") {
-      window.location.href = "join.html";
+    function confirmAge() {
+      document.getElementById('age-gate').style.display = 'none';
+      document.getElementById('video-section').style.display = 'block';
     }
 
-    const video = document.getElementById("promoVideo");
-    const applySection = document.getElementById("applySection");
+    function denyAge() {
+      alert('You must be 18 or older to participate in the G2G Ambassador Program.');
+    }
 
-    video.volume = 1;
-    video.play().catch(function() {
-      console.log("Autoplay blocked");
+    // Unlock rules when MP4 video ends
+    const video = document.getElementById('ambassador-video');
+    video.addEventListener('ended', () => {
+      document.getElementById('video-note').innerText = "Video complete. Please read the rules below.";
+      document.getElementById('rules-section').style.display = 'block';
+      document.getElementById('rules-section').scrollIntoView({ behavior: 'smooth' });
     });
 
-    video.addEventListener("ended", function() {
-      applySection.style.display = "block";
+    // Unlock Apply button when rules are scrolled to the bottom
+    const rulesBox = document.getElementById('rules-box');
+    const applySection = document.getElementById('apply-section');
+
+    rulesBox.addEventListener('scroll', () => {
+      const atBottom = rulesBox.scrollHeight - rulesBox.scrollTop <= rulesBox.clientHeight + 40;
+      if (atBottom) {
+        applySection.style.display = 'block';
+        applySection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
     });
   </script>
 </body>
