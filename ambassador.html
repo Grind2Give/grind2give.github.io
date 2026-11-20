@@ -3,120 +3,145 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>G2G Ambassador AirDrop – Phase 1</title>
+  <title>G2G Ambassador AirDrop • Grind2Give</title>
   <style>
     :root {
       --green: #00e69a;
       --green-deep: #00b37a;
       --gold: #f0d78c;
-      --bg: #070908;
       --text: #f7fff9;
-      --muted: #c8e0d8;
+      --muted: #d4ede4;
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #000;
       color: var(--text);
-      line-height: 1.7;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px 80px;
-    }
-    h2, h3 { color: var(--green); }
-    h2 { font-size: 2rem; margin-bottom: 8px; }
-    h3 { font-size: 1.3rem; margin-top: 32px; }
-    .eyebrow {
-      color: var(--gold);
-      letter-spacing: 1px;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-    }
-    .green { color: var(--green); }
-    .cta {
+      background: #000;
+      line-height: 1.65;
       text-align: center;
-      margin-top: 60px;
-      padding: 40px 20px;
-      background: rgba(0,230,154,0.05);
-      border: 1px solid rgba(0,230,154,0.2);
-      border-radius: 16px;
     }
-    .cta-flow {
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("ambassador-bg.jpg") center center / cover no-repeat;
+      opacity: 0.35;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #000;
+      color: var(--green);
+      border: 1px solid rgba(0, 230, 154, 0.4);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.85rem;
       font-weight: 600;
-      color: var(--gold);
-      margin: 16px 0 24px;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      animation: pulse 2.2s ease-in-out infinite;
     }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 230, 154, 0.45); }
+      50% { opacity: 0.8; box-shadow: 0 0 14px 5px rgba(0, 230, 154, 0.3); }
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 7vw, 3.6rem);
+      margin: 0 0 12px;
+      font-weight: 800;
+      color: #00ffaa;
+      text-shadow: 0 0 10px rgba(0, 255, 170, 0.4);
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--gold);
+      margin: 0 0 40px;
+    }
+
+    .card {
+      background: rgba(10, 14, 12, 0.78);
+      border: 1px solid rgba(0, 230, 154, 0.18);
+      border-radius: 20px;
+      padding: 40px 32px;
+      margin: 24px auto;
+      backdrop-filter: blur(6px);
+      text-align: left;
+      max-width: 720px;
+    }
+
+    .card h2 { 
+      color: var(--green); 
+      margin-top: 0; 
+      text-align: center; 
+    }
+
+    .card p, .card li { color: var(--muted); }
+    .card strong { color: var(--text); }
+
+    ul { padding-left: 20px; }
+    li { margin-bottom: 10px; }
+
     .button {
       display: inline-block;
-      background: var(--green);
-      color: #000;
-      padding: 14px 32px;
-      border-radius: 8px;
-      text-decoration: none;
+      background: linear-gradient(135deg, var(--green), var(--green-deep));
+      color: #031510;
+      padding: 16px 36px;
+      border-radius: 14px;
       font-weight: 700;
-      font-size: 1.1rem;
+      text-decoration: none;
+      margin-top: 20px;
+      box-shadow: 0 4px 20px rgba(0, 230, 154, 0.3);
+      transition: transform 0.15s;
     }
-    .button:hover { background: var(--green-deep); }
-    .fine-print { font-size: 0.85rem; color: var(--muted); margin-top: 16px; }
+    .button:hover { transform: translateY(-2px); }
+
     footer {
-      text-align: center;
       margin-top: 60px;
-      color: var(--muted);
+      color: #7a9a8a;
       font-size: 0.9rem;
     }
-    p { color: var(--muted); }
   </style>
 </head>
 <body>
-  <main class="container">
+  <div class="container">
+    <div class="badge">Ambassador AirDrop • Open Now</div>
+    <h1>G2G Ambassador AirDrop</h1>
+    <p class="subtitle">Earn 50,000 G2G by completing the assignment</p>
 
-    <div class="eyebrow">G2G Ambassador AirDrop</div>
-    <h2>Phase 1 Ambassador Program</h2>
-
-    <h3>Reward Terms</h3>
-    <p>
-      Applying or being selected does not automatically earn the reward.
-    </p>
-    <p>
-      The 50,000 G2G Phase 1 reward is distributed only after the selected Ambassador has completed the required assignment and completion has been verified.
-    </p>
-
-    <h3>13. General Disclaimer</h3>
-    <p>
-      G2G is a cryptocurrency asset whose market value can increase or decrease.
-    </p>
-    <p>
-      Participation in the G2G Ambassador Program does not guarantee financial returns, investment performance, future rewards, employment, or acceptance into future phases of the program.
-    </p>
-
-    <section class="cta">
-      <div class="eyebrow">G2G Ambassador AirDrop</div>
-      <h2>Ready to Represent G2G?</h2>
-      <p>10 Phase 1 Ambassador positions.</p>
-      <p>
-        Successfully complete Phase 1 and receive <strong class="green">50,000 G2G</strong>.
+    <div class="card">
+      <h2>How It Works</h2>
+      <p>10 ambassador spots are available. Successfully complete the assignment and receive <strong>50,000 G2G</strong>.</p>
+      <ul>
+        <li>Apply using the form below</li>
+        <li>Complete the required assignment</li>
+        <li>Receive your 50,000 G2G reward</li>
+      </ul>
+      <p style="text-align:center; margin-top:32px;">
+        <a class="button" href="https://forms.gle/WspSczLFWnh6mrrj9" target="_blank" rel="noopener noreferrer">APPLY NOW</a>
       </p>
-      <div class="cta-flow">
-        APPLY → GET SELECTED → ACCEPT → REPRESENT → EARN
-      </div>
-      <a class="button" href="https://forms.gle/WspSczLFWnh6mrrj9" target="_blank" rel="noopener noreferrer">
-        APPLY FOR PHASE 1
-      </a>
-      <p class="fine-print">
-        Not all applicants will be selected. Terms apply.
-      </p>
-    </section>
+    </div>
 
     <footer>
-      <strong>Grind2Give</strong><br>
-      Grind. Give. Grow.<br><br>
-      © Grind2Give • G2G Ambassador Program
+      Grind hard. Give harder. 💚<br>
+      <a href="index.html" style="color:var(--green);">← Back to Grind2Give</a>
     </footer>
-
-  </main>
+  </div>
 </body>
 </html>
