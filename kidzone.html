@@ -3,41 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Not Available</title>
+  <title>Grind2Give</title>
   <style>
     body {
       margin: 0;
       background: #000;
-      color: #fff;
-      font-family: system-ui, sans-serif;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      text-align: center;
-      padding: 20px;
     }
     video {
       width: 100%;
-      max-width: 560px;
-      border-radius: 12px;
+      max-width: 600px;
+      height: auto;
     }
   </style>
 </head>
 <body>
-  <video id="kidVideo" autoplay playsinline>
+  <video id="kidVideo" autoplay playsinline controls>
     <source src="young-legends.mp4" type="video/mp4">
-    Your browser does not support the video tag.
   </video>
 
   <script>
     const video = document.getElementById("kidVideo");
-    video.volume = 1.0;
-    video.muted = false;
+    video.volume = 1;
 
-    video.addEventListener("ended", function() {
+    video.addEventListener("ended", function () {
       window.location.href = "https://www.google.com";
+    });
+
+    video.play().catch(function() {
+      console.log("Autoplay blocked");
     });
   </script>
 </body>
