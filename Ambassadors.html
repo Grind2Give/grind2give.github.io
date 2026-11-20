@@ -74,6 +74,12 @@
       text-decoration: none;
     }
     a.apply-btn:hover { background: #00c884; }
+    #videoError {
+      color: #ff6b6b;
+      font-size: 0.95rem;
+      margin: 10px 0;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -85,6 +91,7 @@
       <source src="g2g-ambassador-compressed.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+    <div id="videoError">Video failed to load. Make sure g2g-ambassador-compressed.mp4 is uploaded to the same folder.</div>
 
     <div class="play-msg">If autoplay did not start, press play to continue to the application.</div>
 
@@ -108,10 +115,16 @@
 
     const video = document.getElementById("promoVideo");
     const applySection = document.getElementById("applySection");
+    const videoError = document.getElementById("videoError");
 
     video.volume = 1;
+
+    video.addEventListener("error", function() {
+      videoError.style.display = "block";
+    });
+
     video.play().catch(function() {
-      console.log("Autoplay blocked");
+      console.log("Autoplay blocked — user can press play");
     });
 
     video.addEventListener("ended", function() {
