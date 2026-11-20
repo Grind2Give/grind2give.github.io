@@ -9,7 +9,8 @@
       --green: #00e69a;
       --gold: #f0d78c;
       --text: #f7fff9;
-      --muted: #d4ede4;
+      --muted: #c5ddd4;
+      --card: rgba(12, 18, 15, 0.85);
     }
     * { box-sizing: border-box; }
     body {
@@ -18,50 +19,53 @@
       background: #000;
       color: var(--text);
       min-height: 100vh;
-      padding: 16px 16px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px 50px;
     }
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background: url("logo.jpg") center center / cover no-repeat;
-      opacity: 0.1;
+      opacity: 0.12;
       z-index: -1;
     }
     .container {
-      max-width: 640px;
-      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid rgba(0, 230, 154, 0.2);
+      border-radius: 20px;
+      padding: 30px 20px;
+      max-width: 700px;
+      width: 100%;
       text-align: center;
+      backdrop-filter: blur(8px);
     }
-    h1 { color: var(--green); margin: 0 0 4px; font-size: 1.7rem; }
-    .sub { color: var(--gold); margin-bottom: 8px; font-size: 0.95rem; }
+    h1 { color: var(--green); margin: 0 0 6px; font-size: 1.8rem; }
+    .sub { color: var(--gold); margin-bottom: 20px; font-size: 0.95rem; }
     video {
       width: 100%;
-      max-width: 420px;
-      height: auto;
-      background: #000;
+      max-width: 640px;
       border-radius: 12px;
-      margin: 6px 0;
+      margin: 10px 0 16px;
+      background: #000;
     }
     .play-msg {
       color: var(--gold);
       font-size: 1rem;
-      margin: 8px 0 12px;
-      font-weight: 600;
+      margin: 10px 0 16px;
+      font-weight: 500;
     }
     .disclaimer {
-      font-size: 1.02rem;
+      font-size: 1rem;
       color: var(--muted);
       line-height: 1.7;
       text-align: left;
-      max-width: 600px;
-      margin: 6px auto 16px;
-      background: rgba(8, 12, 10, 0.95);
-      padding: 20px;
-      border-radius: 16px;
-      border: 1px solid rgba(0, 230, 154, 0.25);
+      max-width: 640px;
+      margin: 10px auto 20px;
     }
-    #applySection { display: none; margin-top: 16px; }
+    #applySection { display: none; margin-top: 10px; }
     button {
       padding: 14px 28px;
       background: var(--green);
@@ -75,7 +79,7 @@
     button:hover { background: #00c884; }
     input {
       width: 100%;
-      max-width: 380px;
+      max-width: 400px;
       padding: 12px;
       border-radius: 10px;
       border: 1px solid rgba(0, 230, 154, 0.3);
@@ -93,11 +97,11 @@
     <div class="sub">Ambassador Program</div>
 
     <video id="promoVideo" autoplay playsinline controls>
-      <source src="g2g-ambassador-compressed.mp4" type="video/mp4">
+      <source src="promo.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
 
-    <div class="play-msg">If autoplay did not start, press play to continue to the application.</div>
+    <div class="play-msg">If autoplay didn't start, press play to continue to the application.</div>
 
     <div class="disclaimer">
       <strong>Disclaimer</strong><br><br>
