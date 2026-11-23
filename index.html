@@ -196,8 +196,11 @@
   .copy-btn:hover{background:rgba(0,230,154,.2)}
   .copy-btn.done{background:var(--green);color:#02130c;border-color:var(--green)}
 
-  /* ---------- Chart (DexScreener card) ---------- */
+  /* ---------- Chart (DexScreener embed) ---------- */
   .ds-card{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#05090a;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+  .ds-chart-wrap{position:relative;width:100%;padding-bottom:75%;height:0;overflow:hidden;background:#000}
+  .ds-chart-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block}
+  @media (max-width:640px){.ds-chart-wrap{padding-bottom:110%}}
   .ds-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:18px 24px;border-bottom:1px solid var(--line-soft);background:linear-gradient(180deg,rgba(0,230,154,.05),transparent)}
   .ds-pair{font-size:.82rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .ds-pair b{color:var(--text);font-size:.95rem}
@@ -477,24 +480,8 @@
           <div class="ds-pair"><b>$G2G</b> / ETH &middot; Base &middot; Uniswap V2</div>
           <span class="ds-live"><i></i> Live on DexScreener</span>
         </div>
-        <div class="ds-body">
-          <div class="ds-brand">
-            <svg class="ds-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-              <rect x="3" y="3" width="42" height="42" rx="11" fill="rgba(0,230,154,.07)" stroke="rgba(0,230,154,.45)" stroke-width="1.5"/>
-              <line x1="14" y1="13" x2="14" y2="31" stroke="#00e69a" stroke-width="2" stroke-linecap="round"/>
-              <rect x="10.5" y="18" width="7" height="9" rx="1.5" fill="#00e69a"/>
-              <line x1="24" y1="9" x2="24" y2="27" stroke="#ff6473" stroke-width="2" stroke-linecap="round"/>
-              <rect x="20.5" y="13" width="7" height="9" rx="1.5" fill="#ff6473"/>
-              <line x1="34" y1="17" x2="34" y2="37" stroke="#3dffbe" stroke-width="2" stroke-linecap="round"/>
-              <rect x="30.5" y="22" width="7" height="10" rx="1.5" fill="#3dffbe"/>
-            </svg>
-            <div class="ds-name">Dex<em>Screener</em></div>
-          </div>
-          <p class="ds-sub">The full live $G2G chart runs on DexScreener &mdash; real-time price action, 24-hour volume, liquidity, and every trade on the G2G / ETH pair. Open it to watch the grind move as it happens.</p>
-          <div class="ds-cta">
-            <a class="btn btn-green" href="https://dexscreener.com/base/0x8d560495b7a24c16e2613d1a9a04bc153c53c990" target="_blank" rel="noopener">Open the Live Chart on DexScreener &rarr;</a>
-          </div>
-          <div class="ds-meta">dexscreener.com/base/0x8d560495b7a24c16e2613d1a9a04bc153c53c990</div>
+        <div class="ds-chart-wrap">
+          <iframe src="https://dexscreener.com/base/0x578ec5f37e0e459dec94805bf7b122e931eb34e4?embed=1&theme=dark" title="Grind2Give $G2G live chart on DexScreener" loading="lazy" allowfullscreen></iframe>
         </div>
         <div class="ds-foot">
           <span>Pair: G2G / WETH on Base (Uniswap V2)</span>
