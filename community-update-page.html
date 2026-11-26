@@ -1,0 +1,1074 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="data:," />
+    <title>Massive Update — Grind2Give: Born Again | Grind2Give</title>
+    <meta name="description" content="The full Grind2Give community update: what went wrong with the original $G2G contract, the Born Again relaunch, the new tax structure, and how holders are made whole with a 100-to-1 airdrop." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@600;800&family=Noto+Sans+Devanagari:wght@600;800&family=Noto+Sans+SC:wght@700;900&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      button, [role="button"], select, summary, a.btn, a.chip-link { min-height: 2.25rem; }
+      * { box-sizing: border-box; }
+      :root {
+        color-scheme: dark;
+        --bg: #0a2013;
+        --bg-deep: #06160c;
+        --panel: #0f2f1b;
+        --panel-2: #143d23;
+        --line: rgba(110, 231, 160, 0.16);
+        --line-strong: rgba(110, 231, 160, 0.34);
+        --ink: #f0fbf3;
+        --ink-soft: #bfe3c9;
+        --ink-faint: #87ab93;
+        --cyan: #22c55e;
+        --cyan-bright: #4ade80;
+        --teal: #34d399;
+        --green: #4ade80;
+        --amber: #fbbf24;
+        --red: #f87171;
+        --radius: 14px;
+        --future: "Orbitron", "Noto Sans SC", "Noto Sans Devanagari", "Noto Sans Arabic", "Archivo", sans-serif;
+      }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+        font-size: 17px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1, h2, h3, .display { font-family: "Archivo", "Manrope", system-ui, sans-serif; line-height: 1.12; margin: 0; }
+      p { margin: 0 0 1rem; }
+      a { color: var(--cyan-bright); }
+      .wrap { max-width: 1060px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- top strip ---------- */
+      .topbar {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-deep);
+      }
+      .topbar .wrap {
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 12px; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px;
+      }
+      .wordmark { font-family: "Archivo", sans-serif; font-weight: 900; font-size: 1.05rem; letter-spacing: 0.01em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; min-height: 2.25rem; }
+      .wordmark span { color: var(--cyan); }
+      .topnav { display: flex; gap: 4px; flex-wrap: wrap; }
+      .topnav a {
+        color: var(--ink-soft); text-decoration: none; font-weight: 600; font-size: 0.92rem;
+        padding: 8px 12px; border-radius: 8px; display: inline-flex; align-items: center;
+      }
+      .topnav a:hover { color: var(--ink); background: var(--panel); }
+      .top-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+      .lang-picker-wrap { display: inline-flex; align-items: center; gap: 8px; }
+      .lang-picker-wrap label { font-size: 0.82rem; font-weight: 700; color: var(--ink-faint); display: inline-flex; align-items: center; gap: 6px; }
+      .lang-select {
+        appearance: none; -webkit-appearance: none;
+        background: var(--panel); color: var(--ink);
+        border: 1px solid var(--line-strong); border-radius: 999px;
+        font: inherit; font-size: 0.9rem; font-weight: 700;
+        padding: 7px 32px 7px 14px; cursor: pointer; max-width: 190px;
+        background-image: linear-gradient(45deg, transparent 50%, var(--cyan-bright) 50%), linear-gradient(135deg, var(--cyan-bright) 50%, transparent 50%);
+        background-position: calc(100% - 16px) 55%, calc(100% - 11px) 55%;
+        background-size: 5px 5px, 5px 5px; background-repeat: no-repeat;
+      }
+      .lang-select:hover, .lang-select:focus-visible { border-color: var(--cyan); outline: none; }
+      .lang-select option { background: #0f2f1b; color: #f0fbf3; }
+      /* Google Translate widget is driven by the picker above — hide its own UI and banner */
+      #google_translate_element { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
+      .goog-te-banner-frame.skiptranslate, .goog-te-gadget-icon { display: none !important; }
+      .goog-te-gadget-simple { background: transparent !important; border: none !important; }
+      body { top: 0 !important; }
+      .skiptranslate iframe { display: none !important; }
+      /* RTL layout for Arabic, Persian, Urdu and Hebrew */
+      [dir="rtl"] body, [dir="rtl"] p, [dir="rtl"] li, [dir="rtl"] .section-lede, [dir="rtl"] .lede { text-align: right; }
+      [dir="rtl"] .compare th, [dir="rtl"] .compare td { text-align: right; }
+      [dir="rtl"] .spec-list dd { text-align: left; }
+      [dir="rtl"] .warn ul { padding-left: 0; padding-right: 20px; }
+      [dir="rtl"] details.faq summary::after { margin-left: 0; margin-right: auto; padding-left: 0; padding-right: 12px; }
+      [dir="rtl"] .verse, [dir="rtl"] .signoff, [dir="rtl"] .fact, [dir="rtl"] .stat { text-align: right; }
+      [dir="rtl"] .verse, [dir="rtl"] .signoff { text-align: center; }
+      [dir="rtl"] .alert-pill::before { flex: 0 0 auto; }
+
+      /* ---------- hero ---------- */
+      .hero {
+        background:
+          radial-gradient(720px 340px at 85% -60px, rgba(34, 197, 94, 0.22), transparent 65%),
+          radial-gradient(560px 300px at 0% 0%, rgba(52, 211, 153, 0.10), transparent 60%),
+          linear-gradient(180deg, #0e2f1a 0%, var(--bg) 100%);
+        border-bottom: 1px solid var(--line);
+        padding: 56px 0 48px;
+      }
+      .alert-pill {
+        display: inline-flex; align-items: center; gap: 9px;
+        border: 1px solid var(--line-strong); background: rgba(34,197,94,0.12);
+        color: var(--cyan-bright); font-weight: 800; font-size: 0.82rem;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        padding: 7px 14px; border-radius: 999px; margin-bottom: 22px;
+        animation: massivePulse 1.6s ease-in-out infinite;
+        will-change: transform, box-shadow;
+        transform-origin: left center;
+      }
+      @keyframes massivePulse {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(74,222,128,0.28), 0 0 14px rgba(74,222,128,0.12); }
+        50% { transform: scale(1.07); box-shadow: 0 0 0 7px rgba(74,222,128,0), 0 0 28px rgba(74,222,128,0.45); }
+      }
+      .alert-pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--cyan-bright); box-shadow: 0 0 0 4px rgba(74,222,128,0.18); animation: massiveDotPulse 1.6s ease-in-out infinite; }
+      @keyframes massiveDotPulse {
+        0%, 100% { box-shadow: 0 0 0 3px rgba(74,222,128,0.18); opacity: 1; }
+        50% { box-shadow: 0 0 0 7px rgba(74,222,128,0.08); opacity: 0.85; }
+      }
+      .hero h1 {
+        font-size: clamp(2.6rem, 8vw, 4.6rem);
+        font-weight: 900; letter-spacing: -0.015em; text-transform: uppercase;
+      }
+      .hero h1 .accent { color: var(--cyan); }
+      .hero .sub {
+        font-family: "Archivo", sans-serif; font-weight: 700;
+        font-size: clamp(1.25rem, 3.4vw, 1.7rem); color: var(--ink);
+        margin: 14px 0 6px;
+      }
+      .hero .lede { color: var(--ink-soft); font-size: 1.08rem; max-width: 46rem; }
+      .hero .meta { color: var(--ink-faint); font-size: 0.92rem; font-weight: 600; margin-top: 18px; }
+      .hero .meta strong { color: var(--ink-soft); }
+
+      .fact-strip {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 34px;
+      }
+      .fact {
+        background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 16px 18px;
+      }
+      .fact .k { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+      .fact .v { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 1.28rem; margin-top: 3px; }
+      .fact .v small { font-size: 0.85rem; color: var(--ink-soft); font-family: "Manrope", sans-serif; font-weight: 600; }
+      .fact .v .cyan { color: var(--cyan-bright); }
+
+      /* ---------- sections ---------- */
+      section { padding: 54px 0 8px; }
+      .eyebrow {
+        font-size: 0.8rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--cyan); margin-bottom: 10px;
+      }
+      h2 { font-size: clamp(1.7rem, 4.6vw, 2.4rem); font-weight: 800; letter-spacing: -0.01em; margin-bottom: 14px; }
+      h3 { font-size: 1.18rem; font-weight: 700; margin-bottom: 8px; }
+      .section-lede { color: var(--ink-soft); max-width: 48rem; }
+      .card {
+        background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 24px; margin: 18px 0;
+      }
+      .card p:last-child { margin-bottom: 0; }
+      strong.white { color: var(--ink); }
+      .num { font-variant-numeric: tabular-nums; }
+
+      .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0 4px; }
+      .stat {
+        background: var(--bg-deep); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px;
+      }
+      .stat .big { font-family: "Archivo", sans-serif; font-weight: 900; font-size: 1.55rem; color: var(--amber); }
+      .stat .big.phrase { font-size: 1.22rem; line-height: 1.3; }
+      .stat .lbl { color: var(--ink-soft); font-size: 0.94rem; margin-top: 4px; }
+
+      /* tax breakdown */
+      .tax-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+      .tax-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+      .tax-card .total { font-family: "Archivo", sans-serif; font-weight: 900; font-size: 2rem; }
+      .tax-card .total small { font-size: 0.95rem; font-family: "Manrope", sans-serif; font-weight: 700; color: var(--ink-soft); }
+      .split { list-style: none; margin: 16px 0 0; padding: 0; }
+      .split li { padding: 11px 0; border-top: 1px solid var(--line); }
+      .split li:first-child { border-top: none; padding-top: 2px; }
+      .split .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+      .split .name { font-weight: 700; }
+      .split .pct { font-family: "Archivo", sans-serif; font-weight: 800; color: var(--cyan-bright); font-size: 1.05rem; white-space: nowrap; }
+      .split .desc { color: var(--ink-faint); font-size: 0.9rem; }
+      .bar { height: 7px; border-radius: 99px; background: rgba(110,231,160,0.12); margin-top: 8px; overflow: hidden; }
+      .bar i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--teal), var(--cyan)); }
+      .zero-note {
+        display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap;
+        background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 16px 20px; margin-top: 14px;
+      }
+      .zero-note .big { font-family: "Archivo", sans-serif; font-weight: 900; font-size: 1.4rem; color: var(--green); }
+
+      .spec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; margin-top: 6px; }
+      .spec-list div { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+      .spec-list dt { color: var(--ink-faint); font-weight: 600; }
+      .spec-list dd { margin: 0; font-weight: 700; text-align: right; }
+
+      /* comparison table -> stacked on mobile */
+      .compare { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 0.98rem; }
+      .compare th, .compare td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+      .compare thead th { font-family: "Archivo", sans-serif; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 1px solid var(--line-strong); }
+      .compare thead th.new { color: var(--cyan-bright); }
+      .compare td:first-child { font-weight: 700; color: var(--ink-soft); white-space: nowrap; }
+      .compare .bad { color: var(--red); font-weight: 700; }
+      .compare .good { color: var(--green); font-weight: 700; }
+
+      /* steps */
+      .steps { list-style: none; margin: 20px 0 0; padding: 0; counter-reset: step; }
+      .steps li {
+        display: flex; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line);
+      }
+      .steps li:first-child { border-top: none; }
+      .steps .n {
+        flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%;
+        border: 1.5px solid var(--line-strong); color: var(--cyan-bright);
+        font-family: "Archivo", sans-serif; font-weight: 800;
+        display: flex; align-items: center; justify-content: center; font-size: 1rem;
+      }
+      .steps .done .n { background: var(--cyan); border-color: var(--cyan); color: #052e12; }
+      .steps .tag {
+        display: inline-block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+        padding: 2px 9px; border-radius: 999px; margin-left: 8px; vertical-align: 2px;
+      }
+      .tag-done { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.35); }
+      .tag-now { background: rgba(251,191,36,0.14); color: var(--amber); border: 1px solid rgba(251,191,36,0.35); }
+      .tag-next { background: rgba(110,231,160,0.10); color: var(--ink-soft); border: 1px solid var(--line-strong); }
+      .steps p { color: var(--ink-soft); margin: 2px 0 0; }
+
+      /* warning */
+      .warn {
+        border: 1px solid rgba(248,113,113,0.45); background: rgba(248,113,113,0.07);
+        border-radius: var(--radius); padding: 24px; margin-top: 20px;
+      }
+      .warn h3 { color: #fca5a5; }
+      .warn ul { margin: 8px 0 0; padding-left: 20px; color: var(--ink-soft); }
+      .warn li { margin-bottom: 10px; }
+      .warn li:last-child { margin-bottom: 0; }
+      .warn strong { color: var(--ink); }
+
+      /* addresses */
+      .addr-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; margin: 14px 0; }
+      .addr-card .lbl { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
+      .addr-row { display: flex; gap: 10px; align-items: stretch; flex-wrap: wrap; }
+      .addr {
+        flex: 1 1 260px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        font-size: 0.86rem; word-break: break-all; background: var(--bg-deep);
+        border: 1px solid var(--line); border-radius: 10px; padding: 11px 13px; color: var(--ink);
+        display: flex; align-items: center;
+      }
+      .copy-btn {
+        border: 1px solid var(--line-strong); background: var(--panel-2); color: var(--ink);
+        font: inherit; font-weight: 700; font-size: 0.9rem; border-radius: 10px;
+        padding: 8px 18px; cursor: pointer;
+      }
+      .copy-btn:hover { border-color: var(--cyan); color: var(--cyan-bright); }
+      .pending {
+        border: 1px dashed var(--line-strong); border-radius: 10px; padding: 13px 15px;
+        color: var(--ink-soft); background: rgba(110,231,160,0.05);
+      }
+      .link-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+      .chip-link {
+        display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
+        border: 1px solid var(--line-strong); border-radius: 999px; padding: 8px 16px;
+        font-weight: 700; font-size: 0.92rem; color: var(--ink); background: var(--panel);
+      }
+      .chip-link:hover { border-color: var(--cyan); color: var(--cyan-bright); }
+
+      /* faq */
+      details.faq { border-top: 1px solid var(--line); padding: 4px 0; }
+      details.faq:last-of-type { border-bottom: 1px solid var(--line); }
+      details.faq summary {
+        cursor: pointer; font-weight: 700; font-size: 1.05rem; padding: 12px 4px;
+        display: flex; align-items: center; list-style: none;
+      }
+      details.faq summary::-webkit-details-marker { display: none; }
+      details.faq summary::after { content: "+"; margin-left: auto; color: var(--cyan-bright); font-size: 1.3rem; font-weight: 800; padding-left: 12px; }
+      details.faq[open ] summary::after { content: "–"; }
+      details.faq .a { color: var(--ink-soft); padding: 0 4px 16px; max-width: 48rem; }
+
+      /* verse / signoff */
+      .verse {
+        text-align: center; padding: 58px 0 10px;
+      }
+      .verse blockquote {
+        margin: 0 auto; max-width: 40rem; font-family: "Archivo", sans-serif;
+        font-size: clamp(1.25rem, 3.4vw, 1.6rem); font-weight: 700; line-height: 1.4;
+      }
+      .verse cite { display: block; margin-top: 14px; font-style: normal; color: var(--cyan); font-family: "Manrope", sans-serif; font-weight: 700; font-size: 0.95rem; }
+      .signoff { text-align: center; padding: 26px 0 8px; }
+      .signoff .motto { font-family: "Archivo", sans-serif; font-weight: 900; font-size: 1.3rem; letter-spacing: 0.04em; }
+      .signoff .motto span { color: var(--cyan); }
+      .signoff .from { color: var(--ink-soft); margin-top: 6px; }
+
+      footer {
+        border-top: 1px solid var(--line); margin-top: 54px; padding: 26px 0 40px;
+        color: var(--ink-faint); font-size: 0.88rem;
+      }
+      footer .wrap { display: flex; flex-direction: column; gap: 8px; }
+      footer a { color: var(--ink-soft); }
+
+      /* ---------- Welcome overlay — exact copy of the grind2give.org welcome ---------- */
+      .welcome {
+        position: fixed; inset: 0; z-index: 200; overflow: hidden;
+        display: flex; align-items: center; justify-content: center; text-align: center;
+        padding: 24px;
+        background:
+          radial-gradient(900px 480px at 78% -10%, rgba(34, 197, 94, 0.22), transparent 60%),
+          radial-gradient(700px 460px at 8% 90%, rgba(52, 211, 153, 0.12), transparent 60%),
+          linear-gradient(180deg, #0e2f1a 0%, var(--bg) 80%);
+        transition: opacity .5s ease;
+      }
+      .welcome.out { opacity: 0; pointer-events: none; }
+      body.welcoming { overflow: hidden; }
+      .welcome-in { display: flex; flex-direction: column; align-items: center; gap: 36px; max-width: 76rem; width: 100%; min-width: 0; }
+      .welcome-lines { display: grid; width: 100%; min-width: 0; }
+      .welcome-line { grid-area: 1/1; margin: 0; align-self: center; justify-self: center; color: #0b3d24; width: 100%; max-width: 100%; min-width: 0;
+        font-family: var(--future);
+        font-size: clamp(3.6rem, 12.5vw, 10rem); font-weight: 800; letter-spacing: .01em; line-height: 1.15; text-wrap: balance; overflow-wrap: break-word;
+        opacity: .05;
+        transition: opacity .7s ease-in-out, color .7s ease-in-out; }
+      .welcome-line.on { opacity: 1; color: var(--cyan-bright); }
+      /* Dissipation: each welcome word is split into letter units (.wch).
+         When the word's beat ends it gets .gone instead of just dimming —
+         the container stays lit while every letter breaks away on its own
+         --dx/--dy/--rot vector, fades and blurs out, staggered per letter. */
+      .welcome-line .wch { display: inline-block; transition: transform .8s cubic-bezier(.22,.7,.3,1), opacity .65s ease-in, filter .7s ease; }
+      .welcome-line.gone { opacity: 1; color: var(--cyan-bright); }
+      .welcome-line.gone .wch { transform: translate(var(--dx,0), var(--dy,0)) rotate(var(--rot,0deg)); opacity: 0; filter: blur(3px); }
+      .welcome-line[lang="ar"] { direction: rtl; }
+      /* Grind2Give heartbeat: gentle scale + brightness pulse while it holds. */
+      .welcome-line.wl6.on { animation: g2gPulse 1.15s ease-in-out infinite; }
+      @keyframes g2gPulse { 0%,100% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.045); filter: brightness(1.3); } }
+      @media (max-width: 900px) {
+        .welcome-line { font-size: clamp(3rem, 11vw, 6.5rem); }
+      }
+      @media (max-width: 640px) {
+        .welcome { padding: 24px 16px; }
+        .welcome-in { gap: 28px; }
+        .welcome-line { font-size: clamp(2.35rem, 11vw, 3.6rem); line-height: 1.08; letter-spacing: -.01em; }
+      }
+      @media (max-width: 400px) {
+        .welcome-line { font-size: clamp(2rem, 10.5vw, 3rem); }
+      }
+      @media (max-width: 340px) {
+        .welcome-line { font-size: clamp(1.75rem, 10vw, 2.6rem); }
+      }
+      .welcome-tag { margin: 0; font-family: var(--future); font-weight: 700; letter-spacing: .22em; font-size: clamp(.95rem, 2.6vw, 1.15rem); color: var(--cyan); text-transform: uppercase; }
+      /* Arabic-script taglines must stay joined — letter-spacing would pull
+         the letters apart, so it comes off for RTL languages. */
+      [dir="rtl"] .welcome-tag { letter-spacing: 0; }
+
+      @media (max-width: 720px) {
+        body { font-size: 16px; }
+        .top-actions { gap: 8px; }
+        .lang-select { max-width: 168px; }
+        .fact-strip, .stat-row { grid-template-columns: 1fr 1fr; }
+        .fact-strip .fact:last-child { grid-column: 1 / -1; }
+        .tax-grid, .spec-list { grid-template-columns: 1fr; }
+        .hero { padding: 42px 0 38px; }
+        section { padding: 42px 0 4px; }
+        .compare td:first-child { white-space: normal; }
+        .compare th, .compare td { padding: 10px 8px; font-size: 0.92rem; }
+      }
+      @media (max-width: 430px) {
+        .fact-strip, .stat-row { grid-template-columns: 1fr; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .alert-pill, .alert-pill::before { animation: none; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="welcome" id="welcome" aria-hidden="true">
+      <div class="welcome-in">
+        <div class="welcome-lines notranslate" id="welcomeLines" translate="no">
+          <p class="welcome-line wl1" id="welcomeLine1" lang="en">Welcome</p>
+          <p class="welcome-line wl2" id="welcomeLine2" lang="zh">欢迎</p>
+          <p class="welcome-line wl3" id="welcomeLine3" lang="hi">स्वागत है</p>
+          <p class="welcome-line wl4" id="welcomeLine4" lang="ar">أهلاً بك</p>
+          <p class="welcome-line wl5" id="welcomeLine5" lang="es">Bienvenido</p>
+          <p class="welcome-line wl6" id="welcomeLine6" lang="en">Grind2Give</p>
+        </div>
+        <p class="welcome-tag">Grind. Give. Grow.</p>
+      </div>
+    </div>
+
+    <div class="topbar">
+      <div class="wrap">
+        <a class="wordmark notranslate" href="https://grind2give.org" translate="no">Grind<span>2</span>Give</a>
+        <div class="top-actions">
+          <nav class="topnav" aria-label="Grind2Give">
+            <a href="https://grind2give.org">Home</a>
+            <a href="https://grind2give.org/about.html">About</a>
+            <a href="https://grind2give.org/whitepaper.html">Whitepaper</a>
+            <a href="https://grind2give.org/join">Join</a>
+          </nav>
+          <div class="lang-picker-wrap notranslate" translate="no">
+            <label for="lang-picker">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#4ade80" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z" stroke="#4ade80" stroke-width="1.8"/></svg>
+              Language
+            </label>
+            <select id="lang-picker" class="lang-select" aria-label="Choose language">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+              <option value="it">Italiano</option>
+              <option value="pt">Português</option>
+              <option value="nl">Nederlands</option>
+              <option value="pl">Polski</option>
+              <option value="ro">Română</option>
+              <option value="uk">Українська</option>
+              <option value="ru">Русский</option>
+              <option value="tr">Türkçe</option>
+              <option value="ar">العربية</option>
+              <option value="fa">فارسی</option>
+              <option value="ur">اردو</option>
+              <option value="hi">हिन्दी</option>
+              <option value="bn">বাংলা</option>
+              <option value="ta">தமிழ்</option>
+              <option value="te">తెలుగు</option>
+              <option value="zh-CN">中文（简体）</option>
+              <option value="ja">日本語</option>
+              <option value="ko">한국어</option>
+              <option value="vi">Tiếng Việt</option>
+              <option value="th">ไทย</option>
+              <option value="id">Bahasa Indonesia</option>
+              <option value="ms">Bahasa Melayu</option>
+              <option value="tl">Filipino</option>
+              <option value="sw">Kiswahili</option>
+              <option value="el">Ελληνικά</option>
+            </select>
+          </div>
+        </div>
+        <div id="google_translate_element" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="wrap">
+        <div class="alert-pill">Massive Update</div>
+        <h1>Grind2Give:<br /><span class="accent">Born Again</span></h1>
+        <p class="sub">What happened, and what comes next — the full story, plain and in the open.</p>
+        <p class="lede">Family, I owe you the whole story. The original $G2G contract was built to give on every trade — and because of one setup mistake, its giving engine never ran. Not once. This page explains exactly what went wrong, the new contract that fixes it, and how every holder is made whole.</p>
+        <p class="meta">Community update · <strong>Thursday, November 26, 2026</strong> · From Art “Mr. Grind” Hoskins, founder of Grind2Give</p>
+
+        <div class="fact-strip">
+          <div class="fact">
+            <div class="k">New supply</div>
+            <div class="v num">2,540,000,000 <small>G2G</small></div>
+          </div>
+          <div class="fact">
+            <div class="k">Holder airdrop</div>
+            <div class="v"><span class="cyan">100 new</span> <small>for every 1 G2G held</small></div>
+          </div>
+          <div class="fact">
+            <div class="k">New coin status</div>
+            <div class="v">Not trading <small>yet — anything live now is fake</small></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+
+      <!-- WHAT WENT WRONG -->
+      <section id="what-went-wrong">
+        <div class="eyebrow">The Problem</div>
+        <h2>What went wrong with the current coin</h2>
+        <p class="section-lede">When the current $G2G contract was set up, the trading pair — the pool the coin trades through — was placed on the contract’s fee-exempt list. Every single trade passes through that pair. So even though the contract was built with a 10% buy tax (8% to charity, 1.5% to holders, 0.5% burned), the tax could never be collected. We verified it on-chain, transaction by transaction:</p>
+
+        <div class="stat-row">
+          <div class="stat">
+            <div class="big num">8,265.43 G2G</div>
+            <div class="lbl">The charity pot has sat frozen at this amount since the beginning — it never grew.</div>
+          </div>
+          <div class="stat">
+            <div class="big phrase">Charity never paid out from trading</div>
+            <div class="lbl">The charity wallet never received a single payment from trading.</div>
+          </div>
+          <div class="stat">
+            <div class="big phrase">Dividends never distributed to holders</div>
+            <div class="lbl">Even though the contract was built to pay them, not one dividend ever went out.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Here is what that does <em>not</em> mean</h3>
+          <p><strong class="white">Nobody lost money to this.</strong> Every buyer received 100% of the coins they bought — the tax simply never took its cut. No funds were taken, moved, or misused.</p>
+          <p>What was lost is the giving that should have happened. Every buy was supposed to send help to kids fighting cancer. It didn’t. That is what this launch fixes.</p>
+        </div>
+      </section>
+
+      <!-- THE FIX -->
+      <section id="the-fix">
+        <div class="eyebrow">The Fix</div>
+        <h2>Born Again: a new contract, built so the engine actually runs</h2>
+        <p class="section-lede">A new $G2G contract — same name, same ticker, same mission, same charity wallet — on Base, trading on Uniswap V2. The pair will <strong class="white">not</strong> sit on any fee-exempt list — there is no whitelist — so the tax collects the way it was always supposed to. Here is exactly where every trade goes:</p>
+
+        <div class="tax-grid">
+          <div class="tax-card">
+            <div class="total num">7% <small>tax on buys</small></div>
+            <ul class="split">
+              <li>
+                <div class="row"><span class="name">Charity</span><span class="pct num">4%</span></div>
+                <div class="bar"><i style="width:57%"></i></div>
+                <div class="desc">Paid in ETH to the public charity wallet, funding care and research for kids fighting cancer.</div>
+              </li>
+              <li>
+                <div class="row"><span class="name">Holder dividends</span><span class="pct num">2%</span></div>
+                <div class="bar"><i style="width:29%"></i></div>
+                <div class="desc">Paid in ETH to holders of 254,000 G2G or more. Auto-claimed every 7 days — no staking, nothing to sign up for.</div>
+              </li>
+              <li>
+                <div class="row"><span class="name">Liquidity</span><span class="pct num">0.5%</span></div>
+                <div class="bar"><i style="width:8%"></i></div>
+                <div class="desc">Goes back into the trading pool automatically. The LP tokens it creates are burned.</div>
+              </li>
+              <li>
+                <div class="row"><span class="name">Burn</span><span class="pct num">0.5%</span></div>
+                <div class="bar"><i style="width:8%"></i></div>
+                <div class="desc">Permanently removed from supply on an ongoing basis — the supply only ever shrinks from here.</div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="tax-card">
+            <div class="total num">1% <small>tax on sells</small></div>
+            <ul class="split">
+              <li>
+                <div class="row"><span class="name">Charity</span><span class="pct num">1%</span></div>
+                <div class="bar"><i style="width:100%"></i></div>
+                <div class="desc">That 1% goes to charity. Nobody enters or leaves this coin without a child benefiting — even an exit gives.</div>
+              </li>
+              <li>
+                <div class="row"><span class="name">Transfers</span><span class="pct num">0%</span></div>
+                <div class="desc">Moving G2G between your own wallets is always free.</div>
+              </li>
+              <li>
+                <div class="row"><span class="name">Total tax</span><span class="pct num">8%</span></div>
+                <div class="desc">That’s the whole structure — 7% on buys, 1% on sells, 0% on transfers. Nothing hidden, nothing else.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="zero-note">
+          <span class="big">No limits.</span>
+          <span style="color:var(--ink-soft)">The old restrictions are gone — <strong class="white">no max buy, no max wallet, no trading cooldown, no blacklist, no whitelist.</strong> The contract stays plain and open.</span>
+        </div>
+
+        <div class="card">
+          <h3>The new contract, in full</h3>
+          <dl class="spec-list">
+            <div><dt>Total supply</dt><dd class="num">2,540,000,000 G2G</dd></div>
+            <div><dt>Network / DEX</dt><dd>Base · Uniswap V2</dd></div>
+            <div><dt>Dividend minimum</dt><dd class="num">254,000 G2G held</dd></div>
+            <div><dt>Dividend payout</dt><dd>ETH, auto-claim every 7 days</dd></div>
+            <div><dt>Charity paid in</dt><dd>ETH, automatically</dd></div>
+            <div><dt>Payout trigger</dt><dd class="num">0.1% of liquidity (swap threshold)</dd></div>
+            <div><dt>Launch burn</dt><dd>None — supply stays the full 2.54B</dd></div>
+            <div><dt>Whitelist</dt><dd>None — no fee-exempt list</dd></div>
+            <div><dt>Liquidity</dt><dd>100% of launch LP will be locked</dd></div>
+          </dl>
+          <p style="margin-top:16px; color:var(--ink-soft)">The supply is the full <strong class="white">2540</strong> of Matthew 25:40 — the verse this project stands on. And the moment trading opens, a test buy verifies the engine in public: the tax pot grows and the charity wallet receives ETH, shown on-chain where anyone can check it. <strong class="white">Proof first. Promises second.</strong> Ownership is renounced only after that proof passes — never before.</p>
+        </div>
+      </section>
+
+      <!-- OLD VS NEW -->
+      <section id="old-vs-new">
+        <div class="eyebrow">Side by Side</div>
+        <h2>The original coin vs. Born Again</h2>
+        <div style="overflow-x:auto">
+          <table class="compare">
+            <thead>
+              <tr><th scope="col"></th><th scope="col">Original G2G</th><th scope="col" class="new">G2G Born Again</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Supply</td><td class="num">25,400,000</td><td class="num">2,540,000,000</td></tr>
+              <tr><td>Buy tax</td><td>10% — <span class="bad">never collected</span></td><td>7% — <span class="good">collects on every buy</span></td></tr>
+              <tr><td>Sell tax</td><td>0%</td><td>1%, all to charity</td></tr>
+              <tr><td>Charity share</td><td>8% on paper, $0 delivered</td><td>4% + 1%, in ETH</td></tr>
+              <tr><td>Dividends</td><td>1.5% on paper, never paid</td><td>2%, min. hold 254,000, auto-claim 7 days</td></tr>
+              <tr><td>Limits</td><td>Max buy / max wallet / 5-sec cooldown</td><td>None — no whitelist either</td></tr>
+              <tr><td>Status</td><td>Keeps trading; LP locked until 2029</td><td>Not trading yet — launch sequence below</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MADE WHOLE -->
+      <section id="made-whole">
+        <div class="eyebrow">For Holders</div>
+        <h2>How holders are made whole</h2>
+
+        <div class="card">
+          <h3>The airdrop: 100 new for every 1 you hold</h3>
+          <p>Every qualified wallet receives <strong class="white">100 new G2G for every 1 G2G it holds on airdrop day</strong>, up to the balance recorded in our holder review. Because the new supply is exactly 100× the old, holding carries your share over in full — same slice of the project, new engine.</p>
+          <p><strong class="white">Who qualifies:</strong> wallets from our holder review that have been <strong class="white">active in the last 30 days</strong> — activity means moving G2G or any other coin on the Base network. Wallets quiet for over a month are skipped; they keep their old tokens, they just don’t receive the airdrop.</p>
+          <p><strong class="white">You do nothing.</strong> The airdrop comes to your wallet on its own. There is no form, no claim link, and nothing to connect — see the safety section below.</p>
+        </div>
+
+        <div class="card">
+          <h3>Your old coins stay yours</h3>
+          <p>The original coin keeps trading. Its liquidity — about $6,000 — stays locked, with the largest lock running until <strong class="white">March 2029</strong>. You can verify every lock on PinkSale. Selling is your right, today and always.</p>
+          <p>One thing to know plainly: <strong class="white">the airdrop follows the holders.</strong> A wallet that sells out before the airdrop receives nothing. That is not a punishment — it is simply who this reconciliation is for.</p>
+          <p>And when the old liquidity unlocks in March 2029, the plan is to move it into the new coin. That is when the transition completes.</p>
+        </div>
+
+        <div class="card">
+          <h3>Rewards and giveaways continue</h3>
+          <p>This year’s rewards and giveaways will continue until the end of the year — <strong class="white">December 31, 2026</strong>.</p>
+        </div>
+      </section>
+
+      <!-- LAUNCH SEQUENCE -->
+      <section id="launch">
+        <div class="eyebrow">Where Things Stand</div>
+        <h2>The launch sequence</h2>
+        <p class="section-lede">Trading on the new contract stays <strong class="white">disabled</strong> until every step below is done — for as long as it takes. Liquidity can be added and locked while trading is off; only the final step opens the doors, and nothing can force it early.</p>
+
+        <ol class="steps">
+          <li class="done">
+            <span class="n">1</span>
+            <div>
+              <h3 style="display:inline">This announcement</h3><span class="tag tag-done">Done</span>
+              <p>The community hears the full story first — before anything moves.</p>
+            </div>
+          </li>
+          <li>
+            <span class="n">2</span>
+            <div>
+              <h3 style="display:inline">Contract deployed</h3><span class="tag tag-next">Next</span>
+              <p>The Born Again contract is fully configured and ready to deploy — with trading disabled from the first block, so nothing can trade until we open it deliberately at step 5.</p>
+            </div>
+          </li>
+          <li>
+            <span class="n">3</span>
+            <div>
+              <h3 style="display:inline">Liquidity added &amp; locked</h3><span class="tag tag-next">Next</span>
+              <p>The pool is funded and 100% of the launch liquidity is locked — all while trading remains disabled. The pair is also confirmed off the fee-exempt list — no whitelist: the exact fix for what broke the original coin.</p>
+            </div>
+          </li>
+          <li>
+            <span class="n">4</span>
+            <div>
+              <h3 style="display:inline">The airdrop lands</h3><span class="tag tag-next">Next</span>
+              <p>Qualified holders receive 100 new G2G for every 1 held — holders wake up on launch day already holding the new coin.</p>
+            </div>
+          </li>
+          <li>
+            <span class="n">5</span>
+            <div>
+              <h3 style="display:inline">Trading opens — and gets proven</h3><span class="tag tag-next">Launch day</span>
+              <p>Only now is trading enabled, and the contract address is posted — only in our official channels, at this step and not before. A test buy is the first trade ever made, verifying in public that the tax pot grows and charity ETH lands in the charity wallet.</p>
+            </div>
+          </li>
+          <li>
+            <span class="n">6</span>
+            <div>
+              <h3 style="display:inline">Ownership renounced</h3><span class="tag tag-next">Last</span>
+              <p>Renouncing comes after the proof — never before — so the rules are locked permanently with the engine verified running.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- SAFETY -->
+      <section id="safety">
+        <div class="eyebrow">Read This Twice</div>
+        <h2>Protect yourself</h2>
+        <div class="warn">
+          <h3>Scammers will copy this announcement. Don’t fall for it.</h3>
+          <ul>
+            <li><strong>You do NOT send your coins anywhere.</strong> There is no migration form, no claim link, no website where you connect a wallet to “convert” anything. The airdrop comes to you — or it isn’t real.</li>
+            <li><strong>The new coin is not trading yet.</strong> Anything claiming to be the new G2G right now is a fake. The contract address will be posted only in our official channels: our Telegram, grind2give.org, and @grind2givedev on X.</li>
+            <li><strong>Nobody from this project will ever DM you first about your coins.</strong> Anyone who does is a scammer — report them.</li>
+            <li><strong>Never share your seed phrase or private key</strong> — with anyone, for any reason. Grind2Give will never ask for it. Only your public Base wallet address is ever needed.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ADDRESSES & LINKS -->
+      <section id="addresses">
+        <div class="eyebrow">Verify Everything</div>
+        <h2>Addresses &amp; official channels</h2>
+        <p class="section-lede">Don’t trust — verify. These are the real addresses and the only official channels. If it didn’t come from one of these, it isn’t us.</p>
+
+        <div class="addr-card">
+          <div class="lbl">Original $G2G contract (Base) — still trading</div>
+          <div class="addr-row">
+            <span class="addr notranslate" translate="no">0x578eC5f37E0E459dec94805Bf7B122e931EB34E4</span>
+            <button class="copy-btn" type="button" data-copy="0x578eC5f37E0E459dec94805Bf7B122e931EB34E4">Copy</button>
+          </div>
+        </div>
+
+        <div class="addr-card">
+          <div class="lbl">Charity wallet (ETH) — same wallet on the new contract</div>
+          <div class="addr-row">
+            <span class="addr notranslate" translate="no">0x92EE2370b56DC32794A6CD72585dC01d4288D314</span>
+            <button class="copy-btn" type="button" data-copy="0x92EE2370b56DC32794A6CD72585dC01d4288D314">Copy</button>
+          </div>
+        </div>
+
+        <div class="addr-card">
+          <div class="lbl">New Born Again contract</div>
+          <div class="pending"><strong class="white">Not published yet — on purpose.</strong> The address is released only in our official channels when trading is ready to open. Any “new G2G” address circulating before that announcement is a fake.</div>
+        </div>
+
+        <div class="link-row">
+          <a class="chip-link" href="https://t.me/Grind2GiveChat" target="_blank" rel="noopener">Telegram — Main Chat</a>
+          <a class="chip-link" href="https://t.me/G2GMembers" target="_blank" rel="noopener">Telegram — Members</a>
+          <a class="chip-link" href="https://x.com/grind2givedev" target="_blank" rel="noopener">X — @grind2givedev</a>
+          <a class="chip-link" href="https://dexscreener.com/base/0x578ec5f37e0e459dec94805bf7b122e931eb34e4" target="_blank" rel="noopener">DexScreener — Original G2G</a>
+          <a class="chip-link" href="https://pinksale.finance/pinklock/base/0x8D560495B7a24c16e2613D1A9A04bC153c53c990" target="_blank" rel="noopener">PinkSale — Liquidity Lock</a>
+          <a class="chip-link" href="https://grind2give.org">grind2give.org</a>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <div class="eyebrow">Questions</div>
+        <h2>Straight answers</h2>
+
+        <details class="faq">
+          <summary>Do I need to do anything to get the airdrop?</summary>
+          <div class="a">No. If your wallet qualifies — it was in our holder review and active on Base in the last 30 days — the new coins arrive in the same wallet automatically. No forms, no claim links, no connecting your wallet anywhere. Anyone asking you to “claim” or “migrate” is a scammer.</div>
+        </details>
+
+        <details class="faq">
+          <summary>What happens to my old G2G?</summary>
+          <div class="a">Nothing changes. The original coin keeps trading, its liquidity stays locked until March 2029, and your coins stay in your wallet. When that liquidity unlocks in 2029, the plan is to move it into the new coin. Just remember: the airdrop is based on what you hold on airdrop day — a wallet that sells out before then receives nothing.</div>
+        </details>
+
+        <details class="faq">
+          <summary>When does the new coin start trading?</summary>
+          <div class="a">When the launch sequence above reaches its final steps — liquidity added and locked, airdrop landed — and not a moment before. There is no countdown forcing it; trading stays disabled until we open it deliberately, and a test buy at open proves the giving engine works. The date and the contract address will be announced only in our official Telegram, on grind2give.org, and on @grind2givedev on X.</div>
+        </details>
+
+        <details class="faq">
+          <summary>Did anyone lose money because of the old contract?</summary>
+          <div class="a">No. Every buyer received 100% of the coins they purchased — the tax was never taken at all. What was lost was the giving: the charity contributions and holder dividends the tax was supposed to produce. That is exactly what Born Again restores.</div>
+        </details>
+
+        <details class="faq">
+          <summary>Why is there a 1% sell tax now?</summary>
+          <div class="a">Because that’s where a lot of the movement is — and every bit of it goes to charity. Under the old design, selling gave the kids nothing. Now nobody enters or leaves this coin without a child benefiting. Entering got cheaper at the same time: the buy tax dropped from 10% to 7%.</div>
+        </details>
+
+        <details class="faq">
+          <summary>How do the new dividends work?</summary>
+          <div class="a">Hold at least 254,000 G2G and you’re eligible. Your share of the 2% dividend tax is paid to you in ETH automatically — auto-claim runs every 7 days. No staking, no claiming, nothing to sign up for.</div>
+        </details>
+
+        <details class="faq">
+          <summary>Where does the charity money go?</summary>
+          <div class="a">To the public charity wallet shown above, in ETH, automatically — 4% from buys and 1% from sells, fired by the contract itself once the accumulated taxes reach 0.1% of the liquidity pool. From there it funds care and research for kids fighting cancer at a hospital where families are never billed for treatment. Every movement is on-chain and verifiable. The hospital is not affiliated with Grind2Give and does not endorse the token — supporting its work is our choice, made because of the impact it already has.</div>
+        </details>
+
+        <details class="faq">
+          <summary>Is this financial advice?</summary>
+          <div class="a">No. Nothing on this page is financial advice. Crypto is extremely volatile — do your own research, never spend what you can’t afford to lose, and never share your seed phrase or private key with anyone.</div>
+        </details>
+      </section>
+
+      <!-- VERSE + SIGNOFF -->
+      <div class="verse">
+        <blockquote>“Whatever you did for one of the least of these brothers and sisters of mine, you did for me.”</blockquote>
+        <cite>Matthew 25:40 — the verse behind Grind2Give, and the 2540 in our supply</cite>
+      </div>
+
+      <div class="signoff">
+        <p style="color:var(--ink-soft); max-width:44rem; margin:0 auto 18px">I built G2G so everyday trading would turn into help for kids fighting cancer. The first engine never ran. This one will — and you will be able to watch it run, buy by buy, payout by payout. That’s the whole story, out in the open — and the fix is already built.</p>
+        <div class="motto">Grind. <span>Give.</span> Grow.</div>
+        <div class="from">— Mr. Grind</div>
+      </div>
+
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div>Grind2Give ($G2G) on Base · A giving movement, not another speculative token. Questions: <a href="mailto:support@grind2give.org">support@grind2give.org</a></div>
+        <div>Nothing on this page is financial advice. Always verify contract addresses in our official channels before trading.</div>
+      </div>
+    </footer>
+
+    <script>
+      window.__g2gPendingLang = null;
+      function googleTranslateElementInit() {
+        if (!window.google || !google.translate || !google.translate.TranslateElement) return;
+        new google.translate.TranslateElement({
+          pageLanguage: "en",
+          includedLanguages: "en,es,fr,de,it,pt,nl,pl,ro,uk,ru,tr,ar,fa,ur,hi,bn,ta,te,zh-CN,ja,ko,vi,th,id,ms,tl,sw,el",
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        }, "google_translate_element");
+        if (window.__g2gPendingLang) {
+          window.__g2gApplyGoogle(window.__g2gPendingLang);
+        }
+      }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+      (function () {
+        var SUPPORTED = ["en","es","fr","de","it","pt","nl","pl","ro","uk","ru","tr","ar","fa","ur","hi","bn","ta","te","zh-CN","ja","ko","vi","th","id","ms","tl","sw","el"];
+        var RTL = ["ar","fa","ur","he"];
+        var picker = document.getElementById("lang-picker");
+        var currentLang = "en";
+
+        function normalize(raw) {
+          if (!raw) return "en";
+          var c = String(raw).trim();
+          var lower = c.toLowerCase();
+          if (lower.indexOf("zh") === 0) return "zh-CN";
+          if (lower === "fil" || lower.indexOf("fil-") === 0) return "tl";
+          var base = lower.split("-")[0];
+          for (var i = 0; i < SUPPORTED.length; i++) {
+            if (SUPPORTED[i].toLowerCase() === lower) return SUPPORTED[i];
+            if (SUPPORTED[i].toLowerCase() === base) return SUPPORTED[i];
+          }
+          return null;
+        }
+        function applyDirection(code) {
+          var isRtl = RTL.indexOf(code) !== -1;
+          document.documentElement.setAttribute("dir", isRtl ? "rtl" : "ltr");
+          document.documentElement.setAttribute("lang", code === "zh-CN" ? "zh-CN" : code);
+        }
+        function findCombo() { return document.querySelector(".goog-te-combo"); }
+        function fireCombo(combo, code) {
+          combo.value = code === "en" ? "" : code;
+          var ev;
+          try { ev = new Event("change", { bubbles: true }); } catch (e) { ev = document.createEvent("HTMLEvents"); ev.initEvent("change", true, true); }
+          combo.dispatchEvent(ev);
+        }
+        window.__g2gApplyGoogle = function (code) {
+          var tries = 0;
+          var timer = setInterval(function () {
+            tries++;
+            var combo = findCombo();
+            if (combo) { clearInterval(timer); fireCombo(combo, code); }
+            else if (tries > 40) {
+              clearInterval(timer);
+              /* Fallback: Google Translate reads this cookie on load */
+              try {
+                if (code === "en") {
+                  document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+                } else {
+                  document.cookie = "googtrans=/en/" + code + "; path=/";
+                }
+              } catch (e) {}
+            }
+          }, 150);
+        };
+        function setLanguage(code, isAuto) {
+          if (!code) return;
+          currentLang = code;
+          window.__g2gPendingLang = code === "en" ? null : code;
+          if (picker && picker.value !== code) picker.value = code;
+          applyDirection(code);
+          if (code === "en" && !findCombo()) return;
+          window.__g2gApplyGoogle(code);
+        }
+
+        if (picker) {
+          picker.addEventListener("change", function () { setLanguage(picker.value, false); });
+        }
+
+        /* Sync with a language Google Translate already applied (e.g. after reload) */
+        function langFromCookie() {
+          var m = document.cookie.match(/googtrans=\/en\/([^;\/]+)/);
+          return m ? normalize(decodeURIComponent(m[1])) : null;
+        }
+        var fromCookie = langFromCookie();
+        if (fromCookie && fromCookie !== "en") {
+          currentLang = fromCookie;
+          if (picker) picker.value = fromCookie;
+          applyDirection(fromCookie);
+        } else {
+          /* Auto-detect from the visitor's browser — same behaviour as the rest of grind2give.org */
+          var detected = null;
+          var langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "en"];
+          for (var i = 0; i < langs.length; i++) { detected = normalize(langs[i]); if (detected) break; }
+          if (detected && detected !== "en") setLanguage(detected, true);
+        }
+      })();
+    </script>
+    <script>
+    /* ============ Welcome overlay — shows on every visit, 8 seconds total ============
+       Exact copy of the grind2give.org welcome. Six beats, all huge and in
+       the site's green, no coin, in a futuristic font (Orbitron, with Noto
+       Sans fallbacks for the non-Latin scripts). The visitor's own language
+       greets them first: this page's language script above has already run
+       the same browser-language detection it uses for its 29 languages and
+       applied the result, so this script reads that detected language back.
+       If it is one of the five welcome languages (English, Mandarin, Hindi,
+       Arabic, Spanish), that "Welcome" plays first, then the other four in
+       the usual order, then "Grind2Give". If the detected language is not
+       one of the five, the standard order holds. Each beat is a pure
+       brightness ramp in place — no zoom, no blur, no sliding — and the
+       beats CROSSFADE. On its way out, each welcome word DISSIPATES: it was
+       split into letter units up front, and the letters break apart,
+       scatter, and fade away. The last beat, Grind2Give, PULSES gently
+       while it holds. Then the overlay fades away into the page, with
+       "Grind. Give. Grow." in green underneath throughout.
+       No button; a tap skips ahead. */
+    (function(){
+      "use strict";
+      var box = document.getElementById("welcome");
+      if (!box) return;
+      function kill(){
+        if (box.parentNode) box.parentNode.removeChild(box);
+        document.body.classList.remove("welcoming");
+      }
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { kill(); return; }
+      document.body.classList.add("welcoming");
+
+      var BEATS = 6;
+      var els = [];
+      for (var i = 0; i < BEATS; i++) els.push(document.getElementById("welcomeLine" + (i + 1)));
+
+      var STANDARD = ["en", "zh", "hi", "ar", "es"];
+      var byLang = { en: els[0], zh: els[1], hi: els[2], ar: els[3], es: els[4] };
+      function visitorWelcomeLang(){
+        var code = "";
+        var sel = document.getElementById("lang-picker");
+        if (sel && sel.value) code = String(sel.value).toLowerCase();
+        if (!code || code === "en") {
+          var htmlLang = String(document.documentElement.getAttribute("lang") || "").toLowerCase().split("-")[0];
+          if (htmlLang) code = htmlLang;
+        }
+        if (!code) {
+          var supported = { en:1, zh:1, hi:1, es:1, ar:1 };
+          var list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "en"];
+          for (var i = 0; i < list.length; i++) {
+            var raw = String(list[i] || "").toLowerCase();
+            if (!raw) continue;
+            var base = raw.split("-")[0];
+            if (base === "zh") { code = "zh"; break; }
+            if (supported[base]) { code = base; break; }
+          }
+        }
+        if (code === "zh-cn" || code === "zh") code = "zh";
+        return (STANDARD.indexOf(code) !== -1) ? code : "";
+      }
+      var firstLang = visitorWelcomeLang();
+      var orderCodes = STANDARD.slice();
+      if (firstLang) {
+        orderCodes.splice(orderCodes.indexOf(firstLang), 1);
+        orderCodes.unshift(firstLang);
+      }
+      var playEls = [];
+      for (var k = 0; k < orderCodes.length; k++) playEls.push(byLang[orderCodes[k]]);
+      playEls.push(els[5]);
+
+      function splitUnits(el){
+        var text = el.textContent;
+        var lang = (el.getAttribute("lang") || "").toLowerCase();
+        var units = null;
+        if (lang === "ar") {
+          units = text.split(/(\s+)/);
+        } else if (window.Intl && Intl.Segmenter) {
+          units = [];
+          var seg = new Intl.Segmenter(lang || undefined, { granularity: "grapheme" });
+          var it = seg.segment(text)[Symbol.iterator]();
+          var step;
+          while (!(step = it.next()).done) units.push(step.value.segment);
+        } else if (lang === "hi") {
+          units = text.split(/(\s+)/);
+        } else {
+          units = Array.from(text);
+        }
+        el.textContent = "";
+        var n = 0;
+        for (var u = 0; u < units.length; u++) {
+          var unit = units[u];
+          if (!unit) continue;
+          if (/^\s+$/.test(unit) || unit === " ") { el.appendChild(document.createTextNode(" ")); continue; }
+          var s = document.createElement("span");
+          s.className = "wch";
+          s.textContent = unit;
+          var i = n++;
+          s.style.setProperty("--dx", ((((i * 37) % 9) - 4) * 0.14).toFixed(2) + "em");
+          s.style.setProperty("--dy", ((((i * 53) % 11) - 5) * 0.10 - 0.15).toFixed(2) + "em");
+          s.style.setProperty("--rot", (((i * 41) % 13) - 6) * 6 + "deg");
+          s.style.transitionDelay = (i * 24) + "ms";
+          el.appendChild(s);
+        }
+      }
+      for (var s5 = 0; s5 < 5; s5++) if (els[s5]) splitUnits(els[s5]);
+
+      function fitWelcomeLines(){
+        var container = document.getElementById("welcomeLines");
+        if (!container) return;
+        var avail = container.clientWidth;
+        if (!avail) return;
+        for (var j = 0; j < BEATS; j++) {
+          var el = els[j];
+          if (!el) continue;
+          el.style.fontSize = "";
+          var guard = 0;
+          while (el.scrollWidth > avail + 1 && guard < 24) {
+            var cur = parseFloat(window.getComputedStyle(el).fontSize);
+            if (!cur || cur <= 18) break;
+            el.style.fontSize = (cur * 0.92) + "px";
+            guard++;
+          }
+        }
+      }
+      fitWelcomeLines();
+      window.addEventListener("resize", fitWelcomeLines);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWelcomeLines);
+
+      var done = false;
+      function finish(){
+        if (done) return;
+        done = true;
+        box.classList.add("out");
+        setTimeout(kill, 560);
+      }
+      function on(n){ if (playEls[n - 1]) playEls[n - 1].classList.add("on"); }
+      function off(n){
+        var el = playEls[n - 1];
+        if (!el) return;
+        el.classList.remove("on");
+        if (n < BEATS) el.classList.add("gone");
+      }
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ on(1); }); });
+      setTimeout(function(){ off(1); on(2); }, 1100);
+      setTimeout(function(){ off(2); on(3); }, 2200);
+      setTimeout(function(){ off(3); on(4); }, 3300);
+      setTimeout(function(){ off(4); on(5); }, 4400);
+      setTimeout(function(){ off(5); on(6); }, 5500);
+      setTimeout(finish, 7500);
+      box.addEventListener("click", finish);
+    })();
+    </script>
+    <script>
+      (function () {
+        var buttons = document.querySelectorAll("[data-copy]");
+        buttons.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var text = btn.getAttribute("data-copy");
+            function done() {
+              var original = btn.textContent;
+              btn.textContent = "Copied ✓";
+              setTimeout(function () { btn.textContent = original; }, 1800);
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(text).then(done, function () { fallback(); });
+            } else { fallback(); }
+            function fallback() {
+              var ta = document.createElement("textarea");
+              ta.value = text;
+              ta.style.position = "fixed"; ta.style.opacity = "0";
+              document.body.appendChild(ta);
+              ta.select();
+              try { document.execCommand("copy"); } catch (e) {}
+              document.body.removeChild(ta);
+              done();
+            }
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
